@@ -1,6 +1,6 @@
-platform :osx, "10.8"
+platform :osx, "10.10"
 
-source 'https://github.com/CocoaPods/Specs.git'
+use_frameworks!
 
 shared_app_dependencies = proc do
   pod 'AMCoreAudio', '~> 1.4.2'
@@ -11,6 +11,7 @@ end
 target "AudioMate" do
   shared_app_dependencies.call
   pod 'LetsMove', '~> 1.9'
+  pod 'Sparkle', '~> 1.13.0'
 end
 
 target "AudioMate-AppStore" do
