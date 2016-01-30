@@ -12,14 +12,16 @@ import AMCoreAudio
 class StatusBarViewController: NSViewController {
 
     private var audioDevices = [AMCoreAudioDevice]()
-    private var devicesMenu = NSMenu()
-    private var statusBarView: StatusBarView!
+    private var mainMenu = NSMenu()
+
+    private lazy var statusBarView: StatusBarView? = {
+        return self.view as? StatusBarView
+    }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        statusBarView = view as? StatusBarView
-        devicesMenu.delegate = self
+        mainMenu.delegate = self
 
         let quitMenuItem = NSMenuItem()
 
@@ -27,14 +29,12 @@ class StatusBarViewController: NSViewController {
         quitMenuItem.target = NSApp
         quitMenuItem.action = "terminate:"
 
-        devicesMenu.addItem(quitMenuItem)
-        statusBarView.setDeviceMenu(devicesMenu)
+        mainMenu.addItem(quitMenuItem)
+        statusBarView?.setMainMenu(mainMenu)
     }
 
     func addDevice(device: AMCoreAudioDevice) {
         audioDevices.append(device)
-
-        print("(+) audioDevices = \(audioDevices)")
 
         let item = NSMenuItem()
 
@@ -44,7 +44,7 @@ class StatusBarViewController: NSViewController {
         item.representedObject = device
         item.tag = Int(device.deviceID)
 
-        devicesMenu.insertItem(item, atIndex: 0)
+        mainMenu.insertItem(item, atIndex: 0)
     }
 
     func removeDevice(device: AMCoreAudioDevice) {
@@ -52,11 +52,9 @@ class StatusBarViewController: NSViewController {
             audioDevices.removeAtIndex(idx)
         }
 
-        if let item = devicesMenu.itemWithTag(Int(device.deviceID)) {
-            devicesMenu.removeItem(item)
+        if let item = mainMenu.itemWithTag(Int(device.deviceID)) {
+            mainMenu.removeItem(item)
         }
-
-        print("(-) audioDevices = \(audioDevices)")
     }
 
     @objc func noop(sender: AnyObject) {
@@ -66,6 +64,6 @@ class StatusBarViewController: NSViewController {
 
 extension StatusBarViewController: NSMenuDelegate {
     func menuDidClose(menu: NSMenu) {
-        statusBarView.controlIsHighlighted = false
+        statusBarView?.controlIsHighlighted = false
     }
 }

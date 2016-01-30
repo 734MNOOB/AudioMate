@@ -51,7 +51,7 @@ class StatusBarView: NSView {
         statusItem.view = self
     }
 
-    func setDeviceMenu(menu: NSMenu) {
+    func setMainMenu(menu: NSMenu) {
         statusItem.menu = menu
     }
 
