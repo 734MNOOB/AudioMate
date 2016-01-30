@@ -40,7 +40,7 @@ $ pod install
 | Implement new compact UI| Pending|
 | Implement preferences panel| Pending|
 | Implement audio device actions| Pending|
-| Implement keyboard & scroll wheel control (#19)| Pending|
+| Implement keyboard & scroll wheel control (#https://github.com/The9Labs/AudioMate/issues/18)| Pending|
 
 ### Further Development & Patches
 
