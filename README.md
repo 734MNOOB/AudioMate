@@ -18,30 +18,29 @@ $ pod install
 ```bash
 $ git submodule sync
 $ git submodule update
-$ pod update
+$ pod install
 ```
 
 ### Build & Run
 
-1. Open `AMCoreAudio.xcworkspace` in Xcode 7.x (or later)
+1. Open `AMCoreAudio.xcworkspace` in Xcode 7.3 (or later)
 2. Hit Run (Cmd + R)
 
 ### Requirements
 
-* Xcode 7.x (for development)
+* Xcode 7.3 and Swift 2.2 (for development)
 * OS X 10.11 or later
-* 64-bit processor
 
-### External Dependencies
+## Version 3 Roadmap
 
-(Managed either with Cocoapods or git submodules)
-
-* [AMCoreAudio](https://github.com/sonicbee9/AMCoreAudio)
-* [LVDebounce](https://github.com/layervault/LVDebounce)
-* [LetsMove](https://github.com/potionfactory/LetsMove)
-* [StartAtLoginController](https://github.com/alexzielenski/StartAtLoginController)
-* [Sparkle](https://github.com/sparkle-project/Sparkle.git)
-* [yoursway-create-dmg](https://github.com/andreyvit/yoursway-create-dmg)
+| Description       | Status|
+| -------------:|:-------------
+| Migration to AMCoreAudio v2.x| Completed|
+| Implement audio device notifications| Completed|
+| Implement new compact UI| Pending|
+| Implement preferences panel| Pending|
+| Implement audio device actions| Pending|
+| Implement keyboard & scroll wheel control (#19)| Pending|
 
 ### Further Development & Patches
 
