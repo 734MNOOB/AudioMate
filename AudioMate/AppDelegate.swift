@@ -50,10 +50,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         )
     }
 
-    @objc func foo(sender: AnyObject) {
-        print("aha!")
-    }
-
     func applicationWillTerminate(aNotification: NSNotification) {
         // Insert code here to tear down your application
 
@@ -79,8 +75,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                 previousActiveApplication = activeApplication
             }
         }
-
-        print("previousActiveApplication = \(previousActiveApplication)")
     }
 
     @objc func applicationDidDeactivate(notification: NSNotification) {
