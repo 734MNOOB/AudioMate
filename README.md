@@ -23,13 +23,13 @@ $ pod update
 
 ### Build & Run
 
-1. Open `AMCoreAudio.xcworkspace` in Xcode 6.x (or later)
+1. Open `AMCoreAudio.xcworkspace` in Xcode 7.x (or later)
 2. Hit Run (Cmd + R)
 
 ### Requirements
 
-* Xcode 6.x (for development)
-* OS X 10.8 or later
+* Xcode 7.x (for development)
+* OS X 10.11 or later
 * 64-bit processor
 
 ### External Dependencies
@@ -49,4 +49,4 @@ Do you want to contribute to the project? Please fork, patch, and then submit a 
 
 ### License
 
-AudioMate was written by Ruben Nine ([@sonicbee9](https://twitter.com/sonicbee9)) in 2012-2015 (open-sourced in July 2014) and is licensed under the [MIT](http://opensource.org/licenses/MIT) license. See [LICENSE.md](LICENSE.md).
+AudioMate was written by Ruben Nine ([@sonicbee9](https://twitter.com/sonicbee9)) in 2012-2016 (open-sourced in July 2014) and is licensed under the [MIT](http://opensource.org/licenses/MIT) license. See [LICENSE.md](LICENSE.md).

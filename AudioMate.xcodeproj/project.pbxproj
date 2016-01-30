@@ -9,11 +9,12 @@
 /* Begin PBXBuildFile section */
 		4509DF7418816AE500881203 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4509DF7218816AE500881203 /* Localizable.strings */; };
 		4509DF7918816B0600881203 /* MoveApplication.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4509DF7718816B0600881203 /* MoveApplication.strings */; };
-		45131DF4195B683400FF4DFE /* AMAudioDeviceActions.m in Sources */ = {isa = PBXBuildFile; fileRef = 45131DF3195B683400FF4DFE /* AMAudioDeviceActions.m */; };
-		451AD493185F136F00D59E64 /* AMAudioEventNotifier.m in Sources */ = {isa = PBXBuildFile; fileRef = 451AD492185F136F00D59E64 /* AMAudioEventNotifier.m */; };
-		451C1FBE168F469300D06A74 /* AMApplication.m in Sources */ = {isa = PBXBuildFile; fileRef = 451C1FBD168F469300D06A74 /* AMApplication.m */; };
-		451E1C2A18460473009628DA /* AMStatusBarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 451E1C2918460473009628DA /* AMStatusBarView.m */; };
-		451E63DE1B17AB5500A2133C /* NSString+Calculations.m in Sources */ = {isa = PBXBuildFile; fileRef = 451E63DD1B17AB5500A2133C /* NSString+Calculations.m */; };
+		451B06661C4D542C00DFD5A0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 451B06651C4D542C00DFD5A0 /* AppDelegate.swift */; };
+		451B066B1C4D548800DFD5A0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 451B06691C4D548800DFD5A0 /* Main.storyboard */; };
+		451B066F1C4D560F00DFD5A0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 451B066E1C4D560F00DFD5A0 /* AppDelegate.swift */; };
+		451B06701C4D560F00DFD5A0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 451B066E1C4D560F00DFD5A0 /* AppDelegate.swift */; };
+		451B06731C4D5E5F00DFD5A0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 451B06711C4D5E5F00DFD5A0 /* Main.storyboard */; };
+		451B06741C4D5E5F00DFD5A0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 451B06711C4D5E5F00DFD5A0 /* Main.storyboard */; };
 		45279A24188AA5700058FB69 /* aqua_blue.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 45279A1B188AA5700058FB69 /* aqua_blue.tiff */; };
 		45279A26188AA5700058FB69 /* Clock.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 45279A1C188AA5700058FB69 /* Clock.tiff */; };
 		45279A28188AA5700058FB69 /* DefaultInput.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 45279A1D188AA5700058FB69 /* DefaultInput.tiff */; };
@@ -21,70 +22,18 @@
 		45279A2E188AA5700058FB69 /* graphite.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 45279A20188AA5700058FB69 /* graphite.tiff */; };
 		45279A30188AA5700058FB69 /* SystemOutput.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 45279A21188AA5700058FB69 /* SystemOutput.tiff */; };
 		45279A32188AA5700058FB69 /* Select.aiff in Resources */ = {isa = PBXBuildFile; fileRef = 45279A23188AA5700058FB69 /* Select.aiff */; };
-		45279A35188AA5B80058FB69 /* Logo.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 45279A34188AA5B80058FB69 /* Logo.pdf */; };
-		45279A3B188AA60A0058FB69 /* Equalizer.png in Resources */ = {isa = PBXBuildFile; fileRef = 45279A3A188AA60A0058FB69 /* Equalizer.png */; };
-		45279A3E188AA60F0058FB69 /* Volume-control.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 45279A3D188AA60F0058FB69 /* Volume-control.pdf */; };
 		45442A0A1B1F81FE0094EBE6 /* sign_app.rb in Resources */ = {isa = PBXBuildFile; fileRef = 45442A091B1F81FE0094EBE6 /* sign_app.rb */; };
-		454F243B1AC4341C008D9B37 /* Speaker.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 454F243A1AC4341C008D9B37 /* Speaker.pdf */; };
-		454F243C1AC4341D008D9B37 /* Speaker.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 454F243A1AC4341C008D9B37 /* Speaker.pdf */; };
-		454FF74F16E5235F0035BD6A /* AMClockSourcePopUpButtonCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = 454FF74E16E5235F0035BD6A /* AMClockSourcePopUpButtonCellView.m */; };
-		455404AE198499B500029F39 /* Sparkle.framework in Copy Embedded Frameworks */ = {isa = PBXBuildFile; fileRef = 455404A21984999300029F39 /* Sparkle.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
-		4555210A16DD2F1400FE7210 /* NSTableView+ContextMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 4555210916DD2F1400FE7210 /* NSTableView+ContextMenu.m */; };
-		4555211116DD2F3D00FE7210 /* AMAudioDeviceDefaultsCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4555210C16DD2F3D00FE7210 /* AMAudioDeviceDefaultsCellView.m */; };
-		4555211216DD2F3D00FE7210 /* AMAudioDeviceNameCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4555210E16DD2F3D00FE7210 /* AMAudioDeviceNameCellView.m */; };
-		4555211316DD2F3D00FE7210 /* AMSampleRatePopUpButtonCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4555211016DD2F3D00FE7210 /* AMSampleRatePopUpButtonCellView.m */; };
-		456BCA0917AAE52E008AF5C3 /* AMAudioDeviceMasterVolumesCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = 456BCA0817AAE52E008AF5C3 /* AMAudioDeviceMasterVolumesCellView.m */; };
-		456BCA0E17AAE5F8008AF5C3 /* AMAudioDeviceMasterVolumesExtrasCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = 456BCA0D17AAE5F8008AF5C3 /* AMAudioDeviceMasterVolumesExtrasCellView.m */; };
-		45731F191BC835D5008F455D /* NSTableView+Calculations.m in Sources */ = {isa = PBXBuildFile; fileRef = 45D31F941B17A54700FCDFBA /* NSTableView+Calculations.m */; settings = {ASSET_TAGS = (); }; };
+		4549E2591C4FF16A008D2119 /* StatusBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4549E2581C4FF16A008D2119 /* StatusBarView.swift */; };
+		4549E25A1C4FF16A008D2119 /* StatusBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4549E2581C4FF16A008D2119 /* StatusBarView.swift */; };
+		455F0C071C4E666500E59A99 /* EventNotifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 455F0C061C4E666500E59A99 /* EventNotifier.swift */; };
+		455F0C081C4E666500E59A99 /* EventNotifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 455F0C061C4E666500E59A99 /* EventNotifier.swift */; };
 		45772C4E184690BE00D07EF6 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 45772C4D184690BE00D07EF6 /* Images.xcassets */; };
-		45776B401AAB7EC200B8122B /* NSWindow+canBecomeKeyWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 45776B3F1AAB7EC200B8122B /* NSWindow+canBecomeKeyWindow.m */; };
-		4584563F18843EC100809657 /* AMAudioDeviceActionsCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4584563E18843EC100809657 /* AMAudioDeviceActionsCellView.m */; };
-		45879E6919716505004037D2 /* AMGeneralPreferences.m in Sources */ = {isa = PBXBuildFile; fileRef = 45879E6819716505004037D2 /* AMGeneralPreferences.m */; };
-		45879E6C19716825004037D2 /* AMNotificationsPreferences.m in Sources */ = {isa = PBXBuildFile; fileRef = 45879E6B19716825004037D2 /* AMNotificationsPreferences.m */; };
-		45879E6F19716B4C004037D2 /* AMDevicePreferences.m in Sources */ = {isa = PBXBuildFile; fileRef = 45879E6E19716B4C004037D2 /* AMDevicePreferences.m */; };
+		4589AE011C52B405009BE875 /* StatusBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4589AE001C52B405009BE875 /* StatusBarViewController.swift */; };
+		4589AE021C52B405009BE875 /* StatusBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4589AE001C52B405009BE875 /* StatusBarViewController.swift */; };
 		458E355D196EB56000C7C630 /* AMConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = 458E355C196EB56000C7C630 /* AMConfig.plist */; };
-		458E3568196EBA9F00C7C630 /* NSImage+BWTinting.m in Sources */ = {isa = PBXBuildFile; fileRef = 458E3567196EBA9F00C7C630 /* NSImage+BWTinting.m */; };
-		458E356B196EC3C800C7C630 /* AMDeviceActionsPanel.m in Sources */ = {isa = PBXBuildFile; fileRef = 458E356A196EC3C800C7C630 /* AMDeviceActionsPanel.m */; };
-		458E356E196EDEC400C7C630 /* AMPreferencesPanel.m in Sources */ = {isa = PBXBuildFile; fileRef = 458E356D196EDEC400C7C630 /* AMPreferencesPanel.m */; };
-		458E3572196EE08900C7C630 /* AMSheetPanel.m in Sources */ = {isa = PBXBuildFile; fileRef = 458E3571196EE08900C7C630 /* AMSheetPanel.m */; };
-		458E357C196F422400C7C630 /* AMCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = 458E357B196F422400C7C630 /* AMCellView.m */; };
 		458E95B9185B50E500A0EFE6 /* AudioMateLauncher.app in Copy AudioMateLauncher into Contents/Library/LoginItems */ = {isa = PBXBuildFile; fileRef = 459D6DA91687EF95007F2226 /* AudioMateLauncher.app */; };
-		458FA5B5168A1006008C3F39 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 458FA5B3168A1006008C3F39 /* MainMenu.xib */; };
 		4595B26B1B17C7BD0075D1D1 /* dsa_pub.pem in Resources */ = {isa = PBXBuildFile; fileRef = 4595B26A1B17C7BD0075D1D1 /* dsa_pub.pem */; };
-		459D6DAA1687EF95007F2226 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 45FA562A166BC8C500C1D92D /* Cocoa.framework */; };
-		459D6DB11687EF95007F2226 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 459D6DAF1687EF95007F2226 /* InfoPlist.strings */; };
-		459D6DB31687EF95007F2226 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 459D6DB21687EF95007F2226 /* main.m */; };
-		459D6DB71687EF95007F2226 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 459D6DB51687EF95007F2226 /* Credits.rtf */; };
-		459D6DBA1687EF95007F2226 /* AMAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 459D6DB91687EF95007F2226 /* AMAppDelegate.m */; };
-		459D6DBD1687EF96007F2226 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 459D6DBB1687EF96007F2226 /* MainMenu.xib */; };
 		459D6DC41687F00D007F2226 /* ServiceManagement.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 459D6DC31687F00D007F2226 /* ServiceManagement.framework */; };
-		45A336BD1AACA48200ED7823 /* AMPreferences.m in Sources */ = {isa = PBXBuildFile; fileRef = 45F62C381688D11600FE7692 /* AMPreferences.m */; };
-		45A336BE1AACA48200ED7823 /* AMPreferencesPanel.m in Sources */ = {isa = PBXBuildFile; fileRef = 458E356D196EDEC400C7C630 /* AMPreferencesPanel.m */; };
-		45A336BF1AACA48200ED7823 /* AMSheetPanel.m in Sources */ = {isa = PBXBuildFile; fileRef = 458E3571196EE08900C7C630 /* AMSheetPanel.m */; };
-		45A336C01AACA48200ED7823 /* AMAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 45F62C3C1688D12900FE7692 /* AMAppDelegate.m */; };
-		45A336C11AACA48200ED7823 /* AMPopoverController.m in Sources */ = {isa = PBXBuildFile; fileRef = 45F62C401688D12A00FE7692 /* AMPopoverController.m */; };
-		45A336C21AACA48200ED7823 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 45F62C691688D1AF00FE7692 /* main.m */; };
-		45A336C31AACA48200ED7823 /* AMApplication.m in Sources */ = {isa = PBXBuildFile; fileRef = 451C1FBD168F469300D06A74 /* AMApplication.m */; };
-		45A336C41AACA48200ED7823 /* AMNotificationsPreferences.m in Sources */ = {isa = PBXBuildFile; fileRef = 45879E6B19716825004037D2 /* AMNotificationsPreferences.m */; };
-		45A336C51AACA48200ED7823 /* AMAudioDeviceActionsCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4584563E18843EC100809657 /* AMAudioDeviceActionsCellView.m */; };
-		45A336C61AACA48200ED7823 /* NSWindow+canBecomeKeyWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 45776B3F1AAB7EC200B8122B /* NSWindow+canBecomeKeyWindow.m */; };
-		45A336C71AACA48200ED7823 /* AMAudioDeviceActions.m in Sources */ = {isa = PBXBuildFile; fileRef = 45131DF3195B683400FF4DFE /* AMAudioDeviceActions.m */; };
-		45A336C81AACA48200ED7823 /* AMGeneralPreferences.m in Sources */ = {isa = PBXBuildFile; fileRef = 45879E6819716505004037D2 /* AMGeneralPreferences.m */; };
-		45A336C91AACA48200ED7823 /* NSTableView+ContextMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 4555210916DD2F1400FE7210 /* NSTableView+ContextMenu.m */; };
-		45A336CA1AACA48200ED7823 /* AMAudioDeviceDefaultsCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4555210C16DD2F3D00FE7210 /* AMAudioDeviceDefaultsCellView.m */; };
-		45A336CB1AACA48200ED7823 /* AMButtonCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = 45A5B56A188451A60052112B /* AMButtonCellView.m */; };
-		45A336CC1AACA48200ED7823 /* AMDevicePreferences.m in Sources */ = {isa = PBXBuildFile; fileRef = 45879E6E19716B4C004037D2 /* AMDevicePreferences.m */; };
-		45A336CD1AACA48200ED7823 /* AMDeviceActionsPanel.m in Sources */ = {isa = PBXBuildFile; fileRef = 458E356A196EC3C800C7C630 /* AMDeviceActionsPanel.m */; };
-		45A336CE1AACA48200ED7823 /* AMAudioDeviceNameCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4555210E16DD2F3D00FE7210 /* AMAudioDeviceNameCellView.m */; };
-		45A336CF1AACA48200ED7823 /* AMCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = 458E357B196F422400C7C630 /* AMCellView.m */; };
-		45A336D01AACA48200ED7823 /* AMSampleRatePopUpButtonCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4555211016DD2F3D00FE7210 /* AMSampleRatePopUpButtonCellView.m */; };
-		45A336D11AACA48200ED7823 /* AMAudioEventNotifier.m in Sources */ = {isa = PBXBuildFile; fileRef = 451AD492185F136F00D59E64 /* AMAudioEventNotifier.m */; };
-		45A336D21AACA48200ED7823 /* AMClockSourcePopUpButtonCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = 454FF74E16E5235F0035BD6A /* AMClockSourcePopUpButtonCellView.m */; };
-		45A336D31AACA48200ED7823 /* NSTimer+EOCBlocksSupport.m in Sources */ = {isa = PBXBuildFile; fileRef = 45CB6ED118C279AE0050DD1E /* NSTimer+EOCBlocksSupport.m */; };
-		45A336D41AACA48200ED7823 /* AMAudioDeviceMasterVolumesCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = 456BCA0817AAE52E008AF5C3 /* AMAudioDeviceMasterVolumesCellView.m */; };
-		45A336D51AACA48200ED7823 /* AMStatusBarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 451E1C2918460473009628DA /* AMStatusBarView.m */; };
-		45A336D61AACA48200ED7823 /* NSImage+BWTinting.m in Sources */ = {isa = PBXBuildFile; fileRef = 458E3567196EBA9F00C7C630 /* NSImage+BWTinting.m */; };
-		45A336D71AACA48200ED7823 /* AMAudioDeviceMasterVolumesExtrasCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = 456BCA0D17AAE5F8008AF5C3 /* AMAudioDeviceMasterVolumesExtrasCellView.m */; };
 		45A336DA1AACA48200ED7823 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 45A36AD916BF098100A82041 /* Security.framework */; };
 		45A336DB1AACA48200ED7823 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 45A36A8516BF027100A82041 /* QuartzCore.framework */; };
 		45A336DC1AACA48200ED7823 /* ServiceManagement.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 459D6DC31687F00D007F2226 /* ServiceManagement.framework */; };
@@ -93,15 +42,9 @@
 		45A336E21AACA48200ED7823 /* SystemOutput.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 45279A21188AA5700058FB69 /* SystemOutput.tiff */; };
 		45A336E31AACA48200ED7823 /* DefaultOutput.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 45279A1E188AA5700058FB69 /* DefaultOutput.tiff */; };
 		45A336E41AACA48200ED7823 /* graphite.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 45279A20188AA5700058FB69 /* graphite.tiff */; };
-		45A336E51AACA48200ED7823 /* Logo.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 45279A34188AA5B80058FB69 /* Logo.pdf */; };
-		45A336E61AACA48200ED7823 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 45F62C501688D17900FE7692 /* Credits.rtf */; };
-		45A336E71AACA48200ED7823 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 45F62C521688D17900FE7692 /* InfoPlist.strings */; };
 		45A336E81AACA48200ED7823 /* DefaultInput.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 45279A1D188AA5700058FB69 /* DefaultInput.tiff */; };
-		45A336E91AACA48200ED7823 /* Volume-control.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 45279A3D188AA60F0058FB69 /* Volume-control.pdf */; };
 		45A336EA1AACA48200ED7823 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 45772C4D184690BE00D07EF6 /* Images.xcassets */; };
-		45A336EB1AACA48200ED7823 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 458FA5B3168A1006008C3F39 /* MainMenu.xib */; };
 		45A336EC1AACA48200ED7823 /* aqua_blue.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 45279A1B188AA5700058FB69 /* aqua_blue.tiff */; };
-		45A336ED1AACA48200ED7823 /* Equalizer.png in Resources */ = {isa = PBXBuildFile; fileRef = 45279A3A188AA60A0058FB69 /* Equalizer.png */; };
 		45A336EE1AACA48200ED7823 /* Clock.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 45279A1C188AA5700058FB69 /* Clock.tiff */; };
 		45A336EF1AACA48200ED7823 /* AMConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = 458E355C196EB56000C7C630 /* AMConfig.plist */; };
 		45A336F11AACA48200ED7823 /* Select.aiff in Resources */ = {isa = PBXBuildFile; fileRef = 45279A23188AA5700058FB69 /* Select.aiff */; };
@@ -109,66 +52,11 @@
 		45A336F61AACA48200ED7823 /* AudioMateLauncher.app in Copy AudioMateLauncher into Contents/Library/LoginItems */ = {isa = PBXBuildFile; fileRef = 459D6DA91687EF95007F2226 /* AudioMateLauncher.app */; };
 		45A36A8616BF027100A82041 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 45A36A8516BF027100A82041 /* QuartzCore.framework */; };
 		45A36ADA16BF098100A82041 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 45A36AD916BF098100A82041 /* Security.framework */; };
-		45A5B56B188451A60052112B /* AMButtonCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = 45A5B56A188451A60052112B /* AMButtonCellView.m */; };
-		45CB6ED218C279AE0050DD1E /* NSTimer+EOCBlocksSupport.m in Sources */ = {isa = PBXBuildFile; fileRef = 45CB6ED118C279AE0050DD1E /* NSTimer+EOCBlocksSupport.m */; };
-		45D31F951B17A54700FCDFBA /* NSTableView+Calculations.m in Sources */ = {isa = PBXBuildFile; fileRef = 45D31F941B17A54700FCDFBA /* NSTableView+Calculations.m */; };
-		45F62C3A1688D11700FE7692 /* AMPreferences.m in Sources */ = {isa = PBXBuildFile; fileRef = 45F62C381688D11600FE7692 /* AMPreferences.m */; };
-		45F62C411688D12B00FE7692 /* AMAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 45F62C3C1688D12900FE7692 /* AMAppDelegate.m */; };
-		45F62C431688D12B00FE7692 /* AMPopoverController.m in Sources */ = {isa = PBXBuildFile; fileRef = 45F62C401688D12A00FE7692 /* AMPopoverController.m */; };
-		45F62C541688D17900FE7692 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 45F62C501688D17900FE7692 /* Credits.rtf */; };
-		45F62C551688D17900FE7692 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 45F62C521688D17900FE7692 /* InfoPlist.strings */; };
-		45F62C6A1688D1AF00FE7692 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 45F62C691688D1AF00FE7692 /* main.m */; };
 		45FA562B166BC8C500C1D92D /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 45FA562A166BC8C500C1D92D /* Cocoa.framework */; };
 		45FA5669166BD3FF00C1D92D /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 45FA5668166BD3FF00C1D92D /* CoreAudio.framework */; };
-		45FD7ECE19FD988000367053 /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 455404A21984999300029F39 /* Sparkle.framework */; };
-		9F3701D496DB4662B44FEBB9 /* libPods-AudioMate.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 14CC9B69B62E41D0972482E8 /* libPods-AudioMate.a */; };
-		A443911A04467F8FAE026CD5 /* libPods-AudioMate-AppStore.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8368B88C31D2BDD7A277A84C /* libPods-AudioMate-AppStore.a */; };
+		C19F2D1B0B982B5DCBD628DB /* Pods_AudioMate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C699BDDF812320A95DF3B53A /* Pods_AudioMate.framework */; };
+		D1803B22940E6643C124E97D /* Pods_AudioMate_AppStore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C7C2A7646D8F59BD572DBC05 /* Pods_AudioMate_AppStore.framework */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		455404A11984999300029F39 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 455404961984999300029F39 /* Sparkle.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 8DC2EF5B0486A6940098B216;
-			remoteInfo = Sparkle;
-		};
-		455404A31984999300029F39 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 455404961984999300029F39 /* Sparkle.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 61B5F90209C4CEE200B25A18;
-			remoteInfo = "Sparkle Test App";
-		};
-		455404A51984999300029F39 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 455404961984999300029F39 /* Sparkle.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 612279D90DB5470200AB99EA;
-			remoteInfo = "Sparkle Unit Tests";
-		};
-		455404A71984999300029F39 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 455404961984999300029F39 /* Sparkle.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 5D06E8D00FD68C7C005AE3F6;
-			remoteInfo = BinaryDelta;
-		};
-		455404A91984999300029F39 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 455404961984999300029F39 /* Sparkle.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 55C14BB7136EEF1500649790;
-			remoteInfo = Autoupdate;
-		};
-		455404AB198499A400029F39 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 455404961984999300029F39 /* Sparkle.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 8DC2EF4F0486A6940098B216;
-			remoteInfo = Sparkle;
-		};
-/* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
 		4591486C1688081300BE1A44 /* Copy Embedded Frameworks */ = {
@@ -177,7 +65,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				455404AE198499B500029F39 /* Sparkle.framework in Copy Embedded Frameworks */,
 			);
 			name = "Copy Embedded Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -207,25 +94,15 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		14CC9B69B62E41D0972482E8 /* libPods-AudioMate.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-AudioMate.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1CEB160019853F52007B82EC /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/MoveApplication.strings; sourceTree = "<group>"; };
 		1CEB160119853F52007B82EC /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/Localizable.strings; sourceTree = "<group>"; };
-		1CEB160219853F52007B82EC /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		4509DF7318816AE500881203 /* en */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		4509DF7818816B0600881203 /* en */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/MoveApplication.strings; sourceTree = "<group>"; };
-		45131DF2195B683400FF4DFE /* AMAudioDeviceActions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMAudioDeviceActions.h; sourceTree = "<group>"; };
-		45131DF3195B683400FF4DFE /* AMAudioDeviceActions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMAudioDeviceActions.m; sourceTree = "<group>"; };
-		451735011984964C003D4204 /* libPods-AudioMate-LetsMove.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libPods-AudioMate-LetsMove.a"; path = "../../../Library/Developer/Xcode/DerivedData/AudioMate-affysllxudigvmbslgcoipjivhsa/Build/Products/Debug/libPods-AudioMate-LetsMove.a"; sourceTree = "<group>"; };
-		451735021984964C003D4204 /* libPods-AudioMate-LVDebounce.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libPods-AudioMate-LVDebounce.a"; path = "../../../Library/Developer/Xcode/DerivedData/AudioMate-affysllxudigvmbslgcoipjivhsa/Build/Products/Debug/libPods-AudioMate-LVDebounce.a"; sourceTree = "<group>"; };
-		451735031984964C003D4204 /* libPods-AudioMate-StartAtLoginController.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libPods-AudioMate-StartAtLoginController.a"; path = "../../../Library/Developer/Xcode/DerivedData/AudioMate-affysllxudigvmbslgcoipjivhsa/Build/Products/Debug/libPods-AudioMate-StartAtLoginController.a"; sourceTree = "<group>"; };
-		451AD491185F136F00D59E64 /* AMAudioEventNotifier.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AMAudioEventNotifier.h; path = AudioMate/AMAudioEventNotifier.h; sourceTree = SOURCE_ROOT; };
-		451AD492185F136F00D59E64 /* AMAudioEventNotifier.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AMAudioEventNotifier.m; path = AudioMate/AMAudioEventNotifier.m; sourceTree = SOURCE_ROOT; };
-		451C1FBC168F469300D06A74 /* AMApplication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AMApplication.h; path = AudioMate/AMApplication.h; sourceTree = SOURCE_ROOT; };
-		451C1FBD168F469300D06A74 /* AMApplication.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AMApplication.m; path = AudioMate/AMApplication.m; sourceTree = SOURCE_ROOT; };
-		451E1C2818460473009628DA /* AMStatusBarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AMStatusBarView.h; path = AudioMate/AMStatusBarView.h; sourceTree = SOURCE_ROOT; };
-		451E1C2918460473009628DA /* AMStatusBarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AMStatusBarView.m; path = AudioMate/AMStatusBarView.m; sourceTree = SOURCE_ROOT; };
-		451E63DC1B17AB5500A2133C /* NSString+Calculations.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Calculations.h"; sourceTree = "<group>"; };
-		451E63DD1B17AB5500A2133C /* NSString+Calculations.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Calculations.m"; sourceTree = "<group>"; };
+		451B06651C4D542C00DFD5A0 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		451B06671C4D543200DFD5A0 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		451B066A1C4D548800DFD5A0 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/Main.storyboard; sourceTree = "<group>"; };
+		451B066E1C4D560F00DFD5A0 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		451B06721C4D5E5F00DFD5A0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		45279A1B188AA5700058FB69 /* aqua_blue.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = aqua_blue.tiff; sourceTree = "<group>"; };
 		45279A1C188AA5700058FB69 /* Clock.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = Clock.tiff; sourceTree = "<group>"; };
 		45279A1D188AA5700058FB69 /* DefaultInput.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = DefaultInput.tiff; sourceTree = "<group>"; };
@@ -233,27 +110,9 @@
 		45279A20188AA5700058FB69 /* graphite.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = graphite.tiff; sourceTree = "<group>"; };
 		45279A21188AA5700058FB69 /* SystemOutput.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = SystemOutput.tiff; sourceTree = "<group>"; };
 		45279A23188AA5700058FB69 /* Select.aiff */ = {isa = PBXFileReference; lastKnownFileType = audio.aiff; path = Select.aiff; sourceTree = "<group>"; };
-		45279A34188AA5B80058FB69 /* Logo.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = Logo.pdf; sourceTree = "<group>"; };
-		45279A3A188AA60A0058FB69 /* Equalizer.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Equalizer.png; sourceTree = "<group>"; };
-		45279A3D188AA60F0058FB69 /* Volume-control.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = "Volume-control.pdf"; sourceTree = "<group>"; };
 		45442A091B1F81FE0094EBE6 /* sign_app.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; name = sign_app.rb; path = Scripts/sign_app.rb; sourceTree = "<group>"; };
-		454F243A1AC4341C008D9B37 /* Speaker.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = Speaker.pdf; sourceTree = "<group>"; };
-		454FF74D16E5235F0035BD6A /* AMClockSourcePopUpButtonCellView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AMClockSourcePopUpButtonCellView.h; path = AudioMate/AMClockSourcePopUpButtonCellView.h; sourceTree = SOURCE_ROOT; };
-		454FF74E16E5235F0035BD6A /* AMClockSourcePopUpButtonCellView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AMClockSourcePopUpButtonCellView.m; path = AudioMate/AMClockSourcePopUpButtonCellView.m; sourceTree = SOURCE_ROOT; };
-		455404961984999300029F39 /* Sparkle.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Sparkle.xcodeproj; path = ExternalDeps/Sparkle/Sparkle.xcodeproj; sourceTree = "<group>"; };
-		4555210816DD2F1400FE7210 /* NSTableView+ContextMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSTableView+ContextMenu.h"; path = "AudioMate/NSTableView+ContextMenu.h"; sourceTree = SOURCE_ROOT; };
-		4555210916DD2F1400FE7210 /* NSTableView+ContextMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSTableView+ContextMenu.m"; path = "AudioMate/NSTableView+ContextMenu.m"; sourceTree = SOURCE_ROOT; };
-		4555210B16DD2F3C00FE7210 /* AMAudioDeviceDefaultsCellView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AMAudioDeviceDefaultsCellView.h; path = AudioMate/AMAudioDeviceDefaultsCellView.h; sourceTree = SOURCE_ROOT; };
-		4555210C16DD2F3D00FE7210 /* AMAudioDeviceDefaultsCellView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AMAudioDeviceDefaultsCellView.m; path = AudioMate/AMAudioDeviceDefaultsCellView.m; sourceTree = SOURCE_ROOT; };
-		4555210D16DD2F3D00FE7210 /* AMAudioDeviceNameCellView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AMAudioDeviceNameCellView.h; path = AudioMate/AMAudioDeviceNameCellView.h; sourceTree = SOURCE_ROOT; };
-		4555210E16DD2F3D00FE7210 /* AMAudioDeviceNameCellView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AMAudioDeviceNameCellView.m; path = AudioMate/AMAudioDeviceNameCellView.m; sourceTree = SOURCE_ROOT; };
-		4555210F16DD2F3D00FE7210 /* AMSampleRatePopUpButtonCellView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AMSampleRatePopUpButtonCellView.h; path = AudioMate/AMSampleRatePopUpButtonCellView.h; sourceTree = SOURCE_ROOT; };
-		4555211016DD2F3D00FE7210 /* AMSampleRatePopUpButtonCellView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AMSampleRatePopUpButtonCellView.m; path = AudioMate/AMSampleRatePopUpButtonCellView.m; sourceTree = SOURCE_ROOT; };
-		4567A0B21987987D00010AB6 /* AudioMateLauncher.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = AudioMateLauncher.entitlements; sourceTree = "<group>"; };
-		456BCA0717AAE52E008AF5C3 /* AMAudioDeviceMasterVolumesCellView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AMAudioDeviceMasterVolumesCellView.h; path = AudioMate/AMAudioDeviceMasterVolumesCellView.h; sourceTree = SOURCE_ROOT; };
-		456BCA0817AAE52E008AF5C3 /* AMAudioDeviceMasterVolumesCellView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AMAudioDeviceMasterVolumesCellView.m; path = AudioMate/AMAudioDeviceMasterVolumesCellView.m; sourceTree = SOURCE_ROOT; };
-		456BCA0C17AAE5F8008AF5C3 /* AMAudioDeviceMasterVolumesExtrasCellView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AMAudioDeviceMasterVolumesExtrasCellView.h; path = AudioMate/AMAudioDeviceMasterVolumesExtrasCellView.h; sourceTree = SOURCE_ROOT; };
-		456BCA0D17AAE5F8008AF5C3 /* AMAudioDeviceMasterVolumesExtrasCellView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AMAudioDeviceMasterVolumesExtrasCellView.m; path = AudioMate/AMAudioDeviceMasterVolumesExtrasCellView.m; sourceTree = SOURCE_ROOT; };
+		4549E2581C4FF16A008D2119 /* StatusBarView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatusBarView.swift; sourceTree = "<group>"; };
+		455F0C061C4E666500E59A99 /* EventNotifier.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventNotifier.swift; sourceTree = "<group>"; };
 		45737024188994C200C34775 /* zh-Hant */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		45737027188994D700C34775 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/MoveApplication.strings"; sourceTree = "<group>"; };
 		4573702A1889954000C34775 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/MoveApplication.strings"; sourceTree = "<group>"; };
@@ -261,76 +120,25 @@
 		457370301889956400C34775 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/MoveApplication.strings; sourceTree = "<group>"; };
 		457370311889956400C34775 /* ja */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Localizable.strings; sourceTree = "<group>"; };
 		45772C4D184690BE00D07EF6 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = AudioMate/Images.xcassets; sourceTree = SOURCE_ROOT; };
-		45776B3E1AAB7EC200B8122B /* NSWindow+canBecomeKeyWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSWindow+canBecomeKeyWindow.h"; sourceTree = "<group>"; };
-		45776B3F1AAB7EC200B8122B /* NSWindow+canBecomeKeyWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSWindow+canBecomeKeyWindow.m"; sourceTree = "<group>"; };
 		458317D218820D1E001F0BE4 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
-		4584563D18843EC100809657 /* AMAudioDeviceActionsCellView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMAudioDeviceActionsCellView.h; sourceTree = "<group>"; };
-		4584563E18843EC100809657 /* AMAudioDeviceActionsCellView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMAudioDeviceActionsCellView.m; sourceTree = "<group>"; };
-		45879E6719716505004037D2 /* AMGeneralPreferences.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMGeneralPreferences.h; sourceTree = "<group>"; };
-		45879E6819716505004037D2 /* AMGeneralPreferences.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMGeneralPreferences.m; sourceTree = "<group>"; };
-		45879E6A19716825004037D2 /* AMNotificationsPreferences.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMNotificationsPreferences.h; sourceTree = "<group>"; };
-		45879E6B19716825004037D2 /* AMNotificationsPreferences.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMNotificationsPreferences.m; sourceTree = "<group>"; };
-		45879E6D19716B4C004037D2 /* AMDevicePreferences.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMDevicePreferences.h; sourceTree = "<group>"; };
-		45879E6E19716B4C004037D2 /* AMDevicePreferences.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMDevicePreferences.m; sourceTree = "<group>"; };
+		4589AE001C52B405009BE875 /* StatusBarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatusBarViewController.swift; sourceTree = "<group>"; };
 		458E355C196EB56000C7C630 /* AMConfig.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = AMConfig.plist; sourceTree = "<group>"; };
-		458E3566196EBA9F00C7C630 /* NSImage+BWTinting.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSImage+BWTinting.h"; sourceTree = "<group>"; };
-		458E3567196EBA9F00C7C630 /* NSImage+BWTinting.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSImage+BWTinting.m"; sourceTree = "<group>"; };
-		458E3569196EC3C800C7C630 /* AMDeviceActionsPanel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMDeviceActionsPanel.h; sourceTree = "<group>"; };
-		458E356A196EC3C800C7C630 /* AMDeviceActionsPanel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMDeviceActionsPanel.m; sourceTree = "<group>"; };
-		458E356C196EDEC400C7C630 /* AMPreferencesPanel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMPreferencesPanel.h; sourceTree = "<group>"; };
-		458E356D196EDEC400C7C630 /* AMPreferencesPanel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMPreferencesPanel.m; sourceTree = "<group>"; };
-		458E356F196EDF2500C7C630 /* AMCellViews.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AMCellViews.h; sourceTree = "<group>"; };
-		458E3570196EE08900C7C630 /* AMSheetPanel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMSheetPanel.h; sourceTree = "<group>"; };
-		458E3571196EE08900C7C630 /* AMSheetPanel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMSheetPanel.m; sourceTree = "<group>"; };
-		458E3577196F2C2A00C7C630 /* AMAudioDevicePopulatableTableCellViewProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AMAudioDevicePopulatableTableCellViewProtocol.h; sourceTree = "<group>"; };
-		458E357A196F422400C7C630 /* AMCellView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMCellView.h; sourceTree = "<group>"; };
-		458E357B196F422400C7C630 /* AMCellView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMCellView.m; sourceTree = "<group>"; };
 		45915011196C333D00B104EF /* AudioMate.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = AudioMate.entitlements; sourceTree = "<group>"; };
 		4595B26A1B17C7BD0075D1D1 /* dsa_pub.pem */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = dsa_pub.pem; sourceTree = "<group>"; };
 		459D6DA91687EF95007F2226 /* AudioMateLauncher.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AudioMateLauncher.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		459D6DAE1687EF95007F2226 /* AudioMateLauncher-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "AudioMateLauncher-Info.plist"; sourceTree = "<group>"; };
-		459D6DB01687EF95007F2226 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		459D6DB21687EF95007F2226 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		459D6DB41687EF95007F2226 /* AudioMateLauncher-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "AudioMateLauncher-Prefix.pch"; sourceTree = "<group>"; };
-		459D6DB61687EF95007F2226 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = en.lproj/Credits.rtf; sourceTree = "<group>"; };
-		459D6DB81687EF95007F2226 /* AMAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AMAppDelegate.h; sourceTree = "<group>"; };
-		459D6DB91687EF95007F2226 /* AMAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AMAppDelegate.m; sourceTree = "<group>"; };
-		459D6DBC1687EF96007F2226 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		459D6DC31687F00D007F2226 /* ServiceManagement.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ServiceManagement.framework; path = /System/Library/Frameworks/ServiceManagement.framework; sourceTree = "<absolute>"; };
 		459D6E6D16880482007F2226 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		45A336FB1AACA48200ED7823 /* AudioMate.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AudioMate.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		45A36A8516BF027100A82041 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = /System/Library/Frameworks/QuartzCore.framework; sourceTree = "<absolute>"; };
 		45A36AD916BF098100A82041 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = /System/Library/Frameworks/Security.framework; sourceTree = "<absolute>"; };
-		45A5B569188451A60052112B /* AMButtonCellView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMButtonCellView.h; sourceTree = "<group>"; };
-		45A5B56A188451A60052112B /* AMButtonCellView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMButtonCellView.m; sourceTree = "<group>"; };
 		45AB3A3D166E2BD900B07220 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
-		45CB6ED018C279AE0050DD1E /* NSTimer+EOCBlocksSupport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSTimer+EOCBlocksSupport.h"; sourceTree = "<group>"; };
-		45CB6ED118C279AE0050DD1E /* NSTimer+EOCBlocksSupport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSTimer+EOCBlocksSupport.m"; sourceTree = "<group>"; };
+		45C39B261C5CEC9500F41A52 /* CHANGELOG.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = CHANGELOG.md; sourceTree = "<group>"; };
 		45D0372C1B1F477500AAB46B /* generate-plist-from-template.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; name = "generate-plist-from-template.sh"; path = "Scripts/generate-plist-from-template.sh"; sourceTree = "<group>"; };
 		45D037341B1F4E7600AAB46B /* update-build-number-and-version.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; name = "update-build-number-and-version.sh"; path = "Scripts/update-build-number-and-version.sh"; sourceTree = "<group>"; };
-		45D31F931B17A54700FCDFBA /* NSTableView+Calculations.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSTableView+Calculations.h"; sourceTree = "<group>"; };
-		45D31F941B17A54700FCDFBA /* NSTableView+Calculations.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSTableView+Calculations.m"; sourceTree = "<group>"; };
-		45D379EF1AABA5D90072D7C6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
-		45D379F01AABA6F60072D7C6 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/MainMenu.strings; sourceTree = "<group>"; };
-		45D379F11AABA6FE0072D7C6 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/MainMenu.strings; sourceTree = "<group>"; };
-		45D379F21AABA7060072D7C6 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/MainMenu.strings"; sourceTree = "<group>"; };
-		45D379F31AABA70F0072D7C6 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/MainMenu.strings"; sourceTree = "<group>"; };
-		45D379F41AABA71B0072D7C6 /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/MainMenu.strings; sourceTree = "<group>"; };
-		45D379F51AABA7240072D7C6 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/MainMenu.strings; sourceTree = "<group>"; };
 		45E048CC18816B31005FB110 /* es */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/MoveApplication.strings; sourceTree = "<group>"; };
 		45E048D218817D79005FB110 /* es */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Localizable.strings; sourceTree = "<group>"; };
-		45F62C371688D11600FE7692 /* AMPreferences.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AMPreferences.h; path = AudioMate/AMPreferences.h; sourceTree = SOURCE_ROOT; };
-		45F62C381688D11600FE7692 /* AMPreferences.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AMPreferences.m; path = AudioMate/AMPreferences.m; sourceTree = SOURCE_ROOT; };
-		45F62C3B1688D12900FE7692 /* AMAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AMAppDelegate.h; path = AudioMate/AMAppDelegate.h; sourceTree = SOURCE_ROOT; };
-		45F62C3C1688D12900FE7692 /* AMAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AMAppDelegate.m; path = AudioMate/AMAppDelegate.m; sourceTree = SOURCE_ROOT; };
-		45F62C3F1688D12A00FE7692 /* AMPopoverController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AMPopoverController.h; path = AudioMate/AMPopoverController.h; sourceTree = SOURCE_ROOT; };
-		45F62C401688D12A00FE7692 /* AMPopoverController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AMPopoverController.m; path = AudioMate/AMPopoverController.m; sourceTree = SOURCE_ROOT; };
-		45F62C511688D17900FE7692 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = AudioMate/en.lproj/Credits.rtf; sourceTree = SOURCE_ROOT; };
-		45F62C531688D17900FE7692 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = AudioMate/en.lproj/InfoPlist.strings; sourceTree = SOURCE_ROOT; };
-		45F62C691688D1AF00FE7692 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = AudioMate/main.m; sourceTree = SOURCE_ROOT; };
-		45F62C731688D1E500FE7692 /* AudioMate-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "AudioMate-Info.plist"; path = "AudioMate/AudioMate-Info.plist"; sourceTree = SOURCE_ROOT; };
-		45F62C741688D1E500FE7692 /* AudioMate-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "AudioMate-Prefix.pch"; path = "AudioMate/AudioMate-Prefix.pch"; sourceTree = SOURCE_ROOT; };
-		45F9FC6817B517C8005026F2 /* Tmpl-AudioMate-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "Tmpl-AudioMate-Info.plist"; path = "AudioMate/Tmpl-AudioMate-Info.plist"; sourceTree = SOURCE_ROOT; };
+		45F62C731688D1E500FE7692 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = AudioMate/Info.plist; sourceTree = SOURCE_ROOT; };
+		45F9FC6817B517C8005026F2 /* Tmpl-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "Tmpl-Info.plist"; path = "AudioMate/Tmpl-Info.plist"; sourceTree = SOURCE_ROOT; };
 		45FA30B4168F557800B3302C /* generate-dmg.rb */ = {isa = PBXFileReference; lastKnownFileType = text.script.ruby; name = "generate-dmg.rb"; path = "Scripts/generate-dmg.rb"; sourceTree = "<group>"; };
 		45FA5626166BC8C500C1D92D /* AudioMate.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AudioMate.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		45FA562A166BC8C500C1D92D /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
@@ -339,11 +147,11 @@
 		45FA5668166BD3FF00C1D92D /* CoreAudio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudio.framework; path = /System/Library/Frameworks/CoreAudio.framework; sourceTree = "<absolute>"; };
 		51952C5498857129454D3785 /* Pods-AudioMate-AppStore.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AudioMate-AppStore.release.xcconfig"; path = "Pods/Target Support Files/Pods-AudioMate-AppStore/Pods-AudioMate-AppStore.release.xcconfig"; sourceTree = "<group>"; };
 		79039B7A6E45542E7F47E018 /* Pods-AudioMate.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AudioMate.debug.xcconfig"; path = "Pods/Target Support Files/Pods-AudioMate/Pods-AudioMate.debug.xcconfig"; sourceTree = "<group>"; };
-		7BDDBC9676AA6A39FA220A19 /* libPods-app.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-app.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		8368B88C31D2BDD7A277A84C /* libPods-AudioMate-AppStore.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-AudioMate-AppStore.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		97CFFB3542D4934E9AD96374 /* Pods-AudioMate-AppStore.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AudioMate-AppStore.debug.xcconfig"; path = "Pods/Target Support Files/Pods-AudioMate-AppStore/Pods-AudioMate-AppStore.debug.xcconfig"; sourceTree = "<group>"; };
 		B8242DE3198C0EFE00D43D61 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/MoveApplication.strings; sourceTree = "<group>"; };
 		B8242DE4198C0EFE00D43D61 /* ru */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
+		C699BDDF812320A95DF3B53A /* Pods_AudioMate.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AudioMate.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C7C2A7646D8F59BD572DBC05 /* Pods_AudioMate_AppStore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AudioMate_AppStore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DC17B5B54AD871E44FD86ABC /* Pods-AudioMate.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AudioMate.release.xcconfig"; path = "Pods/Target Support Files/Pods-AudioMate/Pods-AudioMate.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -352,7 +160,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				459D6DAA1687EF95007F2226 /* Cocoa.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -365,7 +172,7 @@
 				45A336DC1AACA48200ED7823 /* ServiceManagement.framework in Frameworks */,
 				45A336DD1AACA48200ED7823 /* CoreAudio.framework in Frameworks */,
 				45A336DE1AACA48200ED7823 /* Cocoa.framework in Frameworks */,
-				A443911A04467F8FAE026CD5 /* libPods-AudioMate-AppStore.a in Frameworks */,
+				D1803B22940E6643C124E97D /* Pods_AudioMate_AppStore.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -373,13 +180,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				45FD7ECE19FD988000367053 /* Sparkle.framework in Frameworks */,
 				45A36ADA16BF098100A82041 /* Security.framework in Frameworks */,
 				45A36A8616BF027100A82041 /* QuartzCore.framework in Frameworks */,
 				459D6DC41687F00D007F2226 /* ServiceManagement.framework in Frameworks */,
 				45FA5669166BD3FF00C1D92D /* CoreAudio.framework in Frameworks */,
 				45FA562B166BC8C500C1D92D /* Cocoa.framework in Frameworks */,
-				9F3701D496DB4662B44FEBB9 /* libPods-AudioMate.a in Frameworks */,
+				C19F2D1B0B982B5DCBD628DB /* Pods_AudioMate.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -397,26 +203,11 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
-		451E1C2718460411009628DA /* Custom Views */ = {
-			isa = PBXGroup;
-			children = (
-				451E1C2818460473009628DA /* AMStatusBarView.h */,
-				451E1C2918460473009628DA /* AMStatusBarView.m */,
-				458E3569196EC3C800C7C630 /* AMDeviceActionsPanel.h */,
-				458E356A196EC3C800C7C630 /* AMDeviceActionsPanel.m */,
-				458E356C196EDEC400C7C630 /* AMPreferencesPanel.h */,
-				458E356D196EDEC400C7C630 /* AMPreferencesPanel.m */,
-				458E3570196EE08900C7C630 /* AMSheetPanel.h */,
-				458E3571196EE08900C7C630 /* AMSheetPanel.m */,
-			);
-			name = "Custom Views";
-			sourceTree = "<group>";
-		};
 		451E5943166D00D600DEF91A /* UI */ = {
 			isa = PBXGroup;
 			children = (
 				45772C4D184690BE00D07EF6 /* Images.xcassets */,
-				458FA5B3168A1006008C3F39 /* MainMenu.xib */,
+				451B06711C4D5E5F00DFD5A0 /* Main.storyboard */,
 			);
 			name = UI;
 			sourceTree = "<group>";
@@ -439,10 +230,6 @@
 				45279A1E188AA5700058FB69 /* DefaultOutput.tiff */,
 				45279A20188AA5700058FB69 /* graphite.tiff */,
 				45279A21188AA5700058FB69 /* SystemOutput.tiff */,
-				454F243A1AC4341C008D9B37 /* Speaker.pdf */,
-				45279A34188AA5B80058FB69 /* Logo.pdf */,
-				45279A3A188AA60A0058FB69 /* Equalizer.png */,
-				45279A3D188AA60F0058FB69 /* Volume-control.pdf */,
 			);
 			path = Images;
 			sourceTree = "<group>";
@@ -455,109 +242,23 @@
 			path = Sounds;
 			sourceTree = "<group>";
 		};
-		455404971984999300029F39 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				455404A21984999300029F39 /* Sparkle.framework */,
-				455404A41984999300029F39 /* Sparkle Test App.app */,
-				455404A61984999300029F39 /* Sparkle Unit Tests.xctest */,
-				455404A81984999300029F39 /* BinaryDelta */,
-				455404AA1984999300029F39 /* Autoupdate.app */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		4555210416DCF94100FE7210 /* CellViews */ = {
-			isa = PBXGroup;
-			children = (
-				458E357A196F422400C7C630 /* AMCellView.h */,
-				458E357B196F422400C7C630 /* AMCellView.m */,
-				458E356F196EDF2500C7C630 /* AMCellViews.h */,
-				4555210B16DD2F3C00FE7210 /* AMAudioDeviceDefaultsCellView.h */,
-				4555210C16DD2F3D00FE7210 /* AMAudioDeviceDefaultsCellView.m */,
-				4555210D16DD2F3D00FE7210 /* AMAudioDeviceNameCellView.h */,
-				4555210E16DD2F3D00FE7210 /* AMAudioDeviceNameCellView.m */,
-				4555210F16DD2F3D00FE7210 /* AMSampleRatePopUpButtonCellView.h */,
-				4555211016DD2F3D00FE7210 /* AMSampleRatePopUpButtonCellView.m */,
-				454FF74D16E5235F0035BD6A /* AMClockSourcePopUpButtonCellView.h */,
-				454FF74E16E5235F0035BD6A /* AMClockSourcePopUpButtonCellView.m */,
-				456BCA0717AAE52E008AF5C3 /* AMAudioDeviceMasterVolumesCellView.h */,
-				456BCA0817AAE52E008AF5C3 /* AMAudioDeviceMasterVolumesCellView.m */,
-				456BCA0C17AAE5F8008AF5C3 /* AMAudioDeviceMasterVolumesExtrasCellView.h */,
-				456BCA0D17AAE5F8008AF5C3 /* AMAudioDeviceMasterVolumesExtrasCellView.m */,
-				4584563D18843EC100809657 /* AMAudioDeviceActionsCellView.h */,
-				4584563E18843EC100809657 /* AMAudioDeviceActionsCellView.m */,
-				45A5B569188451A60052112B /* AMButtonCellView.h */,
-				45A5B56A188451A60052112B /* AMButtonCellView.m */,
-				458E3577196F2C2A00C7C630 /* AMAudioDevicePopulatableTableCellViewProtocol.h */,
-			);
-			name = CellViews;
-			sourceTree = "<group>";
-		};
-		45879E5E197164E5004037D2 /* Models */ = {
-			isa = PBXGroup;
-			children = (
-				45F62C371688D11600FE7692 /* AMPreferences.h */,
-				45F62C381688D11600FE7692 /* AMPreferences.m */,
-				45879E6719716505004037D2 /* AMGeneralPreferences.h */,
-				45879E6819716505004037D2 /* AMGeneralPreferences.m */,
-				45879E6A19716825004037D2 /* AMNotificationsPreferences.h */,
-				45879E6B19716825004037D2 /* AMNotificationsPreferences.m */,
-				45879E6D19716B4C004037D2 /* AMDevicePreferences.h */,
-				45879E6E19716B4C004037D2 /* AMDevicePreferences.m */,
-			);
-			name = Models;
-			sourceTree = "<group>";
-		};
 		459D6DAC1687EF95007F2226 /* AudioMateLauncher */ = {
 			isa = PBXGroup;
 			children = (
-				4567A0B21987987D00010AB6 /* AudioMateLauncher.entitlements */,
-				459D6DB81687EF95007F2226 /* AMAppDelegate.h */,
-				459D6DB91687EF95007F2226 /* AMAppDelegate.m */,
-				459D6DBB1687EF96007F2226 /* MainMenu.xib */,
-				459D6DAD1687EF95007F2226 /* Supporting Files */,
+				451B06671C4D543200DFD5A0 /* Info.plist */,
+				451B06651C4D542C00DFD5A0 /* AppDelegate.swift */,
+				451B06691C4D548800DFD5A0 /* Main.storyboard */,
 			);
 			path = AudioMateLauncher;
-			sourceTree = "<group>";
-		};
-		459D6DAD1687EF95007F2226 /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				459D6DAE1687EF95007F2226 /* AudioMateLauncher-Info.plist */,
-				459D6DAF1687EF95007F2226 /* InfoPlist.strings */,
-				459D6DB21687EF95007F2226 /* main.m */,
-				459D6DB41687EF95007F2226 /* AudioMateLauncher-Prefix.pch */,
-				459D6DB51687EF95007F2226 /* Credits.rtf */,
-			);
-			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
 		45AB3A3B166E2BBA00B07220 /* Docs */ = {
 			isa = PBXGroup;
 			children = (
+				45C39B261C5CEC9500F41A52 /* CHANGELOG.md */,
 				45AB3A3D166E2BD900B07220 /* README.md */,
 			);
 			name = Docs;
-			sourceTree = "<group>";
-		};
-		45F62C291688C64800FE7692 /* Categories */ = {
-			isa = PBXGroup;
-			children = (
-				458E3566196EBA9F00C7C630 /* NSImage+BWTinting.h */,
-				458E3567196EBA9F00C7C630 /* NSImage+BWTinting.m */,
-				451E63DC1B17AB5500A2133C /* NSString+Calculations.h */,
-				451E63DD1B17AB5500A2133C /* NSString+Calculations.m */,
-				45D31F931B17A54700FCDFBA /* NSTableView+Calculations.h */,
-				45D31F941B17A54700FCDFBA /* NSTableView+Calculations.m */,
-				4555210816DD2F1400FE7210 /* NSTableView+ContextMenu.h */,
-				4555210916DD2F1400FE7210 /* NSTableView+ContextMenu.m */,
-				45CB6ED018C279AE0050DD1E /* NSTimer+EOCBlocksSupport.h */,
-				45CB6ED118C279AE0050DD1E /* NSTimer+EOCBlocksSupport.m */,
-				45776B3E1AAB7EC200B8122B /* NSWindow+canBecomeKeyWindow.h */,
-				45776B3F1AAB7EC200B8122B /* NSWindow+canBecomeKeyWindow.m */,
-			);
-			name = Categories;
 			sourceTree = "<group>";
 		};
 		45F62C2D1688CC5E00FE7692 /* Scripts */ = {
@@ -574,7 +275,7 @@
 		45F9FC6717B517B0005026F2 /* Info Plist Templates */ = {
 			isa = PBXGroup;
 			children = (
-				45F9FC6817B517C8005026F2 /* Tmpl-AudioMate-Info.plist */,
+				45F9FC6817B517C8005026F2 /* Tmpl-Info.plist */,
 			);
 			name = "Info Plist Templates";
 			sourceTree = "<group>";
@@ -589,7 +290,6 @@
 				29A7BA85406B0FE67AB36776 /* Pods */,
 				45FA5627166BC8C500C1D92D /* Products */,
 				45F62C2D1688CC5E00FE7692 /* Scripts */,
-				455404961984999300029F39 /* Sparkle.xcodeproj */,
 			);
 			sourceTree = "<group>";
 		};
@@ -606,20 +306,16 @@
 		45FA5629166BC8C500C1D92D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				14CC9B69B62E41D0972482E8 /* libPods-AudioMate.a */,
-				451735011984964C003D4204 /* libPods-AudioMate-LetsMove.a */,
-				451735021984964C003D4204 /* libPods-AudioMate-LVDebounce.a */,
-				451735031984964C003D4204 /* libPods-AudioMate-StartAtLoginController.a */,
 				458317D218820D1E001F0BE4 /* AVFoundation.framework */,
-				45A36AD916BF098100A82041 /* Security.framework */,
-				45A36A8516BF027100A82041 /* QuartzCore.framework */,
-				459D6DC31687F00D007F2226 /* ServiceManagement.framework */,
-				45FA5668166BD3FF00C1D92D /* CoreAudio.framework */,
 				45FA562A166BC8C500C1D92D /* Cocoa.framework */,
+				45FA5668166BD3FF00C1D92D /* CoreAudio.framework */,
 				459D6E6D16880482007F2226 /* Foundation.framework */,
+				C7C2A7646D8F59BD572DBC05 /* Pods_AudioMate_AppStore.framework */,
+				C699BDDF812320A95DF3B53A /* Pods_AudioMate.framework */,
+				45A36A8516BF027100A82041 /* QuartzCore.framework */,
+				45A36AD916BF098100A82041 /* Security.framework */,
+				459D6DC31687F00D007F2226 /* ServiceManagement.framework */,
 				45FA562C166BC8C500C1D92D /* Other Frameworks */,
-				7BDDBC9676AA6A39FA220A19 /* libPods-app.a */,
-				8368B88C31D2BDD7A277A84C /* libPods-AudioMate-AppStore.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -636,22 +332,12 @@
 		45FA5630166BC8C500C1D92D /* AudioMate */ = {
 			isa = PBXGroup;
 			children = (
-				45F62C3B1688D12900FE7692 /* AMAppDelegate.h */,
-				45F62C3C1688D12900FE7692 /* AMAppDelegate.m */,
-				451C1FBC168F469300D06A74 /* AMApplication.h */,
-				451C1FBD168F469300D06A74 /* AMApplication.m */,
-				45131DF2195B683400FF4DFE /* AMAudioDeviceActions.h */,
-				45131DF3195B683400FF4DFE /* AMAudioDeviceActions.m */,
-				451AD491185F136F00D59E64 /* AMAudioEventNotifier.h */,
-				451AD492185F136F00D59E64 /* AMAudioEventNotifier.m */,
-				45F62C3F1688D12A00FE7692 /* AMPopoverController.h */,
-				45F62C401688D12A00FE7692 /* AMPopoverController.m */,
 				45915011196C333D00B104EF /* AudioMate.entitlements */,
-				45F62C291688C64800FE7692 /* Categories */,
-				4555210416DCF94100FE7210 /* CellViews */,
-				451E1C2718460411009628DA /* Custom Views */,
+				451B066E1C4D560F00DFD5A0 /* AppDelegate.swift */,
+				455F0C061C4E666500E59A99 /* EventNotifier.swift */,
+				4549E2581C4FF16A008D2119 /* StatusBarView.swift */,
+				4589AE001C52B405009BE875 /* StatusBarViewController.swift */,
 				45F9FC6717B517B0005026F2 /* Info Plist Templates */,
-				45879E5E197164E5004037D2 /* Models */,
 				45FA5631166BC8C500C1D92D /* Supporting Files */,
 				451E5943166D00D600DEF91A /* UI */,
 			);
@@ -661,15 +347,11 @@
 		45FA5631166BC8C500C1D92D /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				458E355C196EB56000C7C630 /* AMConfig.plist */,
-				45279A19188AA5700058FB69 /* Assets */,
-				45F62C731688D1E500FE7692 /* AudioMate-Info.plist */,
-				45F62C741688D1E500FE7692 /* AudioMate-Prefix.pch */,
-				45F62C501688D17900FE7692 /* Credits.rtf */,
 				4595B26A1B17C7BD0075D1D1 /* dsa_pub.pem */,
-				45F62C521688D17900FE7692 /* InfoPlist.strings */,
+				458E355C196EB56000C7C630 /* AMConfig.plist */,
+				45F62C731688D1E500FE7692 /* Info.plist */,
+				45279A19188AA5700058FB69 /* Assets */,
 				4509DF7218816AE500881203 /* Localizable.strings */,
-				45F62C691688D1AF00FE7692 /* main.m */,
 				4509DF7718816B0600881203 /* MoveApplication.strings */,
 			);
 			name = "Supporting Files";
@@ -706,6 +388,7 @@
 				45A336E11AACA48200ED7823 /* Resources */,
 				45A336F51AACA48200ED7823 /* Copy AudioMateLauncher into Contents/Library/LoginItems */,
 				23795CB5FEB49ACE5FD7C4B3 /* Copy Pods Resources */,
+				C124EF41FA07DBAAA456758F /* Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -721,6 +404,7 @@
 			buildConfigurationList = 45FA565B166BC8C600C1D92D /* Build configuration list for PBXNativeTarget "AudioMate" */;
 			buildPhases = (
 				2209D33E9EC64C538F3568E0 /* Check Pods Manifest.lock */,
+				455F0C051C4E64E000E59A99 /* SwiftLint */,
 				45FA5622166BC8C500C1D92D /* Sources */,
 				45FA5623166BC8C500C1D92D /* Frameworks */,
 				45633E4F17B512E40073D8DD /* Update Build Number and Version */,
@@ -728,11 +412,11 @@
 				4591486C1688081300BE1A44 /* Copy Embedded Frameworks */,
 				459D6DC11687EFD3007F2226 /* Copy AudioMateLauncher into Contents/Library/LoginItems */,
 				EB516B035F754E2182036CF4 /* Copy Pods Resources */,
+				C7F7137491B1E0CAFF8A9979 /* Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				455404AC198499A400029F39 /* PBXTargetDependency */,
 			);
 			name = AudioMate;
 			productName = AudioDeviceNotifier;
@@ -745,6 +429,7 @@
 		45FA561D166BC8C500C1D92D /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastSwiftUpdateCheck = 0720;
 				LastUpgradeCheck = 0700;
 				ORGANIZATIONNAME = "Ruben Nine";
 				TargetAttributes = {
@@ -818,12 +503,6 @@
 			mainGroup = 45FA561B166BC8C500C1D92D;
 			productRefGroup = 45FA5627166BC8C500C1D92D /* Products */;
 			projectDirPath = "";
-			projectReferences = (
-				{
-					ProductGroup = 455404971984999300029F39 /* Products */;
-					ProjectRef = 455404961984999300029F39 /* Sparkle.xcodeproj */;
-				},
-			);
 			projectRoot = "";
 			targets = (
 				45FA5625166BC8C500C1D92D /* AudioMate */,
@@ -833,52 +512,12 @@
 		};
 /* End PBXProject section */
 
-/* Begin PBXReferenceProxy section */
-		455404A21984999300029F39 /* Sparkle.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = Sparkle.framework;
-			remoteRef = 455404A11984999300029F39 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		455404A41984999300029F39 /* Sparkle Test App.app */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.application;
-			path = "Sparkle Test App.app";
-			remoteRef = 455404A31984999300029F39 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		455404A61984999300029F39 /* Sparkle Unit Tests.xctest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = "Sparkle Unit Tests.xctest";
-			remoteRef = 455404A51984999300029F39 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		455404A81984999300029F39 /* BinaryDelta */ = {
-			isa = PBXReferenceProxy;
-			fileType = "compiled.mach-o.executable";
-			path = BinaryDelta;
-			remoteRef = 455404A71984999300029F39 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		455404AA1984999300029F39 /* Autoupdate.app */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.application;
-			path = Autoupdate.app;
-			remoteRef = 455404A91984999300029F39 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-/* End PBXReferenceProxy section */
-
 /* Begin PBXResourcesBuildPhase section */
 		459D6DA71687EF95007F2226 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				459D6DB11687EF95007F2226 /* InfoPlist.strings in Resources */,
-				459D6DB71687EF95007F2226 /* Credits.rtf in Resources */,
-				459D6DBD1687EF96007F2226 /* MainMenu.xib in Resources */,
+				451B066B1C4D548800DFD5A0 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -889,18 +528,12 @@
 				45A336E21AACA48200ED7823 /* SystemOutput.tiff in Resources */,
 				45A336E31AACA48200ED7823 /* DefaultOutput.tiff in Resources */,
 				45A336E41AACA48200ED7823 /* graphite.tiff in Resources */,
-				45A336E51AACA48200ED7823 /* Logo.pdf in Resources */,
-				45A336E61AACA48200ED7823 /* Credits.rtf in Resources */,
-				45A336E71AACA48200ED7823 /* InfoPlist.strings in Resources */,
 				45A336E81AACA48200ED7823 /* DefaultInput.tiff in Resources */,
-				45A336E91AACA48200ED7823 /* Volume-control.pdf in Resources */,
 				45A336EA1AACA48200ED7823 /* Images.xcassets in Resources */,
-				45A336EB1AACA48200ED7823 /* MainMenu.xib in Resources */,
-				454F243C1AC4341D008D9B37 /* Speaker.pdf in Resources */,
 				45A336EC1AACA48200ED7823 /* aqua_blue.tiff in Resources */,
-				45A336ED1AACA48200ED7823 /* Equalizer.png in Resources */,
 				45A336EE1AACA48200ED7823 /* Clock.tiff in Resources */,
 				45A336EF1AACA48200ED7823 /* AMConfig.plist in Resources */,
+				451B06741C4D5E5F00DFD5A0 /* Main.storyboard in Resources */,
 				45A336F11AACA48200ED7823 /* Select.aiff in Resources */,
 				45A336F21AACA48200ED7823 /* Localizable.strings in Resources */,
 			);
@@ -910,24 +543,18 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				451B06731C4D5E5F00DFD5A0 /* Main.storyboard in Resources */,
 				45279A30188AA5700058FB69 /* SystemOutput.tiff in Resources */,
 				45279A2A188AA5700058FB69 /* DefaultOutput.tiff in Resources */,
 				45279A2E188AA5700058FB69 /* graphite.tiff in Resources */,
 				4595B26B1B17C7BD0075D1D1 /* dsa_pub.pem in Resources */,
-				45279A35188AA5B80058FB69 /* Logo.pdf in Resources */,
-				45F62C541688D17900FE7692 /* Credits.rtf in Resources */,
-				45F62C551688D17900FE7692 /* InfoPlist.strings in Resources */,
 				45279A28188AA5700058FB69 /* DefaultInput.tiff in Resources */,
-				45279A3E188AA60F0058FB69 /* Volume-control.pdf in Resources */,
 				45772C4E184690BE00D07EF6 /* Images.xcassets in Resources */,
-				458FA5B5168A1006008C3F39 /* MainMenu.xib in Resources */,
 				45279A24188AA5700058FB69 /* aqua_blue.tiff in Resources */,
-				45279A3B188AA60A0058FB69 /* Equalizer.png in Resources */,
 				45279A26188AA5700058FB69 /* Clock.tiff in Resources */,
 				458E355D196EB56000C7C630 /* AMConfig.plist in Resources */,
 				4509DF7918816B0600881203 /* MoveApplication.strings in Resources */,
 				45279A32188AA5700058FB69 /* Select.aiff in Resources */,
-				454F243B1AC4341C008D9B37 /* Speaker.pdf in Resources */,
 				45442A0A1B1F81FE0094EBE6 /* sign_app.rb in Resources */,
 				4509DF7418816AE500881203 /* Localizable.strings in Resources */,
 			);
@@ -981,6 +608,20 @@
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
+		455F0C051C4E64E000E59A99 /* SwiftLint */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = SwiftLint;
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if which swiftlint >/dev/null; then\nswiftlint\nelse\necho \"SwiftLint does not exist, download from https://github.com/realm/SwiftLint\"\nfi";
+		};
 		45633E4F17B512E40073D8DD /* Update Build Number and Version */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1009,6 +650,36 @@
 			shellPath = /bin/bash;
 			shellScript = "# Auto Increment Build Number\nbuildPlist=$SRCROOT/$INFOPLIST_FILE\nPlistBuddy=\"/usr/libexec/PlistBuddy\"\n\nCFBundleVersion=`git --git-dir=\"$SRCROOT/.git\" log --oneline | wc -l | tr -d '[:space:]'`\n$PlistBuddy -c \"Set :CFBundleVersion $[10000 + $CFBundleVersion]\" \"$buildPlist\"\n";
 		};
+		C124EF41FA07DBAAA456758F /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-AudioMate-AppStore/Pods-AudioMate-AppStore-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C7F7137491B1E0CAFF8A9979 /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-AudioMate/Pods-AudioMate-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		EB516B035F754E2182036CF4 /* Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1031,8 +702,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				459D6DB31687EF95007F2226 /* main.m in Sources */,
-				459D6DBA1687EF95007F2226 /* AMAppDelegate.m in Sources */,
+				451B06661C4D542C00DFD5A0 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1040,34 +710,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				45A336BD1AACA48200ED7823 /* AMPreferences.m in Sources */,
-				45A336BE1AACA48200ED7823 /* AMPreferencesPanel.m in Sources */,
-				45A336BF1AACA48200ED7823 /* AMSheetPanel.m in Sources */,
-				45A336C01AACA48200ED7823 /* AMAppDelegate.m in Sources */,
-				45A336C11AACA48200ED7823 /* AMPopoverController.m in Sources */,
-				45A336C21AACA48200ED7823 /* main.m in Sources */,
-				45A336C31AACA48200ED7823 /* AMApplication.m in Sources */,
-				45A336C41AACA48200ED7823 /* AMNotificationsPreferences.m in Sources */,
-				45A336C51AACA48200ED7823 /* AMAudioDeviceActionsCellView.m in Sources */,
-				45A336C61AACA48200ED7823 /* NSWindow+canBecomeKeyWindow.m in Sources */,
-				45A336C71AACA48200ED7823 /* AMAudioDeviceActions.m in Sources */,
-				45A336C81AACA48200ED7823 /* AMGeneralPreferences.m in Sources */,
-				45A336C91AACA48200ED7823 /* NSTableView+ContextMenu.m in Sources */,
-				45A336CA1AACA48200ED7823 /* AMAudioDeviceDefaultsCellView.m in Sources */,
-				45731F191BC835D5008F455D /* NSTableView+Calculations.m in Sources */,
-				45A336CB1AACA48200ED7823 /* AMButtonCellView.m in Sources */,
-				45A336CC1AACA48200ED7823 /* AMDevicePreferences.m in Sources */,
-				45A336CD1AACA48200ED7823 /* AMDeviceActionsPanel.m in Sources */,
-				45A336CE1AACA48200ED7823 /* AMAudioDeviceNameCellView.m in Sources */,
-				45A336CF1AACA48200ED7823 /* AMCellView.m in Sources */,
-				45A336D01AACA48200ED7823 /* AMSampleRatePopUpButtonCellView.m in Sources */,
-				45A336D11AACA48200ED7823 /* AMAudioEventNotifier.m in Sources */,
-				45A336D21AACA48200ED7823 /* AMClockSourcePopUpButtonCellView.m in Sources */,
-				45A336D31AACA48200ED7823 /* NSTimer+EOCBlocksSupport.m in Sources */,
-				45A336D41AACA48200ED7823 /* AMAudioDeviceMasterVolumesCellView.m in Sources */,
-				45A336D51AACA48200ED7823 /* AMStatusBarView.m in Sources */,
-				45A336D61AACA48200ED7823 /* NSImage+BWTinting.m in Sources */,
-				45A336D71AACA48200ED7823 /* AMAudioDeviceMasterVolumesExtrasCellView.m in Sources */,
+				451B06701C4D560F00DFD5A0 /* AppDelegate.swift in Sources */,
+				4589AE021C52B405009BE875 /* StatusBarViewController.swift in Sources */,
+				4549E25A1C4FF16A008D2119 /* StatusBarView.swift in Sources */,
+				455F0C081C4E666500E59A99 /* EventNotifier.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1075,47 +721,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				45F62C3A1688D11700FE7692 /* AMPreferences.m in Sources */,
-				458E356E196EDEC400C7C630 /* AMPreferencesPanel.m in Sources */,
-				458E3572196EE08900C7C630 /* AMSheetPanel.m in Sources */,
-				45F62C411688D12B00FE7692 /* AMAppDelegate.m in Sources */,
-				45F62C431688D12B00FE7692 /* AMPopoverController.m in Sources */,
-				45F62C6A1688D1AF00FE7692 /* main.m in Sources */,
-				451C1FBE168F469300D06A74 /* AMApplication.m in Sources */,
-				45879E6C19716825004037D2 /* AMNotificationsPreferences.m in Sources */,
-				4584563F18843EC100809657 /* AMAudioDeviceActionsCellView.m in Sources */,
-				45776B401AAB7EC200B8122B /* NSWindow+canBecomeKeyWindow.m in Sources */,
-				45131DF4195B683400FF4DFE /* AMAudioDeviceActions.m in Sources */,
-				45879E6919716505004037D2 /* AMGeneralPreferences.m in Sources */,
-				4555210A16DD2F1400FE7210 /* NSTableView+ContextMenu.m in Sources */,
-				4555211116DD2F3D00FE7210 /* AMAudioDeviceDefaultsCellView.m in Sources */,
-				45D31F951B17A54700FCDFBA /* NSTableView+Calculations.m in Sources */,
-				45A5B56B188451A60052112B /* AMButtonCellView.m in Sources */,
-				45879E6F19716B4C004037D2 /* AMDevicePreferences.m in Sources */,
-				458E356B196EC3C800C7C630 /* AMDeviceActionsPanel.m in Sources */,
-				4555211216DD2F3D00FE7210 /* AMAudioDeviceNameCellView.m in Sources */,
-				458E357C196F422400C7C630 /* AMCellView.m in Sources */,
-				4555211316DD2F3D00FE7210 /* AMSampleRatePopUpButtonCellView.m in Sources */,
-				451AD493185F136F00D59E64 /* AMAudioEventNotifier.m in Sources */,
-				451E63DE1B17AB5500A2133C /* NSString+Calculations.m in Sources */,
-				454FF74F16E5235F0035BD6A /* AMClockSourcePopUpButtonCellView.m in Sources */,
-				45CB6ED218C279AE0050DD1E /* NSTimer+EOCBlocksSupport.m in Sources */,
-				456BCA0917AAE52E008AF5C3 /* AMAudioDeviceMasterVolumesCellView.m in Sources */,
-				451E1C2A18460473009628DA /* AMStatusBarView.m in Sources */,
-				458E3568196EBA9F00C7C630 /* NSImage+BWTinting.m in Sources */,
-				456BCA0E17AAE5F8008AF5C3 /* AMAudioDeviceMasterVolumesExtrasCellView.m in Sources */,
+				451B066F1C4D560F00DFD5A0 /* AppDelegate.swift in Sources */,
+				4589AE011C52B405009BE875 /* StatusBarViewController.swift in Sources */,
+				4549E2591C4FF16A008D2119 /* StatusBarView.swift in Sources */,
+				455F0C071C4E666500E59A99 /* EventNotifier.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		455404AC198499A400029F39 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = Sparkle;
-			targetProxy = 455404AB198499A400029F39 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		4509DF7218816AE500881203 /* Localizable.strings */ = {
@@ -1146,59 +759,20 @@
 			name = MoveApplication.strings;
 			sourceTree = "<group>";
 		};
-		458FA5B3168A1006008C3F39 /* MainMenu.xib */ = {
+		451B06691C4D548800DFD5A0 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				45D379EF1AABA5D90072D7C6 /* Base */,
-				45D379F01AABA6F60072D7C6 /* es */,
-				45D379F11AABA6FE0072D7C6 /* ru */,
-				45D379F21AABA7060072D7C6 /* zh-Hans */,
-				45D379F31AABA70F0072D7C6 /* zh-Hant */,
-				45D379F41AABA71B0072D7C6 /* ko */,
-				45D379F51AABA7240072D7C6 /* ja */,
+				451B066A1C4D548800DFD5A0 /* en */,
 			);
-			name = MainMenu.xib;
+			name = Main.storyboard;
 			sourceTree = "<group>";
 		};
-		459D6DAF1687EF95007F2226 /* InfoPlist.strings */ = {
+		451B06711C4D5E5F00DFD5A0 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				459D6DB01687EF95007F2226 /* en */,
+				451B06721C4D5E5F00DFD5A0 /* Base */,
 			);
-			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-		459D6DB51687EF95007F2226 /* Credits.rtf */ = {
-			isa = PBXVariantGroup;
-			children = (
-				459D6DB61687EF95007F2226 /* en */,
-			);
-			name = Credits.rtf;
-			sourceTree = "<group>";
-		};
-		459D6DBB1687EF96007F2226 /* MainMenu.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				459D6DBC1687EF96007F2226 /* en */,
-			);
-			name = MainMenu.xib;
-			sourceTree = "<group>";
-		};
-		45F62C501688D17900FE7692 /* Credits.rtf */ = {
-			isa = PBXVariantGroup;
-			children = (
-				45F62C511688D17900FE7692 /* en */,
-			);
-			name = Credits.rtf;
-			sourceTree = "<group>";
-		};
-		45F62C521688D17900FE7692 /* InfoPlist.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				45F62C531688D17900FE7692 /* en */,
-				1CEB160219853F52007B82EC /* ko */,
-			);
-			name = InfoPlist.strings;
+			name = Main.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -1207,18 +781,20 @@
 		459D6DBE1687EF96007F2226 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CODE_SIGN_IDENTITY = "Developer ID Application";
 				COMBINE_HIDPI_IMAGES = YES;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "AudioMateLauncher/AudioMateLauncher-Prefix.pch";
-				INFOPLIST_FILE = "AudioMateLauncher/AudioMateLauncher-Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/AudioMateLauncher/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				PRODUCT_BUNDLE_IDENTIFIER = "io.9labs.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -1226,14 +802,15 @@
 		459D6DBF1687EF96007F2226 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CODE_SIGN_IDENTITY = "Developer ID Application";
 				COMBINE_HIDPI_IMAGES = YES;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "AudioMateLauncher/AudioMateLauncher-Prefix.pch";
-				INFOPLIST_FILE = "AudioMateLauncher/AudioMateLauncher-Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/AudioMateLauncher/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				PRODUCT_BUNDLE_IDENTIFIER = "io.9labs.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
@@ -1247,6 +824,7 @@
 			baseConfigurationReference = 97CFFB3542D4934E9AD96374 /* Pods-AudioMate-AppStore.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = AudioMate/AudioMate.entitlements;
 				CODE_SIGN_IDENTITY = "Developer ID Application";
 				COMBINE_HIDPI_IMAGES = YES;
@@ -1256,8 +834,9 @@
 					"$(inherited)",
 					"APPSTORE=1",
 				);
-				INFOPLIST_FILE = "AudioMate/AudioMate-Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "";
+				INFOPLIST_FILE = AudioMate/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				OTHER_CODE_SIGN_FLAGS = "--deep";
 				OTHER_LDFLAGS = (
 					"$(inherited)",
@@ -1266,6 +845,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.troikalabs.AudioMate;
 				PRODUCT_NAME = AudioMate;
 				PROVISIONING_PROFILE = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "AudioMate/AudioMate-AppStore-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -1275,19 +856,20 @@
 			baseConfigurationReference = 51952C5498857129454D3785 /* Pods-AudioMate-AppStore.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = AudioMate/AudioMate.entitlements;
 				CODE_SIGN_IDENTITY = "Developer ID Application";
 				COMBINE_HIDPI_IMAGES = YES;
-				COPY_PHASE_STRIP = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "AudioMate/AudioMate-Prefix.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"$(inherited)",
 					"APPSTORE=1",
 				);
-				INFOPLIST_FILE = "AudioMate/AudioMate-Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "";
+				INFOPLIST_FILE = AudioMate/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				LLVM_LTO = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				OTHER_CODE_SIGN_FLAGS = "--deep";
 				OTHER_LDFLAGS = (
 					"$(inherited)",
@@ -1296,6 +878,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.troikalabs.AudioMate;
 				PRODUCT_NAME = AudioMate;
 				PROVISIONING_PROFILE = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "AudioMate/AudioMate-AppStore-Bridging-Header.h";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
@@ -1343,7 +926,7 @@
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				COPY_PHASE_STRIP = YES;
+				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
@@ -1363,17 +946,20 @@
 			baseConfigurationReference = 79039B7A6E45542E7F47E018 /* Pods-AudioMate.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				COMBINE_HIDPI_IMAGES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "AudioMate/AudioMate-Prefix.pch";
-				INFOPLIST_FILE = "AudioMate/AudioMate-Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "";
+				INFOPLIST_FILE = AudioMate/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"\"-Wl,-rpath,@loader_path/../Frameworks\"",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.troikalabs.AudioMate;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -1383,13 +969,14 @@
 			baseConfigurationReference = DC17B5B54AD871E44FD86ABC /* Pods-AudioMate.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				COMBINE_HIDPI_IMAGES = YES;
-				COPY_PHASE_STRIP = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "AudioMate/AudioMate-Prefix.pch";
-				INFOPLIST_FILE = "AudioMate/AudioMate-Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "";
+				INFOPLIST_FILE = AudioMate/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				LLVM_LTO = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"\"-Wl,-rpath,@loader_path/../Frameworks\"",
