@@ -27,7 +27,7 @@ class StatusBarViewController: NSViewController {
 
         quitMenuItem.title = "Quit"
         quitMenuItem.target = NSApp
-        quitMenuItem.action = "terminate:"
+        quitMenuItem.action = #selector(NSApp.terminate(_:))
 
         mainMenu.addItem(quitMenuItem)
         statusBarView?.setMainMenu(mainMenu)
@@ -40,7 +40,7 @@ class StatusBarViewController: NSViewController {
 
         item.title = device.deviceName()
         item.target = self
-        item.action = "noop:"
+        item.action = #selector(StatusBarViewController.noop(_:))
         item.representedObject = device
         item.tag = Int(device.deviceID)
 

@@ -37,14 +37,14 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
         // Subscribe to some NSWorkspace notifications
         NSWorkspace.sharedWorkspace().notificationCenter.addObserver(self,
-            selector: "applicationDidActivate:",
+            selector: #selector(AppDelegate.applicationDidActivate(_:)),
             name: NSWorkspaceDidActivateApplicationNotification,
             object: nil
         )
 
         // Subscribe to application did deactivate notificaiton
         NSWorkspace.sharedWorkspace().notificationCenter.addObserver(self,
-            selector: "applicationDidDeactivate:",
+            selector: #selector(AppDelegate.applicationDidDeactivate(_:)),
             name: NSWorkspaceDidDeactivateApplicationNotification,
             object: nil
         )
