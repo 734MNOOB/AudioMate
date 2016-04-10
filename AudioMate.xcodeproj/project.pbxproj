@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		45070F9F1CBAA1DA00601E4B /* FormattingUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45070F9E1CBAA1DA00601E4B /* FormattingUtils.swift */; };
 		4509DF7418816AE500881203 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4509DF7218816AE500881203 /* Localizable.strings */; };
 		4509DF7918816B0600881203 /* MoveApplication.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4509DF7718816B0600881203 /* MoveApplication.strings */; };
 		451B06661C4D542C00DFD5A0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 451B06651C4D542C00DFD5A0 /* AppDelegate.swift */; };
@@ -18,6 +19,8 @@
 		45279A32188AA5700058FB69 /* Select.aiff in Resources */ = {isa = PBXBuildFile; fileRef = 45279A23188AA5700058FB69 /* Select.aiff */; };
 		4549E2591C4FF16A008D2119 /* StatusBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4549E2581C4FF16A008D2119 /* StatusBarView.swift */; };
 		4549E25A1C4FF16A008D2119 /* StatusBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4549E2581C4FF16A008D2119 /* StatusBarView.swift */; };
+		455883CD1CB58C8800995D39 /* MenuItemView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 455883CB1CB58C8800995D39 /* MenuItemView.xib */; };
+		455883CF1CB58EF600995D39 /* MenuItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 455883CE1CB58EF600995D39 /* MenuItemView.swift */; };
 		455F0C071C4E666500E59A99 /* EventNotifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 455F0C061C4E666500E59A99 /* EventNotifier.swift */; };
 		455F0C081C4E666500E59A99 /* EventNotifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 455F0C061C4E666500E59A99 /* EventNotifier.swift */; };
 		45772C4E184690BE00D07EF6 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 45772C4D184690BE00D07EF6 /* Images.xcassets */; };
@@ -83,6 +86,7 @@
 /* Begin PBXFileReference section */
 		1CEB160019853F52007B82EC /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/MoveApplication.strings; sourceTree = "<group>"; };
 		1CEB160119853F52007B82EC /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/Localizable.strings; sourceTree = "<group>"; };
+		45070F9E1CBAA1DA00601E4B /* FormattingUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FormattingUtils.swift; sourceTree = "<group>"; };
 		4509DF7318816AE500881203 /* en */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		4509DF7818816B0600881203 /* en */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/MoveApplication.strings; sourceTree = "<group>"; };
 		451B06651C4D542C00DFD5A0 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -93,6 +97,8 @@
 		45279A23188AA5700058FB69 /* Select.aiff */ = {isa = PBXFileReference; lastKnownFileType = audio.aiff; path = Select.aiff; sourceTree = "<group>"; };
 		45442A091B1F81FE0094EBE6 /* sign_app.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; name = sign_app.rb; path = Scripts/sign_app.rb; sourceTree = "<group>"; };
 		4549E2581C4FF16A008D2119 /* StatusBarView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatusBarView.swift; sourceTree = "<group>"; };
+		455883CC1CB58C8800995D39 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MenuItemView.xib; sourceTree = "<group>"; };
+		455883CE1CB58EF600995D39 /* MenuItemView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuItemView.swift; sourceTree = "<group>"; };
 		455F0C061C4E666500E59A99 /* EventNotifier.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventNotifier.swift; sourceTree = "<group>"; };
 		45737024188994C200C34775 /* zh-Hant */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		45737027188994D700C34775 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/MoveApplication.strings"; sourceTree = "<group>"; };
@@ -189,6 +195,7 @@
 			children = (
 				45772C4D184690BE00D07EF6 /* Images.xcassets */,
 				451B06711C4D5E5F00DFD5A0 /* Main.storyboard */,
+				455883CB1CB58C8800995D39 /* MenuItemView.xib */,
 			);
 			name = UI;
 			sourceTree = "<group>";
@@ -294,6 +301,8 @@
 				45915011196C333D00B104EF /* AudioMate.entitlements */,
 				451B066E1C4D560F00DFD5A0 /* AppDelegate.swift */,
 				455F0C061C4E666500E59A99 /* EventNotifier.swift */,
+				45070F9E1CBAA1DA00601E4B /* FormattingUtils.swift */,
+				455883CE1CB58EF600995D39 /* MenuItemView.swift */,
 				4549E2581C4FF16A008D2119 /* StatusBarView.swift */,
 				4589AE001C52B405009BE875 /* StatusBarViewController.swift */,
 				45F9FC6717B517B0005026F2 /* Info Plist Templates */,
@@ -496,6 +505,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				455883CD1CB58C8800995D39 /* MenuItemView.xib in Resources */,
 				451B06731C4D5E5F00DFD5A0 /* Main.storyboard in Resources */,
 				4595B26B1B17C7BD0075D1D1 /* dsa_pub.pem in Resources */,
 				45772C4E184690BE00D07EF6 /* Images.xcassets in Resources */,
@@ -566,7 +576,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if which swiftlint >/dev/null; then\nswiftlint\nelse\necho \"SwiftLint does not exist, download from https://github.com/realm/SwiftLint\"\nfi";
+			shellScript = "#if which swiftlint >/dev/null; then\n#swiftlint\n#else\n#echo \"SwiftLint does not exist, download from https://github.com/realm/SwiftLint\"\n#fi";
 		};
 		45633E4F17B512E40073D8DD /* Update Build Number and Version */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -671,6 +681,8 @@
 				4589AE011C52B405009BE875 /* StatusBarViewController.swift in Sources */,
 				4549E2591C4FF16A008D2119 /* StatusBarView.swift in Sources */,
 				455F0C071C4E666500E59A99 /* EventNotifier.swift in Sources */,
+				45070F9F1CBAA1DA00601E4B /* FormattingUtils.swift in Sources */,
+				455883CF1CB58EF600995D39 /* MenuItemView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -719,6 +731,14 @@
 				451B06721C4D5E5F00DFD5A0 /* Base */,
 			);
 			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		455883CB1CB58C8800995D39 /* MenuItemView.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				455883CC1CB58C8800995D39 /* Base */,
+			);
+			name = MenuItemView.xib;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

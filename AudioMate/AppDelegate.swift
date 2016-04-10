@@ -106,11 +106,15 @@ extension AppDelegate: AMCoreAudioManagerDelegate {
         EventNotifier.sharedEventNotifier.deviceListChangeNotification(addedDevices, removedDevices: removedDevices)
 
         for addedDevice in addedDevices {
-            statusBarViewController?.addDevice(addedDevice)
+            dispatch_async(dispatch_get_main_queue()) {
+                self.statusBarViewController?.addDevice(addedDevice)
+            }
         }
 
         for removedDevice in removedDevices {
-            statusBarViewController?.removeDevice(removedDevice)
+            dispatch_async(dispatch_get_main_queue()) {
+                self.statusBarViewController?.removeDevice(removedDevice)
+            }
         }
     }
 
