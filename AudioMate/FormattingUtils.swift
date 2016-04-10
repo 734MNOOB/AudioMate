@@ -11,6 +11,6 @@ import Foundation
 class FormattingUtils {
 
     class func formatSampleRate(sampleRate: Double) -> String {
-        return String(format: "%.1f kHz", sampleRate / 1000)
+        return String(format: NSLocalizedString("%.1f kHz", comment: ""), sampleRate / 1000)
     }
 }

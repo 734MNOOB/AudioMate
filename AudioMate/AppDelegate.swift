@@ -8,6 +8,9 @@
 
 import Cocoa
 import AMCoreAudio
+import XCGLogger
+
+let log = XCGLogger.defaultInstance()
 
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
@@ -18,7 +21,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }()
 
     private let audioManager = AMCoreAudioManager.sharedManager
-    private var previousActiveApplication: NSRunningApplication?
 
     func applicationDidFinishLaunching(aNotification: NSNotification) {
         if let sbvc = statusBarViewController {
@@ -34,62 +36,44 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
         // Set NSUserNotificationCenter delegate to self
         NSUserNotificationCenter.defaultUserNotificationCenter().delegate = self
-
-        // Subscribe to some NSWorkspace notifications
-        NSWorkspace.sharedWorkspace().notificationCenter.addObserver(self,
-            selector: #selector(AppDelegate.applicationDidActivate(_:)),
-            name: NSWorkspaceDidActivateApplicationNotification,
-            object: nil
-        )
-
-        // Subscribe to application did deactivate notificaiton
-        NSWorkspace.sharedWorkspace().notificationCenter.addObserver(self,
-            selector: #selector(AppDelegate.applicationDidDeactivate(_:)),
-            name: NSWorkspaceDidDeactivateApplicationNotification,
-            object: nil
-        )
     }
 
     func applicationWillTerminate(aNotification: NSNotification) {
         // Insert code here to tear down your application
 
         audioManager.delegate = nil
-
-        NSWorkspace.sharedWorkspace().notificationCenter.removeObserver(self)
         NSUserDefaults.standardUserDefaults().synchronize()
     }
 
-    @objc func applicationDidActivate(notification: NSNotification) {
-        // We want to ensure that saveOriginalActiveApplication:
-        // initializes previouslyActiveApplication
-        // before saveActiveApplication: does, so we return
-        // until previouslyActiveApplication
-        // is initialized by saveOriginalActiveApplication:
+    // MARK: - Private Functions
 
-        if previousActiveApplication == nil {
-            return
-        }
+    private func setupLogger() {
+        #if DEBUG
+            log.setup(.Debug,
+                      showThreadName: true,
+                      showLogLevel: true,
+                      showFileNames: true,
+                      showLineNumbers: true,
+                      writeToFile: nil
+            )
+        #else
+            log.setup(.Warning,
+                      showThreadName: true,
+                      showLogLevel: true,
+                      showFileNames: true,
+                      showLineNumbers: true,
+                      writeToFile: nil
+            )
+        #endif
 
-        if NSRunningApplication.currentApplication().active {
-            if let activeApplication = notification.userInfo?[NSWorkspaceApplicationKey] as? NSRunningApplication {
-                previousActiveApplication = activeApplication
-            }
-        }
-    }
-
-    @objc func applicationDidDeactivate(notification: NSNotification) {
-        // This method will be called exactly once when
-        // NSWorkspaceDidDeactivateApplicationNotification is fired
-        // so we have the chance to capture the original active app when the app launched
-
-        // Remove observer (we only want this method to fire once)
-        NSWorkspace.sharedWorkspace().notificationCenter.removeObserver(self,
-            name: NSWorkspaceDidDeactivateApplicationNotification,
-            object: nil
-        )
-
-        // Update previous active application
-        self.previousActiveApplication = notification.userInfo?[NSWorkspaceApplicationKey] as? NSRunningApplication
+        log.xcodeColors = [
+            .Verbose: .darkGrey,
+            .Debug: XCGLogger.XcodeColor(fg: (220, 255, 220), bg: (60, 80, 60)),
+            .Info: XCGLogger.XcodeColor(fg: (220, 220, 255), bg: (60, 60, 80)),
+            .Warning: .orange,
+            .Error: .red,
+            .Severe: .whiteOnRed
+        ]
     }
 }
 

@@ -27,7 +27,7 @@ class StatusBarViewController: NSViewController {
 
         let preferencesMenuItem = NSMenuItem()
 
-        preferencesMenuItem.title = "Preferences…"
+        preferencesMenuItem.title = NSLocalizedString("Preferences…", comment: "")
         preferencesMenuItem.target = self
         preferencesMenuItem.action = #selector(foo(_:))
         preferencesMenuItem.keyEquivalent = ","
@@ -39,7 +39,7 @@ class StatusBarViewController: NSViewController {
 
         let quitMenuItem = NSMenuItem()
 
-        quitMenuItem.title = "Quit AudioMate"
+        quitMenuItem.title = NSLocalizedString("Quit AudioMate", comment: "")
         quitMenuItem.target = NSApp
         quitMenuItem.action = #selector(NSApp.terminate(_:))
         quitMenuItem.keyEquivalent = "q"
@@ -53,8 +53,11 @@ class StatusBarViewController: NSViewController {
     // MARK: - Public Functions
 
     func addDevice(device: AMCoreAudioDevice) {
+        log.debug("Adding \(device) to menu.")
+
         audioDevices.append(device)
 
+        // Create menu item for device with submenu
         let menuItem = NSMenuItem()
         menuItem.title = device.deviceName()
         menuItem.image = transportTypeImageForDevice(device)
@@ -63,16 +66,20 @@ class StatusBarViewController: NSViewController {
 
         buildSubmenuForMenuItem(menuItem)
 
+        // Create detail menu item for device
         let detailMenuItem = NSMenuItem()
         detailMenuItem.representedObject = device
 
         buildDeviceDetailMenuItem(detailMenuItem)
 
+        // Insert both the menu item and the detail menu item in the menu
         mainMenu.insertItem(detailMenuItem, atIndex: 0)
         mainMenu.insertItem(menuItem, atIndex: 0)
     }
 
     func removeDevice(device: AMCoreAudioDevice) {
+        log.debug("Removing \(device) from menu.")
+
         if let idx = audioDevices.indexOf(device) {
             audioDevices.removeAtIndex(idx)
         }
@@ -98,22 +105,27 @@ class StatusBarViewController: NSViewController {
         }
 
         if let menuItemView: MenuItemView = instantiateViewFromNibNamed("MenuItemView") as? MenuItemView {
+            // Set sample rate
             menuItemView.sampleRate = device.nominalSampleRate() ?? 0
 
+            // Set clock source
             let clockSource = device.clockSourceForChannel(0, andDirection: .Playback)
-            menuItemView.clockSource = clockSource ?? "Internal Clock"
+            menuItemView.clockSource = clockSource ?? NSLocalizedString("Internal Clock", comment: "")
 
+            // Set input and output channel count
             let outChannels = device.channelsForDirection(.Playback) ?? 0
             let inChannels = device.channelsForDirection(.Recording) ?? 0
 
-            menuItemView.inputChannels = "\(inChannels) in"
-            menuItemView.outputChannels = "\(outChannels) out"
+            menuItemView.inputChannels = String(format:inChannels == 1 ? NSLocalizedString("%d in", comment: "") : NSLocalizedString("%d ins", comment: ""), inChannels)
+            menuItemView.outputChannels = String(format:outChannels == 1 ? NSLocalizedString("%d out", comment: "") : NSLocalizedString("%d outs", comment: ""), outChannels)
 
+            // Set volume slide ranges
             menuItemView.inputVolumeSlider.minValue = 0.0
             menuItemView.inputVolumeSlider.maxValue = 1.0
             menuItemView.outputVolumeSlider.minValue = 0.0
             menuItemView.outputVolumeSlider.maxValue = 1.0
 
+            // Set input volume slider and mute checkbox values
             if let inVolume = device.masterVolumeForDirection(.Recording) {
                 menuItemView.inputVolumeSlider.floatValue = inVolume
                 menuItemView.inputVolumeSlider.enabled = true
@@ -127,6 +139,7 @@ class StatusBarViewController: NSViewController {
                 menuItemView.inputMuteCheckbox.state = NSOffState
             }
 
+            // Set output volume slider and mute checkbox values
             if let outVolume = device.masterVolumeForDirection(.Playback) {
                 menuItemView.outputVolumeSlider.floatValue = outVolume
                 menuItemView.outputVolumeSlider.enabled = true
@@ -151,10 +164,12 @@ class StatusBarViewController: NSViewController {
             return
         }
 
+        // Create submenu
         item.submenu = NSMenu()
         item.submenu?.autoenablesItems = false
 
-        let sampleRateItem = NSMenuItem(title: "Set sample rate", action: #selector(foo(_:)), keyEquivalent: "")
+        // Create `Set sample rate` item and submenu
+        let sampleRateItem = NSMenuItem(title: NSLocalizedString("Set sample rate", comment: ""), action: #selector(foo(_:)), keyEquivalent: "")
 
         sampleRateItem.submenu = NSMenu()
         sampleRateItem.submenu?.autoenablesItems = false
@@ -168,7 +183,8 @@ class StatusBarViewController: NSViewController {
 
         item.submenu?.addItem(sampleRateItem)
 
-        let clockSourceItem = NSMenuItem(title: "Set clock source", action: #selector(foo(_:)), keyEquivalent: "")
+        // Create `Set clock source` item and submenu
+        let clockSourceItem = NSMenuItem(title: NSLocalizedString("Set clock source", comment: ""), action: #selector(foo(_:)), keyEquivalent: "")
 
         clockSourceItem.submenu = NSMenu()
         clockSourceItem.submenu?.autoenablesItems = false
@@ -184,17 +200,20 @@ class StatusBarViewController: NSViewController {
                 clockSourceItem.submenu?.addItem(item)
             }
         } else {
-            let internalClockItem = NSMenuItem(title: "Internal Clock", action: nil, keyEquivalent: "")
+            let internalClockItem = NSMenuItem(title: NSLocalizedString("Internal Clock", comment: ""), action: nil, keyEquivalent: "")
             internalClockItem.enabled = false
             clockSourceItem.submenu?.addItem(internalClockItem)
         }
 
         item.submenu?.addItem(clockSourceItem)
 
+        // Add separator item
         item.submenu?.addItem(NSMenuItem.separatorItem())
 
+        // Add menu items that allow changing the default output, system output, and input device.
+        // Only the options that make sense for each device are added here.
         if device.channelsForDirection(.Playback) > 0 {
-            let useForSoundOutputItem = NSMenuItem(title: "Use this device for sound output", action: #selector(foo(_:)), keyEquivalent: "")
+            let useForSoundOutputItem = NSMenuItem(title: NSLocalizedString("Use this device for sound output", comment: ""), action: #selector(foo(_:)), keyEquivalent: "")
 
             useForSoundOutputItem.image = NSImage(named: "DefaultOutput")
 
@@ -205,7 +224,7 @@ class StatusBarViewController: NSViewController {
 
             item.submenu?.addItem(useForSoundOutputItem)
 
-            let useForSystemOutputItem = NSMenuItem(title: "Play alerts and sound effects through this device", action: #selector(foo(_:)), keyEquivalent: "")
+            let useForSystemOutputItem = NSMenuItem(title: NSLocalizedString("Play alerts and sound effects through this device", comment: ""), action: #selector(foo(_:)), keyEquivalent: "")
 
             useForSystemOutputItem.image = NSImage(named: "SystemOutput")
 
@@ -216,7 +235,7 @@ class StatusBarViewController: NSViewController {
 
             item.submenu?.addItem(useForSystemOutputItem)
         } else if device.channelsForDirection(.Recording) > 0 {
-            let useForSoundInputItem = NSMenuItem(title: "Use this device for sound input", action: #selector(foo(_:)), keyEquivalent: "")
+            let useForSoundInputItem = NSMenuItem(title: NSLocalizedString("Use this device for sound input", comment: ""), action: #selector(foo(_:)), keyEquivalent: "")
 
             useForSoundInputItem.image = NSImage(named: "DefaultInput")
 
@@ -227,9 +246,12 @@ class StatusBarViewController: NSViewController {
 
             item.submenu?.addItem(useForSoundInputItem)
         }
-        
+
+        // Add separator item
         item.submenu?.addItem(NSMenuItem.separatorItem())
-        item.submenu?.addItem(NSMenuItem(title: "Configure actions…", action: #selector(foo(_:)), keyEquivalent: ""))
+
+        // Add `Configure Actions…` item
+        item.submenu?.addItem(NSMenuItem(title: NSLocalizedString("Configure actions…", comment: ""), action: #selector(foo(_:)), keyEquivalent: ""))
     }
 
     private func instantiateViewFromNibNamed(nibName: String) -> NSView? {
@@ -296,7 +318,7 @@ class StatusBarViewController: NSViewController {
     // MARK: - Actions
 
     @objc func foo(sender: AnyObject) {
-        Swift.print("TODO: Implement")
+        log.debug("TODO: Implement")
     }
 }
 
