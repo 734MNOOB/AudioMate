@@ -9,21 +9,19 @@ Control all your audio devices from the status bar, receive system notifications
 (Make sure [CocoaPods](http://cocoapods.org) is installed)
 
 ```bash
-$ git clone --recursive git@github.com:The9Labs/AudioMate.git
-$ pod install
+$ git clone git@github.com:The9Labs/AudioMate.git
+$ carthage checkout --use-submodules --no-build
 ```
 
 ### Keeping Dependencies Up To Date
 
 ```bash
-$ git submodule sync
-$ git submodule update
-$ pod install
+$ carthage update --use-submodules --no-build
 ```
 
 ### Build & Run
 
-1. Open `AMCoreAudio.xcworkspace` in Xcode 7.3 (or later)
+1. Open `AMCoreAudio.xcodeproj` in Xcode 7.3 (or later)
 2. Hit Run (Cmd + R)
 
 ### Requirements
@@ -37,7 +35,7 @@ $ pod install
 | -------------:|:-------------
 | Migration to AMCoreAudio v2.x| Completed|
 | Implement audio device notifications| Completed|
-| Implement new compact UI| Pending|
+| Implement new compact UI| In Progress|
 | Implement preferences panel| Pending|
 | Implement audio device actions| Pending|
 | Implement keyboard & scroll wheel control ([#18](https://github.com/The9Labs/AudioMate/issues/18))| Pending|
@@ -45,6 +43,10 @@ $ pod install
 ### Further Development & Patches
 
 Do you want to contribute to the project? Please fork, patch, and then submit a pull request!
+
+### Credits
+
+App icon originally based on clipart by [rg1024](https://openclipart.org/detail/20507/robot-carrying-things-1).
 
 ### License
 
