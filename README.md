@@ -1,5 +1,5 @@
-[![GitHub tag](https://img.shields.io/github/tag/The9Labs/AudioMate.svg)](https://github.com/rnine/AMCoreAudio)
-[![GitHub release](https://img.shields.io/github/release/The9Labs/AudioMate.svg)](https://github.com/rnine/AMCoreAudio)
+[![GitHub tag](https://img.shields.io/github/tag/The9Labs/AudioMate.svg)](https://github.com/The9Labs/AudioMate)
+[![GitHub release](https://img.shields.io/github/release/The9Labs/AudioMate.svg)](https://github.com/The9Labs/AudioMate)
 
 # Easy audio control for Mac.
 
