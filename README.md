@@ -6,7 +6,7 @@ Control all your audio devices from the status bar, receive system notifications
 
 ### Getting Started
 
-(Make sure [CocoaPods](http://cocoapods.org) is installed)
+(Make sure [Carthage](https://github.com/Carthage/Carthage) is installed)
 
 ```bash
 $ git clone git@github.com:The9Labs/AudioMate.git
