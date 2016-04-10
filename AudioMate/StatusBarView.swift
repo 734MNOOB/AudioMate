@@ -7,7 +7,7 @@
 //
 
 import Cocoa
-import PureLayout
+import PureLayout_Mac
 
 class StatusBarView: NSView {
     private let statusItem: NSStatusItem!

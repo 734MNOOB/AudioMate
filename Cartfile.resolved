@@ -1,0 +1,7 @@
+github "rnine/AMCoreAudio" "2.0.10"
+github "potionfactory/LetsMove" "v1.20"
+github "PureLayout/PureLayout" "v2.0.6"
+github "sparkle-project/Sparkle" "1.14.0"
+github "alexzielenski/StartAtLoginController" "8bc3633be2861f05eee069667dca5233fb17db16"
+github "DaveWoodCom/XCGLogger" "Version_3.3"
+github "andreyvit/yoursway-create-dmg" "5acf22fa87e1b751701f377efddc7429877ecb0a"
