@@ -2,6 +2,7 @@
 
 | Version       | Description   | Date     |
 | -------------:|:------------- |:--------:|
+| 3.0           | n/a | TBA|
 | 2.2.6         | Added Portuguese (pt) localization (thanks to [@vitu](https://github.com/vitu)!).| February 2nd, 2016|
 | 2.2.5         | Fixed a security vulnerability involving the Sparkle Updater (VulnSec.)| January 30th, 2016|
 | 2.2.4         | Fixed high CPU load on dual monitor setups.| January 29th, 2016|

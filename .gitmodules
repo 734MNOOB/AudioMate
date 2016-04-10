@@ -1,6 +1,21 @@
-[submodule "ExternalDeps/yoursway-create-dmg"]
-	path = ExternalDeps/yoursway-create-dmg
-	url = https://github.com/andreyvit/yoursway-create-dmg
-[submodule "ExternalDeps/Sparkle"]
-	path = ExternalDeps/Sparkle
+[submodule "Carthage/Checkouts/AMCoreAudio"]
+	path = Carthage/Checkouts/AMCoreAudio
+	url = https://github.com/rnine/AMCoreAudio.git
+[submodule "Carthage/Checkouts/PureLayout"]
+	path = Carthage/Checkouts/PureLayout
+	url = https://github.com/PureLayout/PureLayout.git
+[submodule "Carthage/Checkouts/XCGLogger"]
+	path = Carthage/Checkouts/XCGLogger
+	url = https://github.com/DaveWoodCom/XCGLogger.git
+[submodule "Carthage/Checkouts/StartAtLoginController"]
+	path = Carthage/Checkouts/StartAtLoginController
+	url = https://github.com/alexzielenski/StartAtLoginController.git
+[submodule "Carthage/Checkouts/LetsMove"]
+	path = Carthage/Checkouts/LetsMove
+	url = https://github.com/potionfactory/LetsMove.git
+[submodule "Carthage/Checkouts/Sparkle"]
+	path = Carthage/Checkouts/Sparkle
 	url = https://github.com/sparkle-project/Sparkle.git
+[submodule "Carthage/Checkouts/yoursway-create-dmg"]
+	path = Carthage/Checkouts/yoursway-create-dmg
+	url = https://github.com/andreyvit/yoursway-create-dmg.git

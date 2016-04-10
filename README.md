@@ -1,52 +1,56 @@
+[![GitHub tag](https://img.shields.io/github/tag/The9Labs/AudioMate.svg)](https://github.com/The9Labs/AudioMate)
+[![GitHub release](https://img.shields.io/github/release/The9Labs/AudioMate.svg)](https://github.com/The9Labs/AudioMate)
+
 # Easy audio control for Mac.
 
 Control all your audio devices from the status bar, receive system notifications when relevant events happen on your audio devices and more. For more information, please visit [AudioMate's website](http://audiomateapp.com).
 
-<img src="https://github.com/The9Labs/AudioMate/raw/develop/Docs/AudioMate.png" class="center">
+<img src="https://github.com/The9Labs/AudioMate/raw/v3/Artwork/AudioMate_v3_Screenshot.png" class="center">
 
 ### Getting Started
 
-(Make sure [CocoaPods](http://cocoapods.org) is installed)
+(Make sure [Carthage](https://github.com/Carthage/Carthage) is installed)
 
 ```bash
-$ git clone --recursive git@github.com:The9Labs/AudioMate.git
-$ pod install
+$ git clone git@github.com:The9Labs/AudioMate.git
+$ carthage checkout --use-submodules --no-build
 ```
 
 ### Keeping Dependencies Up To Date
 
 ```bash
-$ git submodule sync
-$ git submodule update
-$ pod update
+$ carthage update --use-submodules --no-build
 ```
 
 ### Build & Run
 
-1. Open `AMCoreAudio.xcworkspace` in Xcode 6.x (or later)
+1. Open `AMCoreAudio.xcodeproj` in Xcode 7.3 (or later)
 2. Hit Run (Cmd + R)
 
 ### Requirements
 
-* Xcode 6.x (for development)
-* OS X 10.8 or later
-* 64-bit processor
+* Xcode 7.3 and Swift 2.2 (for development)
+* OS X 10.11 or later
 
-### External Dependencies
+## Version 3 Roadmap
 
-(Managed either with Cocoapods or git submodules)
-
-* [AMCoreAudio](https://github.com/sonicbee9/AMCoreAudio)
-* [LVDebounce](https://github.com/layervault/LVDebounce)
-* [LetsMove](https://github.com/potionfactory/LetsMove)
-* [StartAtLoginController](https://github.com/alexzielenski/StartAtLoginController)
-* [Sparkle](https://github.com/sparkle-project/Sparkle.git)
-* [yoursway-create-dmg](https://github.com/andreyvit/yoursway-create-dmg)
+| Description       | Status|
+| -------------:|:-------------
+| Migration to AMCoreAudio v2.x| Completed|
+| Implement audio device notifications| Completed|
+| Implement new compact UI| In Progress|
+| Implement preferences panel| Pending|
+| Implement audio device actions| Pending|
+| Implement keyboard & scroll wheel control ([#18](https://github.com/The9Labs/AudioMate/issues/18))| Pending|
 
 ### Further Development & Patches
 
 Do you want to contribute to the project? Please fork, patch, and then submit a pull request!
 
+### Credits
+
+App icon originally based on clipart by [rg1024](https://openclipart.org/detail/20507/robot-carrying-things-1).
+
 ### License
 
-AudioMate was written by Ruben Nine ([@sonicbee9](https://twitter.com/sonicbee9)) in 2012-2015 (open-sourced in July 2014) and is licensed under the [MIT](http://opensource.org/licenses/MIT) license. See [LICENSE.md](LICENSE.md).
+AudioMate was written by Ruben Nine ([@sonicbee9](https://twitter.com/sonicbee9)) in 2012-2016 (open-sourced in July 2014) and is licensed under the [MIT](http://opensource.org/licenses/MIT) license. See [LICENSE.md](LICENSE.md).
