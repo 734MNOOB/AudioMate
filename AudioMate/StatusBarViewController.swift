@@ -30,6 +30,8 @@ class StatusBarViewController: NSViewController {
         preferencesMenuItem.title = "Preferences…"
         preferencesMenuItem.target = self
         preferencesMenuItem.action = #selector(foo(_:))
+        preferencesMenuItem.keyEquivalent = ","
+        preferencesMenuItem.keyEquivalentModifierMask = Int(NSEventModifierFlags.CommandKeyMask.rawValue)
 
         mainMenu.addItem(preferencesMenuItem)
 
@@ -40,6 +42,8 @@ class StatusBarViewController: NSViewController {
         quitMenuItem.title = "Quit AudioMate"
         quitMenuItem.target = NSApp
         quitMenuItem.action = #selector(NSApp.terminate(_:))
+        quitMenuItem.keyEquivalent = "q"
+        quitMenuItem.keyEquivalentModifierMask = Int(NSEventModifierFlags.CommandKeyMask.rawValue)
 
         mainMenu.addItem(quitMenuItem)
 
