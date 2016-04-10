@@ -69,9 +69,9 @@ class MenuItemView: NSView {
         if (!didSetupConstraints) {
             removeConstraints(constraints)
 
-            autoSetDimension(.Height, toSize: 36)
+            autoSetDimension(.Height, toSize: 38)
 
-            inputMuteCheckbox.autoPinEdgeToSuperviewEdge(.Top, withInset: 1)
+            inputMuteCheckbox.autoPinEdgeToSuperviewEdge(.Top, withInset: 2)
             inputMuteCheckbox.autoPinEdgeToSuperviewEdge(.Right, withInset: 22)
             inputMuteCheckbox.setContentHuggingPriority(NSLayoutPriorityRequired, forOrientation: NSLayoutConstraintOrientation.Horizontal)
             inputMuteCheckbox.setContentCompressionResistancePriority(NSLayoutPriorityRequired, forOrientation: NSLayoutConstraintOrientation.Horizontal)
