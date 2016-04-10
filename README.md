@@ -1,3 +1,6 @@
+[![GitHub tag](https://img.shields.io/github/tag/The9Labs/AudioMate.svg)](https://github.com/rnine/AMCoreAudio)
+[![GitHub release](https://img.shields.io/github/tag/The9Labs/AudioMate.svg)](https://github.com/rnine/AMCoreAudio)
+
 # Easy audio control for Mac.
 
 Control all your audio devices from the status bar, receive system notifications when relevant events happen on your audio devices and more. For more information, please visit [AudioMate's website](http://audiomateapp.com).
