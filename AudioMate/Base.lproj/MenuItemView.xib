@@ -12,7 +12,7 @@
             <rect key="frame" x="0.0" y="0.0" width="380" height="38"/>
             <subviews>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="TFF-Cd-E9Z">
-                    <rect key="frame" x="60" y="18" width="67" height="17"/>
+                    <rect key="frame" x="95" y="18" width="67" height="17"/>
                     <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Sample rate" id="Cge-eh-TUt">
                         <font key="font" metaFont="smallSystem"/>
                         <color key="textColor" name="secondaryLabelColor" catalog="System" colorSpace="catalog"/>
@@ -20,7 +20,7 @@
                     </textFieldCell>
                 </textField>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="O7M-Gd-NPl">
-                    <rect key="frame" x="162" y="18" width="29" height="17"/>
+                    <rect key="frame" x="197" y="18" width="29" height="17"/>
                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="left" title="0 in" id="RwJ-tP-kmS">
                         <font key="font" metaFont="smallSystem"/>
                         <color key="textColor" name="secondaryLabelColor" catalog="System" colorSpace="catalog"/>
@@ -28,7 +28,7 @@
                     </textFieldCell>
                 </textField>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tOE-wz-C2B">
-                    <rect key="frame" x="162" y="0.0" width="31" height="17"/>
+                    <rect key="frame" x="197" y="0.0" width="31" height="17"/>
                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="left" title="0 out" id="aas-z9-tBs">
                         <font key="font" metaFont="smallSystem"/>
                         <color key="textColor" name="secondaryLabelColor" catalog="System" colorSpace="catalog"/>
@@ -36,7 +36,7 @@
                     </textFieldCell>
                 </textField>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pcb-Fk-hZh">
-                    <rect key="frame" x="60" y="0.0" width="73" height="17"/>
+                    <rect key="frame" x="95" y="0.0" width="73" height="17"/>
                     <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Clock source" id="zVu-z5-2qC">
                         <font key="font" metaFont="smallSystem"/>
                         <color key="textColor" name="secondaryLabelColor" catalog="System" colorSpace="catalog"/>
@@ -44,38 +44,53 @@
                     </textFieldCell>
                 </textField>
                 <slider toolTip="Output Volume" verticalHuggingPriority="750" fixedFrame="YES" allowsExpansionToolTips="YES" translatesAutoresizingMaskIntoConstraints="NO" id="heP-F7-wKZ">
-                    <rect key="frame" x="210" y="19" width="96" height="20"/>
+                    <rect key="frame" x="245" y="19" width="96" height="21"/>
                     <sliderCell key="cell" enabled="NO" state="on" alignment="left" maxValue="1" doubleValue="1" tickMarkPosition="above" sliderType="linear" id="Zd5-Hb-gvF"/>
                     <accessibility description="Output Volume"/>
                 </slider>
                 <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="WEB-ch-jbq">
-                    <rect key="frame" x="317" y="20" width="18" height="18"/>
+                    <rect key="frame" x="352" y="20" width="18" height="18"/>
                     <buttonCell key="cell" type="check" bezelStyle="regularSquare" imagePosition="overlaps" enabled="NO" inset="2" id="mbv-0r-p3m">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                         <font key="font" metaFont="system"/>
                     </buttonCell>
                 </button>
                 <slider toolTip="Input Volume" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9MR-vm-QtM">
-                    <rect key="frame" x="210" y="-1" width="96" height="20"/>
+                    <rect key="frame" x="245" y="-1" width="96" height="21"/>
                     <sliderCell key="cell" state="on" alignment="left" maxValue="1" doubleValue="0.5" tickMarkPosition="above" sliderType="linear" id="msZ-FR-sPa"/>
                 </slider>
                 <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bD8-Tw-Aa6">
-                    <rect key="frame" x="317" y="0.0" width="18" height="18"/>
+                    <rect key="frame" x="352" y="0.0" width="18" height="18"/>
                     <buttonCell key="cell" type="check" bezelStyle="regularSquare" imagePosition="overlaps" inset="2" id="BKc-3v-F3r">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                         <font key="font" metaFont="system"/>
                     </buttonCell>
                 </button>
+                <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Rxi-gz-tL2">
+                    <rect key="frame" x="8" y="10" width="16" height="16"/>
+                    <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="DefaultOutput" id="9oF-Yz-cBO"/>
+                </imageView>
+                <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Lr6-Vr-Roe">
+                    <rect key="frame" x="24" y="10" width="16" height="16"/>
+                    <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="DefaultInput" id="mbu-3d-b5f"/>
+                </imageView>
+                <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="UEX-0s-OIf">
+                    <rect key="frame" x="40" y="10" width="16" height="16"/>
+                    <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="SystemOutput" id="NMm-sG-5hr"/>
+                </imageView>
             </subviews>
             <connections>
                 <outlet property="clockSourceTextField" destination="pcb-Fk-hZh" id="aVO-Ea-f80"/>
                 <outlet property="inputChannelsTextField" destination="O7M-Gd-NPl" id="rA5-vn-Wgx"/>
+                <outlet property="inputDeviceImageView" destination="Lr6-Vr-Roe" id="TMv-F9-DL4"/>
                 <outlet property="inputMuteCheckbox" destination="WEB-ch-jbq" id="dag-ky-oQW"/>
                 <outlet property="inputVolumeSlider" destination="heP-F7-wKZ" id="5Kj-Be-Vdt"/>
                 <outlet property="outputChannelsTextField" destination="tOE-wz-C2B" id="rjy-Ra-Vfs"/>
+                <outlet property="outputDeviceImageView" destination="Rxi-gz-tL2" id="5zF-mt-69m"/>
                 <outlet property="outputMuteCheckbox" destination="bD8-Tw-Aa6" id="vGY-xX-JcK"/>
                 <outlet property="outputVolumeSlider" destination="9MR-vm-QtM" id="i5G-PP-Idb"/>
                 <outlet property="sampleRateTextField" destination="TFF-Cd-E9Z" id="D37-ib-rLs"/>
+                <outlet property="systemOutputDeviceImageView" destination="UEX-0s-OIf" id="H6d-po-KnW"/>
             </connections>
             <point key="canvasLocation" x="223.5" y="277"/>
         </customView>
@@ -94,4 +109,9 @@
             <point key="canvasLocation" x="502.5" y="480.5"/>
         </menu>
     </objects>
+    <resources>
+        <image name="DefaultInput" width="16" height="16"/>
+        <image name="DefaultOutput" width="16" height="16"/>
+        <image name="SystemOutput" width="16" height="16"/>
+    </resources>
 </document>

@@ -153,6 +153,10 @@ class StatusBarViewController: NSViewController {
                 menuItemView.outputMuteCheckbox.state = NSOffState
             }
 
+            menuItemView.displayOutputDeviceIcon = AMCoreAudioDevice.defaultOutputDevice()?.deviceID == device.deviceID
+            menuItemView.displayInputDeviceIcon = AMCoreAudioDevice.defaultInputDevice()?.deviceID == device.deviceID
+            menuItemView.displaySystemOuputDeviceIcon = AMCoreAudioDevice.defaultSystemOutputDevice()?.deviceID == device.deviceID
+
             item.view = menuItemView
         } else {
             item.title = device.deviceName()

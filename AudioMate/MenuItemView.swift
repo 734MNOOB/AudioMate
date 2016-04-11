@@ -50,6 +50,36 @@ class MenuItemView: NSView {
         }
     }
 
+    var displayOutputDeviceIcon: Bool {
+        get {
+            return !self.outputDeviceImageView.hidden
+        }
+
+        set {
+            self.outputDeviceImageView.hidden = !newValue
+        }
+    }
+
+    var displayInputDeviceIcon: Bool {
+        get {
+            return !self.inputDeviceImageView.hidden
+        }
+
+        set {
+            self.inputDeviceImageView.hidden = !newValue
+        }
+    }
+
+    var displaySystemOuputDeviceIcon: Bool {
+        get {
+            return !self.systemOutputDeviceImageView.hidden
+        }
+
+        set {
+            self.systemOutputDeviceImageView.hidden = !newValue
+        }
+    }
+
     private var didSetupConstraints: Bool = false
 
     @IBOutlet var inputVolumeSlider: NSSlider!
@@ -60,6 +90,9 @@ class MenuItemView: NSView {
     @IBOutlet private var clockSourceTextField: NSTextField!
     @IBOutlet private var inputChannelsTextField: NSTextField!
     @IBOutlet private var outputChannelsTextField: NSTextField!
+    @IBOutlet private var outputDeviceImageView: NSImageView!
+    @IBOutlet private var inputDeviceImageView: NSImageView!
+    @IBOutlet private var systemOutputDeviceImageView: NSImageView!
 
     required init?(coder: NSCoder) {
         super.init(coder: coder)
@@ -114,6 +147,15 @@ class MenuItemView: NSView {
             clockSourceTextField.autoAlignAxis(.Horizontal, toSameAxisOfView: outputChannelsTextField)
             clockSourceTextField.setContentHuggingPriority(NSLayoutPriorityDefaultLow, forOrientation: NSLayoutConstraintOrientation.Horizontal)
             clockSourceTextField.setContentCompressionResistancePriority(NSLayoutPriorityDefaultLow, forOrientation: NSLayoutConstraintOrientation.Horizontal)
+
+            systemOutputDeviceImageView.autoPinEdgeToSuperviewEdge(.Left, withInset: 8)
+            systemOutputDeviceImageView.autoPinEdgeToSuperviewEdge(.Top, withInset: 12)
+
+            outputDeviceImageView.autoPinEdge(.Left, toEdge: .Right, ofView: systemOutputDeviceImageView, withOffset: 0)
+            outputDeviceImageView.autoAlignAxis(.Horizontal, toSameAxisOfView: systemOutputDeviceImageView)
+
+            inputDeviceImageView.autoPinEdge(.Left, toEdge: .Right, ofView: outputDeviceImageView, withOffset: 0)
+            inputDeviceImageView.autoAlignAxis(.Horizontal, toSameAxisOfView: outputDeviceImageView)
 
             didSetupConstraints = true
         }
