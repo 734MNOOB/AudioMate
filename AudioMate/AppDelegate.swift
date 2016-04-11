@@ -23,6 +23,10 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     private let audioManager = AMCoreAudioManager.sharedManager
 
     func applicationDidFinishLaunching(aNotification: NSNotification) {
+        // Setup logger
+        setupLogger()
+
+        // Instantiate StatusBarViewController and add all known devices in the system
         if let sbvc = statusBarViewController {
             sbvc.loadView()
 
@@ -68,8 +72,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
         log.xcodeColors = [
             .Verbose: .darkGrey,
-            .Debug: XCGLogger.XcodeColor(fg: (220, 255, 220), bg: (60, 80, 60)),
-            .Info: XCGLogger.XcodeColor(fg: (220, 220, 255), bg: (60, 60, 80)),
+            .Debug: XCGLogger.XcodeColor(fg: (40, 160, 40)),
+            .Info: XCGLogger.XcodeColor(fg: (60, 60, 80), bg: (220, 220, 255)),
             .Warning: .orange,
             .Error: .red,
             .Severe: .whiteOnRed
