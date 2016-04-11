@@ -12,71 +12,74 @@ class MenuItemView: NSView {
 
     var sampleRate: Double {
         get {
-            return self.sampleRateTextField.doubleValue
+            return sampleRateTextField.doubleValue
         }
 
         set {
-            self.sampleRateTextField.stringValue = FormattingUtils.formatSampleRate(newValue)
+            sampleRateTextField.stringValue = FormattingUtils.formatSampleRate(newValue)
         }
     }
 
     var clockSource: String {
         get {
-            return self.clockSourceTextField.stringValue
+            return clockSourceTextField.stringValue
         }
 
         set {
-            self.clockSourceTextField.stringValue = newValue
+            clockSourceTextField.stringValue = newValue
         }
     }
 
     var inputChannels: String {
         get {
-            return self.inputChannelsTextField.stringValue
+            return inputChannelsTextField.stringValue
         }
 
         set {
-            self.inputChannelsTextField.stringValue = newValue
+            inputChannelsTextField.stringValue = newValue
         }
     }
 
     var outputChannels: String {
         get {
-            return self.outputChannelsTextField.stringValue
+            return outputChannelsTextField.stringValue
         }
 
         set {
-            self.outputChannelsTextField.stringValue = newValue
+            outputChannelsTextField.stringValue = newValue
         }
     }
 
     var displayOutputDeviceIcon: Bool {
         get {
-            return !self.outputDeviceImageView.hidden
+            return !outputDeviceImageView.hidden
         }
 
         set {
-            self.outputDeviceImageView.hidden = !newValue
+            outputDeviceImageView.hidden = !newValue
+            updateDefaultDeviceConstraints()
         }
     }
 
     var displayInputDeviceIcon: Bool {
         get {
-            return !self.inputDeviceImageView.hidden
+            return !inputDeviceImageView.hidden
         }
 
         set {
-            self.inputDeviceImageView.hidden = !newValue
+            inputDeviceImageView.hidden = !newValue
+            updateDefaultDeviceConstraints()
         }
     }
 
     var displaySystemOuputDeviceIcon: Bool {
         get {
-            return !self.systemOutputDeviceImageView.hidden
+            return !systemOutputDeviceImageView.hidden
         }
 
         set {
-            self.systemOutputDeviceImageView.hidden = !newValue
+            systemOutputDeviceImageView.hidden = !newValue
+            updateDefaultDeviceConstraints()
         }
     }
 
@@ -148,18 +151,36 @@ class MenuItemView: NSView {
             clockSourceTextField.setContentHuggingPriority(NSLayoutPriorityDefaultLow, forOrientation: NSLayoutConstraintOrientation.Horizontal)
             clockSourceTextField.setContentCompressionResistancePriority(NSLayoutPriorityDefaultLow, forOrientation: NSLayoutConstraintOrientation.Horizontal)
 
-            systemOutputDeviceImageView.autoPinEdgeToSuperviewEdge(.Left, withInset: 8)
-            systemOutputDeviceImageView.autoPinEdgeToSuperviewEdge(.Top, withInset: 12)
-
-            outputDeviceImageView.autoPinEdge(.Left, toEdge: .Right, ofView: systemOutputDeviceImageView, withOffset: 0)
-            outputDeviceImageView.autoAlignAxis(.Horizontal, toSameAxisOfView: systemOutputDeviceImageView)
-
-            inputDeviceImageView.autoPinEdge(.Left, toEdge: .Right, ofView: outputDeviceImageView, withOffset: 0)
-            inputDeviceImageView.autoAlignAxis(.Horizontal, toSameAxisOfView: outputDeviceImageView)
+            updateDefaultDeviceConstraints(true)
 
             didSetupConstraints = true
         }
 
         super.updateConstraints()
+    }
+
+    private func updateDefaultDeviceConstraints(force: Bool = false) {
+        if !didSetupConstraints && !force {
+            return
+        }
+
+        inputDeviceImageView.autoPinEdge(.Right, toEdge: .Left, ofView: clockSourceTextField, withOffset: -8)
+        inputDeviceImageView.autoPinEdgeToSuperviewEdge(.Top, withInset: 12)
+
+        if inputDeviceImageView.hidden {
+            outputDeviceImageView.autoPinEdge(.Right, toEdge: .Left, ofView: clockSourceTextField, withOffset: -8)
+        } else {
+            outputDeviceImageView.autoPinEdge(.Right, toEdge: .Left, ofView: inputDeviceImageView, withOffset: 0)
+        }
+
+        outputDeviceImageView.autoPinEdgeToSuperviewEdge(.Top, withInset: 12)
+
+        if outputDeviceImageView.hidden {
+            systemOutputDeviceImageView.autoPinEdge(.Right, toEdge: .Left, ofView: clockSourceTextField, withOffset: -8)
+        } else {
+            systemOutputDeviceImageView.autoPinEdge(.Right, toEdge: .Left, ofView: outputDeviceImageView, withOffset: 0)
+        }
+
+        systemOutputDeviceImageView.autoPinEdgeToSuperviewEdge(.Top, withInset: 12)
     }
 }
