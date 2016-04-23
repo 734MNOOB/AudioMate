@@ -124,12 +124,8 @@ extension AppDelegate : AMEventSubscriber {
                 EventNotifier.sharedEventNotifier.volumeChangeNotification(audioDevice, direction: direction)
             case .MuteDidChange(let audioDevice, _, let direction):
                 EventNotifier.sharedEventNotifier.muteChangeNotification(audioDevice, direction: direction)
-            case .IsAliveDidChange(let audioDevice):
-                log.debug("\(audioDevice) 'is alive' changed to \(audioDevice.isAlive())")
-            case .IsRunningDidChange(let audioDevice):
-                log.debug("\(audioDevice) 'is running' changed to \(audioDevice.isRunning())")
-            case .IsRunningSomewhereDidChange(let audioDevice):
-                log.debug("\(audioDevice) 'is running somewhere' changed to \(audioDevice.isRunningSomewhere())")
+            default:
+                break
             }
         case let event as AMAudioHardwareEvent:
             switch event {
@@ -148,18 +144,18 @@ extension AppDelegate : AMEventSubscriber {
                     }
                 }
             case .DefaultInputDeviceChanged(let audioDevice):
-                log.debug("Default input device changed to \(audioDevice)")
+                EventNotifier.sharedEventNotifier.defaultInputDeviceChangeNotification(audioDevice)
             case .DefaultOutputDeviceChanged(let audioDevice):
-                log.debug("Default output device changed to \(audioDevice)")
+                EventNotifier.sharedEventNotifier.defaultOutputDeviceChangeNotification(audioDevice)
             case .DefaultSystemOutputDeviceChanged(let audioDevice):
-                log.debug("Default system output device changed to \(audioDevice)")
+                EventNotifier.sharedEventNotifier.defaultSystemOutputDeviceChangeNotification(audioDevice)
             }
         case let event as AMAudioStreamEvent:
             switch event {
-            case .IsActiveDidChange(let audioStream):
-                log.debug("is active did change in \(audioStream)")
             case .PhysicalFormatDidChange(let audioStream):
                 log.debug("physical format did change in \(audioStream.streamID), owner: \(audioStream.owningDevice), format: \(audioStream.physicalFormat)")
+            default:
+                break
             }
         default:
             break

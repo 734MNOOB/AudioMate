@@ -116,6 +116,45 @@ public final class EventNotifier {
         }
     }
 
+    func defaultOutputDeviceChangeNotification(audioDevice: AMAudioDevice) {
+        let notification = NSUserNotification()
+
+        notification.title = NSLocalizedString("Default Output Device Changed", comment: "")
+
+        notification.informativeText = String(
+            format: NSLocalizedString("%@ is the new default output device", comment: ""),
+            audioDevice.deviceName()
+        )
+
+        debouncedDeliverNotification(notification)
+    }
+
+    func defaultInputDeviceChangeNotification(audioDevice: AMAudioDevice) {
+        let notification = NSUserNotification()
+
+        notification.title = NSLocalizedString("Default Input Device Changed", comment: "")
+
+        notification.informativeText = String(
+            format: NSLocalizedString("%@ is the new default input device", comment: ""),
+            audioDevice.deviceName()
+        )
+
+        debouncedDeliverNotification(notification)
+    }
+
+    func defaultSystemOutputDeviceChangeNotification(audioDevice: AMAudioDevice) {
+        let notification = NSUserNotification()
+
+        notification.title = NSLocalizedString("Default System Output Device Changed", comment: "")
+
+        notification.informativeText = String(
+            format: NSLocalizedString("%@ is the new default system output device", comment: ""),
+            audioDevice.deviceName()
+        )
+
+        debouncedDeliverNotification(notification)
+    }
+
     // MARK: Private Methods
 
     private func debouncedDeliverNotification(notification: NSUserNotification) {
