@@ -20,9 +20,17 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         return mainStoryboard.instantiateControllerWithIdentifier("statusBarViewController") as? StatusBarViewController
     }()
 
-    private let audioManager = AMCoreAudioManager.sharedManager
+    // Instantiate our audio hardware object
+    private let audioHardware = AMAudioHardware.sharedInstance
 
     func applicationDidFinishLaunching(aNotification: NSNotification) {
+        audioHardware.enableDeviceMonitoring()
+
+        // Subscribe to events
+        AMNotificationCenter.defaultCenter.subscribe(self, eventType: AMAudioHardwareEvent.self)
+        AMNotificationCenter.defaultCenter.subscribe(self, eventType: AMAudioDeviceEvent.self)
+        AMNotificationCenter.defaultCenter.subscribe(self, eventType: AMAudioStreamEvent.self)
+
         // Setup logger
         setupLogger()
 
@@ -30,13 +38,10 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         if let sbvc = statusBarViewController {
             sbvc.loadView()
 
-            for device in audioManager.allKnownDevices {
+            for device in AMAudioDevice.allDevices() {
                 sbvc.addDevice(device)
             }
         }
-
-        // Set CoreAudioManager delegate to self
-        audioManager.delegate = self
 
         // Set NSUserNotificationCenter delegate to self
         NSUserNotificationCenter.defaultUserNotificationCenter().delegate = self
@@ -45,7 +50,13 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     func applicationWillTerminate(aNotification: NSNotification) {
         // Insert code here to tear down your application
 
-        audioManager.delegate = nil
+        // Unsubscribe from events
+        AMNotificationCenter.defaultCenter.unsubscribe(self, eventType: AMAudioHardwareEvent.self)
+        AMNotificationCenter.defaultCenter.unsubscribe(self, eventType: AMAudioDeviceEvent.self)
+        AMNotificationCenter.defaultCenter.unsubscribe(self, eventType: AMAudioStreamEvent.self)
+
+        audioHardware.disableDeviceMonitoring()
+
         NSUserDefaults.standardUserDefaults().synchronize()
     }
 
@@ -88,61 +99,70 @@ extension AppDelegate: NSUserNotificationCenterDelegate {
     }
 }
 
-extension AppDelegate: AMCoreAudioManagerDelegate {
+// MARK: - AMEventSubscriber Protocol Implementation
+extension AppDelegate : AMEventSubscriber {
 
-    func hardwareDeviceListChangedWithAddedDevices(addedDevices: [AMCoreAudioDevice], andRemovedDevices removedDevices: [AMCoreAudioDevice]) {
-        EventNotifier.sharedEventNotifier.deviceListChangeNotification(addedDevices, removedDevices: removedDevices)
-
-        for addedDevice in addedDevices {
-            dispatch_async(dispatch_get_main_queue()) {
-                self.statusBarViewController?.addDevice(addedDevice)
+    func eventReceiver(event: AMEvent) {
+        switch event {
+        case let event as AMAudioDeviceEvent:
+            switch event {
+            case .NominalSampleRateDidChange(let audioDevice):
+                EventNotifier.sharedEventNotifier.samplerateChangeNotification(audioDevice)
+            case .AvailableNominalSampleRatesDidChange(let audioDevice):
+                if let nominalSampleRates = audioDevice.nominalSampleRates() {
+                    log.debug("\(audioDevice) nominal sample rates changed to \(nominalSampleRates)")
+                }
+            case .ClockSourceDidChange(let audioDevice, let channel, let direction):
+                EventNotifier.sharedEventNotifier.clockSourceChangeNotification(audioDevice,
+                                                                                channelNumber: channel,
+                                                                                direction: direction)
+            case .NameDidChange(let audioDevice):
+                log.debug("\(audioDevice) name changed to \(audioDevice.deviceName())")
+            case .ListDidChange(let audioDevice):
+                log.debug("\(audioDevice) owned devices list changed")
+            case .VolumeDidChange(let audioDevice, _, let direction):
+                EventNotifier.sharedEventNotifier.volumeChangeNotification(audioDevice, direction: direction)
+            case .MuteDidChange(let audioDevice, _, let direction):
+                EventNotifier.sharedEventNotifier.muteChangeNotification(audioDevice, direction: direction)
+            case .IsAliveDidChange(let audioDevice):
+                log.debug("\(audioDevice) 'is alive' changed to \(audioDevice.isAlive())")
+            case .IsRunningDidChange(let audioDevice):
+                log.debug("\(audioDevice) 'is running' changed to \(audioDevice.isRunning())")
+            case .IsRunningSomewhereDidChange(let audioDevice):
+                log.debug("\(audioDevice) 'is running somewhere' changed to \(audioDevice.isRunningSomewhere())")
             }
-        }
+        case let event as AMAudioHardwareEvent:
+            switch event {
+            case .DeviceListChanged(let addedDevices, let removedDevices):
+                EventNotifier.sharedEventNotifier.deviceListChangeNotification(addedDevices, removedDevices: removedDevices)
 
-        for removedDevice in removedDevices {
-            dispatch_async(dispatch_get_main_queue()) {
-                self.statusBarViewController?.removeDevice(removedDevice)
+                for addedDevice in addedDevices {
+                    dispatch_async(dispatch_get_main_queue()) {
+                        self.statusBarViewController?.addDevice(addedDevice)
+                    }
+                }
+
+                for removedDevice in removedDevices {
+                    dispatch_async(dispatch_get_main_queue()) {
+                        self.statusBarViewController?.removeDevice(removedDevice)
+                    }
+                }
+            case .DefaultInputDeviceChanged(let audioDevice):
+                log.debug("Default input device changed to \(audioDevice)")
+            case .DefaultOutputDeviceChanged(let audioDevice):
+                log.debug("Default output device changed to \(audioDevice)")
+            case .DefaultSystemOutputDeviceChanged(let audioDevice):
+                log.debug("Default system output device changed to \(audioDevice)")
             }
+        case let event as AMAudioStreamEvent:
+            switch event {
+            case .IsActiveDidChange(let audioStream):
+                log.debug("is active did change in \(audioStream)")
+            case .PhysicalFormatDidChange(let audioStream):
+                log.debug("physical format did change in \(audioStream.streamID), owner: \(audioStream.owningDevice), format: \(audioStream.physicalFormat)")
+            }
+        default:
+            break
         }
-    }
-
-    func hardwareDefaultInputDeviceChanged(audioDevice: AMCoreAudioDevice) {
-        //
-    }
-
-    func hardwareDefaultOutputDeviceChanged(audioDevice: AMCoreAudioDevice) {
-        //
-    }
-
-    func hardwareDefaultSystemDeviceChanged(audioDevice: AMCoreAudioDevice) {
-        //
-    }
-
-    func audioDeviceListDidChange(audioDevice: AMCoreAudioDevice) {
-        //
-    }
-
-    func audioDeviceNameDidChange(audioDevice: AMCoreAudioDevice) {
-        //
-    }
-
-    func audioDeviceNominalSampleRateDidChange(audioDevice: AMCoreAudioDevice) {
-        EventNotifier.sharedEventNotifier.samplerateChangeNotification(audioDevice)
-    }
-
-    func audioDeviceClockSourceDidChange(audioDevice: AMCoreAudioDevice, forChannel channel: UInt32, andDirection direction: Direction) {
-        EventNotifier.sharedEventNotifier.clockSourceChangeNotification(audioDevice, channelNumber: channel, direction: direction)
-    }
-
-    func audioDeviceVolumeDidChange(audioDevice: AMCoreAudioDevice, forChannel channel: UInt32, andDirection direction: Direction) {
-        EventNotifier.sharedEventNotifier.volumeChangeNotification(audioDevice, direction: direction)
-    }
-
-    func audioDeviceMuteDidChange(audioDevice: AMCoreAudioDevice, forChannel channel: UInt32, andDirection direction: Direction) {
-        EventNotifier.sharedEventNotifier.muteChangeNotification(audioDevice, direction: direction)
-    }
-
-    func audioDeviceIsAliveDidChange(audioDevice: AMCoreAudioDevice) {
-        // NO-OP
     }
 }

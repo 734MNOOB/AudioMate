@@ -18,23 +18,24 @@ public final class EventNotifier {
 
     private init() {}
 
-    func samplerateChangeNotification(audioDevice: AMCoreAudioDevice) {
+    func samplerateChangeNotification(audioDevice: AMAudioDevice) {
         let notification = NSUserNotification()
+        let sampleRate = audioDevice.nominalSampleRate() ?? 0.0
 
         notification.title = NSLocalizedString("Sample Rate Changed", comment: "")
 
         notification.informativeText = String(
             format: NSLocalizedString("%@ sample rate changed to %@", comment: ""),
             audioDevice.deviceName(),
-            audioDevice.actualSampleRateFormattedWithShortFormat(true)
+            String(format: NSLocalizedString("%.1f kHz", comment: ""), sampleRate * 0.001)
         )
 
         debouncedDeliverNotification(notification)
     }
 
-    func volumeChangeNotification(audioDevice: AMCoreAudioDevice, direction: AMCoreAudio.Direction) {
+    func volumeChangeNotification(audioDevice: AMAudioDevice, direction: AMCoreAudio.Direction) {
         if let volumeInDb = audioDevice.masterVolumeInDecibelsForDirection(direction) {
-            let formattedVolume = AMCoreAudioDevice.formattedVolumeInDecibels(volumeInDb)
+            let formattedVolume = String(format: NSLocalizedString("%.1fdB", comment: ""), volumeInDb)
             let notification = NSUserNotification()
 
             notification.title = NSLocalizedString("Volume Changed", comment: "")
@@ -49,7 +50,7 @@ public final class EventNotifier {
         }
     }
 
-    func muteChangeNotification(audioDevice: AMCoreAudioDevice, direction: AMCoreAudio.Direction) {
+    func muteChangeNotification(audioDevice: AMAudioDevice, direction: AMCoreAudio.Direction) {
         let notification = NSUserNotification()
 
         if audioDevice.isMasterVolumeMutedForDirection(direction) == true {
@@ -71,7 +72,7 @@ public final class EventNotifier {
         debouncedDeliverNotification(notification)
     }
 
-    func clockSourceChangeNotification(audioDevice: AMCoreAudioDevice, channelNumber: UInt32, direction: AMCoreAudio.Direction) {
+    func clockSourceChangeNotification(audioDevice: AMAudioDevice, channelNumber: UInt32, direction: AMCoreAudio.Direction) {
         if let clockSourceName = audioDevice.clockSourceForChannel(channelNumber, andDirection: direction) {
             let notification = NSUserNotification()
 
@@ -87,7 +88,7 @@ public final class EventNotifier {
         }
     }
 
-    func deviceListChangeNotification(addedDevices: [AMCoreAudioDevice], removedDevices: [AMCoreAudioDevice]) {
+    func deviceListChangeNotification(addedDevices: [AMAudioDevice], removedDevices: [AMAudioDevice]) {
         for audioDevice in addedDevices {
             let notification = NSUserNotification()
 

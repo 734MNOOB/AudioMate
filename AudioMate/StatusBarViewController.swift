@@ -11,7 +11,7 @@ import AMCoreAudio
 
 class StatusBarViewController: NSViewController {
 
-    private var audioDevices = [AMCoreAudioDevice]()
+    private var audioDevices = [AMAudioDevice]()
     private var mainMenu = NSMenu()
 
     private lazy var statusBarView: StatusBarView? = {
@@ -52,7 +52,7 @@ class StatusBarViewController: NSViewController {
 
     // MARK: - Public Functions
 
-    func addDevice(device: AMCoreAudioDevice) {
+    func addDevice(device: AMAudioDevice) {
         log.debug("Adding \(device) to menu.")
 
         audioDevices.append(device)
@@ -77,7 +77,7 @@ class StatusBarViewController: NSViewController {
         mainMenu.insertItem(menuItem, atIndex: 0)
     }
 
-    func removeDevice(device: AMCoreAudioDevice) {
+    func removeDevice(device: AMAudioDevice) {
         log.debug("Removing \(device) from menu.")
 
         if let idx = audioDevices.indexOf(device) {
@@ -100,7 +100,7 @@ class StatusBarViewController: NSViewController {
     // MARK: - Private Functions
 
     private func buildDeviceDetailMenuItem(item: NSMenuItem) {
-        guard let device = item.representedObject as? AMCoreAudioDevice else {
+        guard let device = item.representedObject as? AMAudioDevice else {
             return
         }
 
@@ -153,9 +153,9 @@ class StatusBarViewController: NSViewController {
                 menuItemView.outputMuteCheckbox.state = NSOffState
             }
 
-            menuItemView.displayOutputDeviceIcon = AMCoreAudioDevice.defaultOutputDevice()?.deviceID == device.deviceID
-            menuItemView.displayInputDeviceIcon = AMCoreAudioDevice.defaultInputDevice()?.deviceID == device.deviceID
-            menuItemView.displaySystemOuputDeviceIcon = AMCoreAudioDevice.defaultSystemOutputDevice()?.deviceID == device.deviceID
+            menuItemView.displayOutputDeviceIcon = AMAudioDevice.defaultOutputDevice()?.deviceID == device.deviceID
+            menuItemView.displayInputDeviceIcon = AMAudioDevice.defaultInputDevice()?.deviceID == device.deviceID
+            menuItemView.displaySystemOuputDeviceIcon = AMAudioDevice.defaultSystemOutputDevice()?.deviceID == device.deviceID
 
             item.view = menuItemView
         } else {
@@ -164,7 +164,7 @@ class StatusBarViewController: NSViewController {
     }
 
     private func buildSubmenuForMenuItem(item: NSMenuItem) {
-        guard let device = item.representedObject as? AMCoreAudioDevice else {
+        guard let device = item.representedObject as? AMAudioDevice else {
             return
         }
 
@@ -221,7 +221,7 @@ class StatusBarViewController: NSViewController {
 
             useForSoundOutputItem.image = NSImage(named: "DefaultOutput")
 
-            if AMCoreAudioDevice.defaultOutputDevice()?.deviceID == device.deviceID {
+            if AMAudioDevice.defaultOutputDevice()?.deviceID == device.deviceID {
                 useForSoundOutputItem.enabled = false
                 useForSoundOutputItem.state = NSOnState
             }
@@ -232,7 +232,7 @@ class StatusBarViewController: NSViewController {
 
             useForSystemOutputItem.image = NSImage(named: "SystemOutput")
 
-            if AMCoreAudioDevice.defaultSystemOutputDevice()?.deviceID == device.deviceID {
+            if AMAudioDevice.defaultSystemOutputDevice()?.deviceID == device.deviceID {
                 useForSystemOutputItem.enabled = false
                 useForSystemOutputItem.state = NSOnState
             }
@@ -243,7 +243,7 @@ class StatusBarViewController: NSViewController {
 
             useForSoundInputItem.image = NSImage(named: "DefaultInput")
 
-            if AMCoreAudioDevice.defaultInputDevice()?.deviceID == device.deviceID {
+            if AMAudioDevice.defaultInputDevice()?.deviceID == device.deviceID {
                 useForSoundInputItem.enabled = false
                 useForSoundInputItem.state = NSOnState
             }
@@ -273,7 +273,7 @@ class StatusBarViewController: NSViewController {
         return nil
     }
 
-    private func transportTypeImageForDevice(device: AMCoreAudioDevice) -> NSImage {
+    private func transportTypeImageForDevice(device: AMAudioDevice) -> NSImage {
         if let transportType = device.transportType() {
             let outChannels = device.channelsForDirection(.Playback) ?? 0
             let inChannels = device.channelsForDirection(.Recording) ?? 0
