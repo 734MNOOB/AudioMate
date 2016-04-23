@@ -57,6 +57,7 @@ class MenuItemView: NSView {
 
         set {
             outputDeviceImageView.hidden = !newValue
+            outputDeviceImageView.setNeedsDisplay()
             updateDefaultDeviceConstraints()
         }
     }
@@ -68,6 +69,7 @@ class MenuItemView: NSView {
 
         set {
             inputDeviceImageView.hidden = !newValue
+            inputDeviceImageView.setNeedsDisplay()
             updateDefaultDeviceConstraints()
         }
     }
@@ -79,9 +81,12 @@ class MenuItemView: NSView {
 
         set {
             systemOutputDeviceImageView.hidden = !newValue
+            systemOutputDeviceImageView.setNeedsDisplay()
             updateDefaultDeviceConstraints()
         }
     }
+
+    var deviceConstrains = [NSLayoutConstraint]()
 
     private var didSetupConstraints: Bool = false
 
@@ -104,7 +109,6 @@ class MenuItemView: NSView {
     override func updateConstraints() {
         if (!didSetupConstraints) {
             removeConstraints(constraints)
-
             autoSetDimension(.Height, toSize: 38)
 
             inputMuteCheckbox.autoPinEdgeToSuperviewEdge(.Top, withInset: 2)
@@ -164,23 +168,25 @@ class MenuItemView: NSView {
             return
         }
 
-        inputDeviceImageView.autoPinEdge(.Right, toEdge: .Left, ofView: clockSourceTextField, withOffset: -8)
-        inputDeviceImageView.autoPinEdgeToSuperviewEdge(.Top, withInset: 12)
+        deviceConstrains.forEach { (constraint) in constraint.autoRemove() }
+
+        deviceConstrains.append(inputDeviceImageView.autoPinEdge(.Right, toEdge: .Left, ofView: clockSourceTextField, withOffset: -8))
+        deviceConstrains.append(inputDeviceImageView.autoPinEdgeToSuperviewEdge(.Top, withInset: 12))
 
         if inputDeviceImageView.hidden {
-            outputDeviceImageView.autoPinEdge(.Right, toEdge: .Left, ofView: clockSourceTextField, withOffset: -8)
+            deviceConstrains.append(outputDeviceImageView.autoPinEdge(.Right, toEdge: .Left, ofView: clockSourceTextField, withOffset: -8))
         } else {
-            outputDeviceImageView.autoPinEdge(.Right, toEdge: .Left, ofView: inputDeviceImageView, withOffset: 0)
+            deviceConstrains.append(outputDeviceImageView.autoPinEdge(.Right, toEdge: .Left, ofView: inputDeviceImageView, withOffset: 0))
         }
 
-        outputDeviceImageView.autoPinEdgeToSuperviewEdge(.Top, withInset: 12)
+        deviceConstrains.append(outputDeviceImageView.autoPinEdgeToSuperviewEdge(.Top, withInset: 12))
 
         if outputDeviceImageView.hidden {
-            systemOutputDeviceImageView.autoPinEdge(.Right, toEdge: .Left, ofView: clockSourceTextField, withOffset: -8)
+            deviceConstrains.append(systemOutputDeviceImageView.autoPinEdge(.Right, toEdge: .Left, ofView: clockSourceTextField, withOffset: -8))
         } else {
-            systemOutputDeviceImageView.autoPinEdge(.Right, toEdge: .Left, ofView: outputDeviceImageView, withOffset: 0)
+            deviceConstrains.append(systemOutputDeviceImageView.autoPinEdge(.Right, toEdge: .Left, ofView: outputDeviceImageView, withOffset: 0))
         }
 
-        systemOutputDeviceImageView.autoPinEdgeToSuperviewEdge(.Top, withInset: 12)
+        deviceConstrains.append(systemOutputDeviceImageView.autoPinEdgeToSuperviewEdge(.Top, withInset: 12))
     }
 }

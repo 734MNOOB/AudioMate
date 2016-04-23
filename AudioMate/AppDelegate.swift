@@ -131,18 +131,6 @@ extension AppDelegate : AMEventSubscriber {
             switch event {
             case .DeviceListChanged(let addedDevices, let removedDevices):
                 EventNotifier.sharedEventNotifier.deviceListChangeNotification(addedDevices, removedDevices: removedDevices)
-
-                for addedDevice in addedDevices {
-                    dispatch_async(dispatch_get_main_queue()) {
-                        self.statusBarViewController?.addDevice(addedDevice)
-                    }
-                }
-
-                for removedDevice in removedDevices {
-                    dispatch_async(dispatch_get_main_queue()) {
-                        self.statusBarViewController?.removeDevice(removedDevice)
-                    }
-                }
             case .DefaultInputDeviceChanged(let audioDevice):
                 EventNotifier.sharedEventNotifier.defaultInputDeviceChangeNotification(audioDevice)
             case .DefaultOutputDeviceChanged(let audioDevice):
