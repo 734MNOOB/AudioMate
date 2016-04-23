@@ -1,5 +1,5 @@
 github "DaveWoodCom/XCGLogger" ~> 3.3
-github "rnine/AMCoreAudio" ~> 2.0.10
+github "rnine/AMCoreAudio" ~> 3.0
 github "PureLayout/PureLayout" ~> 2.0.6
 github "potionfactory/LetsMove" ~> 1.9
 github "sparkle-project/Sparkle" ~> 1.13.1

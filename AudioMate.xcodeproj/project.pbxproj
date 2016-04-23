@@ -385,6 +385,7 @@
 		45A43ADD1CBAAE8C00C22D17 /* Cartfile Dependencies */ = {
 			isa = PBXGroup;
 			children = (
+				45A43A841CBAAC5100C22D17 /* Cartfile */,
 				45A43A851CBAAC5F00C22D17 /* AMCoreAudio.xcodeproj */,
 				45A43A8E1CBAAC6500C22D17 /* PureLayout.xcodeproj */,
 				45A43B0D1CBAB11900C22D17 /* Sparkle.xcodeproj */,
@@ -438,7 +439,6 @@
 		45FA561B166BC8C500C1D92D = {
 			isa = PBXGroup;
 			children = (
-				45A43A841CBAAC5100C22D17 /* Cartfile */,
 				45FA5630166BC8C500C1D92D /* AudioMate */,
 				459D6DAC1687EF95007F2226 /* AudioMateLauncher */,
 				45A43ADD1CBAAE8C00C22D17 /* Cartfile Dependencies */,

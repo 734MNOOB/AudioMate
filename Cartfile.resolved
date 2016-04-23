@@ -1,4 +1,4 @@
-github "rnine/AMCoreAudio" "2.0.10"
+github "rnine/AMCoreAudio" "3.0-rc1"
 github "potionfactory/LetsMove" "v1.20"
 github "PureLayout/PureLayout" "v2.0.6"
 github "sparkle-project/Sparkle" "1.14.0"
