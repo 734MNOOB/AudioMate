@@ -8,6 +8,7 @@
 
 import Cocoa
 import AMCoreAudio
+import Sparkle
 
 private var kPreferencesSeparator = 1000
 private var kDeviceMenuItem = 1001
@@ -49,6 +50,13 @@ class StatusBarViewController: NSViewController {
 
         mainMenu.addItem(preferencesMenuItem)
 
+        let checkForUpdatesMenuItem = NSMenuItem()
+
+        checkForUpdatesMenuItem.title = NSLocalizedString("Check for Updates…", comment: "")
+        checkForUpdatesMenuItem.target = self
+        checkForUpdatesMenuItem.action = #selector(checkForUpdates(_:))
+
+        mainMenu.addItem(checkForUpdatesMenuItem)
         mainMenu.addItem(NSMenuItem.separatorItem())
 
         let quitMenuItem = NSMenuItem()
@@ -460,29 +468,38 @@ class StatusBarViewController: NSViewController {
 
     // MARK: - Actions
 
-    @objc func showPreferences(sender: AnyObject) {
+    @IBAction func checkForUpdates(sender: AnyObject) {
+        Utils.transformAppIntoForegroundMode()
+        // Activate (give focus to) our app
+        NSApplication.sharedApplication().activateIgnoringOtherApps(true)
+
+        SUUpdater.sharedUpdater().delegate = self
+        SUUpdater.sharedUpdater().checkForUpdates(sender)
+    }
+
+    @IBAction func showPreferences(sender: AnyObject) {
+        performSegueWithIdentifier("showPreferences", sender: self)
+    }
+
+    @IBAction func showDeviceActions(sender: AnyObject) {
         log.debug("TODO: Implement")
     }
 
-    @objc func showDeviceActions(sender: AnyObject) {
-        log.debug("TODO: Implement")
-    }
-
-    @objc func updateInputVolume(sender: AnyObject) {
+    @IBAction func updateInputVolume(sender: AnyObject) {
         if let slider = sender as? NSSlider {
             let device = AMAudioDevice.lookupByID(AudioObjectID(slider.tag))
             device.setMasterVolume(slider.floatValue, forDirection: .Recording)
         }
     }
 
-    @objc func updateOutputVolume(sender: AnyObject) {
+    @IBAction func updateOutputVolume(sender: AnyObject) {
         if let slider = sender as? NSSlider {
             let device = AMAudioDevice.lookupByID(AudioObjectID(slider.tag))
             device.setMasterVolume(slider.floatValue, forDirection: .Playback)
         }
     }
 
-    @objc func updateInputMute(sender: AnyObject) {
+    @IBAction func updateInputMute(sender: AnyObject) {
         if let button = sender as? NSButton {
             let device = AMAudioDevice.lookupByID(AudioObjectID(button.tag))
 
@@ -492,7 +509,7 @@ class StatusBarViewController: NSViewController {
         }
     }
 
-    @objc func updateOutputMute(sender: AnyObject) {
+    @IBAction func updateOutputMute(sender: AnyObject) {
         if let button = sender as? NSButton {
             let device = AMAudioDevice.lookupByID(AudioObjectID(button.tag))
 
@@ -502,7 +519,7 @@ class StatusBarViewController: NSViewController {
         }
     }
 
-    @objc func updateSampleRate(sender: AnyObject) {
+    @IBAction func updateSampleRate(sender: AnyObject) {
         if let menuItem = sender as? NSMenuItem {
             let device = AMAudioDevice.lookupByID(AudioObjectID(menuItem.tag))
 
@@ -512,7 +529,7 @@ class StatusBarViewController: NSViewController {
         }
     }
 
-    @objc func updateClockSource(sender: AnyObject) {
+    @IBAction func updateClockSource(sender: AnyObject) {
         if let menuItem = sender as? NSMenuItem {
             let device = AMAudioDevice.lookupByID(AudioObjectID(menuItem.tag))
 
@@ -524,21 +541,21 @@ class StatusBarViewController: NSViewController {
         }
     }
 
-    @objc func updateDefaultInputDevice(sender: AnyObject) {
+    @IBAction func updateDefaultInputDevice(sender: AnyObject) {
         if let menuItem = sender as? NSMenuItem {
             let device = AMAudioDevice.lookupByID(AudioObjectID(menuItem.tag))
             device.setAsDefaultInputDevice()
         }
     }
 
-    @objc func updateDefaultOutputDevice(sender: AnyObject) {
+    @IBAction func updateDefaultOutputDevice(sender: AnyObject) {
         if let menuItem = sender as? NSMenuItem {
             let device = AMAudioDevice.lookupByID(AudioObjectID(menuItem.tag))
             device.setAsDefaultOutputDevice()
         }
     }
 
-    @objc func updateDefaultSystemOutputDevice(sender: AnyObject) {
+    @IBAction func updateDefaultSystemOutputDevice(sender: AnyObject) {
         if let menuItem = sender as? NSMenuItem {
             let device = AMAudioDevice.lookupByID(AudioObjectID(menuItem.tag))
             device.setAsDefaultSystemDevice()
@@ -599,5 +616,11 @@ extension StatusBarViewController : AMEventSubscriber {
         default:
             break
         }
+    }
+}
+
+extension StatusBarViewController: SUUpdaterDelegate {
+    func updaterDidShowModalAlert(updater: SUUpdater!) {
+        Utils.transformAppIntoUIElementMode()
     }
 }

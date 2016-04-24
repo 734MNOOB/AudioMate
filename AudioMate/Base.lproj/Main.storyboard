@@ -647,6 +647,207 @@
             </objects>
             <point key="canvasLocation" x="75" y="0.0"/>
         </scene>
+        <!--Window Controller-->
+        <scene sceneID="jbO-Xv-OIF">
+            <objects>
+                <windowController id="W6d-GT-x8t" customClass="PreferencesWindowController" customModule="AudioMate" customModuleProvider="target" sceneMemberID="viewController">
+                    <window key="window" title="Preferences" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" showsToolbarButton="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" id="NXA-Bs-DVy" customClass="NSPanel">
+                        <windowStyleMask key="styleMask" titled="YES" closable="YES" texturedBackground="YES"/>
+                        <rect key="contentRect" x="425" y="461" width="480" height="270"/>
+                        <rect key="screenRect" x="0.0" y="0.0" width="2560" height="1417"/>
+                    </window>
+                    <connections>
+                        <segue destination="B0M-Fv-h3q" kind="relationship" relationship="window.shadowedContentViewController" id="gKS-ib-3wu"/>
+                    </connections>
+                </windowController>
+                <customObject id="U5F-Fn-Pc8" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="283" y="795"/>
+        </scene>
+        <!--Tab View Controller-->
+        <scene sceneID="uAf-IL-8h8">
+            <objects>
+                <tabViewController selectedTabViewItemIndex="0" tabStyle="toolbar" id="B0M-Fv-h3q" sceneMemberID="viewController">
+                    <tabViewItems>
+                        <tabViewItem label="General" identifier="" image="Settings" id="L23-Ml-7Qx"/>
+                        <tabViewItem label="System Notifications" identifier="" image="Notifications" id="GEt-Y2-V4d"/>
+                    </tabViewItems>
+                    <tabView key="tabView" type="noTabsNoBorder" id="9Q5-8i-w7D">
+                        <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <font key="font" metaFont="message"/>
+                        <tabViewItems/>
+                    </tabView>
+                    <connections>
+                        <segue destination="3Rq-8W-7jd" kind="relationship" relationship="tabItems" id="b6B-iR-pu6"/>
+                        <segue destination="Of9-2S-bOd" kind="relationship" relationship="tabItems" id="Ezf-Xr-pC0"/>
+                    </connections>
+                </tabViewController>
+                <customObject id="OfW-uy-adE" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="937" y="755"/>
+        </scene>
+        <!--General Preferences View Controller-->
+        <scene sceneID="zOP-nq-DZe">
+            <objects>
+                <viewController id="3Rq-8W-7jd" customClass="GeneralPreferencesViewController" customModule="AudioMate" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" id="eiV-S3-ZYg">
+                        <rect key="frame" x="0.0" y="0.0" width="450" height="120"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="6Da-EW-OLJ">
+                                <rect key="frame" x="18" y="83" width="252" height="17"/>
+                                <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Device information to show in status bar:" id="yMJ-Ih-Rue">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <button translatesAutoresizingMaskIntoConstraints="NO" id="fFe-jz-g3F">
+                                <rect key="frame" x="18" y="18" width="104" height="18"/>
+                                <buttonCell key="cell" type="check" title="Start at Login" bezelStyle="regularSquare" imagePosition="left" inset="2" id="YK9-8N-6b0">
+                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="toggleStartAtLogin:" target="3Rq-8W-7jd" id="jA7-5p-Jpg"/>
+                                </connections>
+                            </button>
+                            <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="pjA-xI-JYq">
+                                <rect key="frame" x="18" y="51" width="425" height="26"/>
+                                <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" id="M5q-bZ-juf">
+                                    <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="menu"/>
+                                    <menu key="menu" title="OtherViews" id="lYI-00-y4b"/>
+                                </popUpButtonCell>
+                            </popUpButton>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="fFe-jz-g3F" firstAttribute="top" secondItem="pjA-xI-JYq" secondAttribute="bottom" constant="20" id="2lY-Xz-fCX"/>
+                            <constraint firstItem="pjA-xI-JYq" firstAttribute="top" secondItem="6Da-EW-OLJ" secondAttribute="bottom" constant="8" id="96i-0p-fXo"/>
+                            <constraint firstItem="pjA-xI-JYq" firstAttribute="leading" secondItem="fFe-jz-g3F" secondAttribute="leading" id="Asd-Ap-Vzp"/>
+                            <constraint firstAttribute="trailing" secondItem="pjA-xI-JYq" secondAttribute="trailing" constant="10" id="bEB-Ig-6XL"/>
+                            <constraint firstItem="6Da-EW-OLJ" firstAttribute="leading" secondItem="pjA-xI-JYq" secondAttribute="leading" id="d9W-fl-gHK"/>
+                            <constraint firstItem="6Da-EW-OLJ" firstAttribute="top" secondItem="eiV-S3-ZYg" secondAttribute="top" constant="20" symbolic="YES" id="iAs-pe-MGy"/>
+                            <constraint firstItem="6Da-EW-OLJ" firstAttribute="leading" secondItem="eiV-S3-ZYg" secondAttribute="leading" constant="20" symbolic="YES" id="vvX-SC-1g8"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="deviceInformationToShowPopUpButton" destination="pjA-xI-JYq" id="anp-h1-34a"/>
+                        <outlet property="startAtLoginButton" destination="fFe-jz-g3F" id="sKz-40-bhs"/>
+                    </connections>
+                </viewController>
+                <customObject id="37n-bN-wTI" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2169" y="499"/>
+        </scene>
+        <!--Notification Preferences View Controller-->
+        <scene sceneID="AU1-OI-4ta">
+            <objects>
+                <viewController id="Of9-2S-bOd" customClass="NotificationPreferencesViewController" customModule="AudioMate" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" id="QDR-ru-sgl">
+                        <rect key="frame" x="0.0" y="0.0" width="450" height="179"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <button translatesAutoresizingMaskIntoConstraints="NO" id="4X5-AK-OO9">
+                                <rect key="frame" x="30" y="118" width="264" height="18"/>
+                                <buttonCell key="cell" type="check" title="Everytime a device is added or removed" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="Ju5-6n-NKv">
+                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="handleCheckButton:" target="Of9-2S-bOd" id="97f-ic-Wjr"/>
+                                </connections>
+                            </button>
+                            <button translatesAutoresizingMaskIntoConstraints="NO" id="Cba-Vr-hgX">
+                                <rect key="frame" x="30" y="98" width="249" height="18"/>
+                                <buttonCell key="cell" type="check" title="Everytime a device's volume changes" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="Orv-cv-0My">
+                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="handleCheckButton:" target="Of9-2S-bOd" id="wa6-el-Bot"/>
+                                </connections>
+                            </button>
+                            <button translatesAutoresizingMaskIntoConstraints="NO" id="hVB-6g-JNz">
+                                <rect key="frame" x="30" y="78" width="270" height="18"/>
+                                <buttonCell key="cell" type="check" title="Everytime a device's mute state changes" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="Gfm-BH-Awy">
+                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="handleCheckButton:" target="Of9-2S-bOd" id="1Yl-WU-Guf"/>
+                                </connections>
+                            </button>
+                            <button translatesAutoresizingMaskIntoConstraints="NO" id="ne3-n2-Sno">
+                                <rect key="frame" x="30" y="58" width="276" height="18"/>
+                                <buttonCell key="cell" type="check" title="Everytime a device's sample rate changes" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="hb3-Tg-FhP">
+                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="handleCheckButton:" target="Of9-2S-bOd" id="ZcG-xb-Txm"/>
+                                </connections>
+                            </button>
+                            <button translatesAutoresizingMaskIntoConstraints="NO" id="AHS-2a-QNH">
+                                <rect key="frame" x="30" y="38" width="282" height="18"/>
+                                <buttonCell key="cell" type="check" title="Everytime a device's clock source changes" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="gVm-ql-Jsj">
+                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="handleCheckButton:" target="Of9-2S-bOd" id="mTC-5o-ZfW"/>
+                                </connections>
+                            </button>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="XQx-KG-0B4">
+                                <rect key="frame" x="18" y="142" width="188" height="17"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Display a system notification…" id="b6N-w0-dCH">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <button translatesAutoresizingMaskIntoConstraints="NO" id="Y1g-P5-RcX">
+                                <rect key="frame" x="30" y="18" width="241" height="18"/>
+                                <buttonCell key="cell" type="check" title="Everytime a device becomes default" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="8bX-Uu-PDY">
+                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="handleCheckButton:" target="Of9-2S-bOd" id="Jsn-hZ-Ziv"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="Y1g-P5-RcX" firstAttribute="top" secondItem="AHS-2a-QNH" secondAttribute="bottom" constant="6" symbolic="YES" id="1xI-la-x08"/>
+                            <constraint firstItem="ne3-n2-Sno" firstAttribute="top" secondItem="hVB-6g-JNz" secondAttribute="bottom" constant="6" symbolic="YES" id="8A4-Y0-wIQ"/>
+                            <constraint firstItem="hVB-6g-JNz" firstAttribute="top" secondItem="Cba-Vr-hgX" secondAttribute="bottom" constant="6" symbolic="YES" id="JnL-Lk-ONs"/>
+                            <constraint firstItem="Cba-Vr-hgX" firstAttribute="top" secondItem="4X5-AK-OO9" secondAttribute="bottom" constant="6" symbolic="YES" id="Jyi-Tk-UzQ"/>
+                            <constraint firstItem="ne3-n2-Sno" firstAttribute="leading" secondItem="AHS-2a-QNH" secondAttribute="leading" id="K9C-7s-MZ9"/>
+                            <constraint firstItem="AHS-2a-QNH" firstAttribute="top" secondItem="ne3-n2-Sno" secondAttribute="bottom" constant="6" symbolic="YES" id="KuC-L1-4xg"/>
+                            <constraint firstItem="XQx-KG-0B4" firstAttribute="leading" secondItem="QDR-ru-sgl" secondAttribute="leading" constant="20" symbolic="YES" id="P3z-G2-Ldg"/>
+                            <constraint firstItem="hVB-6g-JNz" firstAttribute="leading" secondItem="ne3-n2-Sno" secondAttribute="leading" id="R4p-d2-aMV"/>
+                            <constraint firstItem="AHS-2a-QNH" firstAttribute="leading" secondItem="Y1g-P5-RcX" secondAttribute="leading" id="VIq-8v-r1Q"/>
+                            <constraint firstItem="Cba-Vr-hgX" firstAttribute="leading" secondItem="hVB-6g-JNz" secondAttribute="leading" id="VJi-sh-ZJt"/>
+                            <constraint firstItem="XQx-KG-0B4" firstAttribute="top" secondItem="QDR-ru-sgl" secondAttribute="top" constant="20" symbolic="YES" id="WwL-lD-7TK"/>
+                            <constraint firstItem="4X5-AK-OO9" firstAttribute="leading" secondItem="QDR-ru-sgl" secondAttribute="leading" constant="32" id="XZg-yG-CMZ"/>
+                            <constraint firstItem="4X5-AK-OO9" firstAttribute="leading" secondItem="Cba-Vr-hgX" secondAttribute="leading" id="a2W-CZ-kmU"/>
+                            <constraint firstItem="4X5-AK-OO9" firstAttribute="top" secondItem="XQx-KG-0B4" secondAttribute="bottom" constant="8" symbolic="YES" id="o98-ZU-vl5"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="everytimeADeviceBecomesDefaultButton" destination="Y1g-P5-RcX" id="aov-mo-qPg"/>
+                        <outlet property="everytimeADeviceClockSourceChangesButton" destination="AHS-2a-QNH" id="0bP-Gk-sPS"/>
+                        <outlet property="everytimeADeviceIsAddedOrRemovedButton" destination="4X5-AK-OO9" id="WpO-NL-DJ0"/>
+                        <outlet property="everytimeADeviceMuteStateChangesButton" destination="hVB-6g-JNz" id="dYa-Lc-HZr"/>
+                        <outlet property="everytimeADeviceSampleRateChangesButton" destination="ne3-n2-Sno" id="R2G-21-xpY"/>
+                        <outlet property="everytimeADeviceVolumeChangesButton" destination="Cba-Vr-hgX" id="fHI-mV-aPW"/>
+                    </connections>
+                </viewController>
+                <customObject id="OiA-FK-uzL" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2169" y="888.5"/>
+        </scene>
         <!--Status Bar View Controller-->
         <scene sceneID="Soi-s7-ZsG">
             <objects>
@@ -657,10 +858,16 @@
                     </view>
                     <connections>
                         <outlet property="view" destination="gIP-Ps-IHQ" id="bH4-Eq-EAC"/>
+                        <segue destination="W6d-GT-x8t" kind="modal" identifier="showPreferences" id="Vts-vV-5AO"/>
                     </connections>
                 </viewController>
                 <customObject id="05k-Cr-mSZ" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="525" y="292.5"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="Notifications" width="32" height="32"/>
+        <image name="Settings" width="32" height="32"/>
+    </resources>
 </document>

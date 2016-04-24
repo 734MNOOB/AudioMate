@@ -27,6 +27,11 @@
 		458E95B9185B50E500A0EFE6 /* AudioMateLauncher.app in Copy AudioMateLauncher into Contents/Library/LoginItems */ = {isa = PBXBuildFile; fileRef = 459D6DA91687EF95007F2226 /* AudioMateLauncher.app */; };
 		4595B26B1B17C7BD0075D1D1 /* dsa_pub.pem in Resources */ = {isa = PBXBuildFile; fileRef = 4595B26A1B17C7BD0075D1D1 /* dsa_pub.pem */; };
 		459D6DC41687F00D007F2226 /* ServiceManagement.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 459D6DC31687F00D007F2226 /* ServiceManagement.framework */; };
+		459E40E11CCD264F0061303C /* PreferencesWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 459E40E01CCD264F0061303C /* PreferencesWindowController.swift */; };
+		459E41011CCD2C0F0061303C /* GeneralPreferencesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 459E41001CCD2C0F0061303C /* GeneralPreferencesViewController.swift */; };
+		459E41031CCD2C2D0061303C /* NotificationPreferencesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 459E41021CCD2C2D0061303C /* NotificationPreferencesViewController.swift */; };
+		459E41051CCD416F0061303C /* StartAtLoginController.m in Sources */ = {isa = PBXBuildFile; fileRef = 45A43ACE1CBAAE8400C22D17 /* StartAtLoginController.m */; };
+		459E41081CCD4A040061303C /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 459E41071CCD4A040061303C /* Utils.swift */; };
 		45A36A8616BF027100A82041 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 45A36A8516BF027100A82041 /* QuartzCore.framework */; };
 		45A36ADA16BF098100A82041 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 45A36AD916BF098100A82041 /* Security.framework */; };
 		45A43AB81CBAAC8100C22D17 /* AMCoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 45A43A8B1CBAAC5F00C22D17 /* AMCoreAudio.framework */; };
@@ -322,6 +327,10 @@
 		459D6DA91687EF95007F2226 /* AudioMateLauncher.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AudioMateLauncher.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		459D6DC31687F00D007F2226 /* ServiceManagement.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ServiceManagement.framework; path = /System/Library/Frameworks/ServiceManagement.framework; sourceTree = "<absolute>"; };
 		459D6E6D16880482007F2226 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		459E40E01CCD264F0061303C /* PreferencesWindowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PreferencesWindowController.swift; sourceTree = "<group>"; };
+		459E41001CCD2C0F0061303C /* GeneralPreferencesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeneralPreferencesViewController.swift; sourceTree = "<group>"; };
+		459E41021CCD2C2D0061303C /* NotificationPreferencesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationPreferencesViewController.swift; sourceTree = "<group>"; };
+		459E41071CCD4A040061303C /* Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		45A36A8516BF027100A82041 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = /System/Library/Frameworks/QuartzCore.framework; sourceTree = "<absolute>"; };
 		45A36AD916BF098100A82041 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = /System/Library/Frameworks/Security.framework; sourceTree = "<absolute>"; };
 		45A43A841CBAAC5100C22D17 /* Cartfile */ = {isa = PBXFileReference; lastKnownFileType = text; path = Cartfile; sourceTree = "<group>"; };
@@ -409,8 +418,8 @@
 		453ABA6F1CCCDBE9001E0DBA /* Preferences */ = {
 			isa = PBXGroup;
 			children = (
-				453ABA701CCCDC18001E0DBA /* BindableUserDefaults.swift */,
-				453ABA3E1CCCDB04001E0DBA /* Preferences.swift */,
+				459E40FF1CCD2BDE0061303C /* Controllers */,
+				459E40FE1CCD2BCC0061303C /* Models */,
 			);
 			name = Preferences;
 			sourceTree = "<group>";
@@ -423,6 +432,25 @@
 				451B06691C4D548800DFD5A0 /* Main.storyboard */,
 			);
 			path = AudioMateLauncher;
+			sourceTree = "<group>";
+		};
+		459E40FE1CCD2BCC0061303C /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				453ABA701CCCDC18001E0DBA /* BindableUserDefaults.swift */,
+				453ABA3E1CCCDB04001E0DBA /* Preferences.swift */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
+		459E40FF1CCD2BDE0061303C /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				459E41001CCD2C0F0061303C /* GeneralPreferencesViewController.swift */,
+				459E41021CCD2C2D0061303C /* NotificationPreferencesViewController.swift */,
+				459E40E01CCD264F0061303C /* PreferencesWindowController.swift */,
+			);
+			name = Controllers;
 			sourceTree = "<group>";
 		};
 		45A43A861CBAAC5F00C22D17 /* Products */ = {
@@ -574,7 +602,6 @@
 		45FA5630166BC8C500C1D92D /* AudioMate */ = {
 			isa = PBXGroup;
 			children = (
-				453ABA6F1CCCDBE9001E0DBA /* Preferences */,
 				45915011196C333D00B104EF /* AudioMate.entitlements */,
 				45A43AE61CBAAF3700C22D17 /* AudioMate-Bridging-Header.h */,
 				451B066E1C4D560F00DFD5A0 /* AppDelegate.swift */,
@@ -583,7 +610,9 @@
 				455883CE1CB58EF600995D39 /* MenuItemView.swift */,
 				4549E2581C4FF16A008D2119 /* StatusBarView.swift */,
 				4589AE001C52B405009BE875 /* StatusBarViewController.swift */,
+				459E41071CCD4A040061303C /* Utils.swift */,
 				45F9FC6717B517B0005026F2 /* Info Plist Templates */,
+				453ABA6F1CCCDBE9001E0DBA /* Preferences */,
 				45FA5631166BC8C500C1D92D /* Supporting Files */,
 				451E5943166D00D600DEF91A /* UI */,
 			);
@@ -1019,8 +1048,13 @@
 				4589AE011C52B405009BE875 /* StatusBarViewController.swift in Sources */,
 				4549E2591C4FF16A008D2119 /* StatusBarView.swift in Sources */,
 				455F0C071C4E666500E59A99 /* EventNotifier.swift in Sources */,
+				459E41081CCD4A040061303C /* Utils.swift in Sources */,
+				459E41051CCD416F0061303C /* StartAtLoginController.m in Sources */,
 				45070F9F1CBAA1DA00601E4B /* FormattingUtils.swift in Sources */,
+				459E40E11CCD264F0061303C /* PreferencesWindowController.swift in Sources */,
+				459E41011CCD2C0F0061303C /* GeneralPreferencesViewController.swift in Sources */,
 				453ABA711CCCDC18001E0DBA /* BindableUserDefaults.swift in Sources */,
+				459E41031CCD2C2D0061303C /* NotificationPreferencesViewController.swift in Sources */,
 				455883CF1CB58EF600995D39 /* MenuItemView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
