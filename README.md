@@ -39,7 +39,7 @@ $ carthage update --use-submodules --no-build
 | Migration to AMCoreAudio v2.x| Completed|
 | Implement audio device notifications| Completed|
 | Implement new compact UI| In Progress|
-| Implement preferences panel| Pending|
+| Implement preferences panel| In Progress|
 | Implement audio device actions| Pending|
 | Implement keyboard & scroll wheel control ([#18](https://github.com/The9Labs/AudioMate/issues/18))| Pending|
 
