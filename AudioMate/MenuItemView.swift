@@ -50,42 +50,6 @@ class MenuItemView: NSView {
         }
     }
 
-    var displayOutputDeviceIcon: Bool {
-        get {
-            return !outputDeviceImageView.hidden
-        }
-
-        set {
-            outputDeviceImageView.hidden = !newValue
-            outputDeviceImageView.setNeedsDisplay()
-            updateDefaultDeviceConstraints()
-        }
-    }
-
-    var displayInputDeviceIcon: Bool {
-        get {
-            return !inputDeviceImageView.hidden
-        }
-
-        set {
-            inputDeviceImageView.hidden = !newValue
-            inputDeviceImageView.setNeedsDisplay()
-            updateDefaultDeviceConstraints()
-        }
-    }
-
-    var displaySystemOuputDeviceIcon: Bool {
-        get {
-            return !systemOutputDeviceImageView.hidden
-        }
-
-        set {
-            systemOutputDeviceImageView.hidden = !newValue
-            systemOutputDeviceImageView.setNeedsDisplay()
-            updateDefaultDeviceConstraints()
-        }
-    }
-
     var deviceConstrains = [NSLayoutConstraint]()
 
     private var didSetupConstraints: Bool = false
@@ -98,9 +62,6 @@ class MenuItemView: NSView {
     @IBOutlet private var clockSourceTextField: NSTextField!
     @IBOutlet private var inputChannelsTextField: NSTextField!
     @IBOutlet private var outputChannelsTextField: NSTextField!
-    @IBOutlet private var outputDeviceImageView: NSImageView!
-    @IBOutlet private var inputDeviceImageView: NSImageView!
-    @IBOutlet private var systemOutputDeviceImageView: NSImageView!
 
     required init?(coder: NSCoder) {
         super.init(coder: coder)
@@ -155,38 +116,9 @@ class MenuItemView: NSView {
             clockSourceTextField.setContentHuggingPriority(NSLayoutPriorityDefaultLow, forOrientation: NSLayoutConstraintOrientation.Horizontal)
             clockSourceTextField.setContentCompressionResistancePriority(NSLayoutPriorityDefaultLow, forOrientation: NSLayoutConstraintOrientation.Horizontal)
 
-            updateDefaultDeviceConstraints(true)
-
             didSetupConstraints = true
         }
 
         super.updateConstraints()
-    }
-
-    private func updateDefaultDeviceConstraints(force: Bool = false) {
-        if !didSetupConstraints && !force {
-            return
-        }
-
-        deviceConstrains.forEach { (constraint) in constraint.autoRemove() }
-
-        deviceConstrains.append(inputDeviceImageView.autoPinEdge(.Right, toEdge: .Left, ofView: clockSourceTextField, withOffset: -8))
-        deviceConstrains.append(inputDeviceImageView.autoPinEdgeToSuperviewEdge(.Top, withInset: 12))
-
-        if inputDeviceImageView.hidden {
-            deviceConstrains.append(outputDeviceImageView.autoPinEdge(.Right, toEdge: .Left, ofView: clockSourceTextField, withOffset: -8))
-        } else {
-            deviceConstrains.append(outputDeviceImageView.autoPinEdge(.Right, toEdge: .Left, ofView: inputDeviceImageView, withOffset: 0))
-        }
-
-        deviceConstrains.append(outputDeviceImageView.autoPinEdgeToSuperviewEdge(.Top, withInset: 12))
-
-        if outputDeviceImageView.hidden {
-            deviceConstrains.append(systemOutputDeviceImageView.autoPinEdge(.Right, toEdge: .Left, ofView: clockSourceTextField, withOffset: -8))
-        } else {
-            deviceConstrains.append(systemOutputDeviceImageView.autoPinEdge(.Right, toEdge: .Left, ofView: outputDeviceImageView, withOffset: 0))
-        }
-
-        deviceConstrains.append(systemOutputDeviceImageView.autoPinEdgeToSuperviewEdge(.Top, withInset: 12))
     }
 }

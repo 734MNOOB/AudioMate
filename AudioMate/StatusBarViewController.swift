@@ -252,10 +252,6 @@ class StatusBarViewController: NSViewController {
                 menuItemView.outputMuteCheckbox.state = NSOffState
             }
 
-            menuItemView.displayOutputDeviceIcon = AMAudioDevice.defaultOutputDevice() == device
-            menuItemView.displayInputDeviceIcon = AMAudioDevice.defaultInputDevice() == device
-            menuItemView.displaySystemOuputDeviceIcon = AMAudioDevice.defaultSystemOutputDevice() == device
-
             item.view = menuItemView
         } else {
             item.title = device.deviceName()
@@ -312,7 +308,7 @@ class StatusBarViewController: NSViewController {
                 if let clockSourceName = device.clockSourceNameForClockSourceID(clockSourceID,
                                                                                 forChannel: 0,
                                                                                 andDirection: .Playback) {
-                    let item = NSMenuItem(title: "\(clockSourceName)",
+                    let item = NSMenuItem(title: clockSourceName,
                                           action: #selector(updateClockSource(_:)),
                                           keyEquivalent: "")
 

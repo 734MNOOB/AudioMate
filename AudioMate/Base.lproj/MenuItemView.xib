@@ -66,31 +66,16 @@
                         <font key="font" metaFont="system"/>
                     </buttonCell>
                 </button>
-                <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Rxi-gz-tL2">
-                    <rect key="frame" x="8" y="10" width="16" height="16"/>
-                    <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="DefaultOutput" id="9oF-Yz-cBO"/>
-                </imageView>
-                <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Lr6-Vr-Roe">
-                    <rect key="frame" x="24" y="10" width="16" height="16"/>
-                    <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="DefaultInput" id="mbu-3d-b5f"/>
-                </imageView>
-                <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="UEX-0s-OIf">
-                    <rect key="frame" x="40" y="10" width="16" height="16"/>
-                    <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="SystemOutput" id="NMm-sG-5hr"/>
-                </imageView>
             </subviews>
             <connections>
                 <outlet property="clockSourceTextField" destination="pcb-Fk-hZh" id="aVO-Ea-f80"/>
                 <outlet property="inputChannelsTextField" destination="O7M-Gd-NPl" id="rA5-vn-Wgx"/>
-                <outlet property="inputDeviceImageView" destination="Lr6-Vr-Roe" id="TMv-F9-DL4"/>
                 <outlet property="inputMuteCheckbox" destination="WEB-ch-jbq" id="dag-ky-oQW"/>
                 <outlet property="inputVolumeSlider" destination="heP-F7-wKZ" id="5Kj-Be-Vdt"/>
                 <outlet property="outputChannelsTextField" destination="tOE-wz-C2B" id="rjy-Ra-Vfs"/>
-                <outlet property="outputDeviceImageView" destination="Rxi-gz-tL2" id="5zF-mt-69m"/>
                 <outlet property="outputMuteCheckbox" destination="bD8-Tw-Aa6" id="vGY-xX-JcK"/>
                 <outlet property="outputVolumeSlider" destination="9MR-vm-QtM" id="i5G-PP-Idb"/>
                 <outlet property="sampleRateTextField" destination="TFF-Cd-E9Z" id="D37-ib-rLs"/>
-                <outlet property="systemOutputDeviceImageView" destination="UEX-0s-OIf" id="H6d-po-KnW"/>
             </connections>
             <point key="canvasLocation" x="223.5" y="277"/>
         </customView>
@@ -109,9 +94,4 @@
             <point key="canvasLocation" x="502.5" y="480.5"/>
         </menu>
     </objects>
-    <resources>
-        <image name="DefaultInput" width="16" height="16"/>
-        <image name="DefaultOutput" width="16" height="16"/>
-        <image name="SystemOutput" width="16" height="16"/>
-    </resources>
 </document>
