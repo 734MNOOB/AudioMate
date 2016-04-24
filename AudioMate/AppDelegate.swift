@@ -11,6 +11,7 @@ import AMCoreAudio
 import XCGLogger
 
 let log = XCGLogger.defaultInstance()
+let preferences = Preferences.sharedPreferences
 
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
@@ -24,15 +25,22 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     private let audioHardware = AMAudioHardware.sharedInstance
 
     func applicationDidFinishLaunching(aNotification: NSNotification) {
+        // Setup logger
+        setupLogger()
+
+        // Upon 1st launch, present a welcome panel
+        if preferences.general.isFirstLaunch.value == true {
+            log.debug("This is the 1st launch!")
+            preferences.general.isFirstLaunch.value = false
+        }
+
+        // Enable device monitoring
         audioHardware.enableDeviceMonitoring()
 
         // Subscribe to events
         AMNotificationCenter.defaultCenter.subscribe(self, eventType: AMAudioHardwareEvent.self, dispatchQueue: dispatch_get_main_queue())
         AMNotificationCenter.defaultCenter.subscribe(self, eventType: AMAudioDeviceEvent.self, dispatchQueue: dispatch_get_main_queue())
         AMNotificationCenter.defaultCenter.subscribe(self, eventType: AMAudioStreamEvent.self, dispatchQueue: dispatch_get_main_queue())
-
-        // Setup logger
-        setupLogger()
 
         // Instantiate StatusBarViewController and add all known devices in the system
         if let sbvc = statusBarViewController {
@@ -107,43 +115,45 @@ extension AppDelegate : AMEventSubscriber {
         case let event as AMAudioDeviceEvent:
             switch event {
             case .NominalSampleRateDidChange(let audioDevice):
-                EventNotifier.sharedEventNotifier.samplerateChangeNotification(audioDevice)
-            case .AvailableNominalSampleRatesDidChange(let audioDevice):
-                if let nominalSampleRates = audioDevice.nominalSampleRates() {
-                    log.debug("\(audioDevice) nominal sample rates changed to \(nominalSampleRates)")
+                if preferences.notifications.shouldDisplaySampleRateChanges.value {
+                    EventNotifier.sharedEventNotifier.samplerateChangeNotification(audioDevice)
                 }
             case .ClockSourceDidChange(let audioDevice, let channel, let direction):
-                EventNotifier.sharedEventNotifier.clockSourceChangeNotification(audioDevice,
-                                                                                channelNumber: channel,
-                                                                                direction: direction)
-            case .NameDidChange(let audioDevice):
-                log.debug("\(audioDevice) name changed to \(audioDevice.deviceName())")
-            case .ListDidChange(let audioDevice):
-                log.debug("\(audioDevice) owned devices list changed")
+                if preferences.notifications.shouldDisplayClockSourceChanges.value {
+                    EventNotifier.sharedEventNotifier.clockSourceChangeNotification(audioDevice,
+                                                                                    channelNumber: channel,
+                                                                                    direction: direction)
+                }
             case .VolumeDidChange(let audioDevice, _, let direction):
-                EventNotifier.sharedEventNotifier.volumeChangeNotification(audioDevice, direction: direction)
+                if preferences.notifications.shouldDisplayVolumeChanges.value {
+                    EventNotifier.sharedEventNotifier.volumeChangeNotification(audioDevice, direction: direction)
+                }
             case .MuteDidChange(let audioDevice, _, let direction):
-                EventNotifier.sharedEventNotifier.muteChangeNotification(audioDevice, direction: direction)
+                if preferences.notifications.shouldDisplayMuteChanges.value {
+                    EventNotifier.sharedEventNotifier.muteChangeNotification(audioDevice, direction: direction)
+                }
             default:
                 break
             }
         case let event as AMAudioHardwareEvent:
             switch event {
             case .DeviceListChanged(let addedDevices, let removedDevices):
-                EventNotifier.sharedEventNotifier.deviceListChangeNotification(addedDevices, removedDevices: removedDevices)
+                if preferences.notifications.shouldDisplayAddedAndRemovedDeviceChanges.value {
+                    EventNotifier.sharedEventNotifier.deviceListChangeNotification(addedDevices,
+                                                                                   removedDevices: removedDevices)
+                }
             case .DefaultInputDeviceChanged(let audioDevice):
-                EventNotifier.sharedEventNotifier.defaultInputDeviceChangeNotification(audioDevice)
+                if preferences.notifications.shouldDisplayDefaultDeviceChanges.value {
+                    EventNotifier.sharedEventNotifier.defaultInputDeviceChangeNotification(audioDevice)
+                }
             case .DefaultOutputDeviceChanged(let audioDevice):
-                EventNotifier.sharedEventNotifier.defaultOutputDeviceChangeNotification(audioDevice)
+                if preferences.notifications.shouldDisplayDefaultDeviceChanges.value {
+                    EventNotifier.sharedEventNotifier.defaultOutputDeviceChangeNotification(audioDevice)
+                }
             case .DefaultSystemOutputDeviceChanged(let audioDevice):
-                EventNotifier.sharedEventNotifier.defaultSystemOutputDeviceChangeNotification(audioDevice)
-            }
-        case let event as AMAudioStreamEvent:
-            switch event {
-            case .PhysicalFormatDidChange(let audioStream):
-                log.debug("physical format did change in \(audioStream.streamID), owner: \(audioStream.owningDevice), format: \(audioStream.physicalFormat)")
-            default:
-                break
+                if preferences.notifications.shouldDisplayDefaultDeviceChanges.value {
+                    EventNotifier.sharedEventNotifier.defaultSystemOutputDeviceChangeNotification(audioDevice)
+                }
             }
         default:
             break

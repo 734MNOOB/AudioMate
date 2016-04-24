@@ -13,6 +13,10 @@
 		451B066F1C4D560F00DFD5A0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 451B066E1C4D560F00DFD5A0 /* AppDelegate.swift */; };
 		451B06731C4D5E5F00DFD5A0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 451B06711C4D5E5F00DFD5A0 /* Main.storyboard */; };
 		45279A32188AA5700058FB69 /* Select.aiff in Resources */ = {isa = PBXBuildFile; fileRef = 45279A23188AA5700058FB69 /* Select.aiff */; };
+		453ABA3F1CCCDB04001E0DBA /* Preferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 453ABA3E1CCCDB04001E0DBA /* Preferences.swift */; };
+		453ABA6B1CCCDBC8001E0DBA /* Bond.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 453ABA621CCCDBB1001E0DBA /* Bond.framework */; };
+		453ABA6C1CCCDBC8001E0DBA /* Bond.framework in Copy Embedded Frameworks */ = {isa = PBXBuildFile; fileRef = 453ABA621CCCDBB1001E0DBA /* Bond.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		453ABA711CCCDC18001E0DBA /* BindableUserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 453ABA701CCCDC18001E0DBA /* BindableUserDefaults.swift */; };
 		4549E2591C4FF16A008D2119 /* StatusBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4549E2581C4FF16A008D2119 /* StatusBarView.swift */; };
 		455883CD1CB58C8800995D39 /* MenuItemView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 455883CB1CB58C8800995D39 /* MenuItemView.xib */; };
 		455883CF1CB58EF600995D39 /* MenuItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 455883CE1CB58EF600995D39 /* MenuItemView.swift */; };
@@ -38,6 +42,62 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		453ABA5D1CCCDBB1001E0DBA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 453ABA531CCCDBB1001E0DBA /* Bond.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 69491BAE1A7C217100A13B6B;
+			remoteInfo = Bond;
+		};
+		453ABA5F1CCCDBB1001E0DBA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 453ABA531CCCDBB1001E0DBA /* Bond.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 69491BB91A7C217100A13B6B;
+			remoteInfo = BondTests;
+		};
+		453ABA611CCCDBB1001E0DBA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 453ABA531CCCDBB1001E0DBA /* Bond.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = DCA979691A83C3A100DD4A30;
+			remoteInfo = BondOSX;
+		};
+		453ABA631CCCDBB1001E0DBA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 453ABA531CCCDBB1001E0DBA /* Bond.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = DCA979731A83C3A200DD4A30;
+			remoteInfo = BondOSXTests;
+		};
+		453ABA651CCCDBB1001E0DBA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 453ABA531CCCDBB1001E0DBA /* Bond.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 03ACB4FE1AB555D6001B3E64;
+			remoteInfo = iOSAppForTesting;
+		};
+		453ABA671CCCDBB1001E0DBA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 453ABA531CCCDBB1001E0DBA /* Bond.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = B56989C21BD8A00C00927A6B;
+			remoteInfo = BondtvOS;
+		};
+		453ABA691CCCDBB1001E0DBA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 453ABA531CCCDBB1001E0DBA /* Bond.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = B5616DBB1BD8A39E0016CCB4;
+			remoteInfo = tvOSAppForTesting;
+		};
+		453ABA6D1CCCDBC8001E0DBA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 453ABA531CCCDBB1001E0DBA /* Bond.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = DCA979681A83C3A100DD4A30;
+			remoteInfo = BondOSX;
+		};
 		45A43A8A1CBAAC5F00C22D17 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 45A43A851CBAAC5F00C22D17 /* AMCoreAudio.xcodeproj */;
@@ -219,6 +279,7 @@
 				45A43AB91CBAAC8100C22D17 /* AMCoreAudio.framework in Copy Embedded Frameworks */,
 				45A43AC11CBAAC8100C22D17 /* XCGLogger.framework in Copy Embedded Frameworks */,
 				45A43B261CBAB12200C22D17 /* Sparkle.framework in Copy Embedded Frameworks */,
+				453ABA6C1CCCDBC8001E0DBA /* Bond.framework in Copy Embedded Frameworks */,
 			);
 			name = "Copy Embedded Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -244,6 +305,9 @@
 		451B066E1C4D560F00DFD5A0 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		451B06721C4D5E5F00DFD5A0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		45279A23188AA5700058FB69 /* Select.aiff */ = {isa = PBXFileReference; lastKnownFileType = audio.aiff; path = Select.aiff; sourceTree = "<group>"; };
+		453ABA3E1CCCDB04001E0DBA /* Preferences.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Preferences.swift; sourceTree = "<group>"; };
+		453ABA531CCCDBB1001E0DBA /* Bond.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Bond.xcodeproj; path = Carthage/Checkouts/Bond/Bond.xcodeproj; sourceTree = "<group>"; };
+		453ABA701CCCDC18001E0DBA /* BindableUserDefaults.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BindableUserDefaults.swift; path = Support/BindableUserDefaults.swift; sourceTree = "<group>"; };
 		45442A091B1F81FE0094EBE6 /* sign_app.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; name = sign_app.rb; path = Scripts/sign_app.rb; sourceTree = "<group>"; };
 		4549E2581C4FF16A008D2119 /* StatusBarView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatusBarView.swift; sourceTree = "<group>"; };
 		455883CC1CB58C8800995D39 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MenuItemView.xib; sourceTree = "<group>"; };
@@ -303,6 +367,7 @@
 				45A43B251CBAB12200C22D17 /* Sparkle.framework in Frameworks */,
 				45A43AB81CBAAC8100C22D17 /* AMCoreAudio.framework in Frameworks */,
 				45A43AC01CBAAC8100C22D17 /* XCGLogger.framework in Frameworks */,
+				453ABA6B1CCCDBC8001E0DBA /* Bond.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -325,6 +390,29 @@
 				45279A23188AA5700058FB69 /* Select.aiff */,
 			);
 			path = Sounds;
+			sourceTree = "<group>";
+		};
+		453ABA541CCCDBB1001E0DBA /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				453ABA5E1CCCDBB1001E0DBA /* Bond.framework */,
+				453ABA601CCCDBB1001E0DBA /* BondTests.xctest */,
+				453ABA621CCCDBB1001E0DBA /* Bond.framework */,
+				453ABA641CCCDBB1001E0DBA /* BondOSXTests.xctest */,
+				453ABA661CCCDBB1001E0DBA /* iOSAppForTesting.app */,
+				453ABA681CCCDBB1001E0DBA /* Bond.framework */,
+				453ABA6A1CCCDBB1001E0DBA /* tvOSAppForTesting.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		453ABA6F1CCCDBE9001E0DBA /* Preferences */ = {
+			isa = PBXGroup;
+			children = (
+				453ABA701CCCDC18001E0DBA /* BindableUserDefaults.swift */,
+				453ABA3E1CCCDB04001E0DBA /* Preferences.swift */,
+			);
+			name = Preferences;
 			sourceTree = "<group>";
 		};
 		459D6DAC1687EF95007F2226 /* AudioMateLauncher */ = {
@@ -387,6 +475,7 @@
 			children = (
 				45A43A841CBAAC5100C22D17 /* Cartfile */,
 				45A43A851CBAAC5F00C22D17 /* AMCoreAudio.xcodeproj */,
+				453ABA531CCCDBB1001E0DBA /* Bond.xcodeproj */,
 				45A43A8E1CBAAC6500C22D17 /* PureLayout.xcodeproj */,
 				45A43B0D1CBAB11900C22D17 /* Sparkle.xcodeproj */,
 				45A43AA31CBAAC6C00C22D17 /* XCGLogger.xcodeproj */,
@@ -485,6 +574,7 @@
 		45FA5630166BC8C500C1D92D /* AudioMate */ = {
 			isa = PBXGroup;
 			children = (
+				453ABA6F1CCCDBE9001E0DBA /* Preferences */,
 				45915011196C333D00B104EF /* AudioMate.entitlements */,
 				45A43AE61CBAAF3700C22D17 /* AudioMate-Bridging-Header.h */,
 				451B066E1C4D560F00DFD5A0 /* AppDelegate.swift */,
@@ -550,6 +640,7 @@
 				45A43ABF1CBAAC8100C22D17 /* PBXTargetDependency */,
 				45A43AC31CBAAC8100C22D17 /* PBXTargetDependency */,
 				45A43B281CBAB12200C22D17 /* PBXTargetDependency */,
+				453ABA6E1CCCDBC8001E0DBA /* PBXTargetDependency */,
 			);
 			name = AudioMate;
 			productName = AudioDeviceNotifier;
@@ -639,6 +730,10 @@
 					ProjectRef = 45A43A851CBAAC5F00C22D17 /* AMCoreAudio.xcodeproj */;
 				},
 				{
+					ProductGroup = 453ABA541CCCDBB1001E0DBA /* Products */;
+					ProjectRef = 453ABA531CCCDBB1001E0DBA /* Bond.xcodeproj */;
+				},
+				{
 					ProductGroup = 45A43A8F1CBAAC6500C22D17 /* Products */;
 					ProjectRef = 45A43A8E1CBAAC6500C22D17 /* PureLayout.xcodeproj */;
 				},
@@ -660,6 +755,55 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
+		453ABA5E1CCCDBB1001E0DBA /* Bond.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = Bond.framework;
+			remoteRef = 453ABA5D1CCCDBB1001E0DBA /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		453ABA601CCCDBB1001E0DBA /* BondTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = BondTests.xctest;
+			remoteRef = 453ABA5F1CCCDBB1001E0DBA /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		453ABA621CCCDBB1001E0DBA /* Bond.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = Bond.framework;
+			remoteRef = 453ABA611CCCDBB1001E0DBA /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		453ABA641CCCDBB1001E0DBA /* BondOSXTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = BondOSXTests.xctest;
+			remoteRef = 453ABA631CCCDBB1001E0DBA /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		453ABA661CCCDBB1001E0DBA /* iOSAppForTesting.app */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.application;
+			path = iOSAppForTesting.app;
+			remoteRef = 453ABA651CCCDBB1001E0DBA /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		453ABA681CCCDBB1001E0DBA /* Bond.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = Bond.framework;
+			remoteRef = 453ABA671CCCDBB1001E0DBA /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		453ABA6A1CCCDBB1001E0DBA /* tvOSAppForTesting.app */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.application;
+			path = tvOSAppForTesting.app;
+			remoteRef = 453ABA691CCCDBB1001E0DBA /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 		45A43A8B1CBAAC5F00C22D17 /* AMCoreAudio.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
@@ -871,10 +1015,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				451B066F1C4D560F00DFD5A0 /* AppDelegate.swift in Sources */,
+				453ABA3F1CCCDB04001E0DBA /* Preferences.swift in Sources */,
 				4589AE011C52B405009BE875 /* StatusBarViewController.swift in Sources */,
 				4549E2591C4FF16A008D2119 /* StatusBarView.swift in Sources */,
 				455F0C071C4E666500E59A99 /* EventNotifier.swift in Sources */,
 				45070F9F1CBAA1DA00601E4B /* FormattingUtils.swift in Sources */,
+				453ABA711CCCDC18001E0DBA /* BindableUserDefaults.swift in Sources */,
 				455883CF1CB58EF600995D39 /* MenuItemView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -882,6 +1028,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		453ABA6E1CCCDBC8001E0DBA /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = BondOSX;
+			targetProxy = 453ABA6D1CCCDBC8001E0DBA /* PBXContainerItemProxy */;
+		};
 		45A43ABB1CBAAC8100C22D17 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = AMCoreAudio;

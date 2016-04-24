@@ -19,3 +19,6 @@
 [submodule "Carthage/Checkouts/yoursway-create-dmg"]
 	path = Carthage/Checkouts/yoursway-create-dmg
 	url = https://github.com/andreyvit/yoursway-create-dmg.git
+[submodule "Carthage/Checkouts/Bond"]
+	path = Carthage/Checkouts/Bond
+	url = https://github.com/SwiftBond/Bond.git
