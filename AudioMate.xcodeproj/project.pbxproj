@@ -18,8 +18,8 @@
 		453ABA6C1CCCDBC8001E0DBA /* Bond.framework in Copy Embedded Frameworks */ = {isa = PBXBuildFile; fileRef = 453ABA621CCCDBB1001E0DBA /* Bond.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		453ABA711CCCDC18001E0DBA /* BindableUserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 453ABA701CCCDC18001E0DBA /* BindableUserDefaults.swift */; };
 		4549E2591C4FF16A008D2119 /* StatusBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4549E2581C4FF16A008D2119 /* StatusBarView.swift */; };
-		455883CD1CB58C8800995D39 /* MenuItemView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 455883CB1CB58C8800995D39 /* MenuItemView.xib */; };
-		455883CF1CB58EF600995D39 /* MenuItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 455883CE1CB58EF600995D39 /* MenuItemView.swift */; };
+		455883CD1CB58C8800995D39 /* VolumeControlView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 455883CB1CB58C8800995D39 /* VolumeControlView.xib */; };
+		455883CF1CB58EF600995D39 /* VolumeControlView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 455883CE1CB58EF600995D39 /* VolumeControlView.swift */; };
 		455F0C071C4E666500E59A99 /* EventNotifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 455F0C061C4E666500E59A99 /* EventNotifier.swift */; };
 		45772C4E184690BE00D07EF6 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 45772C4D184690BE00D07EF6 /* Images.xcassets */; };
 		4589AE011C52B405009BE875 /* StatusBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4589AE001C52B405009BE875 /* StatusBarViewController.swift */; };
@@ -315,8 +315,8 @@
 		453ABA701CCCDC18001E0DBA /* BindableUserDefaults.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BindableUserDefaults.swift; path = Support/BindableUserDefaults.swift; sourceTree = "<group>"; };
 		45442A091B1F81FE0094EBE6 /* sign_app.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; name = sign_app.rb; path = Scripts/sign_app.rb; sourceTree = "<group>"; };
 		4549E2581C4FF16A008D2119 /* StatusBarView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatusBarView.swift; sourceTree = "<group>"; };
-		455883CC1CB58C8800995D39 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MenuItemView.xib; sourceTree = "<group>"; };
-		455883CE1CB58EF600995D39 /* MenuItemView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuItemView.swift; sourceTree = "<group>"; };
+		455883CC1CB58C8800995D39 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/VolumeControlView.xib; sourceTree = "<group>"; };
+		455883CE1CB58EF600995D39 /* VolumeControlView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VolumeControlView.swift; sourceTree = "<group>"; };
 		455F0C061C4E666500E59A99 /* EventNotifier.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventNotifier.swift; sourceTree = "<group>"; };
 		45772C4D184690BE00D07EF6 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = AudioMate/Images.xcassets; sourceTree = SOURCE_ROOT; };
 		458317D218820D1E001F0BE4 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
@@ -388,7 +388,7 @@
 			children = (
 				45772C4D184690BE00D07EF6 /* Images.xcassets */,
 				451B06711C4D5E5F00DFD5A0 /* Main.storyboard */,
-				455883CB1CB58C8800995D39 /* MenuItemView.xib */,
+				455883CB1CB58C8800995D39 /* VolumeControlView.xib */,
 			);
 			name = UI;
 			sourceTree = "<group>";
@@ -415,15 +415,6 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		453ABA6F1CCCDBE9001E0DBA /* Preferences */ = {
-			isa = PBXGroup;
-			children = (
-				459E40FF1CCD2BDE0061303C /* Controllers */,
-				459E40FE1CCD2BCC0061303C /* Models */,
-			);
-			name = Preferences;
-			sourceTree = "<group>";
-		};
 		459D6DAC1687EF95007F2226 /* AudioMateLauncher */ = {
 			isa = PBXGroup;
 			children = (
@@ -441,16 +432,6 @@
 				453ABA3E1CCCDB04001E0DBA /* Preferences.swift */,
 			);
 			name = Models;
-			sourceTree = "<group>";
-		};
-		459E40FF1CCD2BDE0061303C /* Controllers */ = {
-			isa = PBXGroup;
-			children = (
-				459E41001CCD2C0F0061303C /* GeneralPreferencesViewController.swift */,
-				459E41021CCD2C2D0061303C /* NotificationPreferencesViewController.swift */,
-				459E40E01CCD264F0061303C /* PreferencesWindowController.swift */,
-			);
-			name = Controllers;
 			sourceTree = "<group>";
 		};
 		45A43A861CBAAC5F00C22D17 /* Products */ = {
@@ -534,6 +515,48 @@
 			name = Docs;
 			sourceTree = "<group>";
 		};
+		45E483131CCD7464007FC820 /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				451B066E1C4D560F00DFD5A0 /* AppDelegate.swift */,
+				45E483151CCD749A007FC820 /* Controllers */,
+				459E40FE1CCD2BCC0061303C /* Models */,
+				45E483161CCD74C5007FC820 /* Support */,
+				45E483141CCD748C007FC820 /* Views */,
+			);
+			name = Source;
+			sourceTree = "<group>";
+		};
+		45E483141CCD748C007FC820 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				4549E2581C4FF16A008D2119 /* StatusBarView.swift */,
+				455883CE1CB58EF600995D39 /* VolumeControlView.swift */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
+		45E483151CCD749A007FC820 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				459E41001CCD2C0F0061303C /* GeneralPreferencesViewController.swift */,
+				459E41021CCD2C2D0061303C /* NotificationPreferencesViewController.swift */,
+				459E40E01CCD264F0061303C /* PreferencesWindowController.swift */,
+				4589AE001C52B405009BE875 /* StatusBarViewController.swift */,
+			);
+			name = Controllers;
+			sourceTree = "<group>";
+		};
+		45E483161CCD74C5007FC820 /* Support */ = {
+			isa = PBXGroup;
+			children = (
+				455F0C061C4E666500E59A99 /* EventNotifier.swift */,
+				45070F9E1CBAA1DA00601E4B /* FormattingUtils.swift */,
+				459E41071CCD4A040061303C /* Utils.swift */,
+			);
+			name = Support;
+			sourceTree = "<group>";
+		};
 		45F62C2D1688CC5E00FE7692 /* Scripts */ = {
 			isa = PBXGroup;
 			children = (
@@ -604,15 +627,8 @@
 			children = (
 				45915011196C333D00B104EF /* AudioMate.entitlements */,
 				45A43AE61CBAAF3700C22D17 /* AudioMate-Bridging-Header.h */,
-				451B066E1C4D560F00DFD5A0 /* AppDelegate.swift */,
-				455F0C061C4E666500E59A99 /* EventNotifier.swift */,
-				45070F9E1CBAA1DA00601E4B /* FormattingUtils.swift */,
-				455883CE1CB58EF600995D39 /* MenuItemView.swift */,
-				4549E2581C4FF16A008D2119 /* StatusBarView.swift */,
-				4589AE001C52B405009BE875 /* StatusBarViewController.swift */,
-				459E41071CCD4A040061303C /* Utils.swift */,
 				45F9FC6717B517B0005026F2 /* Info Plist Templates */,
-				453ABA6F1CCCDBE9001E0DBA /* Preferences */,
+				45E483131CCD7464007FC820 /* Source */,
 				45FA5631166BC8C500C1D92D /* Supporting Files */,
 				451E5943166D00D600DEF91A /* UI */,
 			);
@@ -988,7 +1004,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				455883CD1CB58C8800995D39 /* MenuItemView.xib in Resources */,
+				455883CD1CB58C8800995D39 /* VolumeControlView.xib in Resources */,
 				451B06731C4D5E5F00DFD5A0 /* Main.storyboard in Resources */,
 				4595B26B1B17C7BD0075D1D1 /* dsa_pub.pem in Resources */,
 				45772C4E184690BE00D07EF6 /* Images.xcassets in Resources */,
@@ -1055,7 +1071,7 @@
 				459E41011CCD2C0F0061303C /* GeneralPreferencesViewController.swift in Sources */,
 				453ABA711CCCDC18001E0DBA /* BindableUserDefaults.swift in Sources */,
 				459E41031CCD2C2D0061303C /* NotificationPreferencesViewController.swift in Sources */,
-				455883CF1CB58EF600995D39 /* MenuItemView.swift in Sources */,
+				455883CF1CB58EF600995D39 /* VolumeControlView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1106,12 +1122,12 @@
 			name = Main.storyboard;
 			sourceTree = "<group>";
 		};
-		455883CB1CB58C8800995D39 /* MenuItemView.xib */ = {
+		455883CB1CB58C8800995D39 /* VolumeControlView.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
 				455883CC1CB58C8800995D39 /* Base */,
 			);
-			name = MenuItemView.xib;
+			name = VolumeControlView.xib;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

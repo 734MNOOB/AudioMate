@@ -11,8 +11,10 @@ import AMCoreAudio
 import Sparkle
 
 private var kPreferencesSeparator = 1000
-private var kDeviceMenuItem = 1001
-private var kDeviceDetailMenuItem = 1002
+private var kDeviceMasterInputVolumeLabelMenuItem = 1002
+private var kDeviceMasterInputVolumeControlMenuItem = 1003
+private var kDeviceMasterOutputVolumeLabelMenuItem = 1004
+private var kDeviceMasterOutputVolumeControlMenuItem = 1005
 
 class StatusBarViewController: NSViewController {
 
@@ -97,27 +99,22 @@ class StatusBarViewController: NSViewController {
 
         // Create menu item for device with submenu
         let menuItem = NSMenuItem()
-        menuItem.title = device.deviceName()
+
+        menuItem.attributedTitle = attributedStringForDevice(device)
         menuItem.image = transportTypeImageForDevice(device)
         menuItem.representedObject = device
-        menuItem.tag = kDeviceMenuItem
 
         buildSubmenuForMenuItem(menuItem)
 
-        // Create detail menu item for device
-        let detailMenuItem = NSMenuItem()
-        detailMenuItem.representedObject = device
-        detailMenuItem.tag = kDeviceDetailMenuItem
-
-        buildDeviceDetailMenuItem(detailMenuItem)
-
-        // Insert both the menu item and the detail menu item in the menu
+        // Insert menu item
         let separatorIdx = mainMenu.indexOfItemWithTag(kPreferencesSeparator)
 
         if separatorIdx != -1 {
-            mainMenu.insertItem(detailMenuItem, atIndex: separatorIdx)
             mainMenu.insertItem(menuItem, atIndex: separatorIdx)
         }
+
+        updateMasterVolumeInMenu(device, direction: .Recording)
+        updateMasterVolumeInMenu(device, direction: .Playback)
 
         // Force menu update
         mainMenu.performSelector(#selector(NSMenu.update),
@@ -126,55 +123,12 @@ class StatusBarViewController: NSViewController {
                                  inModes: [NSEventTrackingRunLoopMode])
     }
 
-    func rebuildDeviceMenuItems() {
-        log.debug("Rebuilding devices in menu...")
-
-        let sortedDevices = sortedAudioDevices
-
-        audioDevices.forEach({ (audioDevice) in
-            removeDevice(audioDevice)
-        })
-
-        sortedDevices.forEach({ (device) in
-            addDevice(device)
-        })
-    }
-
-    func updateDeviceMenuItem(device: AMAudioDevice, tag: Int) {
-        switch tag {
-        case kDeviceMenuItem:
-            if let menuItem = deviceMenuItemForDevice(device, tag: tag) {
-                menuItem.title = device.deviceName()
-                menuItem.image = transportTypeImageForDevice(device)
-                buildSubmenuForMenuItem(menuItem)
-            }
-        case kDeviceDetailMenuItem:
-            if let detailMenuItem = deviceMenuItemForDevice(device, tag: tag) {
-                buildDeviceDetailMenuItem(detailMenuItem)
-            }
-        default:
-            break
-        }
-    }
-
-    func updateDeviceMenuItems() {
-        audioDevices.forEach { (device) in
-            updateDeviceMenuItem(device, tag: kDeviceMenuItem)
-            updateDeviceMenuItem(device, tag: kDeviceDetailMenuItem)
-        }
-    }
-
     func removeDevice(device: AMAudioDevice) {
         log.debug("Removing \(device) from menu.")
 
         // Remove device menu item from menu
-        if let deviceMenuItem = deviceMenuItemForDevice(device, tag: kDeviceMenuItem) {
+        if let deviceMenuItem = deviceMenuItemForDevice(device) {
             mainMenu.removeItem(deviceMenuItem)
-        }
-
-        // Remove device detail menu item from menu
-        if let deviceDetailMenuItem = deviceMenuItemForDevice(device, tag: kDeviceDetailMenuItem) {
-            mainMenu.removeItem(deviceDetailMenuItem)
         }
 
         // Remove device from device list
@@ -185,84 +139,48 @@ class StatusBarViewController: NSViewController {
 
     // MARK: - Private Functions
 
-    private func deviceMenuItemForDevice(audioDevice: AMAudioDevice, tag: Int) -> NSMenuItem? {
+    private func deviceMenuItemForDevice(audioDevice: AMAudioDevice) -> NSMenuItem? {
         return mainMenu.itemArray.filter { (menuItem) -> Bool in
-            (menuItem.representedObject as? AMAudioDevice) == audioDevice &&
-                menuItem.tag == tag
-            }.first
+            (menuItem.representedObject as? AMAudioDevice) == audioDevice
+        }.first
     }
 
-    private func buildDeviceDetailMenuItem(item: NSMenuItem) {
+    private func buildVolumeControlMenuItem(item: NSMenuItem, direction: AMCoreAudio.Direction) {
         guard let device = item.representedObject as? AMAudioDevice else {
             return
         }
 
-        if let menuItemView: MenuItemView = (item.view as? MenuItemView) ?? (instantiateViewFromNibNamed("MenuItemView") as? MenuItemView) {
-            // Set sample rate
-            menuItemView.sampleRate = device.nominalSampleRate() ?? 0
-
-            // Set clock source
-            let clockSource = device.clockSourceForChannel(0, andDirection: .Playback)
-            menuItemView.clockSource = clockSource ?? NSLocalizedString("Internal Clock", comment: "")
-
-            // Set input and output channel count
-            let outChannels = device.channelsForDirection(.Playback) ?? 0
-            let inChannels = device.channelsForDirection(.Recording) ?? 0
-
-            menuItemView.inputChannels = String(format:inChannels == 1 ? NSLocalizedString("%d in", comment: "") : NSLocalizedString("%d ins", comment: ""), inChannels)
-            menuItemView.outputChannels = String(format:outChannels == 1 ? NSLocalizedString("%d out", comment: "") : NSLocalizedString("%d outs", comment: ""), outChannels)
-
+        if let volumeControlView = (item.view as? VolumeControlView) ?? (instantiateViewFromNibNamed("VolumeControlView") as? VolumeControlView) {
             // Set volume slide ranges
-            menuItemView.inputVolumeSlider.minValue = 0.0
-            menuItemView.inputVolumeSlider.maxValue = 1.0
-            menuItemView.outputVolumeSlider.minValue = 0.0
-            menuItemView.outputVolumeSlider.maxValue = 1.0
+            volumeControlView.volumeSlider.minValue = 0.0
+            volumeControlView.volumeSlider.maxValue = 1.0
 
             // Set input volume slider and mute checkbox values
-            if let inVolume = device.masterVolumeForDirection(.Recording) {
-                menuItemView.inputVolumeSlider.continuous = true
-                menuItemView.inputVolumeSlider.tag = Int(device.deviceID)
-                menuItemView.inputVolumeSlider.target = self
-                menuItemView.inputVolumeSlider.action = #selector(updateInputVolume(_:))
-                menuItemView.inputVolumeSlider.floatValue = inVolume
-                menuItemView.inputVolumeSlider.enabled = true
+            if let volume = device.masterVolumeForDirection(direction) {
+                let volumeSliderAction = direction == .Playback ? #selector(updateOutputVolume(_:)) : #selector(updateInputVolume(_:))
 
-                menuItemView.inputMuteCheckbox.enabled = true
-                menuItemView.inputMuteCheckbox.state = device.isMasterVolumeMutedForDirection(.Recording) ?? false ? NSOnState : NSOffState
-                menuItemView.inputMuteCheckbox.tag = Int(device.deviceID)
-                menuItemView.inputMuteCheckbox.target = self
-                menuItemView.inputMuteCheckbox.action = #selector(updateInputMute(_:))
+                volumeControlView.volumeSlider.enabled = true
+                volumeControlView.volumeSlider.continuous = true
+                volumeControlView.volumeSlider.tag = Int(device.deviceID)
+                volumeControlView.volumeSlider.floatValue = volume
+                volumeControlView.volumeSlider.target = self
+                volumeControlView.volumeSlider.action = volumeSliderAction
+
+                let volumeMuteAction = direction == .Playback ? #selector(updateOutputMute(_:)) : #selector(updateInputMute(_:))
+
+                volumeControlView.muteCheckbox.enabled = true
+                volumeControlView.muteCheckbox.state = device.isMasterVolumeMutedForDirection(direction) ?? false ? NSOnState : NSOffState
+                volumeControlView.muteCheckbox.tag = Int(device.deviceID)
+                volumeControlView.muteCheckbox.target = self
+                volumeControlView.muteCheckbox.action = volumeMuteAction
             } else {
-                menuItemView.inputVolumeSlider.floatValue = 1.0
-                menuItemView.inputVolumeSlider.enabled = false
-                menuItemView.inputMuteCheckbox.enabled = false
-                menuItemView.inputMuteCheckbox.state = NSOffState
+                volumeControlView.volumeSlider.enabled = false
+                volumeControlView.volumeSlider.floatValue = 1.0
+                volumeControlView.muteCheckbox.enabled = false
+                volumeControlView.muteCheckbox.state = NSOffState
             }
 
-            // Set output volume slider and mute checkbox values
-            if let outVolume = device.masterVolumeForDirection(.Playback) {
-                menuItemView.outputVolumeSlider.continuous = true
-                menuItemView.outputVolumeSlider.tag = Int(device.deviceID)
-                menuItemView.outputVolumeSlider.target = self
-                menuItemView.outputVolumeSlider.action = #selector(updateOutputVolume(_:))
-                menuItemView.outputVolumeSlider.floatValue = outVolume
-                menuItemView.outputVolumeSlider.enabled = true
-
-                menuItemView.outputMuteCheckbox.enabled = true
-                menuItemView.outputMuteCheckbox.state = device.isMasterVolumeMutedForDirection(.Playback) ?? false ? NSOnState : NSOffState
-                menuItemView.outputMuteCheckbox.tag = Int(device.deviceID)
-                menuItemView.outputMuteCheckbox.target = self
-                menuItemView.outputMuteCheckbox.action = #selector(updateOutputMute(_:))
-            } else {
-                menuItemView.outputVolumeSlider.floatValue = 1.0
-                menuItemView.outputVolumeSlider.enabled = false
-                menuItemView.outputMuteCheckbox.enabled = false
-                menuItemView.outputMuteCheckbox.state = NSOffState
-            }
-
-            item.view = menuItemView
-        } else {
-            item.title = device.deviceName()
+            item.view = volumeControlView
         }
     }
 
@@ -395,6 +313,37 @@ class StatusBarViewController: NSViewController {
         // Add separator item
         item.submenu?.addItem(NSMenuItem.separatorItem())
 
+        let masterInputVolumeLabelItem = NSMenuItem()
+        masterInputVolumeLabelItem.enabled = false
+        masterInputVolumeLabelItem.tag = kDeviceMasterInputVolumeLabelMenuItem
+
+        item.submenu?.addItem(masterInputVolumeLabelItem)
+
+        // Create master input volume control menu item
+        let inputVolumeControlMenuItem = NSMenuItem()
+        inputVolumeControlMenuItem.representedObject = device
+        inputVolumeControlMenuItem.tag = kDeviceMasterInputVolumeControlMenuItem
+
+        buildVolumeControlMenuItem(inputVolumeControlMenuItem, direction: .Recording)
+        item.submenu?.addItem(inputVolumeControlMenuItem)
+
+        let masterOutputVolumeLabelItem = NSMenuItem()
+        masterOutputVolumeLabelItem.enabled = false
+        masterOutputVolumeLabelItem.tag = kDeviceMasterOutputVolumeLabelMenuItem
+
+        item.submenu?.addItem(masterOutputVolumeLabelItem)
+
+        // Create master input volume control menu item
+        let outputVolumeControlMenuItem = NSMenuItem()
+        outputVolumeControlMenuItem.representedObject = device
+        outputVolumeControlMenuItem.tag = kDeviceMasterOutputVolumeControlMenuItem
+
+        buildVolumeControlMenuItem(outputVolumeControlMenuItem, direction: .Playback)
+        item.submenu?.addItem(outputVolumeControlMenuItem)
+
+        // Add separator item
+        item.submenu?.addItem(NSMenuItem.separatorItem())
+
         // Add `Configure Actions…` item
         let configureActionsMenuItem = NSMenuItem()
 
@@ -403,6 +352,102 @@ class StatusBarViewController: NSViewController {
         configureActionsMenuItem.action = #selector(showDeviceActions(_:))
 
         item.submenu?.addItem(configureActionsMenuItem)
+    }
+
+    private func updateMasterVolumeInMenu(device: AMAudioDevice, direction: Direction) {
+        if let menuItem = deviceMenuItemForDevice(device) {
+            let menuItemLabelTag: Int
+            let menuItemControlTag: Int
+
+            switch direction {
+            case .Recording:
+                menuItemLabelTag = kDeviceMasterInputVolumeLabelMenuItem
+                menuItemControlTag = kDeviceMasterInputVolumeControlMenuItem
+            case .Playback:
+                menuItemLabelTag = kDeviceMasterOutputVolumeLabelMenuItem
+                menuItemControlTag = kDeviceMasterOutputVolumeControlMenuItem
+            default:
+                menuItemLabelTag = 0
+                menuItemControlTag = 0
+            }
+
+            if let volumeMenuItem = menuItem.submenu?.itemWithTag(menuItemLabelTag) {
+                let formatString: String
+                let dBValue = device.masterVolumeInDecibelsForDirection(direction) ?? 0.0
+
+                switch direction {
+                case .Recording:
+                    formatString = NSLocalizedString("Master Input Volume is %.1fdBfs", comment: "")
+                case .Playback:
+                    formatString = NSLocalizedString("Master Output Volume is %.1fdBfs", comment: "")
+                default:
+                    formatString = "%.1fdBfs"
+                }
+
+                volumeMenuItem.title = String(format: formatString, dBValue)
+            }
+
+            if let volumeControlMenuItem = menuItem.submenu?.itemWithTag(menuItemControlTag),
+                   view = volumeControlMenuItem.view as? VolumeControlView,
+                   volume = device.masterVolumeForDirection(direction) {
+                view.volumeSlider.floatValue = volume
+                view.muteCheckbox.state = (device.isChannelMuted(0, andDirection: direction) ?? false) ? NSOnState : NSOffState
+            }
+        }
+    }
+
+    private func attributedStringForDevice(device: AMAudioDevice) -> NSAttributedString {
+        let font = NSFont.menuBarFontOfSize(14.0)
+        let attrs = [NSFontAttributeName: font]
+        let attrString = NSMutableAttributedString(string: device.deviceName(), attributes: attrs)
+
+        // Formatted sample rate and clock source
+        let formattedSampleRate = FormattingUtils.formatSampleRate(device.nominalSampleRate() ?? 0)
+        let formattedClockSource = device.clockSourceForChannel(0, andDirection: .Playback) ?? "Internal Clock"
+
+        // Formatted input and output channels
+        let inChannels = device.channelsForDirection(.Recording) ?? 0
+        let outChannels = device.channelsForDirection(.Playback) ?? 0
+
+        let formatedInputChannels = String(format:inChannels == 1 ? NSLocalizedString("%d in", comment: "") : NSLocalizedString("%d ins", comment: ""), inChannels)
+        let formatedOutputChannels = String(format:outChannels == 1 ? NSLocalizedString("%d out", comment: "") : NSLocalizedString("%d outs", comment: ""), outChannels)
+
+        let font2 = NSFont.menuFontOfSize(NSFont.labelFontSize())
+        let attrs2 = [NSFontAttributeName: font2, NSForegroundColorAttributeName: NSColor.secondaryLabelColor()]
+        let attrStringLine2 = NSMutableAttributedString(string: "\n\(formattedSampleRate) / \(formattedClockSource)\n\(formatedInputChannels) / \(formatedOutputChannels)", attributes: attrs2)
+
+        attrString.appendAttributedString(attrStringLine2)
+
+        return attrString.copy() as! NSAttributedString
+    }
+
+    private func rebuildDeviceMenuItems() {
+        log.debug("Rebuilding devices in menu...")
+
+        let sortedDevices = sortedAudioDevices
+
+        audioDevices.forEach({ (audioDevice) in
+            removeDevice(audioDevice)
+        })
+
+        sortedDevices.forEach({ (device) in
+            addDevice(device)
+        })
+    }
+
+    private func updateDeviceMenuItem(device: AMAudioDevice) {
+        if let menuItem = deviceMenuItemForDevice(device) {
+            menuItem.title = device.deviceName()
+            menuItem.image = transportTypeImageForDevice(device)
+
+            buildSubmenuForMenuItem(menuItem)
+        }
+    }
+    
+    private func updateDeviceMenuItems() {
+        audioDevices.forEach { (device) in
+            updateDeviceMenuItem(device)
+        }
     }
 
     private func instantiateViewFromNibNamed(nibName: String) -> NSView? {
@@ -577,22 +622,19 @@ extension StatusBarViewController : AMEventSubscriber {
         case let event as AMAudioDeviceEvent:
             switch event {
             case .NominalSampleRateDidChange(let audioDevice):
-                updateDeviceMenuItem(audioDevice, tag: kDeviceMenuItem)
-                updateDeviceMenuItem(audioDevice, tag: kDeviceDetailMenuItem)
+                updateDeviceMenuItem(audioDevice)
             case .AvailableNominalSampleRatesDidChange(let audioDevice):
-                updateDeviceMenuItem(audioDevice, tag: kDeviceMenuItem)
+                updateDeviceMenuItem(audioDevice)
             case .ClockSourceDidChange(let audioDevice, _, _):
-                updateDeviceMenuItem(audioDevice, tag: kDeviceMenuItem)
-                updateDeviceMenuItem(audioDevice, tag: kDeviceDetailMenuItem)
+                updateDeviceMenuItem(audioDevice)
             case .NameDidChange(let audioDevice):
-                updateDeviceMenuItem(audioDevice, tag: kDeviceMenuItem)
+                updateDeviceMenuItem(audioDevice)
             case .ListDidChange(let audioDevice):
-                updateDeviceMenuItem(audioDevice, tag: kDeviceMenuItem)
-                updateDeviceMenuItem(audioDevice, tag: kDeviceDetailMenuItem)
-            case .VolumeDidChange(let audioDevice, _, _):
-                updateDeviceMenuItem(audioDevice, tag: kDeviceDetailMenuItem)
-            case .MuteDidChange(let audioDevice, _, _):
-                updateDeviceMenuItem(audioDevice, tag: kDeviceDetailMenuItem)
+                updateDeviceMenuItem(audioDevice)
+            case .VolumeDidChange(let audioDevice, _, let direction):
+                updateMasterVolumeInMenu(audioDevice, direction: direction)
+            case .MuteDidChange(let audioDevice, _, let direction):
+                updateMasterVolumeInMenu(audioDevice, direction: direction)
             default:
                 break
             }
