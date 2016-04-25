@@ -7,68 +7,53 @@
 //
 
 import Cocoa
-import PureLayout_Mac   
+
+protocol StatusBarSubView {
+    var representedObject: AnyObject? { get set }
+    func updateUI()
+}
 
 class StatusBarView: NSView {
-    private let statusItem = NSStatusBar.systemStatusBar().statusItemWithLength(24)
+    weak var statusItem: NSStatusItem?
 
-    private let iconView: NSImageView = {
-        $0.image = NSImage(named: "Mini AudioMate")
-        $0.imageScaling = .ScaleProportionallyUpOrDown
-
-        return $0
-    }(NSImageView(forAutoLayout: ()))
-
-    var controlIsHighlighted: Bool = false {
+    var highlighted: Bool = false {
         didSet {
             setNeedsDisplayInRect(bounds)
-            if controlIsHighlighted {
-                if let menu = statusItem.menu {
-                    statusItem.popUpStatusItemMenu(menu)
+            if highlighted {
+                if let menu = statusItem?.menu {
+                    statusItem?.popUpStatusItemMenu(menu)
                 }
             }
         }
     }
 
-    private override init(frame frameRect: NSRect) {
-        super.init(frame: frameRect)
-        sharedInit()
-    }
-
-    required init?(coder: NSCoder) {
-        super.init(coder: coder)
-        sharedInit()
-    }
-
-    private func sharedInit() {
-        statusItem.view = self
-    }
-
-    func setMainMenu(menu: NSMenu) {
-        statusItem.menu = menu
-    }
-
-    private func addControls() {
-        addSubview(iconView)
-    }
-
     override func mouseDown(theEvent: NSEvent) {
-        controlIsHighlighted = !controlIsHighlighted
-    }
-
-    override func viewDidMoveToSuperview() {
-        super.viewDidMoveToSuperview()
-        // Add controls
-        addControls()
-        // Setup constraints
-        iconView.autoPinEdgeToSuperviewEdge(.Left)
-        iconView.autoPinEdgeToSuperviewEdge(.Right)
-        iconView.autoCenterInSuperview()
+        highlighted = !highlighted
     }
 
     override func drawRect(dirtyRect: NSRect) {
-        statusItem.drawStatusBarBackgroundInRect(dirtyRect, withHighlight: controlIsHighlighted)
+        statusItem?.drawStatusBarBackgroundInRect(dirtyRect, withHighlight: highlighted)
 
         super.drawRect(dirtyRect)
+    }
+
+    func subView() -> StatusBarSubView? {
+        if subviews.count > 0 {
+            if let view = subviews[0] as? StatusBarSubView {
+                return view
+            }
+        }
+
+        return nil
+    }
+
+    func setSubView<T: NSView where T: StatusBarSubView>(subView: T) {
+        if subviews.count == 0 {
+            addSubview(subView)
+        } else {
+            replaceSubview(subviews[0], with: subView)
+        }
+
+        subView.updateConstraints()
     }
 }

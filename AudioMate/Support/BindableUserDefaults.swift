@@ -29,6 +29,25 @@ struct BindableUserDefaults {
         return prop
     }
 
+    func bind<T: RawRepresentable>(ownerType: Any.Type, name: String, type: T.Type, defaultValue: T) -> Observable<T> {
+        let mappedKey = "\(ownerType).\(name)"
+
+        // Set initial default value if missing
+        if NSUserDefaults().objectForKey(mappedKey) == nil {
+            NSUserDefaults().setObject(defaultValue.rawValue as? AnyObject, forKey: mappedKey)
+        }
+
+        let obj = T(rawValue: NSUserDefaults().objectForKey(mappedKey) as! T.RawValue)
+        let prop = Observable<T>(obj!)
+
+        prop.observe { value in
+            log.verbose("Setting \(mappedKey) = \(value)")
+            NSUserDefaults().setObject(value.rawValue as? AnyObject, forKey: mappedKey)
+        }
+
+        return prop
+    }
+
     func bind<T: NSCoding>(ownerType: Any.Type, name: String, type: T.Type, defaultValue: T) -> Observable<T> {
         let mappedKey = "\(ownerType).\(name)"
 

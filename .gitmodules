@@ -22,3 +22,6 @@
 [submodule "Carthage/Checkouts/Bond"]
 	path = Carthage/Checkouts/Bond
 	url = https://github.com/SwiftBond/Bond.git
+[submodule "Carthage/Checkouts/SwiftTryCatch"]
+	path = Carthage/Checkouts/SwiftTryCatch
+	url = https://github.com/rnine/SwiftTryCatch.git

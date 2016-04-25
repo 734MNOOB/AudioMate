@@ -14,6 +14,15 @@ private var kPreferencesSeparator = 1000
 private var kDeviceMasterInputVolumeControlMenuItem = 1001
 private var kDeviceMasterOutputVolumeControlMenuItem = 1002
 
+enum StatusBarViewLayoutType: Int {
+    case None = 0
+    case SampleRate
+    case SampleRateAndVolume
+    case SampleRateAndGraphicVolume
+    case SampleRateAndPercentVolume
+    case SampleRateAndClockSource
+}
+
 class StatusBarViewController: NSViewController {
 
     private var audioDevices = [AMAudioDevice]()
@@ -24,7 +33,14 @@ class StatusBarViewController: NSViewController {
         })
     }
 
-    private var mainMenu = NSMenu()
+    private let mainMenu = NSMenu()
+
+    weak var statusItem: NSStatusItem? {
+        didSet {
+            statusItem?.menu = mainMenu
+            statusBarView?.statusItem = statusItem
+        }
+    }
 
     private lazy var statusBarView: StatusBarView? = {
         return self.view as? StatusBarView
@@ -69,11 +85,54 @@ class StatusBarViewController: NSViewController {
 
         mainMenu.addItem(quitMenuItem)
 
-        statusBarView?.setMainMenu(mainMenu)
+        // Observe changes to layout type preference and react accordingly
+        preferences.general.layoutType.observe { [unowned self] _ in
+            self.updateStatusBarView()
+        }
+
+        // Observe changes to featured device preference and react accordingly
+        preferences.general.featuredDevice.observe { [unowned self] _ in
+            self.updateStatusBarView()
+        }
 
         // Subscribe to events
         AMNotificationCenter.defaultCenter.subscribe(self, eventType: AMAudioHardwareEvent.self, dispatchQueue: dispatch_get_main_queue())
         AMNotificationCenter.defaultCenter.subscribe(self, eventType: AMAudioDeviceEvent.self, dispatchQueue: dispatch_get_main_queue())
+    }
+
+    private func updateStatusBarView() {
+        dispatch_async(dispatch_get_main_queue()) {
+            let featuredDevice = preferences.general.featuredDevice.value.device
+            let layoutType = featuredDevice == nil ? .None : preferences.general.layoutType.value
+
+            switch layoutType {
+            case .SampleRate:
+                if let subView = (self.statusItem?.view as? StatusBarView)?.subView() {
+                    subView.updateUI()
+                } else {
+                    let newView = SampleRateStatusBarSubView(forAutoLayout: ())
+                    newView.representedObject = featuredDevice
+
+                    self.statusBarView?.setSubView(newView)
+                    self.statusItem?.view = self.statusBarView
+                }
+            case .SampleRateAndVolume:
+                // TODO: Implement
+                fallthrough
+            case .SampleRateAndPercentVolume:
+                // TODO: Implement
+                fallthrough
+            case .SampleRateAndGraphicVolume:
+                // TODO: Implement
+                fallthrough
+            case .SampleRateAndClockSource:
+                // TODO: Implement
+                fallthrough
+            case .None:
+                self.statusItem?.view = nil
+                self.statusItem?.button?.image = NSImage(named: "Mini AudioMate")
+            }
+        }
     }
 
     deinit {
@@ -353,6 +412,25 @@ class StatusBarViewController: NSViewController {
         // Add separator item
         item.submenu?.addItem(NSMenuItem.separatorItem())
 
+        // Add `Set as featured device` item
+        let featuredDeviceMenuItem = NSMenuItem()
+
+        if preferences.general.featuredDevice.value.device != device {
+            featuredDeviceMenuItem.title = NSLocalizedString("Set as featured device", comment: "")
+            featuredDeviceMenuItem.tag = Int(device.deviceID)
+        } else {
+            featuredDeviceMenuItem.title = NSLocalizedString("Stop being the featured device", comment: "")
+            featuredDeviceMenuItem.tag = 0
+        }
+
+        featuredDeviceMenuItem.target = self
+        featuredDeviceMenuItem.action = #selector(updateFeaturedDevice(_:))
+
+        item.submenu?.addItem(featuredDeviceMenuItem)
+
+        // Add separator item
+        item.submenu?.addItem(NSMenuItem.separatorItem())
+
         // Add `Configure Actions…` item
         let configureActionsMenuItem = NSMenuItem()
 
@@ -598,11 +676,24 @@ class StatusBarViewController: NSViewController {
             device.setAsDefaultSystemDevice()
         }
     }
+
+    @IBAction func updateFeaturedDevice(sender: AnyObject) {
+        if let menuItem = sender as? NSMenuItem {
+            if menuItem.tag > 0 {
+                let device = AMAudioDevice.lookupByID(AudioObjectID(menuItem.tag))
+                preferences.general.featuredDevice.value = DeviceDescriptor(device: device)
+            } else {
+                preferences.general.featuredDevice.value = DeviceDescriptor(device: nil)
+            }
+
+            updateDeviceMenuItems()
+        }
+    }
 }
 
 extension StatusBarViewController: NSMenuDelegate {
     func menuDidClose(menu: NSMenu) {
-        statusBarView?.controlIsHighlighted = false
+        statusBarView?.highlighted = false
     }
 }
 
@@ -615,10 +706,18 @@ extension StatusBarViewController : AMEventSubscriber {
             switch event {
             case .NominalSampleRateDidChange(let audioDevice):
                 updateDeviceMenuItem(audioDevice)
+
+                if preferences.general.featuredDevice.value.device == audioDevice {
+                    updateStatusBarView()
+                }
             case .AvailableNominalSampleRatesDidChange(let audioDevice):
                 updateDeviceMenuItem(audioDevice)
             case .ClockSourceDidChange(let audioDevice, _, _):
                 updateDeviceMenuItem(audioDevice)
+
+                if preferences.general.featuredDevice.value.device == audioDevice {
+                    updateStatusBarView()
+                }
             case .NameDidChange(let audioDevice):
                 // Because we want to keep items in alphabetical order and addDevice preserves the order,
                 // we will remove and add the device again.
@@ -630,9 +729,17 @@ extension StatusBarViewController : AMEventSubscriber {
                 if let menuItem = menuItemForDevice(audioDevice) {
                     updateMasterVolumeInMenuItem(menuItem, direction: direction)
                 }
+
+                if preferences.general.featuredDevice.value.device == audioDevice {
+                    updateStatusBarView()
+                }
             case .MuteDidChange(let audioDevice, _, let direction):
                 if let menuItem = menuItemForDevice(audioDevice) {
                     updateMasterVolumeInMenuItem(menuItem, direction: direction)
+                }
+
+                if preferences.general.featuredDevice.value.device == audioDevice {
+                    updateStatusBarView()
                 }
             default:
                 break

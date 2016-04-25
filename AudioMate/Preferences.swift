@@ -23,8 +23,12 @@ final class Preferences {
             return defaults.bind(self.dynamicType, name: #function, type: Bool.self, defaultValue: true)
         }()
 
-        lazy var featuredDevice: Observable<FeaturedDeviceDescriptor> = {
-            return defaults.bind(self.dynamicType, name: #function, type: FeaturedDeviceDescriptor.self, defaultValue: FeaturedDeviceDescriptor())
+        lazy var featuredDevice: Observable<DeviceDescriptor> = {
+            return defaults.bind(self.dynamicType, name: #function, type: DeviceDescriptor.self, defaultValue: DeviceDescriptor(device: nil))
+        }()
+
+        lazy var layoutType: Observable<StatusBarViewLayoutType> = {
+            return defaults.bind(self.dynamicType, name: #function, type: StatusBarViewLayoutType.self, defaultValue: StatusBarViewLayoutType.SampleRate)
         }()
     }
 

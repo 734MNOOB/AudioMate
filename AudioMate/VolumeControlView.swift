@@ -16,7 +16,7 @@ class VolumeControlView: NSView {
     private var didSetupConstraints: Bool = false
 
     override func updateConstraints() {
-        if (!didSetupConstraints) {
+        if !didSetupConstraints {
             removeConstraints(constraints)
             autoSetDimension(.Height, toSize: 42)
 

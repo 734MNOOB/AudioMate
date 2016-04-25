@@ -6,3 +6,4 @@ github "sparkle-project/Sparkle" ~> 1.13.1
 github "alexzielenski/StartAtLoginController" "master"
 github "andreyvit/yoursway-create-dmg" "master"
 github "SwiftBond/Bond" ~> 4.3.1
+github "rnine/SwiftTryCatch" "master"

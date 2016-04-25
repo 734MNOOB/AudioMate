@@ -15,7 +15,6 @@ let preferences = Preferences.sharedPreferences
 
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
-
     private let statusBarViewController: StatusBarViewController? = {
         let mainStoryboard = NSStoryboard(name: "Main", bundle: nil)
         return mainStoryboard.instantiateControllerWithIdentifier("statusBarViewController") as? StatusBarViewController
@@ -23,6 +22,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
     // Instantiate our audio hardware object
     private let audioHardware = AMAudioHardware.sharedInstance
+    // Instantiate our app status bar item
+    private let appStatusItem = NSStatusBar.systemStatusBar().statusItemWithLength(NSVariableStatusItemLength)
 
     func applicationDidFinishLaunching(aNotification: NSNotification) {
         // Setup logger
@@ -45,6 +46,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         // Instantiate StatusBarViewController and add all known devices in the system
         if let sbvc = statusBarViewController {
             sbvc.loadView()
+            sbvc.statusItem = appStatusItem
 
             for device in AMAudioDevice.allDevices() {
                 sbvc.addDevice(device)

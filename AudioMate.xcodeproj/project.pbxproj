@@ -8,8 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		45070F9F1CBAA1DA00601E4B /* FormattingUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45070F9E1CBAA1DA00601E4B /* FormattingUtils.swift */; };
-		4510A3EF1CCE1D4800AED5E4 /* FeaturedDeviceDescriptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4510A3EE1CCE1D4800AED5E4 /* FeaturedDeviceDescriptor.swift */; };
+		4507E6F61CCEC38B00EC7EEE /* SwiftTryCatch.m in Sources */ = {isa = PBXBuildFile; fileRef = 4507E6F21CCEC38B00EC7EEE /* SwiftTryCatch.m */; };
+		4510A3EF1CCE1D4800AED5E4 /* DeviceDescriptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4510A3EE1CCE1D4800AED5E4 /* DeviceDescriptor.swift */; };
 		4510A4131CCE21D500AED5E4 /* NSUserDefaults+CustomObjects.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4510A4121CCE21D500AED5E4 /* NSUserDefaults+CustomObjects.swift */; };
+		4511F3951CCE8E8D00D40394 /* SampleRateStatusBarSubView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4511F3941CCE8E8D00D40394 /* SampleRateStatusBarSubView.swift */; };
 		451B06661C4D542C00DFD5A0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 451B06651C4D542C00DFD5A0 /* AppDelegate.swift */; };
 		451B066B1C4D548800DFD5A0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 451B06691C4D548800DFD5A0 /* Main.storyboard */; };
 		451B066F1C4D560F00DFD5A0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 451B066E1C4D560F00DFD5A0 /* AppDelegate.swift */; };
@@ -306,8 +308,11 @@
 
 /* Begin PBXFileReference section */
 		45070F9E1CBAA1DA00601E4B /* FormattingUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FormattingUtils.swift; sourceTree = "<group>"; };
-		4510A3EE1CCE1D4800AED5E4 /* FeaturedDeviceDescriptor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeaturedDeviceDescriptor.swift; sourceTree = "<group>"; };
+		4507E6F11CCEC38B00EC7EEE /* SwiftTryCatch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SwiftTryCatch.h; sourceTree = "<group>"; };
+		4507E6F21CCEC38B00EC7EEE /* SwiftTryCatch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SwiftTryCatch.m; sourceTree = "<group>"; };
+		4510A3EE1CCE1D4800AED5E4 /* DeviceDescriptor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeviceDescriptor.swift; sourceTree = "<group>"; };
 		4510A4121CCE21D500AED5E4 /* NSUserDefaults+CustomObjects.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSUserDefaults+CustomObjects.swift"; sourceTree = "<group>"; };
+		4511F3941CCE8E8D00D40394 /* SampleRateStatusBarSubView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SampleRateStatusBarSubView.swift; sourceTree = "<group>"; };
 		451B06651C4D542C00DFD5A0 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		451B06671C4D543200DFD5A0 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		451B066A1C4D548800DFD5A0 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -387,6 +392,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4507E6EE1CCEC38B00EC7EEE /* SwiftTryCatch */ = {
+			isa = PBXGroup;
+			children = (
+				4507E6F11CCEC38B00EC7EEE /* SwiftTryCatch.h */,
+				4507E6F21CCEC38B00EC7EEE /* SwiftTryCatch.m */,
+			);
+			name = SwiftTryCatch;
+			path = Carthage/Checkouts/SwiftTryCatch;
+			sourceTree = "<group>";
+		};
 		4510A4111CCE21C000AED5E4 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
@@ -441,7 +456,7 @@
 			isa = PBXGroup;
 			children = (
 				453ABA701CCCDC18001E0DBA /* BindableUserDefaults.swift */,
-				4510A3EE1CCE1D4800AED5E4 /* FeaturedDeviceDescriptor.swift */,
+				4510A3EE1CCE1D4800AED5E4 /* DeviceDescriptor.swift */,
 				453ABA3E1CCCDB04001E0DBA /* Preferences.swift */,
 			);
 			name = Models;
@@ -502,6 +517,7 @@
 				45A43B0D1CBAB11900C22D17 /* Sparkle.xcodeproj */,
 				45A43AA31CBAAC6C00C22D17 /* XCGLogger.xcodeproj */,
 				45A43ACA1CBAAE8400C22D17 /* StartAtLoginController */,
+				4507E6EE1CCEC38B00EC7EEE /* SwiftTryCatch */,
 			);
 			name = "Cartfile Dependencies";
 			sourceTree = "<group>";
@@ -544,6 +560,7 @@
 		45E483141CCD748C007FC820 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				4511F3941CCE8E8D00D40394 /* SampleRateStatusBarSubView.swift */,
 				4549E2581C4FF16A008D2119 /* StatusBarView.swift */,
 				455883CE1CB58EF600995D39 /* VolumeControlView.swift */,
 			);
@@ -1076,7 +1093,7 @@
 				451B066F1C4D560F00DFD5A0 /* AppDelegate.swift in Sources */,
 				453ABA3F1CCCDB04001E0DBA /* Preferences.swift in Sources */,
 				4510A4131CCE21D500AED5E4 /* NSUserDefaults+CustomObjects.swift in Sources */,
-				4510A3EF1CCE1D4800AED5E4 /* FeaturedDeviceDescriptor.swift in Sources */,
+				4510A3EF1CCE1D4800AED5E4 /* DeviceDescriptor.swift in Sources */,
 				4589AE011C52B405009BE875 /* StatusBarViewController.swift in Sources */,
 				4549E2591C4FF16A008D2119 /* StatusBarView.swift in Sources */,
 				455F0C071C4E666500E59A99 /* EventNotifier.swift in Sources */,
@@ -1085,9 +1102,11 @@
 				45070F9F1CBAA1DA00601E4B /* FormattingUtils.swift in Sources */,
 				459E40E11CCD264F0061303C /* PreferencesWindowController.swift in Sources */,
 				459E41011CCD2C0F0061303C /* GeneralPreferencesViewController.swift in Sources */,
+				4507E6F61CCEC38B00EC7EEE /* SwiftTryCatch.m in Sources */,
 				453ABA711CCCDC18001E0DBA /* BindableUserDefaults.swift in Sources */,
 				459E41031CCD2C2D0061303C /* NotificationPreferencesViewController.swift in Sources */,
 				455883CF1CB58EF600995D39 /* VolumeControlView.swift in Sources */,
+				4511F3951CCE8E8D00D40394 /* SampleRateStatusBarSubView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
