@@ -119,9 +119,6 @@ class StatusBarViewController: NSViewController {
             }
         }
 
-        updateMasterVolumeInMenu(device, direction: .Recording)
-        updateMasterVolumeInMenu(device, direction: .Playback)
-
         // Force menu update
         mainMenu.performSelector(#selector(NSMenu.update),
                                  withObject: nil,
@@ -133,7 +130,7 @@ class StatusBarViewController: NSViewController {
         log.debug("Removing \(device) from menu.")
 
         // Remove device menu item from menu
-        if let deviceMenuItem = deviceMenuItemForDevice(device) {
+        if let deviceMenuItem = menuItemForDevice(device) {
             mainMenu.removeItem(deviceMenuItem)
         }
 
@@ -145,7 +142,7 @@ class StatusBarViewController: NSViewController {
 
     // MARK: - Private Functions
 
-    private func deviceMenuItemForDevice(audioDevice: AMAudioDevice) -> NSMenuItem? {
+    private func menuItemForDevice(audioDevice: AMAudioDevice) -> NSMenuItem? {
         return mainMenu.itemArray.filter { (menuItem) -> Bool in
             (menuItem.representedObject as? AMAudioDevice) == audioDevice
         }.first
@@ -361,10 +358,14 @@ class StatusBarViewController: NSViewController {
         configureActionsMenuItem.action = #selector(showDeviceActions(_:))
 
         item.submenu?.addItem(configureActionsMenuItem)
+
+        // Update master volume menu items
+        updateMasterVolumeInMenuItem(item, direction: .Recording)
+        updateMasterVolumeInMenuItem(item, direction: .Playback)
     }
 
-    private func updateMasterVolumeInMenu(device: AMAudioDevice, direction: Direction) {
-        if let menuItem = deviceMenuItemForDevice(device) {
+    private func updateMasterVolumeInMenuItem(menuItem: NSMenuItem, direction: Direction) {
+        if let device = menuItem.representedObject as? AMAudioDevice {
             let menuItemControlTag: Int
 
             switch direction {
@@ -424,7 +425,7 @@ class StatusBarViewController: NSViewController {
     }
 
     private func updateDeviceMenuItem(device: AMAudioDevice) {
-        if let menuItem = deviceMenuItemForDevice(device) {
+        if let menuItem = menuItemForDevice(device) {
             menuItem.attributedTitle = attributedStringForDevice(device)
             menuItem.image = transportTypeImageForDevice(device)
 
@@ -623,9 +624,13 @@ extension StatusBarViewController : AMEventSubscriber {
             case .ListDidChange(let audioDevice):
                 updateDeviceMenuItem(audioDevice)
             case .VolumeDidChange(let audioDevice, _, let direction):
-                updateMasterVolumeInMenu(audioDevice, direction: direction)
+                if let menuItem = menuItemForDevice(audioDevice) {
+                    updateMasterVolumeInMenuItem(menuItem, direction: direction)
+                }
             case .MuteDidChange(let audioDevice, _, let direction):
-                updateMasterVolumeInMenu(audioDevice, direction: direction)
+                if let menuItem = menuItemForDevice(audioDevice) {
+                    updateMasterVolumeInMenuItem(menuItem, direction: direction)
+                }
             default:
                 break
             }
