@@ -7,6 +7,8 @@ Control all your audio devices from the status bar, receive system notifications
 
 <img src="https://github.com/The9Labs/AudioMate/raw/develop/Artwork/AudioMate_v3_Screenshot.png" class="center">
 
+<img src="https://github.com/The9Labs/AudioMate/raw/develop/Artwork/AudioMate_v3_Screenshot2.png" class="center">
+
 ### Getting Started
 
 (Make sure [Carthage](https://github.com/Carthage/Carthage) is installed)
