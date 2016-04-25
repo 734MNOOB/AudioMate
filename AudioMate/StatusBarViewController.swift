@@ -89,12 +89,6 @@ class StatusBarViewController: NSViewController {
 
         audioDevices.append(device)
 
-        // Rebuild device menu items if needed
-        if sortedAudioDevices != audioDevices {
-            rebuildDeviceMenuItems()
-            return
-        }
-
         // Create menu item for device with submenu
         let menuItem = NSMenuItem()
 
@@ -104,11 +98,25 @@ class StatusBarViewController: NSViewController {
 
         buildSubmenuForMenuItem(menuItem)
 
-        // Insert menu item
-        let separatorIdx = mainMenu.indexOfItemWithTag(kPreferencesSeparator)
+        // Insert menu item keeping the alphabetic order
+        let devicesInMenu = mainMenu.itemArray.map({ (menuItem) -> AMAudioDevice? in
+            menuItem.representedObject as? AMAudioDevice
+        })
 
-        if separatorIdx != -1 {
-            mainMenu.insertItem(menuItem, atIndex: separatorIdx)
+        for (idx, item) in devicesInMenu.enumerate() {
+            if item == nil {
+                // Usually this means: 
+                //  (1) there's no devices in the menu
+                //  (2) we already iterated thru all of them
+                // ... so we will place the item at the current idx position and break the loop.
+                mainMenu.insertItem(menuItem, atIndex: idx)
+                break
+            }
+
+            if device.deviceName() <= item?.deviceName() {
+                mainMenu.insertItem(menuItem, atIndex: idx)
+                break
+            }
         }
 
         updateMasterVolumeInMenu(device, direction: .Recording)
@@ -199,8 +207,10 @@ class StatusBarViewController: NSViewController {
         sampleRateItem.submenu = NSMenu()
         sampleRateItem.submenu?.autoenablesItems = false
 
-        if let sampleRates = device.nominalSampleRates() {
-            for sampleRate in sampleRates {
+        let sampleRates = device.nominalSampleRates()
+
+        if sampleRates?.count > 0 {
+            for sampleRate in sampleRates! {
                 let item = NSMenuItem(title: FormattingUtils.formatSampleRate(sampleRate),
                                       action: #selector(updateSampleRate(_:)),
                                       keyEquivalent: "")
@@ -213,6 +223,13 @@ class StatusBarViewController: NSViewController {
 
                 sampleRateItem.submenu?.addItem(item)
             }
+        } else {
+            let unsupportedItem = NSMenuItem()
+
+            unsupportedItem.title = NSLocalizedString("Unsupported", comment: "")
+            unsupportedItem.enabled = false
+
+            sampleRateItem.submenu?.addItem(unsupportedItem)
         }
 
         item.submenu?.addItem(sampleRateItem)
@@ -406,23 +423,9 @@ class StatusBarViewController: NSViewController {
         return attrString.copy() as! NSAttributedString
     }
 
-    private func rebuildDeviceMenuItems() {
-        log.debug("Rebuilding devices in menu...")
-
-        let sortedDevices = sortedAudioDevices
-
-        audioDevices.forEach({ (audioDevice) in
-            removeDevice(audioDevice)
-        })
-
-        sortedDevices.forEach({ (device) in
-            addDevice(device)
-        })
-    }
-
     private func updateDeviceMenuItem(device: AMAudioDevice) {
         if let menuItem = deviceMenuItemForDevice(device) {
-            menuItem.title = device.deviceName()
+            menuItem.attributedTitle = attributedStringForDevice(device)
             menuItem.image = transportTypeImageForDevice(device)
 
             buildSubmenuForMenuItem(menuItem)
@@ -613,7 +616,10 @@ extension StatusBarViewController : AMEventSubscriber {
             case .ClockSourceDidChange(let audioDevice, _, _):
                 updateDeviceMenuItem(audioDevice)
             case .NameDidChange(let audioDevice):
-                updateDeviceMenuItem(audioDevice)
+                // Because we want to keep items in alphabetical order and addDevice preserves the order,
+                // we will remove and add the device again.
+                removeDevice(audioDevice)
+                addDevice(audioDevice)
             case .ListDidChange(let audioDevice):
                 updateDeviceMenuItem(audioDevice)
             case .VolumeDidChange(let audioDevice, _, let direction):
