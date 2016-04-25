@@ -7,22 +7,17 @@
 //
 
 import Cocoa
-import PureLayout_Mac
+import PureLayout_Mac   
 
 class StatusBarView: NSView {
-    private let statusItem = NSStatusBar.systemStatusBar().statusItemWithLength(NSVariableStatusItemLength)
+    private let statusItem = NSStatusBar.systemStatusBar().statusItemWithLength(24)
 
-    private let label: NSTextField = {
-        $0.font = NSFont.menuBarFontOfSize(14.0)
-        $0.drawsBackground = false
-        $0.stringValue = "AudioMate"
-        $0.editable = false
-        $0.bordered = false
-        $0.textColor = .controlTextColor()
-        $0.alignment = .Center
+    private let iconView: NSImageView = {
+        $0.image = NSImage(named: "Mini AudioMate")
+        $0.imageScaling = .ScaleProportionallyUpOrDown
 
         return $0
-    }(NSTextField(forAutoLayout: ()))
+    }(NSImageView(forAutoLayout: ()))
 
     var controlIsHighlighted: Bool = false {
         didSet {
@@ -54,7 +49,7 @@ class StatusBarView: NSView {
     }
 
     private func addControls() {
-        addSubview(label)
+        addSubview(iconView)
     }
 
     override func mouseDown(theEvent: NSEvent) {
@@ -66,19 +61,13 @@ class StatusBarView: NSView {
         // Add controls
         addControls()
         // Setup constraints
-        label.autoPinEdgeToSuperviewEdge(.Left)
-        label.autoPinEdgeToSuperviewEdge(.Right)
-        label.autoCenterInSuperview()
+        iconView.autoPinEdgeToSuperviewEdge(.Left)
+        iconView.autoPinEdgeToSuperviewEdge(.Right)
+        iconView.autoCenterInSuperview()
     }
 
     override func drawRect(dirtyRect: NSRect) {
         statusItem.drawStatusBarBackgroundInRect(dirtyRect, withHighlight: controlIsHighlighted)
-
-        if controlIsHighlighted {
-            label.textColor = .whiteColor()
-        } else {
-            label.textColor = .controlTextColor()
-        }
 
         super.drawRect(dirtyRect)
     }
