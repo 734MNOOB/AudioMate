@@ -11,6 +11,7 @@ import Cocoa
 class VolumeControlView: NSView {
     @IBOutlet var volumeSlider: NSSlider!
     @IBOutlet var muteCheckbox: NSButton!
+    @IBOutlet var volumeLabel: NSTextField!
 
     private var didSetupConstraints: Bool = false
 
@@ -21,11 +22,15 @@ class VolumeControlView: NSView {
     override func updateConstraints() {
         if (!didSetupConstraints) {
             removeConstraints(constraints)
-            autoSetDimension(.Height, toSize: 21)
+            autoSetDimension(.Height, toSize: 42)
 
-            let sideMargin: CGFloat = 16.0
+            let sideMargin: CGFloat = 21.0
 
-            muteCheckbox.autoPinEdgeToSuperviewEdge(.Top, withInset: 2)
+            volumeLabel.autoPinEdgeToSuperviewEdge(.Left, withInset: sideMargin)
+            volumeLabel.autoPinEdgeToSuperviewEdge(.Right, withInset: sideMargin)
+            volumeLabel.autoPinEdgeToSuperviewEdge(.Top, withInset: 0)
+
+            muteCheckbox.autoPinEdge(.Top, toEdge: .Bottom, ofView: volumeLabel, withOffset: 4)
             muteCheckbox.autoPinEdgeToSuperviewEdge(.Right, withInset: sideMargin)
             muteCheckbox.setContentHuggingPriority(NSLayoutPriorityRequired, forOrientation: NSLayoutConstraintOrientation.Horizontal)
             muteCheckbox.setContentCompressionResistancePriority(NSLayoutPriorityRequired, forOrientation: NSLayoutConstraintOrientation.Horizontal)

@@ -11,10 +11,8 @@ import AMCoreAudio
 import Sparkle
 
 private var kPreferencesSeparator = 1000
-private var kDeviceMasterInputVolumeLabelMenuItem = 1002
-private var kDeviceMasterInputVolumeControlMenuItem = 1003
-private var kDeviceMasterOutputVolumeLabelMenuItem = 1004
-private var kDeviceMasterOutputVolumeControlMenuItem = 1005
+private var kDeviceMasterInputVolumeControlMenuItem = 1001
+private var kDeviceMasterOutputVolumeControlMenuItem = 1002
 
 class StatusBarViewController: NSViewController {
 
@@ -314,12 +312,6 @@ class StatusBarViewController: NSViewController {
         item.submenu?.addItem(NSMenuItem.separatorItem())
 
         if device.canSetMasterVolumeForDirection(.Recording) {
-            let masterInputVolumeLabelItem = NSMenuItem()
-            masterInputVolumeLabelItem.enabled = false
-            masterInputVolumeLabelItem.tag = kDeviceMasterInputVolumeLabelMenuItem
-
-            item.submenu?.addItem(masterInputVolumeLabelItem)
-
             // Create master input volume control menu item
             let inputVolumeControlMenuItem = NSMenuItem()
             inputVolumeControlMenuItem.representedObject = device
@@ -330,12 +322,6 @@ class StatusBarViewController: NSViewController {
         }
 
         if device.canSetMasterVolumeForDirection(.Playback) {
-            let masterOutputVolumeLabelItem = NSMenuItem()
-            masterOutputVolumeLabelItem.enabled = false
-            masterOutputVolumeLabelItem.tag = kDeviceMasterOutputVolumeLabelMenuItem
-
-            item.submenu?.addItem(masterOutputVolumeLabelItem)
-
             // Create master input volume control menu item
             let outputVolumeControlMenuItem = NSMenuItem()
             outputVolumeControlMenuItem.representedObject = device
@@ -362,40 +348,33 @@ class StatusBarViewController: NSViewController {
 
     private func updateMasterVolumeInMenu(device: AMAudioDevice, direction: Direction) {
         if let menuItem = deviceMenuItemForDevice(device) {
-            let menuItemLabelTag: Int
             let menuItemControlTag: Int
 
             switch direction {
             case .Recording:
-                menuItemLabelTag = kDeviceMasterInputVolumeLabelMenuItem
                 menuItemControlTag = kDeviceMasterInputVolumeControlMenuItem
             case .Playback:
-                menuItemLabelTag = kDeviceMasterOutputVolumeLabelMenuItem
                 menuItemControlTag = kDeviceMasterOutputVolumeControlMenuItem
             default:
-                menuItemLabelTag = 0
                 menuItemControlTag = 0
-            }
-
-            if let volumeMenuItem = menuItem.submenu?.itemWithTag(menuItemLabelTag) {
-                let formatString: String
-                let dBValue = device.masterVolumeInDecibelsForDirection(direction) ?? 0.0
-
-                switch direction {
-                case .Recording:
-                    formatString = NSLocalizedString("Master Input Volume is %.1fdBfs", comment: "")
-                case .Playback:
-                    formatString = NSLocalizedString("Master Output Volume is %.1fdBfs", comment: "")
-                default:
-                    formatString = "%.1fdBfs"
-                }
-
-                volumeMenuItem.title = String(format: formatString, dBValue)
             }
 
             if let volumeControlMenuItem = menuItem.submenu?.itemWithTag(menuItemControlTag),
                    view = volumeControlMenuItem.view as? VolumeControlView,
                    volume = device.masterVolumeForDirection(direction) {
+                let formatString: String
+                let dBValue = device.masterVolumeInDecibelsForDirection(direction) ?? 0.0
+
+                switch direction {
+                case .Recording:
+                    formatString = NSLocalizedString("Master Input Volume is %.1fdBFS", comment: "")
+                case .Playback:
+                    formatString = NSLocalizedString("Master Output Volume is %.1fdBFS", comment: "")
+                default:
+                    formatString = "%.1fdBfs"
+                }
+
+                view.volumeLabel.stringValue = String(format: formatString, dBValue)
                 view.volumeSlider.floatValue = volume
                 view.muteCheckbox.state = (device.isChannelMuted(0, andDirection: direction) ?? false) ? NSOnState : NSOffState
             }
