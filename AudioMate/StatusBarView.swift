@@ -10,10 +10,10 @@ import Cocoa
 import PureLayout_Mac
 
 class StatusBarView: NSView {
-    private let statusItem: NSStatusItem!
+    private let statusItem = NSStatusBar.systemStatusBar().statusItemWithLength(NSVariableStatusItemLength)
 
     private let label: NSTextField = {
-        $0.font = NSFont.boldSystemFontOfSize(NSFont.systemFontSizeForControlSize(.RegularControlSize))
+        $0.font = NSFont.menuBarFontOfSize(14.0)
         $0.drawsBackground = false
         $0.stringValue = "AudioMate"
         $0.editable = false
@@ -36,13 +36,11 @@ class StatusBarView: NSView {
     }
 
     private override init(frame frameRect: NSRect) {
-        statusItem = NSStatusBar.systemStatusBar().statusItemWithLength(NSVariableStatusItemLength)
         super.init(frame: frameRect)
         sharedInit()
     }
 
     required init?(coder: NSCoder) {
-        statusItem = NSStatusBar.systemStatusBar().statusItemWithLength(NSVariableStatusItemLength)
         super.init(coder: coder)
         sharedInit()
     }
@@ -75,6 +73,13 @@ class StatusBarView: NSView {
 
     override func drawRect(dirtyRect: NSRect) {
         statusItem.drawStatusBarBackgroundInRect(dirtyRect, withHighlight: controlIsHighlighted)
+
+        if controlIsHighlighted {
+            label.textColor = .whiteColor()
+        } else {
+            label.textColor = .controlTextColor()
+        }
+
         super.drawRect(dirtyRect)
     }
 }
