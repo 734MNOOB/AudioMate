@@ -35,7 +35,7 @@ public final class EventNotifier {
 
     func volumeChangeNotification(audioDevice: AMAudioDevice, direction: AMCoreAudio.Direction) {
         if let volumeInDb = audioDevice.masterVolumeInDecibelsForDirection(direction) {
-            let formattedVolume = String(format: NSLocalizedString("%.1fdB", comment: ""), volumeInDb)
+            let formattedVolume = String(format: NSLocalizedString("%.1fdBFS", comment: ""), volumeInDb)
             let notification = NSUserNotification()
 
             notification.title = NSLocalizedString("Volume Changed", comment: "")

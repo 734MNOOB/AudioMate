@@ -417,7 +417,7 @@ class StatusBarViewController: NSViewController {
 
         let font2 = NSFont.menuFontOfSize(NSFont.labelFontSize())
         let attrs2 = [NSFontAttributeName: font2, NSForegroundColorAttributeName: NSColor.secondaryLabelColor()]
-        let attrStringLine2 = NSMutableAttributedString(string: "\n\(formattedSampleRate) / \(formattedClockSource)\n\(formatedInputChannels) / \(formatedOutputChannels)", attributes: attrs2)
+        let attrStringLine2 = NSMutableAttributedString(string: "\n\(formattedSampleRate) / \(formattedClockSource)\n\(formatedInputChannels)/ \(formatedOutputChannels)", attributes: attrs2)
 
         attrString.appendAttributedString(attrStringLine2)
 
