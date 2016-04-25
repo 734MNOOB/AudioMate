@@ -115,6 +115,12 @@ class StatusBarViewController: NSViewController {
 
                     self.statusBarView?.setSubView(newView)
                     self.statusItem?.view = self.statusBarView
+
+                    if let deviceName = featuredDevice?.deviceName() {
+                        self.statusBarView?.toolTip = String(format: NSLocalizedString("%@ is the device currently being displayed", comment: ""), deviceName)
+                    } else {
+                        self.statusBarView?.toolTip = nil
+                    }
                 }
             case .SampleRateAndVolume:
                 // TODO: Implement
