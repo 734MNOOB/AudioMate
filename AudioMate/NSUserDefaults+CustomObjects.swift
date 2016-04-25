@@ -10,17 +10,19 @@ import Foundation
 
 extension NSUserDefaults {
 
-    public func customObjectForKey(defaultName: String) -> AnyObject? {
+    public func customObjectForKey(defaultName: String) -> NSCoding? {
         guard let objectForKey = objectForKey(defaultName) as? NSData else {
             return nil
         }
 
-        let decodedObject = NSKeyedUnarchiver.unarchiveObjectWithData(objectForKey)
+        if let decodedObject = NSKeyedUnarchiver.unarchiveObjectWithData(objectForKey) as? NSCoding {
+            return decodedObject
+        }
 
-        return decodedObject
+        return nil
     }
 
-    public func setCustomObject(value: AnyObject?, forKey defaultName: String) {
+    public func setCustomObject(value: NSCoding?, forKey defaultName: String) {
         guard let object = value else {
             return
         }
