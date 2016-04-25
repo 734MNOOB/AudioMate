@@ -15,10 +15,6 @@ class VolumeControlView: NSView {
 
     private var didSetupConstraints: Bool = false
 
-    required init?(coder: NSCoder) {
-        super.init(coder: coder)
-    }
-
     override func updateConstraints() {
         if (!didSetupConstraints) {
             removeConstraints(constraints)

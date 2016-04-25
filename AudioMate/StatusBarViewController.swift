@@ -270,6 +270,34 @@ class StatusBarViewController: NSViewController {
         // Add separator item
         item.submenu?.addItem(NSMenuItem.separatorItem())
 
+        if device.canSetMasterVolumeForDirection(.Recording) {
+            // Create master input volume control menu item
+            let inputVolumeControlMenuItem = NSMenuItem()
+            inputVolumeControlMenuItem.representedObject = device
+            inputVolumeControlMenuItem.tag = kDeviceMasterInputVolumeControlMenuItem
+
+            buildVolumeControlMenuItem(inputVolumeControlMenuItem, direction: .Recording)
+            item.submenu?.addItem(inputVolumeControlMenuItem)
+        }
+
+        if device.canSetMasterVolumeForDirection(.Playback) {
+            // Create master input volume control menu item
+            let outputVolumeControlMenuItem = NSMenuItem()
+            outputVolumeControlMenuItem.representedObject = device
+            outputVolumeControlMenuItem.tag = kDeviceMasterOutputVolumeControlMenuItem
+
+            buildVolumeControlMenuItem(outputVolumeControlMenuItem, direction: .Playback)
+            item.submenu?.addItem(outputVolumeControlMenuItem)
+        }
+
+        if device.canSetMasterVolumeForDirection(.Playback) || device.canSetMasterVolumeForDirection(.Recording) {
+            // Add separator item
+            item.submenu?.addItem(NSMenuItem.separatorItem())
+        }
+
+        // Add separator item
+        item.submenu?.addItem(NSMenuItem.separatorItem())
+
         // Add menu items that allow changing the default output, system output, and input device.
         // Only the options that make sense for each device are added here.
         if device.channelsForDirection(.Playback) > 0 {
@@ -324,31 +352,6 @@ class StatusBarViewController: NSViewController {
 
         // Add separator item
         item.submenu?.addItem(NSMenuItem.separatorItem())
-
-        if device.canSetMasterVolumeForDirection(.Recording) {
-            // Create master input volume control menu item
-            let inputVolumeControlMenuItem = NSMenuItem()
-            inputVolumeControlMenuItem.representedObject = device
-            inputVolumeControlMenuItem.tag = kDeviceMasterInputVolumeControlMenuItem
-
-            buildVolumeControlMenuItem(inputVolumeControlMenuItem, direction: .Recording)
-            item.submenu?.addItem(inputVolumeControlMenuItem)
-        }
-
-        if device.canSetMasterVolumeForDirection(.Playback) {
-            // Create master input volume control menu item
-            let outputVolumeControlMenuItem = NSMenuItem()
-            outputVolumeControlMenuItem.representedObject = device
-            outputVolumeControlMenuItem.tag = kDeviceMasterOutputVolumeControlMenuItem
-
-            buildVolumeControlMenuItem(outputVolumeControlMenuItem, direction: .Playback)
-            item.submenu?.addItem(outputVolumeControlMenuItem)
-        }
-
-        if device.canSetMasterVolumeForDirection(.Playback) || device.canSetMasterVolumeForDirection(.Recording) {
-            // Add separator item
-            item.submenu?.addItem(NSMenuItem.separatorItem())
-        }
 
         // Add `Configure Actions…` item
         let configureActionsMenuItem = NSMenuItem()
