@@ -22,6 +22,10 @@ final class Preferences {
         lazy var isFirstLaunch: Observable<Bool> = {
             return defaults.bind(self.dynamicType, name: #function, type: Bool.self, defaultValue: true)
         }()
+
+        lazy var featuredDevice: Observable<FeaturedDeviceDescriptor> = {
+            return defaults.bind(self.dynamicType, name: #function, type: FeaturedDeviceDescriptor.self, defaultValue: FeaturedDeviceDescriptor())
+        }()
     }
 
     /// User notification preferences

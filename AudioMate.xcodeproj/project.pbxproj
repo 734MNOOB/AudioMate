@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		45070F9F1CBAA1DA00601E4B /* FormattingUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45070F9E1CBAA1DA00601E4B /* FormattingUtils.swift */; };
+		4510A3EF1CCE1D4800AED5E4 /* FeaturedDeviceDescriptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4510A3EE1CCE1D4800AED5E4 /* FeaturedDeviceDescriptor.swift */; };
+		4510A4131CCE21D500AED5E4 /* NSUserDefaults+CustomObjects.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4510A4121CCE21D500AED5E4 /* NSUserDefaults+CustomObjects.swift */; };
 		451B06661C4D542C00DFD5A0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 451B06651C4D542C00DFD5A0 /* AppDelegate.swift */; };
 		451B066B1C4D548800DFD5A0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 451B06691C4D548800DFD5A0 /* Main.storyboard */; };
 		451B066F1C4D560F00DFD5A0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 451B066E1C4D560F00DFD5A0 /* AppDelegate.swift */; };
@@ -304,6 +306,8 @@
 
 /* Begin PBXFileReference section */
 		45070F9E1CBAA1DA00601E4B /* FormattingUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FormattingUtils.swift; sourceTree = "<group>"; };
+		4510A3EE1CCE1D4800AED5E4 /* FeaturedDeviceDescriptor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeaturedDeviceDescriptor.swift; sourceTree = "<group>"; };
+		4510A4121CCE21D500AED5E4 /* NSUserDefaults+CustomObjects.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSUserDefaults+CustomObjects.swift"; sourceTree = "<group>"; };
 		451B06651C4D542C00DFD5A0 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		451B06671C4D543200DFD5A0 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		451B066A1C4D548800DFD5A0 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -383,6 +387,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4510A4111CCE21C000AED5E4 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				4510A4121CCE21D500AED5E4 /* NSUserDefaults+CustomObjects.swift */,
+			);
+			name = Extensions;
+			sourceTree = "<group>";
+		};
 		451E5943166D00D600DEF91A /* UI */ = {
 			isa = PBXGroup;
 			children = (
@@ -429,6 +441,7 @@
 			isa = PBXGroup;
 			children = (
 				453ABA701CCCDC18001E0DBA /* BindableUserDefaults.swift */,
+				4510A3EE1CCE1D4800AED5E4 /* FeaturedDeviceDescriptor.swift */,
 				453ABA3E1CCCDB04001E0DBA /* Preferences.swift */,
 			);
 			name = Models;
@@ -520,6 +533,7 @@
 			children = (
 				451B066E1C4D560F00DFD5A0 /* AppDelegate.swift */,
 				45E483151CCD749A007FC820 /* Controllers */,
+				4510A4111CCE21C000AED5E4 /* Extensions */,
 				459E40FE1CCD2BCC0061303C /* Models */,
 				45E483161CCD74C5007FC820 /* Support */,
 				45E483141CCD748C007FC820 /* Views */,
@@ -1061,6 +1075,8 @@
 			files = (
 				451B066F1C4D560F00DFD5A0 /* AppDelegate.swift in Sources */,
 				453ABA3F1CCCDB04001E0DBA /* Preferences.swift in Sources */,
+				4510A4131CCE21D500AED5E4 /* NSUserDefaults+CustomObjects.swift in Sources */,
+				4510A3EF1CCE1D4800AED5E4 /* FeaturedDeviceDescriptor.swift in Sources */,
 				4589AE011C52B405009BE875 /* StatusBarViewController.swift in Sources */,
 				4549E2591C4FF16A008D2119 /* StatusBarView.swift in Sources */,
 				455F0C071C4E666500E59A99 /* EventNotifier.swift in Sources */,
