@@ -356,7 +356,7 @@ class StatusBarViewController: NSViewController {
         // Add `Configure Actions…` item
         let configureActionsMenuItem = NSMenuItem()
 
-        configureActionsMenuItem.title = NSLocalizedString("Configure actions…", comment: "")
+        configureActionsMenuItem.title = NSLocalizedString("Configure device actions…", comment: "")
         configureActionsMenuItem.target = self
         configureActionsMenuItem.action = #selector(showDeviceActions(_:))
 
