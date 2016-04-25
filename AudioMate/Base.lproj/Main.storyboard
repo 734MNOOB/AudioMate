@@ -697,15 +697,19 @@
                         <subviews>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="6Da-EW-OLJ">
                                 <rect key="frame" x="18" y="83" width="252" height="17"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="248" id="5lT-FY-k8a"/>
+                                    <constraint firstAttribute="height" constant="17" id="ICM-QI-3fn"/>
+                                </constraints>
                                 <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Device information to show in status bar:" id="yMJ-Ih-Rue">
-                                    <font key="font" metaFont="system"/>
+                                    <font key="font" metaFont="smallSystem"/>
                                     <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
                             <button translatesAutoresizingMaskIntoConstraints="NO" id="fFe-jz-g3F">
-                                <rect key="frame" x="18" y="18" width="104" height="18"/>
-                                <buttonCell key="cell" type="check" title="Start at Login" bezelStyle="regularSquare" imagePosition="left" inset="2" id="YK9-8N-6b0">
+                                <rect key="frame" x="18" y="18" width="169" height="18"/>
+                                <buttonCell key="cell" type="check" title="Start AudioMate at login" bezelStyle="regularSquare" imagePosition="left" inset="2" id="YK9-8N-6b0">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
@@ -723,13 +727,13 @@
                             </popUpButton>
                         </subviews>
                         <constraints>
-                            <constraint firstItem="fFe-jz-g3F" firstAttribute="top" secondItem="pjA-xI-JYq" secondAttribute="bottom" constant="20" id="2lY-Xz-fCX"/>
-                            <constraint firstItem="pjA-xI-JYq" firstAttribute="top" secondItem="6Da-EW-OLJ" secondAttribute="bottom" constant="8" id="96i-0p-fXo"/>
-                            <constraint firstItem="pjA-xI-JYq" firstAttribute="leading" secondItem="fFe-jz-g3F" secondAttribute="leading" id="Asd-Ap-Vzp"/>
-                            <constraint firstAttribute="trailing" secondItem="pjA-xI-JYq" secondAttribute="trailing" constant="10" id="bEB-Ig-6XL"/>
-                            <constraint firstItem="6Da-EW-OLJ" firstAttribute="leading" secondItem="pjA-xI-JYq" secondAttribute="leading" id="d9W-fl-gHK"/>
-                            <constraint firstItem="6Da-EW-OLJ" firstAttribute="top" secondItem="eiV-S3-ZYg" secondAttribute="top" constant="20" symbolic="YES" id="iAs-pe-MGy"/>
-                            <constraint firstItem="6Da-EW-OLJ" firstAttribute="leading" secondItem="eiV-S3-ZYg" secondAttribute="leading" constant="20" symbolic="YES" id="vvX-SC-1g8"/>
+                            <constraint firstItem="pjA-xI-JYq" firstAttribute="leading" secondItem="fFe-jz-g3F" secondAttribute="leading" id="2g3-Be-dKa"/>
+                            <constraint firstAttribute="trailing" secondItem="pjA-xI-JYq" secondAttribute="trailing" constant="10" id="5CT-2a-DV2"/>
+                            <constraint firstItem="6Da-EW-OLJ" firstAttribute="leading" secondItem="eiV-S3-ZYg" secondAttribute="leading" constant="20" symbolic="YES" id="Abb-GA-5No"/>
+                            <constraint firstItem="pjA-xI-JYq" firstAttribute="top" secondItem="6Da-EW-OLJ" secondAttribute="bottom" constant="8" id="FHE-rW-olw"/>
+                            <constraint firstItem="fFe-jz-g3F" firstAttribute="top" secondItem="pjA-xI-JYq" secondAttribute="bottom" constant="20" id="Niq-kf-3Mw"/>
+                            <constraint firstItem="6Da-EW-OLJ" firstAttribute="top" secondItem="eiV-S3-ZYg" secondAttribute="top" constant="20" symbolic="YES" id="OrW-kI-ZGl"/>
+                            <constraint firstItem="6Da-EW-OLJ" firstAttribute="leading" secondItem="pjA-xI-JYq" secondAttribute="leading" id="dOV-zZ-9kI"/>
                         </constraints>
                     </view>
                     <connections>
@@ -800,9 +804,9 @@
                                 </connections>
                             </button>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="XQx-KG-0B4">
-                                <rect key="frame" x="18" y="142" width="188" height="17"/>
+                                <rect key="frame" x="18" y="145" width="163" height="14"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Display a system notification…" id="b6N-w0-dCH">
-                                    <font key="font" metaFont="system"/>
+                                    <font key="font" metaFont="smallSystem"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
@@ -819,20 +823,20 @@
                             </button>
                         </subviews>
                         <constraints>
-                            <constraint firstItem="Y1g-P5-RcX" firstAttribute="top" secondItem="AHS-2a-QNH" secondAttribute="bottom" constant="6" symbolic="YES" id="1xI-la-x08"/>
-                            <constraint firstItem="ne3-n2-Sno" firstAttribute="top" secondItem="hVB-6g-JNz" secondAttribute="bottom" constant="6" symbolic="YES" id="8A4-Y0-wIQ"/>
-                            <constraint firstItem="hVB-6g-JNz" firstAttribute="top" secondItem="Cba-Vr-hgX" secondAttribute="bottom" constant="6" symbolic="YES" id="JnL-Lk-ONs"/>
-                            <constraint firstItem="Cba-Vr-hgX" firstAttribute="top" secondItem="4X5-AK-OO9" secondAttribute="bottom" constant="6" symbolic="YES" id="Jyi-Tk-UzQ"/>
-                            <constraint firstItem="ne3-n2-Sno" firstAttribute="leading" secondItem="AHS-2a-QNH" secondAttribute="leading" id="K9C-7s-MZ9"/>
-                            <constraint firstItem="AHS-2a-QNH" firstAttribute="top" secondItem="ne3-n2-Sno" secondAttribute="bottom" constant="6" symbolic="YES" id="KuC-L1-4xg"/>
-                            <constraint firstItem="XQx-KG-0B4" firstAttribute="leading" secondItem="QDR-ru-sgl" secondAttribute="leading" constant="20" symbolic="YES" id="P3z-G2-Ldg"/>
-                            <constraint firstItem="hVB-6g-JNz" firstAttribute="leading" secondItem="ne3-n2-Sno" secondAttribute="leading" id="R4p-d2-aMV"/>
-                            <constraint firstItem="AHS-2a-QNH" firstAttribute="leading" secondItem="Y1g-P5-RcX" secondAttribute="leading" id="VIq-8v-r1Q"/>
-                            <constraint firstItem="Cba-Vr-hgX" firstAttribute="leading" secondItem="hVB-6g-JNz" secondAttribute="leading" id="VJi-sh-ZJt"/>
-                            <constraint firstItem="XQx-KG-0B4" firstAttribute="top" secondItem="QDR-ru-sgl" secondAttribute="top" constant="20" symbolic="YES" id="WwL-lD-7TK"/>
-                            <constraint firstItem="4X5-AK-OO9" firstAttribute="leading" secondItem="QDR-ru-sgl" secondAttribute="leading" constant="32" id="XZg-yG-CMZ"/>
-                            <constraint firstItem="4X5-AK-OO9" firstAttribute="leading" secondItem="Cba-Vr-hgX" secondAttribute="leading" id="a2W-CZ-kmU"/>
-                            <constraint firstItem="4X5-AK-OO9" firstAttribute="top" secondItem="XQx-KG-0B4" secondAttribute="bottom" constant="8" symbolic="YES" id="o98-ZU-vl5"/>
+                            <constraint firstItem="AHS-2a-QNH" firstAttribute="leading" secondItem="Y1g-P5-RcX" secondAttribute="leading" id="0TG-AT-HIV"/>
+                            <constraint firstItem="hVB-6g-JNz" firstAttribute="top" secondItem="Cba-Vr-hgX" secondAttribute="bottom" constant="6" symbolic="YES" id="0dY-80-4hb"/>
+                            <constraint firstItem="ne3-n2-Sno" firstAttribute="leading" secondItem="AHS-2a-QNH" secondAttribute="leading" id="64p-90-ADM"/>
+                            <constraint firstItem="Cba-Vr-hgX" firstAttribute="leading" secondItem="hVB-6g-JNz" secondAttribute="leading" id="AiR-If-ePT"/>
+                            <constraint firstItem="hVB-6g-JNz" firstAttribute="leading" secondItem="ne3-n2-Sno" secondAttribute="leading" id="HCi-Wh-K6U"/>
+                            <constraint firstAttribute="bottom" secondItem="Y1g-P5-RcX" secondAttribute="bottom" constant="20" symbolic="YES" id="I1U-Oo-os3"/>
+                            <constraint firstItem="XQx-KG-0B4" firstAttribute="top" secondItem="QDR-ru-sgl" secondAttribute="top" constant="20" symbolic="YES" id="IVH-Fo-y5M"/>
+                            <constraint firstItem="AHS-2a-QNH" firstAttribute="top" secondItem="ne3-n2-Sno" secondAttribute="bottom" constant="6" symbolic="YES" id="J97-Fl-dYC"/>
+                            <constraint firstItem="4X5-AK-OO9" firstAttribute="leading" secondItem="Cba-Vr-hgX" secondAttribute="leading" id="N6d-mn-KJ1"/>
+                            <constraint firstItem="ne3-n2-Sno" firstAttribute="top" secondItem="hVB-6g-JNz" secondAttribute="bottom" constant="6" symbolic="YES" id="Pd6-An-yxs"/>
+                            <constraint firstItem="Cba-Vr-hgX" firstAttribute="top" secondItem="4X5-AK-OO9" secondAttribute="bottom" constant="6" symbolic="YES" id="dN7-DT-Kql"/>
+                            <constraint firstItem="Y1g-P5-RcX" firstAttribute="top" secondItem="AHS-2a-QNH" secondAttribute="bottom" constant="6" symbolic="YES" id="fEb-PY-hD2"/>
+                            <constraint firstItem="XQx-KG-0B4" firstAttribute="leading" secondItem="QDR-ru-sgl" secondAttribute="leading" constant="20" symbolic="YES" id="q1J-xa-9Sb"/>
+                            <constraint firstItem="4X5-AK-OO9" firstAttribute="leading" secondItem="QDR-ru-sgl" secondAttribute="leading" constant="32" id="qnK-M7-ZV9"/>
                         </constraints>
                     </view>
                     <connections>
