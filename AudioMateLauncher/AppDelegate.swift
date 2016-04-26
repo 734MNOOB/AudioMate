@@ -8,6 +8,9 @@
 
 import Cocoa
 
+// The bundle identifier for the app we want to launch
+private let TargetBundleIdentifier = "io.9labs.AudioMate"
+
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
 
@@ -15,16 +18,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     func applicationDidFinishLaunching(aNotification: NSNotification) {
         // Check if main app is already running; if yes, do nothing and terminate helper app
 
-        var alreadyRunning = false
         let runningApps = NSWorkspace.sharedWorkspace().runningApplications
 
-        for app in runningApps {
-            if app.bundleIdentifier == "io.9labs.AudioMate" {
-                alreadyRunning = true
-            }
-        }
-
-        if !alreadyRunning {
+        if runningApps.indexOf({ app -> Bool in app.bundleIdentifier == TargetBundleIdentifier }) == nil {
             let path = NSBundle.mainBundle().bundlePath
             var pathComponents = path.componentsSeparatedByString("/")
 
@@ -36,7 +32,11 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
             let newPath = pathComponents.joinWithSeparator("/")
 
-            NSWorkspace.sharedWorkspace().launchApplication(newPath)
+            if NSFileManager.defaultManager().fileExistsAtPath(newPath) {
+                NSWorkspace.sharedWorkspace().launchApplication(newPath)
+            } else {
+                print("ERROR: Unable to launch app because path at \(newPath) does not exist.")
+            }
         }
 
         NSApp.terminate(self)
