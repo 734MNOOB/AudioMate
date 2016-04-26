@@ -745,12 +745,8 @@ class StatusBarViewController: NSViewController {
 
     @IBAction func updateFeaturedDevice(sender: AnyObject) {
         if let menuItem = sender as? NSMenuItem {
-            if menuItem.tag > 0 {
-                let device = AMAudioDevice.lookupByID(AudioObjectID(menuItem.tag))
-                preferences.general.featuredDevice.value = DeviceDescriptor(device: device)
-            } else {
-                preferences.general.featuredDevice.value = DeviceDescriptor(device: nil)
-            }
+            let device = AMAudioDevice.lookupByID(AudioObjectID(menuItem.tag))
+            preferences.general.featuredDevice.value = DeviceDescriptor(device: device)
 
             dispatch_async(dispatch_get_main_queue()) {
                 self.updateDeviceMenuItems()
