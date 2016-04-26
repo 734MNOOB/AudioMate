@@ -591,9 +591,9 @@
 		45F62C2D1688CC5E00FE7692 /* Scripts */ = {
 			isa = PBXGroup;
 			children = (
+				45FA30B4168F557800B3302C /* generate-dmg.rb */,
 				45442A091B1F81FE0094EBE6 /* sign_app.rb */,
 				45D0372C1B1F477500AAB46B /* generate-plist-from-template.sh */,
-				45FA30B4168F557800B3302C /* generate-dmg.rb */,
 				45D037341B1F4E7600AAB46B /* update-build-number-and-version.sh */,
 			);
 			name = Scripts;
