@@ -669,14 +669,14 @@ class StatusBarViewController: NSViewController {
     @IBAction func updateInputVolume(sender: AnyObject) {
         if let slider = sender as? NSSlider {
             let device = AMAudioDevice.lookupByID(AudioObjectID(slider.tag))
-            device.setMasterVolume(slider.floatValue, forDirection: .Recording)
+            device?.setMasterVolume(slider.floatValue, forDirection: .Recording)
         }
     }
 
     @IBAction func updateOutputVolume(sender: AnyObject) {
         if let slider = sender as? NSSlider {
             let device = AMAudioDevice.lookupByID(AudioObjectID(slider.tag))
-            device.setMasterVolume(slider.floatValue, forDirection: .Playback)
+            device?.setMasterVolume(slider.floatValue, forDirection: .Playback)
         }
     }
 
@@ -684,7 +684,7 @@ class StatusBarViewController: NSViewController {
         if let button = sender as? NSButton {
             let device = AMAudioDevice.lookupByID(AudioObjectID(button.tag))
 
-            device.setMute(button.state == NSOnState,
+            device?.setMute(button.state == NSOnState,
                            forChannel: kAudioObjectPropertyElementMaster,
                            andDirection: .Recording)
         }
@@ -694,7 +694,7 @@ class StatusBarViewController: NSViewController {
         if let button = sender as? NSButton {
             let device = AMAudioDevice.lookupByID(AudioObjectID(button.tag))
 
-            device.setMute(button.state == NSOnState,
+            device?.setMute(button.state == NSOnState,
                            forChannel: kAudioObjectPropertyElementMaster,
                            andDirection: .Playback)
         }
@@ -705,7 +705,7 @@ class StatusBarViewController: NSViewController {
             let device = AMAudioDevice.lookupByID(AudioObjectID(menuItem.tag))
 
             if let sampleRate = menuItem.representedObject as? Float64 {
-                device.setNominalSampleRate(sampleRate)
+                device?.setNominalSampleRate(sampleRate)
             }
         }
     }
@@ -715,7 +715,7 @@ class StatusBarViewController: NSViewController {
             let device = AMAudioDevice.lookupByID(AudioObjectID(menuItem.tag))
 
             if let clockSourceID = menuItem.representedObject as? UInt {
-                device.setClockSourceID(UInt32(clockSourceID),
+                device?.setClockSourceID(UInt32(clockSourceID),
                                         forChannel: kAudioObjectPropertyElementMaster,
                                         andDirection: .Playback)
             }
@@ -725,21 +725,21 @@ class StatusBarViewController: NSViewController {
     @IBAction func updateDefaultInputDevice(sender: AnyObject) {
         if let menuItem = sender as? NSMenuItem {
             let device = AMAudioDevice.lookupByID(AudioObjectID(menuItem.tag))
-            device.setAsDefaultInputDevice()
+            device?.setAsDefaultInputDevice()
         }
     }
 
     @IBAction func updateDefaultOutputDevice(sender: AnyObject) {
         if let menuItem = sender as? NSMenuItem {
             let device = AMAudioDevice.lookupByID(AudioObjectID(menuItem.tag))
-            device.setAsDefaultOutputDevice()
+            device?.setAsDefaultOutputDevice()
         }
     }
 
     @IBAction func updateDefaultSystemOutputDevice(sender: AnyObject) {
         if let menuItem = sender as? NSMenuItem {
             let device = AMAudioDevice.lookupByID(AudioObjectID(menuItem.tag))
-            device.setAsDefaultSystemDevice()
+            device?.setAsDefaultSystemDevice()
         }
     }
 
