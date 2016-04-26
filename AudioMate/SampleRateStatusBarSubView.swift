@@ -19,13 +19,20 @@ class SampleRateStatusBarSubView: NSTextField, StatusBarSubView {
         }
     }
 
+    var shouldHighlight: Bool = false {
+        didSet {
+            updateUI()
+        }
+    }
+
     func updateUI() {
         if let device = representedObject as? AMAudioDevice {
             // Formatted sample rate
             let formattedSampleRate = FormattingUtils.formatSampleRate(device.nominalSampleRate() ?? 0)
 
+            let textColor: NSColor = shouldHighlight ? .whiteColor() : .labelColor()
             let font = NSFont.boldSystemFontOfSize(13.0)
-            let attrs = [NSFontAttributeName: font]
+            let attrs = [NSFontAttributeName: font, NSForegroundColorAttributeName: textColor]
             let attrString = NSMutableAttributedString(string: formattedSampleRate, attributes: attrs)
 
             attrString.setAlignment(NSTextAlignment.Center, range: NSRange(location: 0, length: attrString.length))

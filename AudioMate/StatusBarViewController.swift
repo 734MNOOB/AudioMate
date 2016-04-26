@@ -103,24 +103,14 @@ class StatusBarViewController: NSViewController {
     private func updateStatusBarView() {
         dispatch_async(dispatch_get_main_queue()) {
             let featuredDevice = preferences.general.featuredDevice.value.device
-            let layoutType = featuredDevice == nil ? .None : preferences.general.layoutType.value
+            let layoutType = featuredDevice?.isAlive() == true ? preferences.general.layoutType.value : .None
+            let subView = (self.statusItem?.view as? StatusBarView)?.subView()
 
             switch layoutType {
             case .SampleRate:
-                if let subView = (self.statusItem?.view as? StatusBarView)?.subView() {
-                    subView.updateUI()
-                } else {
-                    let newView = SampleRateStatusBarSubView(forAutoLayout: ())
-                    newView.representedObject = featuredDevice
-
-                    self.statusBarView?.setSubView(newView)
+                if subView as? SampleRateStatusBarSubView == nil {
+                    self.statusBarView?.setSubView(SampleRateStatusBarSubView(forAutoLayout: ()))
                     self.statusItem?.view = self.statusBarView
-
-                    if let deviceName = featuredDevice?.deviceName() {
-                        self.statusBarView?.toolTip = String(format: NSLocalizedString("%@ is the device currently being displayed", comment: ""), deviceName)
-                    } else {
-                        self.statusBarView?.toolTip = nil
-                    }
                 }
             case .SampleRateAndVolume:
                 // TODO: Implement
@@ -137,6 +127,19 @@ class StatusBarViewController: NSViewController {
             case .None:
                 self.statusItem?.view = nil
                 self.statusItem?.button?.image = NSImage(named: "Mini AudioMate")
+            }
+
+            if var subView = (self.statusItem?.view as? StatusBarView)?.subView() {
+                // Update subview represented object
+                subView.representedObject = featuredDevice
+                // Update subview UI
+                subView.updateUI()
+                // Update statusbar view tooltip
+                if let deviceName = featuredDevice?.deviceName() {
+                    self.statusBarView?.toolTip = String(format: NSLocalizedString("%@ is the device currently being displayed", comment: ""), deviceName)
+                } else {
+                    self.statusBarView?.toolTip = nil
+                }
             }
         }
     }
@@ -693,6 +696,7 @@ class StatusBarViewController: NSViewController {
             }
 
             updateDeviceMenuItems()
+            updateStatusBarView()
         }
     }
 }
@@ -755,10 +759,15 @@ extension StatusBarViewController : AMEventSubscriber {
             case .DeviceListChanged(let addedDevices, let removedDevices):
                 for removedDevice in removedDevices {
                     removeDevice(removedDevice)
+                    updateStatusBarView()
                 }
 
                 for addedDevice in addedDevices {
                     addDevice(addedDevice)
+
+                    if preferences.general.featuredDevice.value.device == addedDevice {
+                        updateStatusBarView()
+                    }
                 }
             case .DefaultInputDeviceChanged(_):
                 updateDeviceMenuItems()

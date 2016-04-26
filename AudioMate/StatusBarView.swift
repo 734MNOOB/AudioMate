@@ -10,6 +10,7 @@ import Cocoa
 
 protocol StatusBarSubView {
     var representedObject: AnyObject? { get set }
+    var shouldHighlight: Bool { get set }
     func updateUI()
 }
 
@@ -19,6 +20,11 @@ class StatusBarView: NSView {
     var highlighted: Bool = false {
         didSet {
             setNeedsDisplayInRect(bounds)
+
+            if var subView = self.subView() {
+                subView.shouldHighlight = highlighted
+            }
+
             if highlighted {
                 if let menu = statusItem?.menu {
                     statusItem?.popUpStatusItemMenu(menu)
