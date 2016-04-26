@@ -857,7 +857,7 @@
             <objects>
                 <viewController storyboardIdentifier="statusBarViewController" showSeguePresentationStyle="single" id="e7c-Ky-3FQ" customClass="StatusBarViewController" customModule="AudioMate" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="gIP-Ps-IHQ" customClass="StatusBarView" customModule="AudioMate" customModuleProvider="target">
-                        <rect key="frame" x="0.0" y="0.0" width="100" height="25"/>
+                        <rect key="frame" x="0.0" y="0.0" width="100" height="22"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </view>
                     <connections>

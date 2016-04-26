@@ -38,13 +38,19 @@ class StatusBarViewController: NSViewController {
     weak var statusItem: NSStatusItem? {
         didSet {
             statusItem?.menu = mainMenu
-            statusBarView?.statusItem = statusItem
+            statusItem?.button?.addSubview(view)
+
+            statusItem?.button?.bnd_enabled.observe({ (value) in
+                self.statusBarView.enabled = value
+            })
+
+            updateStatusBarView()
         }
     }
 
-    private lazy var statusBarView: StatusBarView? = {
-        return self.view as? StatusBarView
-    }()
+    private var statusBarView: StatusBarView {
+        return view as! StatusBarView
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -87,12 +93,16 @@ class StatusBarViewController: NSViewController {
 
         // Observe changes to layout type preference and react accordingly
         preferences.general.layoutType.observe { [unowned self] _ in
-            self.updateStatusBarView()
+            dispatch_async(dispatch_get_main_queue()) {
+                self.updateStatusBarView()
+            }
         }
 
         // Observe changes to featured device preference and react accordingly
         preferences.general.featuredDevice.observe { [unowned self] _ in
-            self.updateStatusBarView()
+            dispatch_async(dispatch_get_main_queue()) {
+                self.updateStatusBarView()
+            }
         }
 
         // Subscribe to events
@@ -100,48 +110,25 @@ class StatusBarViewController: NSViewController {
         AMNotificationCenter.defaultCenter.subscribe(self, eventType: AMAudioDeviceEvent.self, dispatchQueue: dispatch_get_main_queue())
     }
 
-    private func updateStatusBarView() {
-        dispatch_async(dispatch_get_main_queue()) {
-            let featuredDevice = preferences.general.featuredDevice.value.device
-            let layoutType = featuredDevice?.isAlive() == true ? preferences.general.layoutType.value : .None
-            let subView = (self.statusItem?.view as? StatusBarView)?.subView()
-
-            switch layoutType {
-            case .SampleRate:
-                if subView as? SampleRateStatusBarSubView == nil {
-                    self.statusBarView?.setSubView(SampleRateStatusBarSubView(forAutoLayout: ()))
-                    self.statusItem?.view = self.statusBarView
-                }
-            case .SampleRateAndVolume:
-                // TODO: Implement
-                fallthrough
-            case .SampleRateAndPercentVolume:
-                // TODO: Implement
-                fallthrough
-            case .SampleRateAndGraphicVolume:
-                // TODO: Implement
-                fallthrough
-            case .SampleRateAndClockSource:
-                // TODO: Implement
-                fallthrough
-            case .None:
-                self.statusItem?.view = nil
-                self.statusItem?.button?.image = NSImage(named: "Mini AudioMate")
-            }
-
-            if var subView = (self.statusItem?.view as? StatusBarView)?.subView() {
-                // Update subview represented object
-                subView.representedObject = featuredDevice
-                // Update subview UI
-                subView.updateUI()
-                // Update statusbar view tooltip
-                if let deviceName = featuredDevice?.deviceName() {
-                    self.statusBarView?.toolTip = String(format: NSLocalizedString("%@ is the device currently being displayed", comment: ""), deviceName)
-                } else {
-                    self.statusBarView?.toolTip = nil
-                }
-            }
+    override func prepareForSegue(segue: NSStoryboardSegue, sender: AnyObject?) {
+        guard let identifier = segue.identifier else {
+            return
         }
+
+        switch identifier {
+        case "showPreferences":
+            statusItem?.button?.bnd_enabled.value = false
+
+            if let wc = segue.destinationController as? PreferencesWindowController {
+                wc.windowDidCloseHandler = { [unowned self] in
+                    self.statusItem?.button?.bnd_enabled.value = true
+                }
+            }
+        default:
+            break
+        }
+
+        super.prepareForSegue(segue, sender: sender)
     }
 
     deinit {
@@ -209,6 +196,55 @@ class StatusBarViewController: NSViewController {
     }
 
     // MARK: - Private Functions
+
+    private func updateStatusBarView() {
+        let featuredDevice = preferences.general.featuredDevice.value.device
+        let layoutType = featuredDevice?.isAlive() == true ? preferences.general.layoutType.value : .None
+        let subView = statusBarView.subView()
+
+        // Common for all layouts except .None
+        if layoutType != .None {
+            statusBarView.hidden = false
+            statusItem?.button?.image = nil
+            statusItem?.length = NSWidth(statusBarView.bounds)
+        }
+
+        switch layoutType {
+        case .SampleRate:
+            if subView as? SampleRateStatusBarSubView == nil {
+                statusBarView.setSubView(SampleRateStatusBarSubView(forAutoLayout: ()))
+            }
+        case .SampleRateAndVolume:
+            // TODO: Implement
+            fallthrough
+        case .SampleRateAndPercentVolume:
+            // TODO: Implement
+            fallthrough
+        case .SampleRateAndGraphicVolume:
+            // TODO: Implement
+            fallthrough
+        case .SampleRateAndClockSource:
+            // TODO: Implement
+            fallthrough
+        case .None:
+            statusBarView.hidden = true
+            statusItem?.length = NSVariableStatusItemLength
+            statusItem?.button?.image = NSImage(named: "Mini AudioMate")
+        }
+
+        if var subView = statusBarView.subView() {
+            // Update subview represented object
+            subView.representedObject = featuredDevice
+            // Update subview UI
+            subView.updateUI()
+            // Update statusbar view tooltip
+            if let deviceName = featuredDevice?.deviceName() {
+                statusBarView.toolTip = String(format: NSLocalizedString("%@ is the device currently being displayed", comment: ""), deviceName)
+            } else {
+                statusBarView.toolTip = nil
+            }
+        }
+    }
 
     private func menuItemForDevice(audioDevice: AMAudioDevice) -> NSMenuItem? {
         return mainMenu.itemArray.filter { (menuItem) -> Bool in
@@ -695,15 +731,31 @@ class StatusBarViewController: NSViewController {
                 preferences.general.featuredDevice.value = DeviceDescriptor(device: nil)
             }
 
-            updateDeviceMenuItems()
-            updateStatusBarView()
+            dispatch_async(dispatch_get_main_queue()) {
+                self.updateDeviceMenuItems()
+                self.updateStatusBarView()
+            }
         }
     }
 }
 
 extension StatusBarViewController: NSMenuDelegate {
     func menuDidClose(menu: NSMenu) {
-        statusBarView?.highlighted = false
+        if var subView = statusBarView.subView() {
+            subView.shouldHighlight = false
+        }
+    }
+
+    func menuWillOpen(menu: NSMenu) {
+        if var subView = statusBarView.subView() {
+            subView.shouldHighlight = true
+        }
+    }
+}
+
+extension StatusBarViewController: SUUpdaterDelegate {
+    func updaterDidShowModalAlert(updater: SUUpdater!) {
+        Utils.transformAppIntoUIElementMode()
     }
 }
 
@@ -779,11 +831,5 @@ extension StatusBarViewController : AMEventSubscriber {
         default:
             break
         }
-    }
-}
-
-extension StatusBarViewController: SUUpdaterDelegate {
-    func updaterDidShowModalAlert(updater: SUUpdater!) {
-        Utils.transformAppIntoUIElementMode()
     }
 }

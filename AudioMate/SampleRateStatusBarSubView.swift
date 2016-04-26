@@ -13,6 +13,10 @@ import AMCoreAudio
 class SampleRateStatusBarSubView: NSTextField, StatusBarSubView {
     private var didSetupConstraints: Bool = false
 
+    // Quite important to set this to true. 
+    // See http://stackoverflow.com/questions/29647815/swift-allowvibrancy
+    override var allowsVibrancy: Bool { return true }
+
     var representedObject: AnyObject? {
         didSet {
             updateUI()
@@ -48,7 +52,7 @@ class SampleRateStatusBarSubView: NSTextField, StatusBarSubView {
         drawsBackground = false
         alignment = .Center
     }
-    
+
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }

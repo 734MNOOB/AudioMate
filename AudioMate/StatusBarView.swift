@@ -15,32 +15,10 @@ protocol StatusBarSubView {
 }
 
 class StatusBarView: NSView {
-    weak var statusItem: NSStatusItem?
-
-    var highlighted: Bool = false {
+    var enabled: Bool = true {
         didSet {
-            setNeedsDisplayInRect(bounds)
-
-            if var subView = self.subView() {
-                subView.shouldHighlight = highlighted
-            }
-
-            if highlighted {
-                if let menu = statusItem?.menu {
-                    statusItem?.popUpStatusItemMenu(menu)
-                }
-            }
+            alphaValue = enabled ? 1.0 : 0.33
         }
-    }
-
-    override func mouseDown(theEvent: NSEvent) {
-        highlighted = !highlighted
-    }
-
-    override func drawRect(dirtyRect: NSRect) {
-        statusItem?.drawStatusBarBackgroundInRect(dirtyRect, withHighlight: highlighted)
-
-        super.drawRect(dirtyRect)
     }
 
     func subView() -> StatusBarSubView? {

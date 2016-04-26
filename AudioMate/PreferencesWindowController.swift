@@ -10,6 +10,8 @@ import Cocoa
 
 class PreferencesWindowController: NSWindowController {
 
+    var windowDidCloseHandler:(()->Void)?
+
     override func windowDidLoad() {
         super.windowDidLoad()
     
@@ -28,5 +30,6 @@ extension PreferencesWindowController: NSWindowDelegate {
     func windowWillClose(notification: NSNotification) {
         // Transform application to LSUIElement mode
         Utils.transformAppIntoUIElementMode()
+        windowDidCloseHandler?()
     }
 }
