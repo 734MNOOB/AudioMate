@@ -36,6 +36,7 @@ class SampleRateAndClockSourceStatusBarView: NSView, StatusBarSubView {
         $0.bordered = false
         $0.drawsBackground = false
         $0.alignment = .Center
+        $0.maximumNumberOfLines = 1
 
         return $0
     }(AMTextField(forAutoLayout: ()))
@@ -45,6 +46,7 @@ class SampleRateAndClockSourceStatusBarView: NSView, StatusBarSubView {
         $0.bordered = false
         $0.drawsBackground = false
         $0.alignment = .Center
+        $0.maximumNumberOfLines = 1
 
         return $0
     }(AMTextField(forAutoLayout: ()))
