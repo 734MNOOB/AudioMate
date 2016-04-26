@@ -311,7 +311,7 @@ class StatusBarViewController: NSViewController {
         }
     }
 
-    @objc private func buildSubmenuForDeviceMenuItem(item: NSMenuItem) {
+    private func buildSubmenuForDeviceMenuItem(item: NSMenuItem) {
         guard let device = item.representedObject as? AMAudioDevice else {
             return
         }
