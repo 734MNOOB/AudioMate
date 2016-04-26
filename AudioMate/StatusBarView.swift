@@ -25,13 +25,7 @@ class StatusBarView: NSView {
     }
 
     func subView() -> StatusBarSubView? {
-        if subviews.count > 0 {
-            if let view = subviews[0] as? StatusBarSubView {
-                return view
-            }
-        }
-
-        return nil
+        return subviews[safe: 0] as? StatusBarSubView
     }
 
     func setSubView<T: NSView where T: StatusBarSubView>(subView: T) {

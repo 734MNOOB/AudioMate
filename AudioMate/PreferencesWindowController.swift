@@ -15,12 +15,10 @@ class PreferencesWindowController: NSWindowController {
     override func windowDidLoad() {
         super.windowDidLoad()
     
-        // Implement this method to handle any initialization after your window controller's window has been loaded from its nib file.
+        // Set window delegate
         window?.delegate = self
-
         // Transform application to foreground mode
         Utils.transformAppIntoForegroundMode()
-
         // Activate (give focus to) our app
         NSApplication.sharedApplication().activateIgnoringOtherApps(true)
     }
@@ -30,6 +28,7 @@ extension PreferencesWindowController: NSWindowDelegate {
     func windowWillClose(notification: NSNotification) {
         // Transform application to LSUIElement mode
         Utils.transformAppIntoUIElementMode()
+        // Call our "window did close" handler
         windowDidCloseHandler?()
     }
 }

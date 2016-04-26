@@ -1,5 +1,5 @@
 //
-//  EventNotifier.swift
+//  UserNotificationDispatcher.swift
 //  AudioMate
 //
 //  Created by Ruben Nine on 19/01/16.
@@ -9,12 +9,18 @@
 import Foundation
 import AMCoreAudio
 
-public final class EventNotifier {
-    static let sharedEventNotifier = EventNotifier()
+/**
+    `UserNotificationDispatcher` is a singleton class that wraps all the user notifications 
+    that AudioMate generates.
+ */
+public final class UserNotificationDispatcher {
+
+    /// Shared instance
+    static let sharedDispatcher = UserNotificationDispatcher()
 
     private var lastNotification: NSUserNotification?
     private var lastNotificationTime: NSTimeInterval?
-    private let minTimeBetweenNotifications: NSTimeInterval = 0.05 // in seconds
+    private let minIntervalBetweenNotifications: NSTimeInterval = 0.05 // in seconds
 
     private init() {}
 
@@ -157,10 +163,12 @@ public final class EventNotifier {
 
     // MARK: Private Methods
 
+    // Discards duplicate notifications or those that happen faster than the min interval.
     private func debouncedDeliverNotification(notification: NSUserNotification) {
         let timeInterval = NSDate().timeIntervalSinceReferenceDate
 
-        if lastNotification != notification && timeInterval - (lastNotificationTime ?? 0) > minTimeBetweenNotifications {
+        if lastNotification != notification &&
+           timeInterval - (lastNotificationTime ?? 0) > minIntervalBetweenNotifications {
             lastNotification = notification
             lastNotificationTime = timeInterval
 

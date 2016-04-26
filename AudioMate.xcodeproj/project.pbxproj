@@ -19,6 +19,7 @@
 		451B066F1C4D560F00DFD5A0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 451B066E1C4D560F00DFD5A0 /* AppDelegate.swift */; };
 		451B06731C4D5E5F00DFD5A0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 451B06711C4D5E5F00DFD5A0 /* Main.storyboard */; };
 		45279A32188AA5700058FB69 /* Select.aiff in Resources */ = {isa = PBXBuildFile; fileRef = 45279A23188AA5700058FB69 /* Select.aiff */; };
+		4533CAAD1CD00580000A2C1C /* Array+Safe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4533CAAC1CD00580000A2C1C /* Array+Safe.swift */; };
 		453ABA3F1CCCDB04001E0DBA /* Preferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 453ABA3E1CCCDB04001E0DBA /* Preferences.swift */; };
 		453ABA6B1CCCDBC8001E0DBA /* Bond.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 453ABA621CCCDBB1001E0DBA /* Bond.framework */; };
 		453ABA6C1CCCDBC8001E0DBA /* Bond.framework in Copy Embedded Frameworks */ = {isa = PBXBuildFile; fileRef = 453ABA621CCCDBB1001E0DBA /* Bond.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -26,7 +27,7 @@
 		4549E2591C4FF16A008D2119 /* StatusBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4549E2581C4FF16A008D2119 /* StatusBarView.swift */; };
 		455883CD1CB58C8800995D39 /* VolumeControlView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 455883CB1CB58C8800995D39 /* VolumeControlView.xib */; };
 		455883CF1CB58EF600995D39 /* VolumeControlView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 455883CE1CB58EF600995D39 /* VolumeControlView.swift */; };
-		455F0C071C4E666500E59A99 /* EventNotifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 455F0C061C4E666500E59A99 /* EventNotifier.swift */; };
+		455F0C071C4E666500E59A99 /* UserNotificationDispatcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 455F0C061C4E666500E59A99 /* UserNotificationDispatcher.swift */; };
 		45772C4E184690BE00D07EF6 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 45772C4D184690BE00D07EF6 /* Images.xcassets */; };
 		4589AE011C52B405009BE875 /* StatusBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4589AE001C52B405009BE875 /* StatusBarViewController.swift */; };
 		458E355D196EB56000C7C630 /* AMConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = 458E355C196EB56000C7C630 /* AMConfig.plist */; };
@@ -323,6 +324,7 @@
 		451B066E1C4D560F00DFD5A0 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		451B06721C4D5E5F00DFD5A0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		45279A23188AA5700058FB69 /* Select.aiff */ = {isa = PBXFileReference; lastKnownFileType = audio.aiff; path = Select.aiff; sourceTree = "<group>"; };
+		4533CAAC1CD00580000A2C1C /* Array+Safe.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Array+Safe.swift"; sourceTree = "<group>"; };
 		453ABA3E1CCCDB04001E0DBA /* Preferences.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Preferences.swift; sourceTree = "<group>"; };
 		453ABA531CCCDBB1001E0DBA /* Bond.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Bond.xcodeproj; path = Carthage/Checkouts/Bond/Bond.xcodeproj; sourceTree = "<group>"; };
 		453ABA701CCCDC18001E0DBA /* BindableUserDefaults.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BindableUserDefaults.swift; path = Support/BindableUserDefaults.swift; sourceTree = "<group>"; };
@@ -330,7 +332,7 @@
 		4549E2581C4FF16A008D2119 /* StatusBarView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatusBarView.swift; sourceTree = "<group>"; };
 		455883CC1CB58C8800995D39 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/VolumeControlView.xib; sourceTree = "<group>"; };
 		455883CE1CB58EF600995D39 /* VolumeControlView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VolumeControlView.swift; sourceTree = "<group>"; };
-		455F0C061C4E666500E59A99 /* EventNotifier.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventNotifier.swift; sourceTree = "<group>"; };
+		455F0C061C4E666500E59A99 /* UserNotificationDispatcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserNotificationDispatcher.swift; sourceTree = "<group>"; };
 		45772C4D184690BE00D07EF6 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = AudioMate/Images.xcassets; sourceTree = SOURCE_ROOT; };
 		458317D218820D1E001F0BE4 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		4589AE001C52B405009BE875 /* StatusBarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatusBarViewController.swift; sourceTree = "<group>"; };
@@ -409,6 +411,7 @@
 		4510A4111CCE21C000AED5E4 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				4533CAAC1CD00580000A2C1C /* Array+Safe.swift */,
 				4510A4121CCE21D500AED5E4 /* NSUserDefaults+CustomObjects.swift */,
 			);
 			name = Extensions;
@@ -459,9 +462,7 @@
 		459E40FE1CCD2BCC0061303C /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				453ABA701CCCDC18001E0DBA /* BindableUserDefaults.swift */,
 				4510A3EE1CCE1D4800AED5E4 /* DeviceDescriptor.swift */,
-				453ABA3E1CCCDB04001E0DBA /* Preferences.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -552,6 +553,7 @@
 			isa = PBXGroup;
 			children = (
 				451B066E1C4D560F00DFD5A0 /* AppDelegate.swift */,
+				453ABA3E1CCCDB04001E0DBA /* Preferences.swift */,
 				45E483151CCD749A007FC820 /* Controllers */,
 				4510A4111CCE21C000AED5E4 /* Extensions */,
 				459E40FE1CCD2BCC0061303C /* Models */,
@@ -564,11 +566,11 @@
 		45E483141CCD748C007FC820 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				45115FCA1CCFAA0B00FBF31F /* AMTextField.swift */,
+				45115FC01CCFA60900FBF31F /* SampleRateAndClockSourceStatusBarView.swift */,
 				45115FBE1CCFA50500FBF31F /* SampleRateStatusBarView.swift */,
 				4549E2581C4FF16A008D2119 /* StatusBarView.swift */,
 				455883CE1CB58EF600995D39 /* VolumeControlView.swift */,
-				45115FC01CCFA60900FBF31F /* SampleRateAndClockSourceStatusBarView.swift */,
-				45115FCA1CCFAA0B00FBF31F /* AMTextField.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -587,8 +589,9 @@
 		45E483161CCD74C5007FC820 /* Support */ = {
 			isa = PBXGroup;
 			children = (
-				455F0C061C4E666500E59A99 /* EventNotifier.swift */,
+				453ABA701CCCDC18001E0DBA /* BindableUserDefaults.swift */,
 				45070F9E1CBAA1DA00601E4B /* FormattingUtils.swift */,
+				455F0C061C4E666500E59A99 /* UserNotificationDispatcher.swift */,
 				459E41071CCD4A040061303C /* Utils.swift */,
 			);
 			name = Support;
@@ -1103,7 +1106,7 @@
 				4589AE011C52B405009BE875 /* StatusBarViewController.swift in Sources */,
 				45115FCB1CCFAA0B00FBF31F /* AMTextField.swift in Sources */,
 				4549E2591C4FF16A008D2119 /* StatusBarView.swift in Sources */,
-				455F0C071C4E666500E59A99 /* EventNotifier.swift in Sources */,
+				455F0C071C4E666500E59A99 /* UserNotificationDispatcher.swift in Sources */,
 				45115FC11CCFA60900FBF31F /* SampleRateAndClockSourceStatusBarView.swift in Sources */,
 				459E41081CCD4A040061303C /* Utils.swift in Sources */,
 				459E41051CCD416F0061303C /* StartAtLoginController.m in Sources */,
@@ -1112,6 +1115,7 @@
 				459E40E11CCD264F0061303C /* PreferencesWindowController.swift in Sources */,
 				459E41011CCD2C0F0061303C /* GeneralPreferencesViewController.swift in Sources */,
 				4507E6F61CCEC38B00EC7EEE /* SwiftTryCatch.m in Sources */,
+				4533CAAD1CD00580000A2C1C /* Array+Safe.swift in Sources */,
 				453ABA711CCCDC18001E0DBA /* BindableUserDefaults.swift in Sources */,
 				459E41031CCD2C2D0061303C /* NotificationPreferencesViewController.swift in Sources */,
 				455883CF1CB58EF600995D39 /* VolumeControlView.swift in Sources */,

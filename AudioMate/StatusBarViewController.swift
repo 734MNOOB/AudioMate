@@ -651,6 +651,7 @@ class StatusBarViewController: NSViewController {
     @IBAction func checkForUpdates(sender: AnyObject) {
         statusItem?.button?.bnd_enabled.value = false
 
+        // Transform application to foreground mode
         Utils.transformAppIntoForegroundMode()
         // Activate (give focus to) our app
         NSApplication.sharedApplication().activateIgnoringOtherApps(true)
@@ -774,13 +775,16 @@ extension StatusBarViewController: SUUpdaterDelegate {
     func updaterWillShowModalAlert(updater: SUUpdater!) {
         statusItem?.button?.bnd_enabled.value = false
 
+        // Transform application to foreground mode
         Utils.transformAppIntoForegroundMode()
         // Activate (give focus to) our app
         NSApplication.sharedApplication().activateIgnoringOtherApps(true)
     }
 
     func updaterDidShowModalAlert(updater: SUUpdater!) {
+        // Transform application to LSUIElement mode
         Utils.transformAppIntoUIElementMode()
+
         statusItem?.button?.bnd_enabled.value = true
     }
 }

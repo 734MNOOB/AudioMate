@@ -113,26 +113,28 @@ extension AppDelegate: NSUserNotificationCenterDelegate {
 extension AppDelegate : AMEventSubscriber {
 
     func eventReceiver(event: AMEvent) {
+        let dispatcher = UserNotificationDispatcher.sharedDispatcher
+
         switch event {
         case let event as AMAudioDeviceEvent:
             switch event {
             case .NominalSampleRateDidChange(let audioDevice):
                 if preferences.notifications.shouldDisplaySampleRateChanges.value {
-                    EventNotifier.sharedEventNotifier.samplerateChangeNotification(audioDevice)
+                    dispatcher.samplerateChangeNotification(audioDevice)
                 }
             case .ClockSourceDidChange(let audioDevice, let channel, let direction):
                 if preferences.notifications.shouldDisplayClockSourceChanges.value {
-                    EventNotifier.sharedEventNotifier.clockSourceChangeNotification(audioDevice,
+                    dispatcher.clockSourceChangeNotification(audioDevice,
                                                                                     channelNumber: channel,
                                                                                     direction: direction)
                 }
             case .VolumeDidChange(let audioDevice, _, let direction):
                 if preferences.notifications.shouldDisplayVolumeChanges.value {
-                    EventNotifier.sharedEventNotifier.volumeChangeNotification(audioDevice, direction: direction)
+                    dispatcher.volumeChangeNotification(audioDevice, direction: direction)
                 }
             case .MuteDidChange(let audioDevice, _, let direction):
                 if preferences.notifications.shouldDisplayMuteChanges.value {
-                    EventNotifier.sharedEventNotifier.muteChangeNotification(audioDevice, direction: direction)
+                    dispatcher.muteChangeNotification(audioDevice, direction: direction)
                 }
             default:
                 break
@@ -141,20 +143,19 @@ extension AppDelegate : AMEventSubscriber {
             switch event {
             case .DeviceListChanged(let addedDevices, let removedDevices):
                 if preferences.notifications.shouldDisplayAddedAndRemovedDeviceChanges.value {
-                    EventNotifier.sharedEventNotifier.deviceListChangeNotification(addedDevices,
-                                                                                   removedDevices: removedDevices)
+                    dispatcher.deviceListChangeNotification(addedDevices, removedDevices: removedDevices)
                 }
             case .DefaultInputDeviceChanged(let audioDevice):
                 if preferences.notifications.shouldDisplayDefaultDeviceChanges.value {
-                    EventNotifier.sharedEventNotifier.defaultInputDeviceChangeNotification(audioDevice)
+                    dispatcher.defaultInputDeviceChangeNotification(audioDevice)
                 }
             case .DefaultOutputDeviceChanged(let audioDevice):
                 if preferences.notifications.shouldDisplayDefaultDeviceChanges.value {
-                    EventNotifier.sharedEventNotifier.defaultOutputDeviceChangeNotification(audioDevice)
+                    dispatcher.defaultOutputDeviceChangeNotification(audioDevice)
                 }
             case .DefaultSystemOutputDeviceChanged(let audioDevice):
                 if preferences.notifications.shouldDisplayDefaultDeviceChanges.value {
-                    EventNotifier.sharedEventNotifier.defaultSystemOutputDeviceChangeNotification(audioDevice)
+                    dispatcher.defaultSystemOutputDeviceChangeNotification(audioDevice)
                 }
             }
         default:

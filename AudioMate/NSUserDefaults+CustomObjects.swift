@@ -18,10 +18,11 @@ extension NSUserDefaults {
         var returnedObject: NSCoding? = nil
 
         /**
-            At the time of writing, `NSKeyedUnarchiver.unarchiveObjectWithData` was throwing an Objective-C NSException,
-            which would cause our app to crash. We are using SwiftTryCatch as a workaround for that.
-
-            - Note: This can be safely removed once the `NSKeyedUnarchiver` API is updated to throw actual Swift errors.
+            At the time of writing, `NSKeyedUnarchiver.unarchiveObjectWithData` may throw an
+            Objective-C exception, which might cause our app to crash if the unarchival process fails.
+            
+            We are using SwiftTryCatch to recover against such cases until the `NSKeyedUnarchiver` 
+            API is updated to throw actual Swift errors. Then we will be able to safely remove this.
         */
         SwiftTryCatch.tryBlock({ 
             if let decodedObject = NSKeyedUnarchiver.unarchiveObjectWithData(objectForKey) as? NSCoding {
