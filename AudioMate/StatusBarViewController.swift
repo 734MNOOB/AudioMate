@@ -55,6 +55,10 @@ class StatusBarViewController: NSViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        // Set SUUpdate delegate
+        SUUpdater.sharedUpdater().delegate = self
+
+        // Set mainMenu delegate
         mainMenu.delegate = self
 
         let preferencesSeparatorItem = NSMenuItem.separatorItem()
@@ -645,11 +649,12 @@ class StatusBarViewController: NSViewController {
     // MARK: - Actions
 
     @IBAction func checkForUpdates(sender: AnyObject) {
+        statusItem?.button?.bnd_enabled.value = false
+
         Utils.transformAppIntoForegroundMode()
         // Activate (give focus to) our app
         NSApplication.sharedApplication().activateIgnoringOtherApps(true)
 
-        SUUpdater.sharedUpdater().delegate = self
         SUUpdater.sharedUpdater().checkForUpdates(sender)
     }
 
@@ -770,8 +775,17 @@ extension StatusBarViewController: NSMenuDelegate {
 }
 
 extension StatusBarViewController: SUUpdaterDelegate {
+    func updaterWillShowModalAlert(updater: SUUpdater!) {
+        statusItem?.button?.bnd_enabled.value = false
+
+        Utils.transformAppIntoForegroundMode()
+        // Activate (give focus to) our app
+        NSApplication.sharedApplication().activateIgnoringOtherApps(true)
+    }
+
     func updaterDidShowModalAlert(updater: SUUpdater!) {
         Utils.transformAppIntoUIElementMode()
+        statusItem?.button?.bnd_enabled.value = true
     }
 }
 
