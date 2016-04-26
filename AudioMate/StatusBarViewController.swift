@@ -40,7 +40,7 @@ class StatusBarViewController: NSViewController {
             statusItem?.menu = mainMenu
             statusItem?.button?.addSubview(view)
 
-            statusItem?.button?.bnd_enabled.observe({ (value) in
+            statusItem?.button?.bnd_enabled.observe({ [unowned self] value in
                 self.statusBarView.enabled = value
             })
 
@@ -110,6 +110,19 @@ class StatusBarViewController: NSViewController {
         AMNotificationCenter.defaultCenter.subscribe(self, eventType: AMAudioDeviceEvent.self, dispatchQueue: dispatch_get_main_queue())
     }
 
+    override func viewWillLayout() {
+        super.viewWillLayout()
+
+        let padding: CGFloat = 10.0 // 10px padding
+        let fittingWidthWithPadding = round(view.fittingSize.width + padding)
+
+        view.frame.size = NSSize(width: fittingWidthWithPadding, height: statusBarView.frame.height)
+
+        if !view.hidden {
+            statusItem?.length = NSWidth(statusBarView.frame)
+        }
+    }
+
     override func prepareForSegue(segue: NSStoryboardSegue, sender: AnyObject?) {
         guard let identifier = segue.identifier else {
             return
@@ -151,7 +164,7 @@ class StatusBarViewController: NSViewController {
         menuItem.image = transportTypeImageForDevice(device)
         menuItem.representedObject = device
 
-        buildSubmenuForMenuItem(menuItem)
+        buildSubmenuForDeviceMenuItem(menuItem)
 
         // Insert menu item keeping the alphabetic order
         let devicesInMenu = mainMenu.itemArray.map({ (menuItem) -> AMAudioDevice? in
@@ -206,13 +219,18 @@ class StatusBarViewController: NSViewController {
         if layoutType != .None {
             statusBarView.hidden = false
             statusItem?.button?.image = nil
-            statusItem?.length = NSWidth(statusBarView.bounds)
         }
+
+        statusItem?.length = NSVariableStatusItemLength
 
         switch layoutType {
         case .SampleRate:
-            if subView as? SampleRateStatusBarSubView == nil {
-                statusBarView.setSubView(SampleRateStatusBarSubView(forAutoLayout: ()))
+            if subView as? SampleRateStatusBarView == nil {
+                statusBarView.setSubView(SampleRateStatusBarView(forAutoLayout: ()))
+            }
+        case .SampleRateAndClockSource:
+            if subView as? SampleRateAndClockSourceStatusBarView == nil {
+                statusBarView.setSubView(SampleRateAndClockSourceStatusBarView(forAutoLayout: ()))
             }
         case .SampleRateAndVolume:
             // TODO: Implement
@@ -223,12 +241,8 @@ class StatusBarViewController: NSViewController {
         case .SampleRateAndGraphicVolume:
             // TODO: Implement
             fallthrough
-        case .SampleRateAndClockSource:
-            // TODO: Implement
-            fallthrough
         case .None:
             statusBarView.hidden = true
-            statusItem?.length = NSVariableStatusItemLength
             statusItem?.button?.image = NSImage(named: "Mini AudioMate")
         }
 
@@ -244,6 +258,8 @@ class StatusBarViewController: NSViewController {
                 statusBarView.toolTip = nil
             }
         }
+
+        view.needsLayout = true
     }
 
     private func menuItemForDevice(audioDevice: AMAudioDevice) -> NSMenuItem? {
@@ -291,7 +307,7 @@ class StatusBarViewController: NSViewController {
         }
     }
 
-    @objc private func buildSubmenuForMenuItem(item: NSMenuItem) {
+    @objc private func buildSubmenuForDeviceMenuItem(item: NSMenuItem) {
         guard let device = item.representedObject as? AMAudioDevice else {
             return
         }
@@ -532,7 +548,7 @@ class StatusBarViewController: NSViewController {
 
         // Formatted sample rate and clock source
         let formattedSampleRate = FormattingUtils.formatSampleRate(device.nominalSampleRate() ?? 0)
-        let formattedClockSource = device.clockSourceForChannel(0, andDirection: .Playback) ?? "Internal Clock"
+        let formattedClockSource = device.clockSourceForChannel(0, andDirection: .Playback) ?? NSLocalizedString("Internal Clock", comment: "")
 
         // Formatted input and output channels
         let inChannels = device.channelsForDirection(.Recording) ?? 0
@@ -555,7 +571,7 @@ class StatusBarViewController: NSViewController {
             menuItem.attributedTitle = attributedStringForDevice(device)
             menuItem.image = transportTypeImageForDevice(device)
 
-            buildSubmenuForMenuItem(menuItem)
+            buildSubmenuForDeviceMenuItem(menuItem)
         }
     }
     

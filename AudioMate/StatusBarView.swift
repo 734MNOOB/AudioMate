@@ -11,13 +11,16 @@ import Cocoa
 protocol StatusBarSubView {
     var representedObject: AnyObject? { get set }
     var shouldHighlight: Bool { get set }
+    var enabled: Bool { get set }
     func updateUI()
 }
 
 class StatusBarView: NSView {
     var enabled: Bool = true {
         didSet {
-            alphaValue = enabled ? 1.0 : 0.33
+            if var subView = subView() {
+                subView.enabled = enabled
+            }
         }
     }
 
@@ -37,6 +40,9 @@ class StatusBarView: NSView {
         } else {
             replaceSubview(subviews[0], with: subView)
         }
+
+        var theSubView = subView
+        theSubView.enabled = enabled
 
         subView.updateConstraints()
     }

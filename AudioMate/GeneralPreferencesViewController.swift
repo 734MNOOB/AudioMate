@@ -48,6 +48,8 @@ class GeneralPreferencesViewController: NSViewController {
         deviceInformationToShowPopUpButton.target = self
         deviceInformationToShowPopUpButton.action = #selector(updateStatusBarLayoutType(_:))
 
+        deviceInformationToShowPopUpButton.selectItemWithTag(preferences.general.layoutType.value.rawValue)
+
         startAtLoginButton.state = startAtLoginController.startAtLogin ? NSOnState : NSOffState
     }
 

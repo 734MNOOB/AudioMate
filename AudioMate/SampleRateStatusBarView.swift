@@ -1,5 +1,5 @@
 //
-//  IconStatusBarView.swift
+//  SampleRateStatusBarView.swift
 //  AudioMate
 //
 //  Created by Ruben Nine on 4/25/16.
@@ -10,12 +10,8 @@ import Cocoa
 import PureLayout_Mac
 import AMCoreAudio
 
-class SampleRateStatusBarSubView: NSTextField, StatusBarSubView {
+class SampleRateStatusBarView: AMTextField, StatusBarSubView {
     private var didSetupConstraints: Bool = false
-
-    // Quite important to set this to true. 
-    // See http://stackoverflow.com/questions/29647815/swift-allowvibrancy
-    override var allowsVibrancy: Bool { return true }
 
     var representedObject: AnyObject? {
         didSet {
@@ -26,6 +22,12 @@ class SampleRateStatusBarSubView: NSTextField, StatusBarSubView {
     var shouldHighlight: Bool = false {
         didSet {
             updateUI()
+        }
+    }
+
+    override var enabled: Bool {
+        didSet {
+            alphaValue = enabled ? 1.0 : 0.33
         }
     }
 
@@ -59,8 +61,8 @@ class SampleRateStatusBarSubView: NSTextField, StatusBarSubView {
 
     override func updateConstraints() {
         if didSetupConstraints == false {
-            autoPinEdgeToSuperviewEdge(.Left, withInset: 8)
-            autoPinEdgeToSuperviewEdge(.Right, withInset: 8)
+            autoPinEdgeToSuperviewEdge(.Left)
+            autoPinEdgeToSuperviewEdge(.Right)
             autoCenterInSuperview()
             didSetupConstraints = true
         }
