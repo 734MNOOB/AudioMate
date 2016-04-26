@@ -53,6 +53,7 @@ class SampleRateStatusBarView: AMTextField, StatusBarSubView {
         bordered = false
         drawsBackground = false
         alignment = .Center
+        maximumNumberOfLines = 1
     }
 
     required init?(coder: NSCoder) {
