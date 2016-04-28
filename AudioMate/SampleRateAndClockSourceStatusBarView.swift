@@ -13,7 +13,7 @@ import AMCoreAudio
 class SampleRateAndClockSourceStatusBarView: NSView, StatusBarSubView {
     private var didSetupConstraints: Bool = false
 
-    var representedObject: AnyObject? {
+    weak var representedObject: AnyObject? {
         didSet {
             updateUI()
         }

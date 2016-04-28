@@ -9,7 +9,7 @@
 import Cocoa
 
 protocol StatusBarSubView {
-    var representedObject: AnyObject? { get set }
+    weak var representedObject: AnyObject? { get set }
     var shouldHighlight: Bool { get set }
     var enabled: Bool { get set }
     func updateUI()

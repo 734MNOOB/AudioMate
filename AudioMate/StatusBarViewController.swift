@@ -251,15 +251,19 @@ class StatusBarViewController: NSViewController {
         }
 
         if var subView = statusBarView.subView() {
-            // Update subview represented object
-            subView.representedObject = featuredDevice
-            // Update subview UI
-            subView.updateUI()
-            // Update statusbar view tooltip
-            if let deviceName = featuredDevice?.deviceName() {
-                statusBarView.toolTip = String(format: NSLocalizedString("%@ is the device currently being displayed", comment: ""), deviceName)
+            if layoutType == .None {
+                subView.representedObject = nil
             } else {
-                statusBarView.toolTip = nil
+                // Update subview represented object
+                subView.representedObject = featuredDevice
+                // Update subview UI
+                subView.updateUI()
+                // Update statusbar view tooltip
+                if let deviceName = featuredDevice?.deviceName() {
+                    statusBarView.toolTip = String(format: NSLocalizedString("%@ is the device currently being displayed", comment: ""), deviceName)
+                } else {
+                    statusBarView.toolTip = nil
+                }
             }
         }
 
@@ -751,7 +755,6 @@ class StatusBarViewController: NSViewController {
 
             dispatch_async(dispatch_get_main_queue()) {
                 self.updateDeviceMenuItems()
-                self.updateStatusBarView()
             }
         }
     }
