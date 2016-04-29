@@ -8,15 +8,17 @@
 
 import Foundation
 
-struct BundleInfo {
+public class BundleInfo {
     private init() {}
 
-    static let buildDate: String? = NSBundle.mainBundle().infoDictionary?["BuildDate"] as? String
-    static let name: String? = NSBundle.mainBundle().infoDictionary?["CFBundleName"] as? String
-    static let version: String? = NSBundle.mainBundle().infoDictionary?["CFBundleShortVersionString"] as? String
-    static let buildNumber: String? = NSBundle.mainBundle().infoDictionary?["CFBundleVersion"] as? String
+    private static let thisBundle = NSBundle(forClass: BundleInfo.self)
 
-    static func buildInfo() -> String? {
+    public static let buildDate: String? = thisBundle.infoDictionary?["BuildDate"] as? String
+    public static let name: String? = thisBundle.infoDictionary?["CFBundleName"] as? String
+    public static let version: String? = thisBundle.infoDictionary?["CFBundleShortVersionString"] as? String
+    public static let buildNumber: String? = thisBundle.infoDictionary?["CFBundleVersion"] as? String
+
+    public static func buildInfo() -> String? {
         guard let buildDate = buildDate, let name = name, let version = version, let buildNumber = buildNumber else {
             return nil
         }

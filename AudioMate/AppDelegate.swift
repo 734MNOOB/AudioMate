@@ -34,6 +34,10 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             log.info(buildInfo)
         }
 
+        if let amCoreAudioBuildInfo = AMCoreAudio.BundleInfo.buildInfo() {
+            log.info("Using \(amCoreAudioBuildInfo)")
+        }
+
         // Upon 1st launch, present a welcome panel
         if preferences.general.isFirstLaunch.value == true {
             log.debug("This is the 1st launch!")

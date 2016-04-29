@@ -621,8 +621,8 @@
 		45E483161CCD74C5007FC820 /* Support */ = {
 			isa = PBXGroup;
 			children = (
-				45CF933A1CD395C300A0E3E5 /* BundleInfo.swift */,
 				453ABA701CCCDC18001E0DBA /* BindableUserDefaults.swift */,
+				45CF933A1CD395C300A0E3E5 /* BundleInfo.swift */,
 				45070F9E1CBAA1DA00601E4B /* FormattingUtils.swift */,
 				455F0C061C4E666500E59A99 /* UserNotificationDispatcher.swift */,
 				459E41071CCD4A040061303C /* Utils.swift */,

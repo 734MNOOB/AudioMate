@@ -10,7 +10,7 @@
             ActionType = "Xcode.IDEStandardExecutionActionsCore.ExecutionActionType.ShellScriptAction">
             <ActionContent
                title = "Run Script"
-               scriptText = "$SRCROOT/bin/update_build_date.sh">
+               scriptText = "$SRCROOT/bin/update_build_date.sh&#10;$SRCROOT/bin/autoincrement-buildnumber.sh&#10;">
                <EnvironmentBuildable>
                   <BuildableReference
                      BuildableIdentifier = "primary"
