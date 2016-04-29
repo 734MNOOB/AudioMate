@@ -361,7 +361,6 @@
 		45D0372C1B1F477500AAB46B /* generate-plist-from-template.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; name = "generate-plist-from-template.sh"; path = "Scripts/generate-plist-from-template.sh"; sourceTree = "<group>"; };
 		45D037341B1F4E7600AAB46B /* update-build-number-and-version.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; name = "update-build-number-and-version.sh"; path = "Scripts/update-build-number-and-version.sh"; sourceTree = "<group>"; };
 		45F62C731688D1E500FE7692 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = AudioMate/Info.plist; sourceTree = SOURCE_ROOT; };
-		45F9FC6817B517C8005026F2 /* Tmpl-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "Tmpl-Info.plist"; path = "AudioMate/Tmpl-Info.plist"; sourceTree = SOURCE_ROOT; };
 		45FA30B4168F557800B3302C /* generate-dmg.rb */ = {isa = PBXFileReference; lastKnownFileType = text.script.ruby; name = "generate-dmg.rb"; path = "Scripts/generate-dmg.rb"; sourceTree = "<group>"; };
 		45FA5626166BC8C500C1D92D /* AudioMate.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AudioMate.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		45FA562A166BC8C500C1D92D /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
@@ -608,14 +607,6 @@
 			name = Scripts;
 			sourceTree = "<group>";
 		};
-		45F9FC6717B517B0005026F2 /* Info Plist Templates */ = {
-			isa = PBXGroup;
-			children = (
-				45F9FC6817B517C8005026F2 /* Tmpl-Info.plist */,
-			);
-			name = "Info Plist Templates";
-			sourceTree = "<group>";
-		};
 		45FA561B166BC8C500C1D92D = {
 			isa = PBXGroup;
 			children = (
@@ -667,7 +658,6 @@
 			children = (
 				45915011196C333D00B104EF /* AudioMate.entitlements */,
 				45A43AE61CBAAF3700C22D17 /* AudioMate-Bridging-Header.h */,
-				45F9FC6717B517B0005026F2 /* Info Plist Templates */,
 				45E483131CCD7464007FC820 /* Source */,
 				45FA5631166BC8C500C1D92D /* Supporting Files */,
 				451E5943166D00D600DEF91A /* UI */,
@@ -710,10 +700,8 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 45FA565B166BC8C600C1D92D /* Build configuration list for PBXNativeTarget "AudioMate" */;
 			buildPhases = (
-				455F0C051C4E64E000E59A99 /* SwiftLint */,
 				45FA5622166BC8C500C1D92D /* Sources */,
 				45FA5623166BC8C500C1D92D /* Frameworks */,
-				45633E4F17B512E40073D8DD /* Update Build Number and Version */,
 				45FA5624166BC8C500C1D92D /* Resources */,
 				4591486C1688081300BE1A44 /* Copy Embedded Frameworks */,
 				459D6DC11687EFD3007F2226 /* Copy AudioMateLauncher into Contents/Library/LoginItems */,
@@ -1054,37 +1042,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
-
-/* Begin PBXShellScriptBuildPhase section */
-		455F0C051C4E64E000E59A99 /* SwiftLint */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = SwiftLint;
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "#if which swiftlint >/dev/null; then\n#swiftlint\n#else\n#echo \"SwiftLint does not exist, download from https://github.com/realm/SwiftLint\"\n#fi";
-		};
-		45633E4F17B512E40073D8DD /* Update Build Number and Version */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Update Build Number and Version";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "sh $SRCROOT/Scripts/update-build-number-and-version.sh";
-		};
-/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		459D6DA51687EF95007F2226 /* Sources */ = {
