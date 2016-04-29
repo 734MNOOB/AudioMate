@@ -328,7 +328,6 @@
 		453ABA3E1CCCDB04001E0DBA /* Preferences.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Preferences.swift; sourceTree = "<group>"; };
 		453ABA531CCCDBB1001E0DBA /* Bond.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Bond.xcodeproj; path = Carthage/Checkouts/Bond/Bond.xcodeproj; sourceTree = "<group>"; };
 		453ABA701CCCDC18001E0DBA /* BindableUserDefaults.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BindableUserDefaults.swift; path = Support/BindableUserDefaults.swift; sourceTree = "<group>"; };
-		45442A091B1F81FE0094EBE6 /* sign_app.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; name = sign_app.rb; path = Scripts/sign_app.rb; sourceTree = "<group>"; };
 		4549E2581C4FF16A008D2119 /* StatusBarView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatusBarView.swift; sourceTree = "<group>"; };
 		455883CC1CB58C8800995D39 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/VolumeControlView.xib; sourceTree = "<group>"; };
 		455883CE1CB58EF600995D39 /* VolumeControlView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VolumeControlView.swift; sourceTree = "<group>"; };
@@ -358,8 +357,13 @@
 		45A43B0D1CBAB11900C22D17 /* Sparkle.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Sparkle.xcodeproj; path = Carthage/Checkouts/Sparkle/Sparkle.xcodeproj; sourceTree = "<group>"; };
 		45AB3A3D166E2BD900B07220 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
 		45C39B261C5CEC9500F41A52 /* CHANGELOG.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = CHANGELOG.md; sourceTree = "<group>"; };
+		45CF93321CD391D500A0E3E5 /* generate-dmg.rb */ = {isa = PBXFileReference; lastKnownFileType = text.script.ruby; path = "generate-dmg.rb"; sourceTree = "<group>"; };
+		45CF93351CD391D500A0E3E5 /* pre-commit-autoincrement-buildnumber */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = "pre-commit-autoincrement-buildnumber"; sourceTree = "<group>"; };
+		45CF93361CD391D500A0E3E5 /* hooks-wrapper */ = {isa = PBXFileReference; lastKnownFileType = text; path = "hooks-wrapper"; sourceTree = "<group>"; };
+		45CF93371CD391D500A0E3E5 /* init-hooks */ = {isa = PBXFileReference; lastKnownFileType = text; path = "init-hooks"; sourceTree = "<group>"; };
+		45CF93381CD391D500A0E3E5 /* sign_app.rb */ = {isa = PBXFileReference; lastKnownFileType = text.script.ruby; path = sign_app.rb; sourceTree = "<group>"; };
+		45CF93391CD391D500A0E3E5 /* update_build_date.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = update_build_date.sh; sourceTree = "<group>"; };
 		45F62C731688D1E500FE7692 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = AudioMate/Info.plist; sourceTree = SOURCE_ROOT; };
-		45FA30B4168F557800B3302C /* generate-dmg.rb */ = {isa = PBXFileReference; lastKnownFileType = text.script.ruby; name = "generate-dmg.rb"; path = "Scripts/generate-dmg.rb"; sourceTree = "<group>"; };
 		45FA5626166BC8C500C1D92D /* AudioMate.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AudioMate.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		45FA562A166BC8C500C1D92D /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		45FA562D166BC8C500C1D92D /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -546,6 +550,35 @@
 			name = Docs;
 			sourceTree = "<group>";
 		};
+		45CF93311CD391D500A0E3E5 /* bin */ = {
+			isa = PBXGroup;
+			children = (
+				45CF93321CD391D500A0E3E5 /* generate-dmg.rb */,
+				45CF93331CD391D500A0E3E5 /* git */,
+				45CF93381CD391D500A0E3E5 /* sign_app.rb */,
+				45CF93391CD391D500A0E3E5 /* update_build_date.sh */,
+			);
+			path = bin;
+			sourceTree = "<group>";
+		};
+		45CF93331CD391D500A0E3E5 /* git */ = {
+			isa = PBXGroup;
+			children = (
+				45CF93341CD391D500A0E3E5 /* hooks */,
+				45CF93361CD391D500A0E3E5 /* hooks-wrapper */,
+				45CF93371CD391D500A0E3E5 /* init-hooks */,
+			);
+			path = git;
+			sourceTree = "<group>";
+		};
+		45CF93341CD391D500A0E3E5 /* hooks */ = {
+			isa = PBXGroup;
+			children = (
+				45CF93351CD391D500A0E3E5 /* pre-commit-autoincrement-buildnumber */,
+			);
+			path = hooks;
+			sourceTree = "<group>";
+		};
 		45E483131CCD7464007FC820 /* Source */ = {
 			isa = PBXGroup;
 			children = (
@@ -594,25 +627,16 @@
 			name = Support;
 			sourceTree = "<group>";
 		};
-		45F62C2D1688CC5E00FE7692 /* Scripts */ = {
-			isa = PBXGroup;
-			children = (
-				45FA30B4168F557800B3302C /* generate-dmg.rb */,
-				45442A091B1F81FE0094EBE6 /* sign_app.rb */,
-			);
-			name = Scripts;
-			sourceTree = "<group>";
-		};
 		45FA561B166BC8C500C1D92D = {
 			isa = PBXGroup;
 			children = (
 				45FA5630166BC8C500C1D92D /* AudioMate */,
 				459D6DAC1687EF95007F2226 /* AudioMateLauncher */,
+				45CF93311CD391D500A0E3E5 /* bin */,
 				45A43ADD1CBAAE8C00C22D17 /* Cartfile Dependencies */,
 				45AB3A3B166E2BBA00B07220 /* Docs */,
 				45FA5629166BC8C500C1D92D /* Frameworks */,
 				45FA5627166BC8C500C1D92D /* Products */,
-				45F62C2D1688CC5E00FE7692 /* Scripts */,
 			);
 			sourceTree = "<group>";
 		};
