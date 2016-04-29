@@ -29,6 +29,11 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         // Setup logger
         setupLogger()
 
+        // Log app info
+        if let buildInfo = AppInfo.buildInfo() {
+            log.info(buildInfo)
+        }
+
         // Upon 1st launch, present a welcome panel
         if preferences.general.isFirstLaunch.value == true {
             log.debug("This is the 1st launch!")

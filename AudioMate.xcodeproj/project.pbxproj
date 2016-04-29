@@ -49,6 +49,7 @@
 		45A43AC11CBAAC8100C22D17 /* XCGLogger.framework in Copy Embedded Frameworks */ = {isa = PBXBuildFile; fileRef = 45A43AAF1CBAAC6C00C22D17 /* XCGLogger.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		45A43B251CBAB12200C22D17 /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 45A43B1A1CBAB11A00C22D17 /* Sparkle.framework */; };
 		45A43B261CBAB12200C22D17 /* Sparkle.framework in Copy Embedded Frameworks */ = {isa = PBXBuildFile; fileRef = 45A43B1A1CBAB11A00C22D17 /* Sparkle.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		45CF933B1CD395C300A0E3E5 /* AppInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45CF933A1CD395C300A0E3E5 /* AppInfo.swift */; };
 		45FA562B166BC8C500C1D92D /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 45FA562A166BC8C500C1D92D /* Cocoa.framework */; };
 		45FA5669166BD3FF00C1D92D /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 45FA5668166BD3FF00C1D92D /* CoreAudio.framework */; };
 /* End PBXBuildFile section */
@@ -363,6 +364,7 @@
 		45CF93371CD391D500A0E3E5 /* init-hooks */ = {isa = PBXFileReference; lastKnownFileType = text; path = "init-hooks"; sourceTree = "<group>"; };
 		45CF93381CD391D500A0E3E5 /* sign_app.rb */ = {isa = PBXFileReference; lastKnownFileType = text.script.ruby; path = sign_app.rb; sourceTree = "<group>"; };
 		45CF93391CD391D500A0E3E5 /* update_build_date.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = update_build_date.sh; sourceTree = "<group>"; };
+		45CF933A1CD395C300A0E3E5 /* AppInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppInfo.swift; sourceTree = "<group>"; };
 		45F62C731688D1E500FE7692 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = AudioMate/Info.plist; sourceTree = SOURCE_ROOT; };
 		45FA5626166BC8C500C1D92D /* AudioMate.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AudioMate.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		45FA562A166BC8C500C1D92D /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
@@ -619,6 +621,7 @@
 		45E483161CCD74C5007FC820 /* Support */ = {
 			isa = PBXGroup;
 			children = (
+				45CF933A1CD395C300A0E3E5 /* AppInfo.swift */,
 				453ABA701CCCDC18001E0DBA /* BindableUserDefaults.swift */,
 				45070F9E1CBAA1DA00601E4B /* FormattingUtils.swift */,
 				455F0C061C4E666500E59A99 /* UserNotificationDispatcher.swift */,
@@ -1096,6 +1099,7 @@
 				453ABA711CCCDC18001E0DBA /* BindableUserDefaults.swift in Sources */,
 				459E41031CCD2C2D0061303C /* NotificationPreferencesViewController.swift in Sources */,
 				455883CF1CB58EF600995D39 /* VolumeControlView.swift in Sources */,
+				45CF933B1CD395C300A0E3E5 /* AppInfo.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
