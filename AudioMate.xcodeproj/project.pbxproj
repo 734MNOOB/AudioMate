@@ -358,8 +358,6 @@
 		45A43B0D1CBAB11900C22D17 /* Sparkle.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Sparkle.xcodeproj; path = Carthage/Checkouts/Sparkle/Sparkle.xcodeproj; sourceTree = "<group>"; };
 		45AB3A3D166E2BD900B07220 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
 		45C39B261C5CEC9500F41A52 /* CHANGELOG.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = CHANGELOG.md; sourceTree = "<group>"; };
-		45D0372C1B1F477500AAB46B /* generate-plist-from-template.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; name = "generate-plist-from-template.sh"; path = "Scripts/generate-plist-from-template.sh"; sourceTree = "<group>"; };
-		45D037341B1F4E7600AAB46B /* update-build-number-and-version.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; name = "update-build-number-and-version.sh"; path = "Scripts/update-build-number-and-version.sh"; sourceTree = "<group>"; };
 		45F62C731688D1E500FE7692 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = AudioMate/Info.plist; sourceTree = SOURCE_ROOT; };
 		45FA30B4168F557800B3302C /* generate-dmg.rb */ = {isa = PBXFileReference; lastKnownFileType = text.script.ruby; name = "generate-dmg.rb"; path = "Scripts/generate-dmg.rb"; sourceTree = "<group>"; };
 		45FA5626166BC8C500C1D92D /* AudioMate.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AudioMate.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -601,8 +599,6 @@
 			children = (
 				45FA30B4168F557800B3302C /* generate-dmg.rb */,
 				45442A091B1F81FE0094EBE6 /* sign_app.rb */,
-				45D0372C1B1F477500AAB46B /* generate-plist-from-template.sh */,
-				45D037341B1F4E7600AAB46B /* update-build-number-and-version.sh */,
 			);
 			name = Scripts;
 			sourceTree = "<group>";
