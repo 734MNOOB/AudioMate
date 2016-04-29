@@ -29,8 +29,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         // Setup logger
         setupLogger()
 
-        // Log app info
-        if let buildInfo = AppInfo.buildInfo() {
+        // Log bundle info
+        if let buildInfo = BundleInfo.buildInfo() {
             log.info(buildInfo)
         }
 

@@ -1,5 +1,5 @@
 //
-//  AppInfo.swift
+//  BundleInfo.swift
 //  AudioMate
 //
 //  Created by Ruben Nine on 4/29/16.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct AppInfo {
+struct BundleInfo {
     private init() {}
 
     static let buildDate: String? = NSBundle.mainBundle().infoDictionary?["BuildDate"] as? String
@@ -17,10 +17,10 @@ struct AppInfo {
     static let buildNumber: String? = NSBundle.mainBundle().infoDictionary?["CFBundleVersion"] as? String
 
     static func buildInfo() -> String? {
-        guard let buildDate = buildDate, let appName = name, let version = version, let buildNumber = buildNumber else {
+        guard let buildDate = buildDate, let name = name, let version = version, let buildNumber = buildNumber else {
             return nil
         }
 
-        return "\(appName) \(version) (build \(buildNumber)) built on \(buildDate)."
+        return "\(name) \(version) (build \(buildNumber)) built on \(buildDate)."
     }
 }
