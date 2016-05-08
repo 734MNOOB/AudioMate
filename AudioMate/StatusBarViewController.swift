@@ -243,8 +243,9 @@ class StatusBarViewController: NSViewController {
             // TODO: Implement
             fallthrough
         case .SampleRateAndGraphicVolume:
-            // TODO: Implement
-            fallthrough
+            if subView as? VolumeStatusBarView == nil {
+                statusBarView.setSubView(VolumeStatusBarView(forAutoLayout: ()))
+            }
         case .None:
             statusBarView.hidden = true
             statusItem?.button?.image = NSImage(named: "Mini AudioMate")
