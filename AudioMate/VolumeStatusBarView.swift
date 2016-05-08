@@ -13,8 +13,15 @@ import AMCoreAudio
 class VolumeStatusBarView: NSView, StatusBarSubView {
     private var didSetupConstraints: Bool = false
 
-    private var inVolumeView = VolumeView(forAutoLayout: ())
-    private var outVolumeView = VolumeView(forAutoLayout: ())
+    private lazy var inVolumeView: VolumeView = {
+        $0.delegate = self
+        return $0
+    }(VolumeView(forAutoLayout: ()))
+
+    private lazy var outVolumeView: VolumeView = {
+        $0.delegate = self
+        return $0
+    }(VolumeView(forAutoLayout: ()))
 
     private var inVolumeLabel: AMTextField = {
         $0.editable = false
@@ -126,5 +133,31 @@ class VolumeStatusBarView: NSView, StatusBarSubView {
         }
         
         super.updateConstraints()
+    }
+
+    // PRAGMA MARK: Private Functions
+
+    private func changeVolume(delta: Float, direction: Direction) {
+        if let device = representedObject as? AMAudioDevice,
+            volume = device.masterVolumeForDirection(direction) {
+            device.setMasterVolume(volume + delta, forDirection: direction)
+        }
+    }
+}
+
+extension VolumeStatusBarView: VolumeViewDelegate {
+
+    func volumeViewScrolled(volumeView: VolumeView, delta: CGFloat) {
+        guard delta != 0 else { return }
+        let volumeDelta: Float = delta > 0 ? -0.1 : 0.1
+
+        switch volumeView {
+        case inVolumeView:
+            changeVolume(volumeDelta, direction: .Recording)
+        case outVolumeView:
+            changeVolume(volumeDelta, direction: .Playback)
+        default:
+            break
+        }
     }
 }

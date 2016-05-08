@@ -9,17 +9,16 @@
 import Cocoa
 import PureLayout_Mac
 
-class VolumeView: NSView {
-    private var needsLayerSetup: Bool = true
+protocol VolumeViewDelegate {
+    func volumeViewScrolled(volumeView: VolumeView, delta: CGFloat)
+}
 
+class VolumeView: NSView {
+    var delegate: VolumeViewDelegate?
+
+    private var needsLayerSetup: Bool = true
     private var maskLayer: CALayer?
     private var innerLayer: CALayer?
-
-    weak var representedObject: AnyObject? {
-        didSet {
-            updateUI()
-        }
-    }
 
     var shouldHighlight: Bool = false {
         didSet {
@@ -41,15 +40,6 @@ class VolumeView: NSView {
 
     override var allowsVibrancy: Bool { return true }
 
-    func updateUI() {
-        layer!.backgroundColor = (shouldHighlight ? NSColor.whiteColor().colorWithAlphaComponent(0.16) : NSColor.labelColor().colorWithAlphaComponent(0.16)).CGColor
-
-        innerLayer?.backgroundColor = (shouldHighlight ? NSColor.whiteColor() : NSColor.labelColor()).CGColor
-
-        let size = CGSize(width: bounds.size.width * value, height: bounds.size.height)
-        innerLayer?.frame = CGRect(origin: CGPointZero, size: size)
-    }
-
     override init(frame frameRect: NSRect) {
         super.init(frame: frameRect)
         wantsLayer = true
@@ -68,6 +58,24 @@ class VolumeView: NSView {
         }
     }
 
+    override func scrollWheel(theEvent: NSEvent) {
+        super.scrollWheel(theEvent)
+        delegate?.volumeViewScrolled(self, delta: theEvent.deltaY)
+    }
+
+    // MARK: Public Functions
+
+    func updateUI() {
+        layer!.backgroundColor = (shouldHighlight ? NSColor.whiteColor().colorWithAlphaComponent(0.16) : NSColor.labelColor().colorWithAlphaComponent(0.16)).CGColor
+
+        innerLayer?.backgroundColor = (shouldHighlight ? NSColor.whiteColor() : NSColor.labelColor()).CGColor
+
+        let size = CGSize(width: bounds.size.width * value, height: bounds.size.height)
+        innerLayer?.frame = CGRect(origin: CGPointZero, size: size)
+    }
+    
+    // MARK: Private Functions
+
     private func setupLayers() {
         assert(layer != nil, "We can not continue without a backing layer.")
 
@@ -76,12 +84,9 @@ class VolumeView: NSView {
             maskLayer?.frame = CGRect(origin: CGPointZero, size: volumeControlImage.size)
             maskLayer?.contents = volumeControlImage
 
-            layer!.backgroundColor = NSColor.labelColor().colorWithAlphaComponent(0.16).CGColor
-            layer!.mask = maskLayer
-
             innerLayer = CALayer()
-            innerLayer?.backgroundColor = NSColor.labelColor().CGColor
-            
+
+            layer!.mask = maskLayer
             layer!.addSublayer(innerLayer!)
         }
     }
