@@ -54,6 +54,8 @@ class StatusBarViewController: NSViewController {
         return view as! StatusBarView
     }
 
+    private var effectiveLayoutType: StatusBarViewLayoutType?
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -227,48 +229,55 @@ class StatusBarViewController: NSViewController {
             statusItem?.button?.image = nil
         }
 
-        statusItem?.length = NSVariableStatusItemLength
+        if effectiveLayoutType == layoutType {
+            subView?.updateUI()
+        } else {
+            statusItem?.length = NSVariableStatusItemLength
 
-        switch layoutType {
-        case .SampleRate:
-            if subView as? SampleRateStatusBarView == nil {
-                statusBarView.setSubView(SampleRateStatusBarView(forAutoLayout: ()))
+            switch layoutType {
+            case .SampleRate:
+                if subView as? SampleRateStatusBarView == nil {
+                    statusBarView.setSubView(SampleRateStatusBarView(forAutoLayout: ()))
+                }
+            case .SampleRateAndClockSource:
+                if subView as? SampleRateAndClockSourceStatusBarView == nil {
+                    statusBarView.setSubView(SampleRateAndClockSourceStatusBarView(forAutoLayout: ()))
+                }
+            case .SampleRateAndVolume:
+                // TODO: Implement
+                fallthrough
+            case .SampleRateAndPercentVolume:
+                // TODO: Implement
+                fallthrough
+            case .SampleRateAndGraphicVolume:
+                if subView as? VolumeStatusBarView == nil {
+                    statusBarView.setSubView(VolumeStatusBarView(forAutoLayout: ()))
+                }
+            case .None:
+                statusItem?.length = NSVariableStatusItemLength
+                statusBarView.hidden = true
+                statusItem?.button?.image = NSImage(named: "Mini AudioMate")
             }
-        case .SampleRateAndClockSource:
-            if subView as? SampleRateAndClockSourceStatusBarView == nil {
-                statusBarView.setSubView(SampleRateAndClockSourceStatusBarView(forAutoLayout: ()))
-            }
-        case .SampleRateAndVolume:
-            // TODO: Implement
-            fallthrough
-        case .SampleRateAndPercentVolume:
-            // TODO: Implement
-            fallthrough
-        case .SampleRateAndGraphicVolume:
-            if subView as? VolumeStatusBarView == nil {
-                statusBarView.setSubView(VolumeStatusBarView(forAutoLayout: ()))
-            }
-        case .None:
-            statusBarView.hidden = true
-            statusItem?.button?.image = NSImage(named: "Mini AudioMate")
-        }
 
-        if var subView = statusBarView.subView() {
-            if layoutType == .None {
-                subView.representedObject = nil
-            } else {
-                // Update subview represented object
-                subView.representedObject = featuredDevice
-                // Update statusbar view tooltip
-                if let deviceName = featuredDevice?.deviceName() {
-                    statusBarView.toolTip = String(format: NSLocalizedString("%@ is the device currently being displayed", comment: ""), deviceName)
+            effectiveLayoutType = layoutType
+
+            if var subView = statusBarView.subView() {
+                if layoutType == .None {
+                    subView.representedObject = nil
                 } else {
-                    statusBarView.toolTip = nil
+                    // Update subview represented object
+                    subView.representedObject = featuredDevice
+                    // Update statusbar view tooltip
+                    if let deviceName = featuredDevice?.deviceName() {
+                        statusBarView.toolTip = String(format: NSLocalizedString("%@ is the device currently being displayed", comment: ""), deviceName)
+                    } else {
+                        statusBarView.toolTip = nil
+                    }
                 }
             }
-        }
 
-        view.needsLayout = true
+            view.needsLayout = true
+        }
     }
 
     private func menuItemForDevice(audioDevice: AMAudioDevice) -> NSMenuItem? {
