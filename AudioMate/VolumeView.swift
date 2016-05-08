@@ -66,6 +66,8 @@ class VolumeView: NSView {
     // MARK: Public Functions
 
     func updateUI() {
+        displayIfNeeded()
+
         layer!.backgroundColor = (shouldHighlight ? NSColor.whiteColor().colorWithAlphaComponent(0.16) : NSColor.labelColor().colorWithAlphaComponent(0.16)).CGColor
 
         innerLayer?.backgroundColor = (shouldHighlight ? NSColor.whiteColor() : NSColor.labelColor()).CGColor

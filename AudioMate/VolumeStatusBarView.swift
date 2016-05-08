@@ -52,6 +52,7 @@ class VolumeStatusBarView: NSView, StatusBarSubView {
     var shouldHighlight: Bool = false {
         didSet {
             updateUI()
+
             inVolumeView.shouldHighlight = shouldHighlight
             outVolumeView.shouldHighlight = shouldHighlight
         }

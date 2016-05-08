@@ -44,7 +44,9 @@ class StatusBarViewController: NSViewController {
                 self.statusBarView.enabled = value
             })
 
-            updateStatusBarView()
+            dispatch_async(dispatch_get_main_queue()) { [weak self] in
+                self?.updateStatusBarView()
+            }
         }
     }
 
@@ -257,8 +259,6 @@ class StatusBarViewController: NSViewController {
             } else {
                 // Update subview represented object
                 subView.representedObject = featuredDevice
-                // Update subview UI
-                subView.updateUI()
                 // Update statusbar view tooltip
                 if let deviceName = featuredDevice?.deviceName() {
                     statusBarView.toolTip = String(format: NSLocalizedString("%@ is the device currently being displayed", comment: ""), deviceName)
@@ -804,7 +804,9 @@ extension StatusBarViewController : AMEventSubscriber {
                 updateDeviceMenuItem(audioDevice)
 
                 if preferences.general.featuredDevice.value.device == audioDevice {
-                    updateStatusBarView()
+                    dispatch_async(dispatch_get_main_queue()) { [weak self] in
+                        self?.updateStatusBarView()
+                    }
                 }
             case .AvailableNominalSampleRatesDidChange(let audioDevice):
                 updateDeviceMenuItem(audioDevice)
@@ -812,7 +814,9 @@ extension StatusBarViewController : AMEventSubscriber {
                 updateDeviceMenuItem(audioDevice)
 
                 if preferences.general.featuredDevice.value.device == audioDevice {
-                    updateStatusBarView()
+                    dispatch_async(dispatch_get_main_queue()) { [weak self] in
+                        self?.updateStatusBarView()
+                    }
                 }
             case .NameDidChange(let audioDevice):
                 // Because we want to keep items in alphabetical order and addDevice preserves the order,
@@ -827,7 +831,9 @@ extension StatusBarViewController : AMEventSubscriber {
                 }
 
                 if preferences.general.featuredDevice.value.device == audioDevice {
-                    updateStatusBarView()
+                    dispatch_async(dispatch_get_main_queue()) { [weak self] in
+                        self?.updateStatusBarView()
+                    }
                 }
             case .MuteDidChange(let audioDevice, _, let direction):
                 if let menuItem = menuItemForDevice(audioDevice) {
@@ -835,7 +841,9 @@ extension StatusBarViewController : AMEventSubscriber {
                 }
 
                 if preferences.general.featuredDevice.value.device == audioDevice {
-                    updateStatusBarView()
+                    dispatch_async(dispatch_get_main_queue()) { [weak self] in
+                        self?.updateStatusBarView()
+                    }
                 }
             default:
                 break
@@ -845,14 +853,19 @@ extension StatusBarViewController : AMEventSubscriber {
             case .DeviceListChanged(let addedDevices, let removedDevices):
                 for removedDevice in removedDevices {
                     removeDevice(removedDevice)
-                    updateStatusBarView()
+
+                    dispatch_async(dispatch_get_main_queue()) { [weak self] in
+                        self?.updateStatusBarView()
+                    }
                 }
 
                 for addedDevice in addedDevices {
                     addDevice(addedDevice)
 
                     if preferences.general.featuredDevice.value.device == addedDevice {
-                        updateStatusBarView()
+                        dispatch_async(dispatch_get_main_queue()) { [weak self] in
+                            self?.updateStatusBarView()
+                        }
                     }
                 }
             case .DefaultInputDeviceChanged(_):
