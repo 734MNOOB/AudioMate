@@ -62,11 +62,14 @@ class MasterVolumeGraphicView: NSView {
         delegate?.volumeViewScrolled(self, delta: theEvent.deltaY)
     }
 
+    override func drawRect(dirtyRect: NSRect) {
+        super.drawRect(dirtyRect)
+        updateUI()
+    }
+
     // MARK: Public Functions
 
     func updateUI() {
-        displayIfNeeded()
-
         layer!.backgroundColor = (shouldHighlight ? NSColor.whiteColor().colorWithAlphaComponent(0.16) : NSColor.labelColor().colorWithAlphaComponent(0.16)).CGColor
 
         innerLayer?.backgroundColor = (shouldHighlight ? NSColor.whiteColor() : NSColor.labelColor()).CGColor
@@ -74,7 +77,7 @@ class MasterVolumeGraphicView: NSView {
         let size = CGSize(width: bounds.size.width * value, height: bounds.size.height)
         innerLayer?.frame = CGRect(origin: CGPointZero, size: size)
     }
-    
+
     // MARK: Private Functions
 
     private func setupLayers() {

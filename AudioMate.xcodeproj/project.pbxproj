@@ -607,14 +607,14 @@
 			isa = PBXGroup;
 			children = (
 				45115FCA1CCFAA0B00FBF31F /* AMTextField.swift */,
+				4579E0331CE0973B00899972 /* MasterVolumeDecibelStatusBarView.swift */,
+				455D69641CDF4A34003738F6 /* MasterVolumeGraphicStatusBarView.swift */,
+				455D697B1CDF5DD6003738F6 /* MasterVolumeGraphicView.swift */,
+				4579E0351CE09AFB00899972 /* MasterVolumePercentStatusBarView.swift */,
 				45115FC01CCFA60900FBF31F /* SampleRateAndClockSourceStatusBarView.swift */,
 				45115FBE1CCFA50500FBF31F /* SampleRateStatusBarView.swift */,
 				4549E2581C4FF16A008D2119 /* StatusBarView.swift */,
 				455883CE1CB58EF600995D39 /* VolumeControlMenuItemView.swift */,
-				455D69641CDF4A34003738F6 /* MasterVolumeGraphicStatusBarView.swift */,
-				455D697B1CDF5DD6003738F6 /* MasterVolumeGraphicView.swift */,
-				4579E0331CE0973B00899972 /* MasterVolumeDecibelStatusBarView.swift */,
-				4579E0351CE09AFB00899972 /* MasterVolumePercentStatusBarView.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
