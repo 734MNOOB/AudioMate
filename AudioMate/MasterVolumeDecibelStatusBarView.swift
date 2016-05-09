@@ -90,8 +90,11 @@ class MasterVolumeDecibelStatusBarView: NSView, StatusBarSubView {
             let inVolume = device.masterVolumeInDecibelsForDirection(.Recording)
             let outVolume = device.masterVolumeInDecibelsForDirection(.Playback)
 
-            let inString = inVolume == nil ? "N/A IN" : String(format: "%.1fdBFS IN", inVolume!)
-            let outString = outVolume == nil ? "N/A OUT" : String(format: "%.1fdBFS OUT", outVolume!)
+            let inMuted = device.isMasterVolumeMutedForDirection(.Recording)
+            let outMuted = device.isMasterVolumeMutedForDirection(.Playback)
+
+            let inString = inVolume == nil ? "N/A IN" : (inMuted == true ? "MUTED IN" : String(format: "%.1fdBFS IN", inVolume!))
+            let outString = outVolume == nil ? "N/A OUT" : (outMuted == true ? "MUTED OUT" : String(format: "%.1fdBFS OUT", outVolume!))
 
             inVolumeLabel.attributedStringValue = attributedStringWithString(inString)
             outVolumeLabel.attributedStringValue = attributedStringWithString(outString)

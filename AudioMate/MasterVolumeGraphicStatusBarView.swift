@@ -74,6 +74,9 @@ class MasterVolumeGraphicStatusBarView: NSView, StatusBarSubView {
             let inVolume = device.masterVolumeForDirection(.Recording)
             let outVolume = device.masterVolumeForDirection(.Playback)
 
+            let inMuted = device.isMasterVolumeMutedForDirection(.Recording)
+            let outMuted = device.isMasterVolumeMutedForDirection(.Playback)
+
             inVolumeLabel.attributedStringValue = attributedStringWithString("IN")
             outVolumeLabel.attributedStringValue = attributedStringWithString("OUT")
 
@@ -82,6 +85,9 @@ class MasterVolumeGraphicStatusBarView: NSView, StatusBarSubView {
 
             inVolumeView.value = CGFloat(inVolume ?? 0.0)
             outVolumeView.value = CGFloat(outVolume ?? 0.0)
+
+            inVolumeView.enabled = inMuted == false
+            outVolumeView.enabled = outMuted == false
         }
     }
 

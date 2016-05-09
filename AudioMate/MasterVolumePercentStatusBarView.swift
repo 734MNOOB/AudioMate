@@ -90,8 +90,11 @@ class MasterVolumePercentStatusBarView: NSView, StatusBarSubView {
             let inVolume = device.masterVolumeForDirection(.Recording)
             let outVolume = device.masterVolumeForDirection(.Playback)
 
-            let inString = inVolume == nil ? "N/A IN" : String(format: "%.1f%% IN", inVolume! * 100)
-            let outString = outVolume == nil ? "N/A OUT" : String(format: "%.1f%% OUT", outVolume! * 100)
+            let inMuted = device.isMasterVolumeMutedForDirection(.Recording)
+            let outMuted = device.isMasterVolumeMutedForDirection(.Playback)
+
+            let inString = inVolume == nil ? "N/A IN" : (inMuted == true ? "MUTED IN" : String(format: "%.1f%% IN", inVolume! * 100))
+            let outString = outVolume == nil ? "N/A OUT" : (outMuted == true ? "MUTED OUT" : String(format: "%.1f%% OUT", outVolume! * 100))
 
             inVolumeLabel.attributedStringValue = attributedStringWithString(inString)
             outVolumeLabel.attributedStringValue = attributedStringWithString(outString)
