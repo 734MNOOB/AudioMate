@@ -90,8 +90,8 @@ class MasterVolumeDecibelStatusBarView: NSView, StatusBarSubView {
             let inVolume = device.masterVolumeInDecibelsForDirection(.Recording)
             let outVolume = device.masterVolumeInDecibelsForDirection(.Playback)
 
-            let inString = String(format: "%.1fdBFS IN", inVolume ?? 0.0)
-            let outString = String(format: "%.1fdBFS OUT", outVolume ?? 0.0)
+            let inString = inVolume == nil ? "N/A IN" : String(format: "%.1fdBFS IN", inVolume!)
+            let outString = outVolume == nil ? "N/A OUT" : String(format: "%.1fdBFS OUT", outVolume!)
 
             inVolumeLabel.attributedStringValue = attributedStringWithString(inString)
             outVolumeLabel.attributedStringValue = attributedStringWithString(outString)
