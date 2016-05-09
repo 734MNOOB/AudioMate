@@ -1,5 +1,5 @@
 //
-//  VolumeView.swift
+//  MasterVolumeGraphicView.swift
 //  AudioMate
 //
 //  Created by Ruben Nine on 08/05/16.
@@ -7,14 +7,13 @@
 //
 
 import Cocoa
-import PureLayout_Mac
 
-protocol VolumeViewDelegate {
-    func volumeViewScrolled(volumeView: VolumeView, delta: CGFloat)
+protocol MasterVolumeGraphicViewDelegate {
+    func volumeViewScrolled(volumeView: MasterVolumeGraphicView, delta: CGFloat)
 }
 
-class VolumeView: NSView {
-    var delegate: VolumeViewDelegate?
+class MasterVolumeGraphicView: NSView {
+    var delegate: MasterVolumeGraphicViewDelegate?
 
     private var needsLayerSetup: Bool = true
     private var maskLayer: CALayer?

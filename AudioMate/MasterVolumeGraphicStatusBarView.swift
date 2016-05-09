@@ -1,5 +1,5 @@
 //
-//  VolumeStatusBarView.swift
+//  MasterVolumeGraphicStatusBarView.swift
 //  AudioMate
 //
 //  Created by Ruben Nine on 08/05/16.
@@ -10,18 +10,18 @@ import Cocoa
 import PureLayout_Mac
 import AMCoreAudio
 
-class VolumeStatusBarView: NSView, StatusBarSubView {
+class MasterVolumeGraphicStatusBarView: NSView, StatusBarSubView {
     private var didSetupConstraints: Bool = false
 
-    private lazy var inVolumeView: VolumeView = {
+    private lazy var inVolumeView: MasterVolumeGraphicView = {
         $0.delegate = self
         return $0
-    }(VolumeView(forAutoLayout: ()))
+    }(MasterVolumeGraphicView(forAutoLayout: ()))
 
-    private lazy var outVolumeView: VolumeView = {
+    private lazy var outVolumeView: MasterVolumeGraphicView = {
         $0.delegate = self
         return $0
-    }(VolumeView(forAutoLayout: ()))
+    }(MasterVolumeGraphicView(forAutoLayout: ()))
 
     private var inVolumeLabel: AMTextField = {
         $0.editable = false
@@ -76,6 +76,9 @@ class VolumeStatusBarView: NSView, StatusBarSubView {
 
             inVolumeLabel.attributedStringValue = attributedStringWithString("IN")
             outVolumeLabel.attributedStringValue = attributedStringWithString("OUT")
+
+            inVolumeLabel.alphaValue = inVolume == nil ? 0.33 : 1.0
+            outVolumeLabel.alphaValue = outVolume == nil ? 0.33 : 1.0
 
             inVolumeView.value = CGFloat(inVolume ?? 0.0)
             outVolumeView.value = CGFloat(outVolume ?? 0.0)
@@ -146,9 +149,9 @@ class VolumeStatusBarView: NSView, StatusBarSubView {
     }
 }
 
-extension VolumeStatusBarView: VolumeViewDelegate {
+extension MasterVolumeGraphicStatusBarView: MasterVolumeGraphicViewDelegate {
 
-    func volumeViewScrolled(volumeView: VolumeView, delta: CGFloat) {
+    func volumeViewScrolled(volumeView: MasterVolumeGraphicView, delta: CGFloat) {
         guard delta != 0 else { return }
         let volumeDelta: Float = delta > 0 ? -0.1 : 0.1
 

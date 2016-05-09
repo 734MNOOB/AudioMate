@@ -24,20 +24,20 @@ class GeneralPreferencesViewController: NSViewController {
         item1.tag = StatusBarViewLayoutType.SampleRate.rawValue
 
         let item2 = NSMenuItem()
-        item2.title = NSLocalizedString("Sample Rate + Master Output Volume", comment: "")
-        item2.tag = StatusBarViewLayoutType.SampleRateAndVolume.rawValue
+        item2.title = NSLocalizedString("Sample Rate + Clock Source", comment: "")
+        item2.tag = StatusBarViewLayoutType.SampleRateAndClockSource.rawValue
 
         let item3 = NSMenuItem()
-        item3.title = NSLocalizedString("Sample Rate + Master Output Volume Graphic", comment: "")
-        item3.tag = StatusBarViewLayoutType.SampleRateAndGraphicVolume.rawValue
+        item3.title = NSLocalizedString("Master Volume (Decibels)", comment: "")
+        item3.tag = StatusBarViewLayoutType.MasterVolumeDecibels.rawValue
 
         let item4 = NSMenuItem()
-        item4.title = NSLocalizedString("Sample Rate + Master Output Volume Percent", comment: "")
-        item4.tag = StatusBarViewLayoutType.SampleRateAndPercentVolume.rawValue
+        item4.title = NSLocalizedString("Master Volume (Percent)", comment: "")
+        item4.tag = StatusBarViewLayoutType.MasterVolumePercent.rawValue
 
         let item5 = NSMenuItem()
-        item5.title = NSLocalizedString("Sample Rate + Clock Source", comment: "")
-        item5.tag = StatusBarViewLayoutType.SampleRateAndClockSource.rawValue
+        item5.title = NSLocalizedString("Master Volume (Graphic)", comment: "")
+        item5.tag = StatusBarViewLayoutType.MasterVolumeGraphic.rawValue
 
         deviceInformationToShowPopUpButton.menu?.addItem(item1)
         deviceInformationToShowPopUpButton.menu?.addItem(item2)

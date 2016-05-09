@@ -17,10 +17,10 @@ private var kDeviceMasterOutputVolumeControlMenuItem = 1002
 enum StatusBarViewLayoutType: Int {
     case None = 0
     case SampleRate
-    case SampleRateAndVolume
-    case SampleRateAndGraphicVolume
-    case SampleRateAndPercentVolume
     case SampleRateAndClockSource
+    case MasterVolumeDecibels
+    case MasterVolumePercent
+    case MasterVolumeGraphic
 }
 
 class StatusBarViewController: NSViewController {
@@ -243,15 +243,17 @@ class StatusBarViewController: NSViewController {
                 if subView as? SampleRateAndClockSourceStatusBarView == nil {
                     statusBarView.setSubView(SampleRateAndClockSourceStatusBarView(forAutoLayout: ()))
                 }
-            case .SampleRateAndVolume:
-                // TODO: Implement
-                fallthrough
-            case .SampleRateAndPercentVolume:
-                // TODO: Implement
-                fallthrough
-            case .SampleRateAndGraphicVolume:
-                if subView as? VolumeStatusBarView == nil {
-                    statusBarView.setSubView(VolumeStatusBarView(forAutoLayout: ()))
+            case .MasterVolumeDecibels:
+                if subView as? MasterVolumeDecibelStatusBarView == nil {
+                    statusBarView.setSubView(MasterVolumeDecibelStatusBarView(forAutoLayout: ()))
+                }
+            case .MasterVolumePercent:
+                if subView as? MasterVolumePercentStatusBarView == nil {
+                    statusBarView.setSubView(MasterVolumePercentStatusBarView(forAutoLayout: ()))
+                }
+            case .MasterVolumeGraphic:
+                if subView as? MasterVolumeGraphicStatusBarView == nil {
+                    statusBarView.setSubView(MasterVolumeGraphicStatusBarView(forAutoLayout: ()))
                 }
             case .None:
                 statusItem?.length = NSVariableStatusItemLength
@@ -260,24 +262,24 @@ class StatusBarViewController: NSViewController {
             }
 
             effectiveLayoutType = layoutType
+        }
 
-            if var subView = statusBarView.subView() {
-                if layoutType == .None {
-                    subView.representedObject = nil
+        if var subView = statusBarView.subView() {
+            if layoutType == .None {
+                subView.representedObject = nil
+            } else {
+                // Update subview represented object
+                subView.representedObject = featuredDevice
+                // Update statusbar view tooltip
+                if let deviceName = featuredDevice?.deviceName() {
+                    statusBarView.toolTip = String(format: NSLocalizedString("%@ is the device currently being displayed", comment: ""), deviceName)
                 } else {
-                    // Update subview represented object
-                    subView.representedObject = featuredDevice
-                    // Update statusbar view tooltip
-                    if let deviceName = featuredDevice?.deviceName() {
-                        statusBarView.toolTip = String(format: NSLocalizedString("%@ is the device currently being displayed", comment: ""), deviceName)
-                    } else {
-                        statusBarView.toolTip = nil
-                    }
+                    statusBarView.toolTip = nil
                 }
             }
-
-            view.needsLayout = true
         }
+
+        view.needsLayout = true
     }
 
     private func menuItemForDevice(audioDevice: AMAudioDevice) -> NSMenuItem? {
@@ -291,7 +293,7 @@ class StatusBarViewController: NSViewController {
             return
         }
 
-        if let volumeControlView = (item.view as? VolumeControlView) ?? (instantiateViewFromNibNamed("VolumeControlView") as? VolumeControlView) {
+        if let volumeControlView = (item.view as? VolumeControlMenuItemView) ?? (instantiateViewFromNibNamed("VolumeControlMenuItemView") as? VolumeControlMenuItemView) {
             // Set volume slide ranges
             volumeControlView.volumeSlider.minValue = 0.0
             volumeControlView.volumeSlider.maxValue = 1.0
@@ -538,7 +540,7 @@ class StatusBarViewController: NSViewController {
             }
 
             if let volumeControlMenuItem = menuItem.submenu?.itemWithTag(menuItemControlTag),
-                   view = volumeControlMenuItem.view as? VolumeControlView,
+                   view = volumeControlMenuItem.view as? VolumeControlMenuItemView,
                    volume = device.masterVolumeForDirection(direction) {
                 let formatString: String
                 let dBValue = device.masterVolumeInDecibelsForDirection(direction) ?? 0.0
@@ -549,7 +551,7 @@ class StatusBarViewController: NSViewController {
                 case .Playback:
                     formatString = NSLocalizedString("Master Output Volume is %.1fdBFS", comment: "")
                 default:
-                    formatString = "%.1fdBfs"
+                    formatString = "%.1fdBFS"
                 }
 
                 view.volumeLabel.stringValue = String(format: formatString, dBValue)

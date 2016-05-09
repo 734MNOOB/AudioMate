@@ -1,5 +1,5 @@
 //
-//  VolumeControlView.swift
+//  VolumeControlMenuItemView.swift
 //  AudioMate
 //
 //  Created by Ruben Nine on 06/04/16.
@@ -8,7 +8,7 @@
 
 import Cocoa
 
-class VolumeControlView: NSView {
+class VolumeControlMenuItemView: NSView {
     @IBOutlet var volumeSlider: NSSlider!
     @IBOutlet var muteCheckbox: NSButton!
     @IBOutlet var volumeLabel: NSTextField!
