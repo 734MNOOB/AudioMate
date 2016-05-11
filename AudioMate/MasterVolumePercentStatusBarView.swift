@@ -99,8 +99,8 @@ class MasterVolumePercentStatusBarView: NSView, StatusBarSubView {
             inVolumeLabel.attributedStringValue = attributedStringWithString(inString)
             outVolumeLabel.attributedStringValue = attributedStringWithString(outString)
 
-            inVolumeLabel.alphaValue = inVolume == nil ? 0.33 : 1.0
-            outVolumeLabel.alphaValue = outVolume == nil ? 0.33 : 1.0
+            inVolumeLabel.alphaValue = (inVolume == nil || inMuted == true) ? 0.33 : 1.0
+            outVolumeLabel.alphaValue = (outVolume == nil || outMuted == true) ? 0.33 : 1.0
         }
     }
 

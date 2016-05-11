@@ -80,8 +80,8 @@ class MasterVolumeGraphicStatusBarView: NSView, StatusBarSubView {
             inVolumeLabel.attributedStringValue = attributedStringWithString("IN")
             outVolumeLabel.attributedStringValue = attributedStringWithString("OUT")
 
-            inVolumeLabel.alphaValue = inVolume == nil ? 0.33 : 1.0
-            outVolumeLabel.alphaValue = outVolume == nil ? 0.33 : 1.0
+            inVolumeLabel.alphaValue = (inVolume == nil || inMuted == true) ? 0.33 : 1.0
+            outVolumeLabel.alphaValue = (outVolume == nil || outMuted == true) ? 0.33 : 1.0
 
             inVolumeView.value = CGFloat(inVolume ?? 0.0)
             outVolumeView.value = CGFloat(outVolume ?? 0.0)
