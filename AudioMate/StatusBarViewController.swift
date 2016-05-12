@@ -8,7 +8,6 @@
 
 import Cocoa
 import AMCoreAudio
-import Sparkle
 
 private var kPreferencesSeparator = 1000
 private var kDeviceMasterInputVolumeControlMenuItem = 1001
@@ -59,9 +58,6 @@ class StatusBarViewController: NSViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Set SUUpdate delegate
-        SUUpdater.sharedUpdater().delegate = self
-
         // Set mainMenu delegate
         mainMenu.delegate = self
 
@@ -79,14 +75,6 @@ class StatusBarViewController: NSViewController {
         preferencesMenuItem.keyEquivalentModifierMask = Int(NSEventModifierFlags.CommandKeyMask.rawValue)
 
         mainMenu.addItem(preferencesMenuItem)
-
-        let checkForUpdatesMenuItem = NSMenuItem()
-
-        checkForUpdatesMenuItem.title = NSLocalizedString("Check for Updates…", comment: "")
-        checkForUpdatesMenuItem.target = self
-        checkForUpdatesMenuItem.action = #selector(checkForUpdates(_:))
-
-        mainMenu.addItem(checkForUpdatesMenuItem)
         mainMenu.addItem(NSMenuItem.separatorItem())
 
         let quitMenuItem = NSMenuItem()
@@ -664,17 +652,6 @@ class StatusBarViewController: NSViewController {
 
     // MARK: - Actions
 
-    @IBAction func checkForUpdates(sender: AnyObject) {
-        statusItem?.button?.bnd_enabled.value = false
-
-        // Transform application to foreground mode
-        Utils.transformAppIntoForegroundMode()
-        // Activate (give focus to) our app
-        NSApplication.sharedApplication().activateIgnoringOtherApps(true)
-
-        SUUpdater.sharedUpdater().checkForUpdates(sender)
-    }
-
     @IBAction func showPreferences(sender: AnyObject) {
         performSegueWithIdentifier("showPreferences", sender: self)
     }
@@ -783,24 +760,6 @@ extension StatusBarViewController: NSMenuDelegate {
         if var subView = statusBarView.subView() {
             subView.shouldHighlight = true
         }
-    }
-}
-
-extension StatusBarViewController: SUUpdaterDelegate {
-    func updaterWillShowModalAlert(updater: SUUpdater!) {
-        statusItem?.button?.bnd_enabled.value = false
-
-        // Transform application to foreground mode
-        Utils.transformAppIntoForegroundMode()
-        // Activate (give focus to) our app
-        NSApplication.sharedApplication().activateIgnoringOtherApps(true)
-    }
-
-    func updaterDidShowModalAlert(updater: SUUpdater!) {
-        // Transform application to LSUIElement mode
-        Utils.transformAppIntoUIElementMode()
-
-        statusItem?.button?.bnd_enabled.value = true
     }
 }
 

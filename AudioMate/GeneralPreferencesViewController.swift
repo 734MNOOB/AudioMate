@@ -7,11 +7,14 @@
 //
 
 import Cocoa
+import Sparkle
+import AMCoreAudio
 
 class GeneralPreferencesViewController: NSViewController {
 
     @IBOutlet var deviceInformationToShowPopUpButton: NSPopUpButton!
     @IBOutlet var startAtLoginButton: NSButton!
+    @IBOutlet var buildInformationLabel: NSTextField!
 
     private let startAtLoginController = StartAtLoginController(identifier: "io.9labs.AudioMateLauncher")
 
@@ -51,6 +54,10 @@ class GeneralPreferencesViewController: NSViewController {
         deviceInformationToShowPopUpButton.selectItemWithTag(preferences.general.layoutType.value.rawValue)
 
         startAtLoginButton.state = startAtLoginController.startAtLogin ? NSOnState : NSOffState
+
+        if let buildInfo = BundleInfo.buildInfo() {
+            buildInformationLabel.stringValue = buildInfo
+        }
     }
 
     override func viewWillAppear() {
@@ -68,5 +75,9 @@ class GeneralPreferencesViewController: NSViewController {
                 preferences.general.layoutType.value = layoutType
             }
         }
+    }
+
+    @IBAction func checkForUpdates(sender: AnyObject) {
+        SUUpdater.sharedUpdater().checkForUpdates(sender)
     }
 }

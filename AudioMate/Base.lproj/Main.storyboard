@@ -692,14 +692,14 @@
             <objects>
                 <viewController id="3Rq-8W-7jd" customClass="GeneralPreferencesViewController" customModule="AudioMate" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="eiV-S3-ZYg">
-                        <rect key="frame" x="0.0" y="0.0" width="450" height="120"/>
+                        <rect key="frame" x="0.0" y="0.0" width="450" height="180"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="6Da-EW-OLJ">
-                                <rect key="frame" x="18" y="83" width="252" height="17"/>
+                                <rect key="frame" x="18" y="143" width="252" height="17"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="248" id="5lT-FY-k8a"/>
-                                    <constraint firstAttribute="height" constant="17" id="ICM-QI-3fn"/>
+                                    <constraint firstAttribute="height" constant="17" id="Shk-RH-O9k"/>
+                                    <constraint firstAttribute="width" constant="248" id="ogX-DW-09P"/>
                                 </constraints>
                                 <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Device information to show in status bar:" id="yMJ-Ih-Rue">
                                     <font key="font" metaFont="smallSystem"/>
@@ -718,32 +718,56 @@
                                 </connections>
                             </button>
                             <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="pjA-xI-JYq">
-                                <rect key="frame" x="18" y="51" width="425" height="26"/>
+                                <rect key="frame" x="18" y="111" width="425" height="26"/>
                                 <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" id="M5q-bZ-juf">
                                     <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="menu"/>
                                     <menu key="menu" title="OtherViews" id="lYI-00-y4b"/>
                                 </popUpButtonCell>
                             </popUpButton>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="PdM-1c-i27">
+                                <rect key="frame" x="18" y="83" width="424" height="14"/>
+                                <textFieldCell key="cell" allowsUndo="NO" sendsActionOnEndEditing="YES" title="Build information" id="Prw-xw-LrZ">
+                                    <font key="font" metaFont="smallSystem"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="wVt-Tp-NsS">
+                                <rect key="frame" x="14" y="47" width="152" height="32"/>
+                                <buttonCell key="cell" type="push" title="Check for updates" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="zG2-od-Oi6">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="checkForUpdates:" target="3Rq-8W-7jd" id="yX5-eS-U28"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <constraints>
-                            <constraint firstItem="pjA-xI-JYq" firstAttribute="leading" secondItem="fFe-jz-g3F" secondAttribute="leading" id="2g3-Be-dKa"/>
-                            <constraint firstAttribute="trailing" secondItem="pjA-xI-JYq" secondAttribute="trailing" constant="10" id="5CT-2a-DV2"/>
-                            <constraint firstItem="6Da-EW-OLJ" firstAttribute="leading" secondItem="eiV-S3-ZYg" secondAttribute="leading" constant="20" symbolic="YES" id="Abb-GA-5No"/>
-                            <constraint firstItem="pjA-xI-JYq" firstAttribute="top" secondItem="6Da-EW-OLJ" secondAttribute="bottom" constant="8" id="FHE-rW-olw"/>
-                            <constraint firstItem="fFe-jz-g3F" firstAttribute="top" secondItem="pjA-xI-JYq" secondAttribute="bottom" constant="20" id="Niq-kf-3Mw"/>
-                            <constraint firstItem="6Da-EW-OLJ" firstAttribute="top" secondItem="eiV-S3-ZYg" secondAttribute="top" constant="20" symbolic="YES" id="OrW-kI-ZGl"/>
-                            <constraint firstItem="6Da-EW-OLJ" firstAttribute="leading" secondItem="pjA-xI-JYq" secondAttribute="leading" id="dOV-zZ-9kI"/>
+                            <constraint firstItem="wVt-Tp-NsS" firstAttribute="leading" secondItem="fFe-jz-g3F" secondAttribute="leading" id="4gf-qO-tOx"/>
+                            <constraint firstItem="PdM-1c-i27" firstAttribute="trailing" secondItem="pjA-xI-JYq" secondAttribute="trailing" id="F32-LO-I8V"/>
+                            <constraint firstItem="fFe-jz-g3F" firstAttribute="top" secondItem="wVt-Tp-NsS" secondAttribute="bottom" constant="20" symbolic="YES" id="SOg-wO-NZk"/>
+                            <constraint firstItem="wVt-Tp-NsS" firstAttribute="top" secondItem="PdM-1c-i27" secondAttribute="bottom" constant="8" symbolic="YES" id="VRq-6w-Ktg"/>
+                            <constraint firstItem="6Da-EW-OLJ" firstAttribute="leading" secondItem="eiV-S3-ZYg" secondAttribute="leading" constant="20" symbolic="YES" id="Vo4-c8-Z9L"/>
+                            <constraint firstAttribute="bottom" secondItem="fFe-jz-g3F" secondAttribute="bottom" constant="20" symbolic="YES" id="Wp0-Qw-EH7"/>
+                            <constraint firstItem="pjA-xI-JYq" firstAttribute="top" secondItem="6Da-EW-OLJ" secondAttribute="bottom" constant="8" id="d7P-Zw-agP"/>
+                            <constraint firstItem="6Da-EW-OLJ" firstAttribute="leading" secondItem="pjA-xI-JYq" secondAttribute="leading" id="dE7-Ji-itj"/>
+                            <constraint firstItem="pjA-xI-JYq" firstAttribute="leading" secondItem="wVt-Tp-NsS" secondAttribute="leading" id="erw-EO-LLw"/>
+                            <constraint firstAttribute="trailing" secondItem="pjA-xI-JYq" secondAttribute="trailing" constant="10" id="iIT-Sw-IPp"/>
+                            <constraint firstItem="6Da-EW-OLJ" firstAttribute="top" secondItem="eiV-S3-ZYg" secondAttribute="top" constant="20" symbolic="YES" id="mSq-8k-ifZ"/>
+                            <constraint firstItem="PdM-1c-i27" firstAttribute="leading" secondItem="wVt-Tp-NsS" secondAttribute="leading" id="uRx-Qe-t9n"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="buildInformationLabel" destination="PdM-1c-i27" id="fpN-8s-sSd"/>
                         <outlet property="deviceInformationToShowPopUpButton" destination="pjA-xI-JYq" id="anp-h1-34a"/>
                         <outlet property="startAtLoginButton" destination="fFe-jz-g3F" id="sKz-40-bhs"/>
                     </connections>
                 </viewController>
                 <customObject id="37n-bN-wTI" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2169" y="499"/>
+            <point key="canvasLocation" x="2169" y="529"/>
         </scene>
         <!--Notification Preferences View Controller-->
         <scene sceneID="AU1-OI-4ta">
@@ -862,7 +886,7 @@
                     </view>
                     <connections>
                         <outlet property="view" destination="gIP-Ps-IHQ" id="bH4-Eq-EAC"/>
-                        <segue destination="W6d-GT-x8t" kind="modal" identifier="showPreferences" id="Vts-vV-5AO"/>
+                        <segue destination="W6d-GT-x8t" kind="show" identifier="showPreferences" id="Vts-vV-5AO"/>
                     </connections>
                 </viewController>
                 <customObject id="05k-Cr-mSZ" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
