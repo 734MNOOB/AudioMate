@@ -33,6 +33,8 @@
 		45772C4E184690BE00D07EF6 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 45772C4D184690BE00D07EF6 /* Images.xcassets */; };
 		4579E0341CE0973B00899972 /* MasterVolumeDecibelStatusBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4579E0331CE0973B00899972 /* MasterVolumeDecibelStatusBarView.swift */; };
 		4579E0361CE09AFB00899972 /* MasterVolumePercentStatusBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4579E0351CE09AFB00899972 /* MasterVolumePercentStatusBarView.swift */; };
+		457FA76A1D40B7B000B3884C /* PureLayout_Mac.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 45A43A9A1CBAAC6500C22D17 /* PureLayout_Mac.framework */; };
+		457FA76B1D40B7B000B3884C /* PureLayout_Mac.framework in Copy Embedded Frameworks */ = {isa = PBXBuildFile; fileRef = 45A43A9A1CBAAC6500C22D17 /* PureLayout_Mac.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		4589AE011C52B405009BE875 /* StatusBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4589AE001C52B405009BE875 /* StatusBarViewController.swift */; };
 		458E355D196EB56000C7C630 /* AMConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = 458E355C196EB56000C7C630 /* AMConfig.plist */; };
 		458E95B9185B50E500A0EFE6 /* AudioMateLauncher.app in Copy AudioMateLauncher into Contents/Library/LoginItems */ = {isa = PBXBuildFile; fileRef = 459D6DA91687EF95007F2226 /* AudioMateLauncher.app */; };
@@ -47,8 +49,6 @@
 		45A36ADA16BF098100A82041 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 45A36AD916BF098100A82041 /* Security.framework */; };
 		45A43AB81CBAAC8100C22D17 /* AMCoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 45A43A8B1CBAAC5F00C22D17 /* AMCoreAudio.framework */; };
 		45A43AB91CBAAC8100C22D17 /* AMCoreAudio.framework in Copy Embedded Frameworks */ = {isa = PBXBuildFile; fileRef = 45A43A8B1CBAAC5F00C22D17 /* AMCoreAudio.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		45A43ABC1CBAAC8100C22D17 /* PureLayout_Mac.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 45A43A9A1CBAAC6500C22D17 /* PureLayout_Mac.framework */; };
-		45A43ABD1CBAAC8100C22D17 /* PureLayout_Mac.framework in Copy Embedded Frameworks */ = {isa = PBXBuildFile; fileRef = 45A43A9A1CBAAC6500C22D17 /* PureLayout_Mac.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		45A43AC01CBAAC8100C22D17 /* XCGLogger.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 45A43AAF1CBAAC6C00C22D17 /* XCGLogger.framework */; };
 		45A43AC11CBAAC8100C22D17 /* XCGLogger.framework in Copy Embedded Frameworks */ = {isa = PBXBuildFile; fileRef = 45A43AAF1CBAAC6C00C22D17 /* XCGLogger.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		45A43B251CBAB12200C22D17 /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 45A43B1A1CBAB11A00C22D17 /* Sparkle.framework */; };
@@ -114,6 +114,34 @@
 			proxyType = 1;
 			remoteGlobalIDString = DCA979681A83C3A100DD4A30;
 			remoteInfo = BondOSX;
+		};
+		457FA7551D40B79600B3884C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 45A43A8E1CBAAC6500C22D17 /* PureLayout.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 164C8B831C0D36500007A6B1;
+			remoteInfo = PureLayout_tvOS;
+		};
+		457FA7571D40B79600B3884C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 45A43A8E1CBAAC6500C22D17 /* PureLayout.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = A7D4967E1B7B084800A74818;
+			remoteInfo = "Example-iOS-Xcode7";
+		};
+		457FA7591D40B79600B3884C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 45A43A8E1CBAAC6500C22D17 /* PureLayout.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 164C8B4E1C0D354E0007A6B1;
+			remoteInfo = "Example-tvOS";
+		};
+		457FA76C1D40B7B000B3884C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 45A43A8E1CBAAC6500C22D17 /* PureLayout.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = B1046AD71A7F32790017187F;
+			remoteInfo = PureLayout_Mac;
 		};
 		45A43A8A1CBAAC5F00C22D17 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -220,13 +248,6 @@
 			remoteGlobalIDString = 454D24591B4BE40E0043FA12;
 			remoteInfo = AMCoreAudio;
 		};
-		45A43ABE1CBAAC8100C22D17 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 45A43A8E1CBAAC6500C22D17 /* PureLayout.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = B1046AD71A7F32790017187F;
-			remoteInfo = PureLayout_Mac;
-		};
 		45A43AC21CBAAC8100C22D17 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 45A43AA31CBAAC6C00C22D17 /* XCGLogger.xcodeproj */;
@@ -292,10 +313,10 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				45A43ABD1CBAAC8100C22D17 /* PureLayout_Mac.framework in Copy Embedded Frameworks */,
 				45A43AB91CBAAC8100C22D17 /* AMCoreAudio.framework in Copy Embedded Frameworks */,
 				45A43AC11CBAAC8100C22D17 /* XCGLogger.framework in Copy Embedded Frameworks */,
 				45A43B261CBAB12200C22D17 /* Sparkle.framework in Copy Embedded Frameworks */,
+				457FA76B1D40B7B000B3884C /* PureLayout_Mac.framework in Copy Embedded Frameworks */,
 				453ABA6C1CCCDBC8001E0DBA /* Bond.framework in Copy Embedded Frameworks */,
 			);
 			name = "Copy Embedded Frameworks";
@@ -398,10 +419,10 @@
 				459D6DC41687F00D007F2226 /* ServiceManagement.framework in Frameworks */,
 				45FA5669166BD3FF00C1D92D /* CoreAudio.framework in Frameworks */,
 				45FA562B166BC8C500C1D92D /* Cocoa.framework in Frameworks */,
-				45A43ABC1CBAAC8100C22D17 /* PureLayout_Mac.framework in Frameworks */,
 				45A43B251CBAB12200C22D17 /* Sparkle.framework in Frameworks */,
 				45A43AB81CBAAC8100C22D17 /* AMCoreAudio.framework in Frameworks */,
 				45A43AC01CBAAC8100C22D17 /* XCGLogger.framework in Frameworks */,
+				457FA76A1D40B7B000B3884C /* PureLayout_Mac.framework in Frameworks */,
 				453ABA6B1CCCDBC8001E0DBA /* Bond.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -490,10 +511,13 @@
 		45A43A8F1CBAAC6500C22D17 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				45A43A981CBAAC6500C22D17 /* PureLayout_iOS.framework */,
+				45A43A981CBAAC6500C22D17 /* PureLayout.framework */,
 				45A43A9A1CBAAC6500C22D17 /* PureLayout_Mac.framework */,
+				457FA7561D40B79600B3884C /* PureLayout.framework */,
 				45A43A9C1CBAAC6500C22D17 /* Example-iOS.app */,
+				457FA7581D40B79600B3884C /* Example-iOS-Xcode7.app */,
 				45A43A9E1CBAAC6500C22D17 /* Example-Mac.app */,
+				457FA75A1D40B79600B3884C /* Example-tvOS.app */,
 				45A43AA01CBAAC6500C22D17 /* PureLayoutTests-iOS.xctest */,
 				45A43AA21CBAAC6500C22D17 /* PureLayoutTests-Mac.xctest */,
 			);
@@ -745,10 +769,10 @@
 			);
 			dependencies = (
 				45A43ABB1CBAAC8100C22D17 /* PBXTargetDependency */,
-				45A43ABF1CBAAC8100C22D17 /* PBXTargetDependency */,
 				45A43AC31CBAAC8100C22D17 /* PBXTargetDependency */,
 				45A43B281CBAB12200C22D17 /* PBXTargetDependency */,
 				453ABA6E1CCCDBC8001E0DBA /* PBXTargetDependency */,
+				457FA76D1D40B7B000B3884C /* PBXTargetDependency */,
 			);
 			name = AudioMate;
 			productName = AudioDeviceNotifier;
@@ -912,6 +936,27 @@
 			remoteRef = 453ABA691CCCDBB1001E0DBA /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
+		457FA7561D40B79600B3884C /* PureLayout.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = PureLayout.framework;
+			remoteRef = 457FA7551D40B79600B3884C /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		457FA7581D40B79600B3884C /* Example-iOS-Xcode7.app */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.application;
+			path = "Example-iOS-Xcode7.app";
+			remoteRef = 457FA7571D40B79600B3884C /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		457FA75A1D40B79600B3884C /* Example-tvOS.app */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.application;
+			path = "Example-tvOS.app";
+			remoteRef = 457FA7591D40B79600B3884C /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 		45A43A8B1CBAAC5F00C22D17 /* AMCoreAudio.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
@@ -926,10 +971,10 @@
 			remoteRef = 45A43A8C1CBAAC5F00C22D17 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		45A43A981CBAAC6500C22D17 /* PureLayout_iOS.framework */ = {
+		45A43A981CBAAC6500C22D17 /* PureLayout.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
-			path = PureLayout_iOS.framework;
+			path = PureLayout.framework;
 			remoteRef = 45A43A971CBAAC6500C22D17 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
@@ -1127,15 +1172,15 @@
 			name = BondOSX;
 			targetProxy = 453ABA6D1CCCDBC8001E0DBA /* PBXContainerItemProxy */;
 		};
+		457FA76D1D40B7B000B3884C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = PureLayout_Mac;
+			targetProxy = 457FA76C1D40B7B000B3884C /* PBXContainerItemProxy */;
+		};
 		45A43ABB1CBAAC8100C22D17 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = AMCoreAudio;
 			targetProxy = 45A43ABA1CBAAC8100C22D17 /* PBXContainerItemProxy */;
-		};
-		45A43ABF1CBAAC8100C22D17 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = PureLayout_Mac;
-			targetProxy = 45A43ABE1CBAAC8100C22D17 /* PBXContainerItemProxy */;
 		};
 		45A43AC31CBAAC8100C22D17 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;

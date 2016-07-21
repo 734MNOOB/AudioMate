@@ -7,7 +7,7 @@
 //
 
 import Cocoa
-import PureLayout_Mac
+import PureLayout
 import AMCoreAudio
 
 class SampleRateStatusBarView: AMTextField, StatusBarSubView {
