@@ -18,6 +18,8 @@
 		451B066F1C4D560F00DFD5A0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 451B066E1C4D560F00DFD5A0 /* AppDelegate.swift */; };
 		451B06731C4D5E5F00DFD5A0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 451B06711C4D5E5F00DFD5A0 /* Main.storyboard */; };
 		45279A32188AA5700058FB69 /* Select.aiff in Resources */ = {isa = PBXBuildFile; fileRef = 45279A23188AA5700058FB69 /* Select.aiff */; };
+		453394241D40C3BE00717DA1 /* AdvancedPreferencesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 453394231D40C3BE00717DA1 /* AdvancedPreferencesViewController.swift */; };
+		453394421D40C43800717DA1 /* UpdatePreferencesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 453394411D40C43800717DA1 /* UpdatePreferencesViewController.swift */; };
 		4533CAAD1CD00580000A2C1C /* Array+Safe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4533CAAC1CD00580000A2C1C /* Array+Safe.swift */; };
 		453ABA3F1CCCDB04001E0DBA /* Preferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 453ABA3E1CCCDB04001E0DBA /* Preferences.swift */; };
 		453ABA6B1CCCDBC8001E0DBA /* Bond.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 453ABA621CCCDBB1001E0DBA /* Bond.framework */; };
@@ -33,8 +35,8 @@
 		45772C4E184690BE00D07EF6 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 45772C4D184690BE00D07EF6 /* Images.xcassets */; };
 		4579E0341CE0973B00899972 /* MasterVolumeDecibelStatusBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4579E0331CE0973B00899972 /* MasterVolumeDecibelStatusBarView.swift */; };
 		4579E0361CE09AFB00899972 /* MasterVolumePercentStatusBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4579E0351CE09AFB00899972 /* MasterVolumePercentStatusBarView.swift */; };
-		457FA76A1D40B7B000B3884C /* PureLayout_Mac.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 45A43A9A1CBAAC6500C22D17 /* PureLayout_Mac.framework */; };
-		457FA76B1D40B7B000B3884C /* PureLayout_Mac.framework in Copy Embedded Frameworks */ = {isa = PBXBuildFile; fileRef = 45A43A9A1CBAAC6500C22D17 /* PureLayout_Mac.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		457FA76A1D40B7B000B3884C /* PureLayout.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 45A43A9A1CBAAC6500C22D17 /* PureLayout.framework */; };
+		457FA76B1D40B7B000B3884C /* PureLayout.framework in Copy Embedded Frameworks */ = {isa = PBXBuildFile; fileRef = 45A43A9A1CBAAC6500C22D17 /* PureLayout.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		4589AE011C52B405009BE875 /* StatusBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4589AE001C52B405009BE875 /* StatusBarViewController.swift */; };
 		458E355D196EB56000C7C630 /* AMConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = 458E355C196EB56000C7C630 /* AMConfig.plist */; };
 		458E95B9185B50E500A0EFE6 /* AudioMateLauncher.app in Copy AudioMateLauncher into Contents/Library/LoginItems */ = {isa = PBXBuildFile; fileRef = 459D6DA91687EF95007F2226 /* AudioMateLauncher.app */; };
@@ -316,7 +318,7 @@
 				45A43AB91CBAAC8100C22D17 /* AMCoreAudio.framework in Copy Embedded Frameworks */,
 				45A43AC11CBAAC8100C22D17 /* XCGLogger.framework in Copy Embedded Frameworks */,
 				45A43B261CBAB12200C22D17 /* Sparkle.framework in Copy Embedded Frameworks */,
-				457FA76B1D40B7B000B3884C /* PureLayout_Mac.framework in Copy Embedded Frameworks */,
+				457FA76B1D40B7B000B3884C /* PureLayout.framework in Copy Embedded Frameworks */,
 				453ABA6C1CCCDBC8001E0DBA /* Bond.framework in Copy Embedded Frameworks */,
 			);
 			name = "Copy Embedded Frameworks";
@@ -350,6 +352,8 @@
 		451B066E1C4D560F00DFD5A0 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		451B06721C4D5E5F00DFD5A0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		45279A23188AA5700058FB69 /* Select.aiff */ = {isa = PBXFileReference; lastKnownFileType = audio.aiff; path = Select.aiff; sourceTree = "<group>"; };
+		453394231D40C3BE00717DA1 /* AdvancedPreferencesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdvancedPreferencesViewController.swift; sourceTree = "<group>"; };
+		453394411D40C43800717DA1 /* UpdatePreferencesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdatePreferencesViewController.swift; sourceTree = "<group>"; };
 		4533CAAC1CD00580000A2C1C /* Array+Safe.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Array+Safe.swift"; sourceTree = "<group>"; };
 		453ABA3E1CCCDB04001E0DBA /* Preferences.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Preferences.swift; sourceTree = "<group>"; };
 		453ABA531CCCDBB1001E0DBA /* Bond.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Bond.xcodeproj; path = Carthage/Checkouts/Bond/Bond.xcodeproj; sourceTree = "<group>"; };
@@ -422,7 +426,7 @@
 				45A43B251CBAB12200C22D17 /* Sparkle.framework in Frameworks */,
 				45A43AB81CBAAC8100C22D17 /* AMCoreAudio.framework in Frameworks */,
 				45A43AC01CBAAC8100C22D17 /* XCGLogger.framework in Frameworks */,
-				457FA76A1D40B7B000B3884C /* PureLayout_Mac.framework in Frameworks */,
+				457FA76A1D40B7B000B3884C /* PureLayout.framework in Frameworks */,
 				453ABA6B1CCCDBC8001E0DBA /* Bond.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -512,7 +516,7 @@
 			isa = PBXGroup;
 			children = (
 				45A43A981CBAAC6500C22D17 /* PureLayout.framework */,
-				45A43A9A1CBAAC6500C22D17 /* PureLayout_Mac.framework */,
+				45A43A9A1CBAAC6500C22D17 /* PureLayout.framework */,
 				457FA7561D40B79600B3884C /* PureLayout.framework */,
 				45A43A9C1CBAAC6500C22D17 /* Example-iOS.app */,
 				457FA7581D40B79600B3884C /* Example-iOS-Xcode7.app */,
@@ -646,10 +650,12 @@
 		45E483151CCD749A007FC820 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				453394231D40C3BE00717DA1 /* AdvancedPreferencesViewController.swift */,
 				459E41001CCD2C0F0061303C /* GeneralPreferencesViewController.swift */,
 				459E41021CCD2C2D0061303C /* NotificationPreferencesViewController.swift */,
 				459E40E01CCD264F0061303C /* PreferencesWindowController.swift */,
 				4589AE001C52B405009BE875 /* StatusBarViewController.swift */,
+				453394411D40C43800717DA1 /* UpdatePreferencesViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -978,10 +984,10 @@
 			remoteRef = 45A43A971CBAAC6500C22D17 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		45A43A9A1CBAAC6500C22D17 /* PureLayout_Mac.framework */ = {
+		45A43A9A1CBAAC6500C22D17 /* PureLayout.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
-			path = PureLayout_Mac.framework;
+			path = PureLayout.framework;
 			remoteRef = 45A43A991CBAAC6500C22D17 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
@@ -1142,6 +1148,7 @@
 				4510A4131CCE21D500AED5E4 /* NSUserDefaults+CustomObjects.swift in Sources */,
 				4510A3EF1CCE1D4800AED5E4 /* DeviceDescriptor.swift in Sources */,
 				4589AE011C52B405009BE875 /* StatusBarViewController.swift in Sources */,
+				453394421D40C43800717DA1 /* UpdatePreferencesViewController.swift in Sources */,
 				4579E0361CE09AFB00899972 /* MasterVolumePercentStatusBarView.swift in Sources */,
 				45115FCB1CCFAA0B00FBF31F /* AMTextField.swift in Sources */,
 				4549E2591C4FF16A008D2119 /* StatusBarView.swift in Sources */,
@@ -1157,6 +1164,7 @@
 				4579E0341CE0973B00899972 /* MasterVolumeDecibelStatusBarView.swift in Sources */,
 				4507E6F61CCEC38B00EC7EEE /* SwiftTryCatch.m in Sources */,
 				4533CAAD1CD00580000A2C1C /* Array+Safe.swift in Sources */,
+				453394241D40C3BE00717DA1 /* AdvancedPreferencesViewController.swift in Sources */,
 				453ABA711CCCDC18001E0DBA /* BindableUserDefaults.swift in Sources */,
 				459E41031CCD2C2D0061303C /* NotificationPreferencesViewController.swift in Sources */,
 				455883CF1CB58EF600995D39 /* VolumeControlMenuItemView.swift in Sources */,

@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15E65" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="10117"/>
+        <capability name="box content view" minToolsVersion="7.0"/>
     </dependencies>
     <scenes>
         <!--Application-->
@@ -669,8 +670,10 @@
             <objects>
                 <tabViewController selectedTabViewItemIndex="0" tabStyle="toolbar" id="B0M-Fv-h3q" sceneMemberID="viewController">
                     <tabViewItems>
-                        <tabViewItem label="General" identifier="" image="Settings" id="L23-Ml-7Qx"/>
-                        <tabViewItem label="System Notifications" identifier="" image="Notifications" id="GEt-Y2-V4d"/>
+                        <tabViewItem label="General" identifier="" image="General" id="L23-Ml-7Qx"/>
+                        <tabViewItem label="Notifications" identifier="" image="Notifications" id="GEt-Y2-V4d"/>
+                        <tabViewItem label="Advanced" image="Advanced" id="gZo-de-KhG"/>
+                        <tabViewItem label="Update" image="Update" id="KdI-sJ-epG"/>
                     </tabViewItems>
                     <tabView key="tabView" type="noTabsNoBorder" id="9Q5-8i-w7D">
                         <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
@@ -681,6 +684,8 @@
                     <connections>
                         <segue destination="3Rq-8W-7jd" kind="relationship" relationship="tabItems" id="b6B-iR-pu6"/>
                         <segue destination="Of9-2S-bOd" kind="relationship" relationship="tabItems" id="Ezf-Xr-pC0"/>
+                        <segue destination="YKP-4b-gcS" kind="relationship" relationship="tabItems" id="REa-VM-m6H"/>
+                        <segue destination="Qph-T4-SE7" kind="relationship" relationship="tabItems" id="aVv-a5-MxF"/>
                     </connections>
                 </tabViewController>
                 <customObject id="OfW-uy-adE" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
@@ -692,11 +697,11 @@
             <objects>
                 <viewController id="3Rq-8W-7jd" customClass="GeneralPreferencesViewController" customModule="AudioMate" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="eiV-S3-ZYg">
-                        <rect key="frame" x="0.0" y="0.0" width="450" height="180"/>
+                        <rect key="frame" x="0.0" y="0.0" width="450" height="120"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="6Da-EW-OLJ">
-                                <rect key="frame" x="18" y="143" width="252" height="17"/>
+                                <rect key="frame" x="18" y="83" width="252" height="17"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="17" id="Shk-RH-O9k"/>
                                     <constraint firstAttribute="width" constant="248" id="ogX-DW-09P"/>
@@ -707,6 +712,14 @@
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
+                            <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="pjA-xI-JYq">
+                                <rect key="frame" x="18" y="51" width="425" height="26"/>
+                                <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" id="M5q-bZ-juf">
+                                    <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="menu"/>
+                                    <menu key="menu" title="OtherViews" id="lYI-00-y4b"/>
+                                </popUpButtonCell>
+                            </popUpButton>
                             <button translatesAutoresizingMaskIntoConstraints="NO" id="fFe-jz-g3F">
                                 <rect key="frame" x="18" y="18" width="169" height="18"/>
                                 <buttonCell key="cell" type="check" title="Start AudioMate at login" bezelStyle="regularSquare" imagePosition="left" inset="2" id="YK9-8N-6b0">
@@ -717,57 +730,25 @@
                                     <action selector="toggleStartAtLogin:" target="3Rq-8W-7jd" id="jA7-5p-Jpg"/>
                                 </connections>
                             </button>
-                            <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="pjA-xI-JYq">
-                                <rect key="frame" x="18" y="111" width="425" height="26"/>
-                                <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" id="M5q-bZ-juf">
-                                    <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="menu"/>
-                                    <menu key="menu" title="OtherViews" id="lYI-00-y4b"/>
-                                </popUpButtonCell>
-                            </popUpButton>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="PdM-1c-i27">
-                                <rect key="frame" x="18" y="83" width="424" height="14"/>
-                                <textFieldCell key="cell" allowsUndo="NO" sendsActionOnEndEditing="YES" title="Build information" id="Prw-xw-LrZ">
-                                    <font key="font" metaFont="smallSystem"/>
-                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                </textFieldCell>
-                            </textField>
-                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="wVt-Tp-NsS">
-                                <rect key="frame" x="14" y="47" width="152" height="32"/>
-                                <buttonCell key="cell" type="push" title="Check for updates" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="zG2-od-Oi6">
-                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="system"/>
-                                </buttonCell>
-                                <connections>
-                                    <action selector="checkForUpdates:" target="3Rq-8W-7jd" id="yX5-eS-U28"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <constraints>
-                            <constraint firstItem="wVt-Tp-NsS" firstAttribute="leading" secondItem="fFe-jz-g3F" secondAttribute="leading" id="4gf-qO-tOx"/>
-                            <constraint firstItem="PdM-1c-i27" firstAttribute="trailing" secondItem="pjA-xI-JYq" secondAttribute="trailing" id="F32-LO-I8V"/>
-                            <constraint firstItem="fFe-jz-g3F" firstAttribute="top" secondItem="wVt-Tp-NsS" secondAttribute="bottom" constant="20" symbolic="YES" id="SOg-wO-NZk"/>
-                            <constraint firstItem="wVt-Tp-NsS" firstAttribute="top" secondItem="PdM-1c-i27" secondAttribute="bottom" constant="8" symbolic="YES" id="VRq-6w-Ktg"/>
                             <constraint firstItem="6Da-EW-OLJ" firstAttribute="leading" secondItem="eiV-S3-ZYg" secondAttribute="leading" constant="20" symbolic="YES" id="Vo4-c8-Z9L"/>
-                            <constraint firstAttribute="bottom" secondItem="fFe-jz-g3F" secondAttribute="bottom" constant="20" symbolic="YES" id="Wp0-Qw-EH7"/>
                             <constraint firstItem="pjA-xI-JYq" firstAttribute="top" secondItem="6Da-EW-OLJ" secondAttribute="bottom" constant="8" id="d7P-Zw-agP"/>
                             <constraint firstItem="6Da-EW-OLJ" firstAttribute="leading" secondItem="pjA-xI-JYq" secondAttribute="leading" id="dE7-Ji-itj"/>
-                            <constraint firstItem="pjA-xI-JYq" firstAttribute="leading" secondItem="wVt-Tp-NsS" secondAttribute="leading" id="erw-EO-LLw"/>
+                            <constraint firstItem="fFe-jz-g3F" firstAttribute="leading" secondItem="pjA-xI-JYq" secondAttribute="leading" id="eQ4-0d-XfJ"/>
                             <constraint firstAttribute="trailing" secondItem="pjA-xI-JYq" secondAttribute="trailing" constant="10" id="iIT-Sw-IPp"/>
                             <constraint firstItem="6Da-EW-OLJ" firstAttribute="top" secondItem="eiV-S3-ZYg" secondAttribute="top" constant="20" symbolic="YES" id="mSq-8k-ifZ"/>
-                            <constraint firstItem="PdM-1c-i27" firstAttribute="leading" secondItem="wVt-Tp-NsS" secondAttribute="leading" id="uRx-Qe-t9n"/>
+                            <constraint firstItem="fFe-jz-g3F" firstAttribute="top" secondItem="pjA-xI-JYq" secondAttribute="bottom" constant="20" id="q59-GN-kQ1"/>
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="buildInformationLabel" destination="PdM-1c-i27" id="fpN-8s-sSd"/>
                         <outlet property="deviceInformationToShowPopUpButton" destination="pjA-xI-JYq" id="anp-h1-34a"/>
                         <outlet property="startAtLoginButton" destination="fFe-jz-g3F" id="sKz-40-bhs"/>
                     </connections>
                 </viewController>
                 <customObject id="37n-bN-wTI" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2169" y="529"/>
+            <point key="canvasLocation" x="2169" y="499"/>
         </scene>
         <!--Notification Preferences View Controller-->
         <scene sceneID="AU1-OI-4ta">
@@ -893,9 +874,94 @@
             </objects>
             <point key="canvasLocation" x="525" y="292.5"/>
         </scene>
+        <!--Advanced Preferences View Controller-->
+        <scene sceneID="ZKF-hP-ssW">
+            <objects>
+                <viewController showSeguePresentationStyle="single" id="YKP-4b-gcS" customClass="AdvancedPreferencesViewController" customModule="AudioMate" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" id="M8T-W3-rlD">
+                        <rect key="frame" x="0.0" y="0.0" width="450" height="180"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <box title="Box" borderType="line" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="V9j-YR-re9">
+                                <rect key="frame" x="17" y="16" width="416" height="144"/>
+                                <view key="contentView" id="kXo-hs-GHv">
+                                    <rect key="frame" x="1" y="1" width="414" height="144"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                </view>
+                                <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
+                                <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            </box>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="be9-rZ-fBs">
+                                <rect key="frame" x="160" y="82" width="131" height="17"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Not yet implemented" id="gnI-E8-etu">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="V9j-YR-re9" firstAttribute="leading" secondItem="M8T-W3-rlD" secondAttribute="leading" constant="20" symbolic="YES" id="G8i-uv-YlO"/>
+                            <constraint firstItem="be9-rZ-fBs" firstAttribute="centerY" secondItem="M8T-W3-rlD" secondAttribute="centerY" id="cf0-g0-COy"/>
+                            <constraint firstAttribute="bottom" secondItem="V9j-YR-re9" secondAttribute="bottom" constant="20" symbolic="YES" id="kvx-Hy-54g"/>
+                            <constraint firstAttribute="trailing" secondItem="V9j-YR-re9" secondAttribute="trailing" constant="20" symbolic="YES" id="pQk-Yz-uP1"/>
+                            <constraint firstItem="be9-rZ-fBs" firstAttribute="centerX" secondItem="V9j-YR-re9" secondAttribute="centerX" id="sCk-5H-5lI"/>
+                            <constraint firstItem="V9j-YR-re9" firstAttribute="top" secondItem="M8T-W3-rlD" secondAttribute="top" constant="22" id="vUG-aD-KPm"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <customObject id="q9L-NB-hv6" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2169" y="1201"/>
+        </scene>
+        <!--Update Preferences View Controller-->
+        <scene sceneID="w8K-yX-FFD">
+            <objects>
+                <viewController showSeguePresentationStyle="single" id="Qph-T4-SE7" customClass="UpdatePreferencesViewController" customModule="AudioMate" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" id="iyu-jU-h6K">
+                        <rect key="frame" x="0.0" y="0.0" width="450" height="83"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="PeS-sZ-naT">
+                                <rect key="frame" x="14" y="13" width="152" height="32"/>
+                                <buttonCell key="cell" type="push" title="Check for updates" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="scg-Bk-eZD">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="checkForUpdates:" target="Qph-T4-SE7" id="7E5-rg-cRz"/>
+                                </connections>
+                            </button>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="p9S-el-8UF">
+                                <rect key="frame" x="18" y="49" width="414" height="14"/>
+                                <textFieldCell key="cell" allowsUndo="NO" sendsActionOnEndEditing="YES" title="Build information" id="rjn-HW-XJT">
+                                    <font key="font" metaFont="smallSystem"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="p9S-el-8UF" firstAttribute="leading" secondItem="iyu-jU-h6K" secondAttribute="leading" constant="20" symbolic="YES" id="14o-Hj-YUx"/>
+                            <constraint firstItem="p9S-el-8UF" firstAttribute="top" secondItem="iyu-jU-h6K" secondAttribute="top" constant="20" symbolic="YES" id="T5Y-dL-2N5"/>
+                            <constraint firstAttribute="trailing" secondItem="p9S-el-8UF" secondAttribute="trailing" constant="20" symbolic="YES" id="kGG-uq-NsB"/>
+                            <constraint firstItem="p9S-el-8UF" firstAttribute="leading" secondItem="PeS-sZ-naT" secondAttribute="leading" id="mXV-zY-dbD"/>
+                            <constraint firstItem="PeS-sZ-naT" firstAttribute="top" secondItem="p9S-el-8UF" secondAttribute="bottom" constant="8" symbolic="YES" id="vCA-Hd-E4N"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="buildInformationLabel" destination="p9S-el-8UF" id="vw5-BP-Wnj"/>
+                    </connections>
+                </viewController>
+                <customObject id="7JX-wQ-75b" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1591" y="1518.5"/>
+        </scene>
     </scenes>
     <resources>
+        <image name="Advanced" width="32" height="32"/>
+        <image name="General" width="32" height="32"/>
         <image name="Notifications" width="32" height="32"/>
-        <image name="Settings" width="32" height="32"/>
+        <image name="Update" width="32" height="32"/>
     </resources>
 </document>
