@@ -496,10 +496,10 @@ class StatusBarViewController: NSViewController {
         let featuredDeviceMenuItem = NSMenuItem()
 
         if prefs.general.featuredDevice.value.device != device {
-            featuredDeviceMenuItem.title = NSLocalizedString("Set as featured device", comment: "")
+            featuredDeviceMenuItem.title = NSLocalizedString("Show this device in status bar", comment: "")
             featuredDeviceMenuItem.tag = Int(device.id)
         } else {
-            featuredDeviceMenuItem.title = NSLocalizedString("Stop being the featured device", comment: "")
+            featuredDeviceMenuItem.title = NSLocalizedString("Remove this device from status bar", comment: "")
             featuredDeviceMenuItem.tag = 0
         }
 
