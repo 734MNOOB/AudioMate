@@ -24,6 +24,7 @@ enum StatusBarViewLayoutType: Int, RawRepresentable {
     case masterVolumeGraphic = 5
 }
 
+// TODO: Refactor this giant ugly class.
 
 class StatusBarViewController: NSViewController {
 
@@ -129,7 +130,6 @@ class StatusBarViewController: NSViewController {
             statusBarView.isEnabled = false
 
             if let controller = segue.destinationController as? PreferencesTabViewController {
-
                 controller.closeHandler = { [unowned self] in
                     self.statusItem?.button?.isEnabled = true
                     self.statusBarView.isEnabled = true
@@ -163,7 +163,7 @@ class StatusBarViewController: NSViewController {
         // Create menu item for device with submenu
         let menuItem = NSMenuItem()
 
-        menuItem.attributedTitle = attributedString(device: device)
+        menuItem.attributedTitle = attributedString(for: device)
         menuItem.image = transportTypeImage(device: device)
         menuItem.representedObject = device
 
@@ -526,48 +526,50 @@ class StatusBarViewController: NSViewController {
         updateMasterVolume(menuItem: menuItem, direction: .playback)
     }
 
-    fileprivate func updateMasterVolume(menuItem: NSMenuItem, direction: Direction) {
-        if let device = menuItem.representedObject as? AudioDevice {
-            let menuItemControlTag: Int
+    private func volumeControlMenuItemTag(for direction: Direction) -> Int {
 
-            switch direction {
-            case .recording:
-                menuItemControlTag = kDeviceMasterInputVolumeControlMenuItem
-            case .playback:
-                menuItemControlTag = kDeviceMasterOutputVolumeControlMenuItem
-            default:
-                menuItemControlTag = 0
-            }
+        switch direction {
+        case .recording:
 
-            if let volumeControlMenuItem = menuItem.submenu?.item(withTag: menuItemControlTag),
-                   let view = volumeControlMenuItem.view as? VolumeControlMenuItemView,
-                   let volume = device.virtualMasterVolume(direction: direction) {
-                let formatString: String
-                let dBValue = device.virtualMasterVolumeInDecibels(direction: direction) ?? 0.0
+            return kDeviceMasterInputVolumeControlMenuItem
 
-                switch direction {
-                case .recording:
+        case .playback:
 
-                    formatString = NSLocalizedString("Master Input Volume is %.1fdBFS", comment: "")
-
-                case .playback:
-
-                    formatString = NSLocalizedString("Master Output Volume is %.1fdBFS", comment: "")
-
-                default:
-
-                    formatString = "%.1fdBFS"
-
-                }
-
-                view.volumeLabel.stringValue = String(format: formatString, dBValue)
-                view.volumeSlider.floatValue = volume
-                view.muteCheckbox.state = (device.isMuted(channel: 0, direction: direction) ?? false) ? NSOnState : NSOffState
-            }
+            return kDeviceMasterOutputVolumeControlMenuItem
         }
     }
 
-    private func attributedString(device: AudioDevice) -> NSAttributedString {
+    private func volumeControlLabel(for direction: Direction, volume: Float32) -> String {
+
+        switch direction {
+        case .recording:
+
+            return String(format: NSLocalizedString("Master Input Volume is %.1fdBFS", comment: ""), volume)
+
+        case .playback:
+
+            return String(format: NSLocalizedString("Master Output Volume is %.1fdBFS", comment: ""), volume)
+        }
+    }
+
+    fileprivate func updateMasterVolume(menuItem: NSMenuItem, direction: Direction) {
+
+        guard let device = menuItem.representedObject as? AudioDevice else { return }
+
+        let menuItemControlTag = volumeControlMenuItemTag(for: direction)
+
+        guard let volumeControlMenuItem = menuItem.submenu?.item(withTag: menuItemControlTag) else { return }
+        guard let view = volumeControlMenuItem.view as? VolumeControlMenuItemView else { return }
+        guard let volume = device.virtualMasterVolume(direction: direction) else { return }
+
+        let volumeInDecibels = device.virtualMasterVolumeInDecibels(direction: direction) ?? 0.0
+
+        view.volumeLabel.stringValue = volumeControlLabel(for: direction, volume: volumeInDecibels)
+        view.volumeSlider.floatValue = volume
+        view.muteCheckbox.state = (device.isMuted(channel: 0, direction: direction) ?? false) ? NSOnState : NSOffState
+    }
+
+    private func attributedString(for device: AudioDevice) -> NSAttributedString {
 
         let font = NSFont.menuBarFont(ofSize: 14.0)
         let attrs = [NSFontAttributeName: font]
@@ -596,7 +598,7 @@ class StatusBarViewController: NSViewController {
     fileprivate func updateDeviceMenuItem(device: AudioDevice) {
 
         if let menuItem = menuItem(device: device) {
-            menuItem.attributedTitle = attributedString(device: device)
+            menuItem.attributedTitle = attributedString(for: device)
             menuItem.image = transportTypeImage(device: device)
 
             buildSubmenu(menuItem: menuItem)
