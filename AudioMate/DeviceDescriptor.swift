@@ -11,9 +11,10 @@ import AMCoreAudio
 
 class DeviceDescriptor: NSObject, NSCoding {
 
-    var device: AMAudioDevice? {
+    var device: AudioDevice? {
+
         if let deviceUID = deviceUID {
-            return AMAudioDevice.lookupByUID(deviceUID)
+            return AudioDevice.lookupByUID(deviceUID)
         }
 
         return nil
@@ -21,21 +22,30 @@ class DeviceDescriptor: NSObject, NSCoding {
 
     private(set) var deviceUID: String?
 
-    init(device: AMAudioDevice?) {
-        deviceUID = device?.deviceUID()
+
+    init(device: AudioDevice?) {
+
+        deviceUID = device?.uid
     }
 
     required init?(coder: NSCoder) {
+
         super.init()
 
-        deviceUID = coder.decodeObjectForKey("deviceUID") as? String
+        deviceUID = coder.decodeObject(forKey: "deviceUID") as? String
     }
 
-    func encodeWithCoder(aCoder: NSCoder) {
-        aCoder.encodeObject(deviceUID, forKey: "deviceUID")
+    public func encode(with aCoder: NSCoder) {
+
+        aCoder.encode(deviceUID, forKey: "deviceUID")
     }
+}
+
+extension DeviceDescriptor {
 
     override var description: String {
+
         return "(device: \(device), \(super.description))"
     }
+
 }

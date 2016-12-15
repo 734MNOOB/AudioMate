@@ -11,86 +11,98 @@ import PureLayout
 import AMCoreAudio
 
 class SampleRateAndClockSourceStatusBarView: NSView, StatusBarSubView {
+
     private var didSetupConstraints: Bool = false
 
     weak var representedObject: AnyObject? {
+
         didSet {
             updateUI()
         }
     }
 
     var shouldHighlight: Bool = false {
+
         didSet {
             updateUI()
         }
     }
 
-    var enabled: Bool = true {
+    var isEnabled: Bool = true {
+
         didSet {
-            alphaValue = enabled ? 1.0 : 0.33
+            alphaValue = isEnabled ? 1.0 : 0.33
         }
     }
 
     var sampleRateTextField: AMTextField = {
-        $0.editable = false
-        $0.bordered = false
+
+        $0.isEditable = false
+        $0.isBordered = false
         $0.drawsBackground = false
-        $0.alignment = .Center
+        $0.alignment = .center
         $0.maximumNumberOfLines = 1
 
         return $0
     }(AMTextField(forAutoLayout: ()))
 
     var clockSourceTextField: AMTextField = {
-        $0.editable = false
-        $0.bordered = false
+
+        $0.isEditable = false
+        $0.isBordered = false
         $0.drawsBackground = false
-        $0.alignment = .Center
+        $0.alignment = .center
         $0.maximumNumberOfLines = 1
 
         return $0
     }(AMTextField(forAutoLayout: ()))
 
     func updateUI() {
-        if let device = representedObject as? AMAudioDevice {
-            let formattedSampleRate = FormattingUtils.formatSampleRate(device.nominalSampleRate() ?? 0)
 
-            let formattedClockSource = device.clockSourceForChannel(0, andDirection: .Playback) ?? NSLocalizedString("Internal Clock", comment: "")
+        if let device = representedObject as? AudioDevice {
 
-            sampleRateTextField.attributedStringValue = attributedStringWithString(formattedSampleRate)
-            clockSourceTextField.attributedStringValue = attributedStringWithString(formattedClockSource)
+            let formattedSampleRate = device.nominalSampleRate()?.string(as: .sampleRate) ?? "N/A"
+            let formattedClockSource = device.clockSourceName(channel: 0, direction: .Playback) ?? NSLocalizedString("Internal Clock", comment: "")
+
+            sampleRateTextField.attributedStringValue = attributedString(string: formattedSampleRate)
+            clockSourceTextField.attributedStringValue = attributedString(string: formattedClockSource)
         }
     }
 
-    private func attributedStringWithString(string: String) -> NSAttributedString {
-        let textColor: NSColor = shouldHighlight ? .whiteColor() : .labelColor()
-        let font = NSFont.boldSystemFontOfSize(9.0)
+    private func attributedString(string: String) -> NSAttributedString {
+
+        let textColor: NSColor = shouldHighlight ? .white : .labelColor
+        let font = NSFont.boldSystemFont(ofSize: 9.0)
         let attrs = [NSFontAttributeName: font, NSForegroundColorAttributeName: textColor]
         let attrString = NSMutableAttributedString(string: string, attributes: attrs)
 
-        attrString.setAlignment(NSTextAlignment.Center, range: NSRange(location: 0, length: attrString.length))
+        attrString.setAlignment(NSTextAlignment.center, range: NSRange(location: 0, length: attrString.length))
 
         return attrString.copy() as! NSAttributedString
     }
 
     override init(frame frameRect: NSRect) {
+
         super.init(frame: frameRect)
     }
 
     required init?(coder: NSCoder) {
+
         fatalError("init(coder:) has not been implemented")
     }
 
     override func viewDidMoveToSuperview() {
+
         addSubview(sampleRateTextField)
         addSubview(clockSourceTextField)
     }
 
     override func updateConstraints() {
+
         if didSetupConstraints == false {
-            autoPinEdgesToSuperviewEdgesWithInsets(NSEdgeInsets())
-            sampleRateTextField.autoPinEdgesToSuperviewEdgesWithInsets(NSEdgeInsets(), excludingEdge: .Bottom)
-            clockSourceTextField.autoPinEdgesToSuperviewEdgesWithInsets(NSEdgeInsets(), excludingEdge: .Top)
+            autoPinEdgesToSuperviewEdges(with: EdgeInsets())
+            sampleRateTextField.autoPinEdgesToSuperviewEdges(with: EdgeInsets(), excludingEdge: .bottom)
+            clockSourceTextField.autoPinEdgesToSuperviewEdges(with: EdgeInsets(), excludingEdge: .top)
 
             didSetupConstraints = true
         }

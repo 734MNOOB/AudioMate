@@ -18,24 +18,24 @@ class VolumeControlMenuItemView: NSView {
     override func updateConstraints() {
         if !didSetupConstraints {
             removeConstraints(constraints)
-            autoSetDimension(.Height, toSize: 42)
+            autoSetDimension(.height, toSize: 42)
 
             let sideMargin: CGFloat = 21.0
 
-            volumeLabel.autoPinEdgeToSuperviewEdge(.Left, withInset: sideMargin)
-            volumeLabel.autoPinEdgeToSuperviewEdge(.Right, withInset: sideMargin)
-            volumeLabel.autoPinEdgeToSuperviewEdge(.Top, withInset: 0)
+            volumeLabel.autoPinEdge(toSuperviewEdge: .left, withInset: sideMargin)
+            volumeLabel.autoPinEdge(toSuperviewEdge: .right, withInset: sideMargin)
+            volumeLabel.autoPinEdge(toSuperviewEdge: .top, withInset: 0)
 
-            muteCheckbox.autoPinEdge(.Top, toEdge: .Bottom, ofView: volumeLabel, withOffset: 4)
-            muteCheckbox.autoPinEdgeToSuperviewEdge(.Right, withInset: sideMargin)
-            muteCheckbox.setContentHuggingPriority(NSLayoutPriorityRequired, forOrientation: NSLayoutConstraintOrientation.Horizontal)
-            muteCheckbox.setContentCompressionResistancePriority(NSLayoutPriorityRequired, forOrientation: NSLayoutConstraintOrientation.Horizontal)
+            muteCheckbox.autoPinEdge(.top, to: .bottom, of: volumeLabel, withOffset: 4)
+            muteCheckbox.autoPinEdge(toSuperviewEdge: .right, withInset: sideMargin)
+            muteCheckbox.setContentHuggingPriority(NSLayoutPriorityRequired, for: NSLayoutConstraintOrientation.horizontal)
+            muteCheckbox.setContentCompressionResistancePriority(NSLayoutPriorityRequired, for: NSLayoutConstraintOrientation.horizontal)
 
-            volumeSlider.autoPinEdgeToSuperviewEdge(.Left, withInset: sideMargin)
-            volumeSlider.autoPinEdge(.Right, toEdge: .Left, ofView: muteCheckbox, withOffset: -8.0)
-            volumeSlider.autoAlignAxis(.Horizontal, toSameAxisOfView: muteCheckbox)
-            volumeSlider.setContentHuggingPriority(NSLayoutPriorityDefaultLow, forOrientation: NSLayoutConstraintOrientation.Horizontal)
-            volumeSlider.setContentCompressionResistancePriority(NSLayoutPriorityDefaultLow, forOrientation: NSLayoutConstraintOrientation.Horizontal)
+            volumeSlider.autoPinEdge(toSuperviewEdge: .left, withInset: sideMargin)
+            volumeSlider.autoPinEdge(.right, to: .left, of: muteCheckbox, withOffset: -8.0)
+            volumeSlider.autoAlignAxis(.horizontal, toSameAxisOf: muteCheckbox)
+            volumeSlider.setContentHuggingPriority(NSLayoutPriorityDefaultLow, for: NSLayoutConstraintOrientation.horizontal)
+            volumeSlider.setContentCompressionResistancePriority(NSLayoutPriorityDefaultLow, for: NSLayoutConstraintOrientation.horizontal)
 
             didSetupConstraints = true
         }

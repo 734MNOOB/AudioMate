@@ -9,10 +9,14 @@
 import Cocoa
 
 protocol MasterVolumeGraphicViewDelegate {
+
     func volumeViewScrolled(volumeView: MasterVolumeGraphicView, delta: CGFloat)
+
 }
 
+
 class MasterVolumeGraphicView: NSView {
+
     var delegate: MasterVolumeGraphicViewDelegate?
 
     private var needsLayerSetup: Bool = true
@@ -20,18 +24,21 @@ class MasterVolumeGraphicView: NSView {
     private var innerLayer: CALayer?
 
     var shouldHighlight: Bool = false {
+
         didSet {
             updateUI()
         }
     }
 
-    var enabled: Bool = true {
+    var isEnabled: Bool = true {
+
         didSet {
-            alphaValue = enabled ? 1.0 : 0.33
+            alphaValue = isEnabled ? 1.0 : 0.33
         }
     }
 
     var value: CGFloat = 0.0 {
+
         didSet {
             updateUI()
         }
@@ -40,15 +47,18 @@ class MasterVolumeGraphicView: NSView {
     override var allowsVibrancy: Bool { return true }
 
     override init(frame frameRect: NSRect) {
+
         super.init(frame: frameRect)
         wantsLayer = true
     }
 
     required init?(coder: NSCoder) {
+
         fatalError("init(coder:) has not been implemented")
     }
 
     override func viewDidMoveToSuperview() {
+
         super.viewDidMoveToSuperview()
 
         if needsLayerSetup {
@@ -57,35 +67,40 @@ class MasterVolumeGraphicView: NSView {
         }
     }
 
-    override func scrollWheel(theEvent: NSEvent) {
-        super.scrollWheel(theEvent)
-        delegate?.volumeViewScrolled(self, delta: theEvent.deltaY)
+    override func scrollWheel(with theEvent: NSEvent) {
+
+        super.scrollWheel(with: theEvent)
+        delegate?.volumeViewScrolled(volumeView: self, delta: theEvent.deltaY)
     }
 
-    override func drawRect(dirtyRect: NSRect) {
-        super.drawRect(dirtyRect)
+    override func draw(_ dirtyRect: NSRect) {
+
+        super.draw(dirtyRect)
+
         updateUI()
     }
 
     // MARK: Public Functions
 
     func updateUI() {
-        layer!.backgroundColor = (shouldHighlight ? NSColor.whiteColor().colorWithAlphaComponent(0.16) : NSColor.labelColor().colorWithAlphaComponent(0.16)).CGColor
 
-        innerLayer?.backgroundColor = (shouldHighlight ? NSColor.whiteColor() : NSColor.labelColor()).CGColor
+        layer!.backgroundColor = (shouldHighlight ? NSColor.white.withAlphaComponent(0.16) : NSColor.labelColor.withAlphaComponent(0.16)).cgColor
+
+        innerLayer?.backgroundColor = (shouldHighlight ? NSColor.white : NSColor.labelColor).cgColor
 
         let size = CGSize(width: bounds.size.width * value, height: bounds.size.height)
-        innerLayer?.frame = CGRect(origin: CGPointZero, size: size)
+        innerLayer?.frame = CGRect(origin: .zero, size: size)
     }
 
     // MARK: Private Functions
 
     private func setupLayers() {
+
         assert(layer != nil, "We can not continue without a backing layer.")
 
         if let volumeControlImage = NSImage(named: "Volume-control") {
             maskLayer = CALayer()
-            maskLayer?.frame = CGRect(origin: CGPointZero, size: volumeControlImage.size)
+            maskLayer?.frame = CGRect(origin: .zero, size: volumeControlImage.size)
             maskLayer?.contents = volumeControlImage
 
             innerLayer = CALayer()

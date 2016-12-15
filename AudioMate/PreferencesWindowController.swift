@@ -13,6 +13,7 @@ class PreferencesWindowController: NSWindowController {
     var windowDidCloseHandler:(()->Void)?
 
     override func windowDidLoad() {
+
         super.windowDidLoad()
     
         // Set window delegate
@@ -20,12 +21,14 @@ class PreferencesWindowController: NSWindowController {
         // Transform application to foreground mode
         Utils.transformAppIntoForegroundMode()
         // Activate (give focus to) our app
-        NSApplication.sharedApplication().activateIgnoringOtherApps(true)
+        NSApplication.shared().activate(ignoringOtherApps: true)
     }
 }
 
 extension PreferencesWindowController: NSWindowDelegate {
-    func windowWillClose(notification: NSNotification) {
+
+    func windowWillClose(_ notification: Notification) {
+
         // Transform application to LSUIElement mode
         Utils.transformAppIntoUIElementMode()
         // Call our "window did close" handler

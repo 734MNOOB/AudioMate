@@ -7,6 +7,7 @@
 //
 
 import Cocoa
+import ReactiveKit
 
 class NotificationPreferencesViewController: NSViewController {
 
@@ -17,62 +18,93 @@ class NotificationPreferencesViewController: NSViewController {
     @IBOutlet var everytimeADeviceClockSourceChangesButton: NSButton!
     @IBOutlet var everytimeADeviceBecomesDefaultButton: NSButton!
 
+    private let disposeBag = DisposeBag()
+
     override func viewDidLoad() {
+
         super.viewDidLoad()
+
         // Do view setup here.
 
-        preferences.notifications.shouldDisplayAddedAndRemovedDeviceChanges.map {
+        prefs.notifications.shouldDisplayAddedAndRemovedDeviceChanges.map {
             $0 ? NSOnState : NSOffState
-        }.bindTo(everytimeADeviceIsAddedOrRemovedButton.bnd_state)
+        }.observeNext { (value) in
+            self.everytimeADeviceIsAddedOrRemovedButton.state = value
+        }.disposeIn(disposeBag)
 
-        preferences.notifications.shouldDisplayVolumeChanges.map {
+        prefs.notifications.shouldDisplayVolumeChanges.map {
             $0 ? NSOnState : NSOffState
-        }.bindTo(everytimeADeviceVolumeChangesButton.bnd_state)
+        }.observeNext { (value) in
+            self.everytimeADeviceVolumeChangesButton.state = value
+        }.disposeIn(disposeBag)
 
-        preferences.notifications.shouldDisplayMuteChanges.map {
+        prefs.notifications.shouldDisplayMuteChanges.map {
             $0 ? NSOnState : NSOffState
-        }.bindTo(everytimeADeviceMuteStateChangesButton.bnd_state)
+        }.observeNext { (value) in
+            self.everytimeADeviceMuteStateChangesButton.state = value
+        }.disposeIn(disposeBag)
 
-        preferences.notifications.shouldDisplaySampleRateChanges.map {
+        prefs.notifications.shouldDisplaySampleRateChanges.map {
             $0 ? NSOnState : NSOffState
-        }.bindTo(everytimeADeviceSampleRateChangesButton.bnd_state)
+        }.observeNext { (value) in
+            self.everytimeADeviceSampleRateChangesButton.state = value
+        }.disposeIn(disposeBag)
 
-        preferences.notifications.shouldDisplayClockSourceChanges.map {
+        prefs.notifications.shouldDisplayClockSourceChanges.map {
             $0 ? NSOnState : NSOffState
-        }.bindTo(everytimeADeviceClockSourceChangesButton.bnd_state)
+        }.observeNext { (value) in
+            self.everytimeADeviceClockSourceChangesButton.state = value
+        }.disposeIn(disposeBag)
 
-        preferences.notifications.shouldDisplayDefaultDeviceChanges.map {
+        prefs.notifications.shouldDisplayDefaultDeviceChanges.map {
             $0 ? NSOnState : NSOffState
-        }.bindTo(everytimeADeviceBecomesDefaultButton.bnd_state)
+        }.observeNext { (value) in
+            self.everytimeADeviceBecomesDefaultButton.state = value
+        }.disposeIn(disposeBag)
     }
 
     override func viewWillAppear() {
+
         super.viewWillAppear()
+
         preferredContentSize = view.bounds.size
     }
 
-    @IBAction func handleCheckButton(sender: AnyObject) {
-        guard let button = sender as? NSButton else {
-            return
-        }
+    @IBAction func handleCheckButton(_ sender: AnyObject) {
+
+        guard let button = sender as? NSButton else { return }
 
         let boolValue = button.state == NSOnState
 
         switch button {
         case everytimeADeviceIsAddedOrRemovedButton:
-            preferences.notifications.shouldDisplayAddedAndRemovedDeviceChanges.value = boolValue
+
+            prefs.notifications.shouldDisplayAddedAndRemovedDeviceChanges.value = boolValue
+
         case everytimeADeviceVolumeChangesButton:
-            preferences.notifications.shouldDisplayVolumeChanges.value = boolValue
+
+            prefs.notifications.shouldDisplayVolumeChanges.value = boolValue
+
         case everytimeADeviceMuteStateChangesButton:
-            preferences.notifications.shouldDisplayMuteChanges.value = boolValue
+
+            prefs.notifications.shouldDisplayMuteChanges.value = boolValue
+
         case everytimeADeviceSampleRateChangesButton:
-            preferences.notifications.shouldDisplaySampleRateChanges.value = boolValue
+
+            prefs.notifications.shouldDisplaySampleRateChanges.value = boolValue
+
         case everytimeADeviceClockSourceChangesButton:
-            preferences.notifications.shouldDisplayClockSourceChanges.value = boolValue
+
+            prefs.notifications.shouldDisplayClockSourceChanges.value = boolValue
+
         case everytimeADeviceBecomesDefaultButton:
-            preferences.notifications.shouldDisplayDefaultDeviceChanges.value = boolValue
+
+            prefs.notifications.shouldDisplayDefaultDeviceChanges.value = boolValue
+
         default:
+
             log.debug("Unhandled button: \(button)")
+
         }
     }
 }

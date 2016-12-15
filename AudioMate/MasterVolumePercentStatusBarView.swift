@@ -11,71 +11,84 @@ import PureLayout
 import AMCoreAudio
 
 class MasterVolumePercentStatusBarView: NSView, StatusBarSubView {
+
     private var didSetupConstraints: Bool = false
 
     private var inVolumeLabel: AMTextField = {
-        $0.editable = false
-        $0.bordered = false
+
+        $0.isEditable = false
+        $0.isBordered = false
         $0.drawsBackground = false
-        $0.alignment = .Center
+        $0.alignment = .center
         $0.maximumNumberOfLines = 1
 
         return $0
     }(AMTextField(forAutoLayout: ()))
 
     private var outVolumeLabel: AMTextField = {
-        $0.editable = false
-        $0.bordered = false
+
+        $0.isEditable = false
+        $0.isBordered = false
         $0.drawsBackground = false
-        $0.alignment = .Center
+        $0.alignment = .center
         $0.maximumNumberOfLines = 1
 
         return $0
     }(AMTextField(forAutoLayout: ()))
 
     weak var representedObject: AnyObject? {
+
         didSet {
             updateUI()
         }
     }
 
     var shouldHighlight: Bool = false {
+
         didSet {
             updateUI()
         }
     }
 
-    var enabled: Bool = true {
+    var isEnabled: Bool = true {
+
         didSet {
-            alphaValue = enabled ? 1.0 : 0.33
+            alphaValue = isEnabled ? 1.0 : 0.33
         }
     }
 
-    override var allowsVibrancy: Bool { return true }
+    override var allowsVibrancy: Bool {
+        return true
+    }
 
     override var intrinsicContentSize: NSSize {
+
         return NSSize(width: 64.0, height: 18.0)
     }
 
     override init(frame frameRect: NSRect) {
+
         super.init(frame: frameRect)
     }
 
     required init?(coder: NSCoder) {
+
         fatalError("init(coder:) has not been implemented")
     }
 
     override func viewDidMoveToSuperview() {
+
         addSubview(inVolumeLabel)
         addSubview(outVolumeLabel)
     }
 
     override func updateConstraints() {
-        if didSetupConstraints == false {
-            autoPinEdgesToSuperviewEdgesWithInsets(NSEdgeInsets(top: 1, left: 0, bottom: 1, right: 0))
 
-            inVolumeLabel.autoPinEdgesToSuperviewEdgesWithInsets(NSEdgeInsets(), excludingEdge: ALEdge.Bottom)
-            outVolumeLabel.autoPinEdgesToSuperviewEdgesWithInsets(NSEdgeInsets(), excludingEdge: ALEdge.Top)
+        if didSetupConstraints == false {
+            autoPinEdgesToSuperviewEdges(with: EdgeInsets(top: 1, left: 0, bottom: 1, right: 0))
+
+            inVolumeLabel.autoPinEdgesToSuperviewEdges(with: EdgeInsets(), excludingEdge: .bottom)
+            outVolumeLabel.autoPinEdgesToSuperviewEdges(with: EdgeInsets(), excludingEdge: .top)
 
             didSetupConstraints = true
         }
@@ -86,18 +99,19 @@ class MasterVolumePercentStatusBarView: NSView, StatusBarSubView {
     // MARK: Public Functions
 
     func updateUI() {
-        if let device = representedObject as? AMAudioDevice {
-            let inVolume = device.masterVolumeForDirection(.Recording)
-            let outVolume = device.masterVolumeForDirection(.Playback)
 
-            let inMuted = device.isMasterVolumeMutedForDirection(.Recording)
-            let outMuted = device.isMasterVolumeMutedForDirection(.Playback)
+        if let device = representedObject as? AudioDevice {
+            let inVolume = device.virtualMasterVolume(direction: .Recording)
+            let outVolume = device.virtualMasterVolume(direction: .Playback)
+
+            let inMuted = device.isMasterChannelMuted(direction: .Recording)
+            let outMuted = device.isMasterChannelMuted(direction: .Playback)
 
             let inString = inVolume == nil ? "N/A IN" : (inMuted == true ? "MUTED IN" : String(format: "%.1f%% IN", inVolume! * 100))
             let outString = outVolume == nil ? "N/A OUT" : (outMuted == true ? "MUTED OUT" : String(format: "%.1f%% OUT", outVolume! * 100))
 
-            inVolumeLabel.attributedStringValue = attributedStringWithString(inString)
-            outVolumeLabel.attributedStringValue = attributedStringWithString(outString)
+            inVolumeLabel.attributedStringValue = attributedString(string: inString)
+            outVolumeLabel.attributedStringValue = attributedString(string: outString)
 
             inVolumeLabel.alphaValue = (inVolume == nil || inMuted == true) ? 0.33 : 1.0
             outVolumeLabel.alphaValue = (outVolume == nil || outMuted == true) ? 0.33 : 1.0
@@ -106,13 +120,14 @@ class MasterVolumePercentStatusBarView: NSView, StatusBarSubView {
 
     // MARK: Private Functions
 
-    private func attributedStringWithString(string: String) -> NSAttributedString {
-        let textColor: NSColor = shouldHighlight ? .whiteColor() : .labelColor()
-        let font = NSFont.boldSystemFontOfSize(8.0)
+    private func attributedString(string: String) -> NSAttributedString {
+
+        let textColor: NSColor = shouldHighlight ? .white : .labelColor
+        let font = NSFont.boldSystemFont(ofSize: 8.0)
         let attrs = [NSFontAttributeName: font, NSForegroundColorAttributeName: textColor]
         let attrString = NSMutableAttributedString(string: string, attributes: attrs)
 
-        attrString.setAlignment(NSTextAlignment.Center, range: NSRange(location: 0, length: attrString.length))
+        attrString.setAlignment(NSTextAlignment.center, range: NSRange(location: 0, length: attrString.length))
         
         return attrString.copy() as! NSAttributedString
     }

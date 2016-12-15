@@ -8,12 +8,11 @@
 
 import Foundation
 
-extension NSUserDefaults {
+extension UserDefaults {
 
     public func customObjectForKey(defaultName: String) -> NSCoding? {
-        guard let objectForKey = objectForKey(defaultName) as? NSData else {
-            return nil
-        }
+
+        guard let objectForKey = object(forKey: defaultName) as? NSData else { return nil }
 
         var returnedObject: NSCoding? = nil
 
@@ -24,11 +23,12 @@ extension NSUserDefaults {
             We are using SwiftTryCatch to recover against such cases until the `NSKeyedUnarchiver` 
             API is updated to throw actual Swift errors. Then we will be able to safely remove this.
         */
-        SwiftTryCatch.tryBlock({ 
-            if let decodedObject = NSKeyedUnarchiver.unarchiveObjectWithData(objectForKey) as? NSCoding {
+
+        SwiftTryCatch.try({
+            if let decodedObject = NSKeyedUnarchiver.unarchiveObject(with: objectForKey as Data) as? NSCoding {
                 returnedObject = decodedObject
             }
-        }, catchBlock: { (exception) in
+        }, catch: { (exception) in
             log.debug("Exception: \(exception)")
         }, finallyBlock: nil)
 
@@ -36,12 +36,10 @@ extension NSUserDefaults {
     }
 
     public func setCustomObject(value: NSCoding?, forKey defaultName: String) {
-        guard let object = value else {
-            return
-        }
 
-        let encodedObject = NSKeyedArchiver.archivedDataWithRootObject(object)
+        guard let object = value else { return }
 
-        setObject(encodedObject, forKey: defaultName)
+        let encodedObject = NSKeyedArchiver.archivedData(withRootObject: object)
+        set(encodedObject, forKey: defaultName)
     }
 }

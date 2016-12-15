@@ -19,9 +19,9 @@
 [submodule "Carthage/Checkouts/yoursway-create-dmg"]
 	path = Carthage/Checkouts/yoursway-create-dmg
 	url = https://github.com/andreyvit/yoursway-create-dmg.git
-[submodule "Carthage/Checkouts/Bond"]
-	path = Carthage/Checkouts/Bond
-	url = https://github.com/SwiftBond/Bond.git
 [submodule "Carthage/Checkouts/SwiftTryCatch"]
 	path = Carthage/Checkouts/SwiftTryCatch
 	url = https://github.com/rnine/SwiftTryCatch.git
+[submodule "Carthage/Checkouts/ReactiveKit"]
+	path = Carthage/Checkouts/ReactiveKit
+	url = https://github.com/ReactiveKit/ReactiveKit.git

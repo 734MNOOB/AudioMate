@@ -1,9 +1,9 @@
-github "DaveWoodCom/XCGLogger" ~> 3.3
-github "rnine/AMCoreAudio" ~> 3.0
+github "DaveWoodCom/XCGLogger" ~> 4.0.0
+github "rnine/AMCoreAudio" "develop"
 github "PureLayout/PureLayout" ~> 3.0.0
+github "sparkle-project/Sparkle" ~> 1.15
+github "ReactiveKit/ReactiveKit" ~> 3.1
+github "rnine/SwiftTryCatch" "master"
 github "potionfactory/LetsMove" ~> 1.9
-github "sparkle-project/Sparkle" ~> 1.13.1
 github "alexzielenski/StartAtLoginController" "master"
 github "andreyvit/yoursway-create-dmg" "master"
-github "SwiftBond/Bond" ~> 4.3.1
-github "rnine/SwiftTryCatch" "master"

@@ -6,56 +6,104 @@
 //  Copyright © 2016 Ruben Nine. All rights reserved.
 //
 
-import Bond
+import Foundation
+import ReactiveKit
+
+private extension UserDefaults {
+
+    // non-optional
+    func observe<T: Any>(key: String, defaultValue: T) -> Property<T> {
+
+        let o = object(forKey: key) as? T ?? defaultValue
+        let p = Property(o)
+        let _ = p.observeNext { (value) in self.set(value, forKey: key) }
+
+        return p
+    }
+
+    // optional
+    func observe<T: Any>(key: String, defaultValue: T?) -> Property<T?> {
+
+        let o = object(forKey: key) as? T ?? defaultValue
+        let p = Property(o)
+        let _ = p.observeNext { (value) in self.set(value, forKey: key) }
+
+        return p
+    }
+
+    // raw representable
+    func observe<T: RawRepresentable>(key: String, defaultValue: T) -> Property<T> {
+
+        let o = T(rawValue: object(forKey: key) as? T.RawValue ?? defaultValue.rawValue)!
+        let p = Property(o)
+        let _ = p.observeNext { (value) in self.set(value.rawValue, forKey: key) }
+        
+        return p
+    }
+
+    // NSCoding
+    func observe<T: NSCoding>(key: String, defaultValue: T) -> Property<T> {
+
+        if customObjectForKey(defaultName: key) == nil {
+            setCustomObject(value: defaultValue, forKey: key)
+        }
+
+        let o = (customObjectForKey(defaultName: key) as? T)!
+        let p = Property(o)
+        let _ = p.observeNext { (value) in self.setCustomObject(value: value, forKey: key) }
+
+        return p
+    }
+}
+
+// MARK: - Preferences
 
 final class Preferences {
-    let general = General()
-    let notifications = Notifications()
 
     static let sharedPreferences = Preferences()
     private init() {}
 
-    static private let defaults = BindableUserDefaults()
+    fileprivate static let sud = UserDefaults.standard
 
-    /// General preferences
-    final class General {
-        lazy var isFirstLaunch: Observable<Bool> = {
-            return defaults.bind(self.dynamicType, name: #function, type: Bool.self, defaultValue: true)
-        }()
+    let general = General()
+    let notifications = Notifications()
 
-        lazy var featuredDevice: Observable<DeviceDescriptor> = {
-            return defaults.bind(self.dynamicType, name: #function, type: DeviceDescriptor.self, defaultValue: DeviceDescriptor(device: nil))
-        }()
+    class Base {
 
-        lazy var layoutType: Observable<StatusBarViewLayoutType> = {
-            return defaults.bind(self.dynamicType, name: #function, type: StatusBarViewLayoutType.self, defaultValue: StatusBarViewLayoutType.SampleRate)
-        }()
+        // Support function that returns the fully qualified key name from a partial key name
+        // i.e. "name" -> "Preferences:General:name"
+        fileprivate func fqnKey(_ name: String) -> String {
+
+            return "\(type(of: self)):\(name)"
+        }
     }
 
-    /// User notification preferences
-    final class Notifications {
-        lazy var shouldDisplayVolumeChanges: Observable<Bool> = {
-            return defaults.bind(self.dynamicType, name: #function, type: Bool.self, defaultValue: true)
-        }()
+}
 
-        lazy var shouldDisplayMuteChanges: Observable<Bool> = {
-            return defaults.bind(self.dynamicType, name: #function, type: Bool.self, defaultValue: true)
-        }()
+// MARK: - Preferences - General
 
-        lazy var shouldDisplaySampleRateChanges: Observable<Bool> = {
-            return defaults.bind(self.dynamicType, name: #function, type: Bool.self, defaultValue: true)
-        }()
+extension Preferences {
 
-        lazy var shouldDisplayClockSourceChanges: Observable<Bool> = {
-            return defaults.bind(self.dynamicType, name: #function, type: Bool.self, defaultValue: true)
-        }()
+    final class General: Base {
 
-        lazy var shouldDisplayAddedAndRemovedDeviceChanges: Observable<Bool> = {
-            return defaults.bind(self.dynamicType, name: #function, type: Bool.self, defaultValue: true)
-        }()
+        lazy var isFirstLaunch: Property<Bool> = sud.observe(key: self.fqnKey(#function), defaultValue: true)
+        lazy var featuredDevice: Property<DeviceDescriptor> = sud.observe(key: self.fqnKey(#function), defaultValue: DeviceDescriptor(device: nil))
+        lazy var layoutType: Property<StatusBarViewLayoutType> = sud.observe(key: self.fqnKey(#function), defaultValue: .sampleRate)
+    }
 
-        lazy var shouldDisplayDefaultDeviceChanges: Observable<Bool> = {
-            return defaults.bind(self.dynamicType, name: #function, type: Bool.self, defaultValue: true)
-        }()
+}
+
+// MARK: - Preferences - Notifications
+
+extension Preferences {
+
+    final class Notifications: Base {
+
+        lazy var shouldDisplayVolumeChanges: Property<Bool> = sud.observe(key: self.fqnKey(#function), defaultValue: true)
+        lazy var shouldDisplayMuteChanges: Property<Bool> = sud.observe(key: self.fqnKey(#function), defaultValue: true)
+        lazy var shouldDisplaySampleRateChanges: Property<Bool> = sud.observe(key: self.fqnKey(#function), defaultValue: true)
+        lazy var shouldDisplayClockSourceChanges: Property<Bool> = sud.observe(key: self.fqnKey(#function), defaultValue: true)
+        lazy var shouldDisplayAddedAndRemovedDeviceChanges: Property<Bool> = sud.observe(key: self.fqnKey(#function), defaultValue: true)
+        lazy var shouldDisplayDefaultDeviceChanges: Property<Bool> = sud.observe(key: self.fqnKey(#function), defaultValue: true)
     }
 }

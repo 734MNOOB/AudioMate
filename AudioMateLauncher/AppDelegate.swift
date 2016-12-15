@@ -18,11 +18,13 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     func applicationDidFinishLaunching(aNotification: NSNotification) {
         // Check if main app is already running; if yes, do nothing and terminate helper app
 
-        let runningApps = NSWorkspace.sharedWorkspace().runningApplications
+        let runningApps = NSWorkspace.shared().runningApplications
 
-        if runningApps.indexOf({ app -> Bool in app.bundleIdentifier == TargetBundleIdentifier }) == nil {
-            let path = NSBundle.mainBundle().bundlePath
-            var pathComponents = path.componentsSeparatedByString("/")
+
+
+        if (runningApps.contains { $0.bundleIdentifier == TargetBundleIdentifier }) == false {
+            let path = Bundle.main.bundlePath
+            var pathComponents = path.components(separatedBy: "/")
 
             pathComponents.removeLast()
             pathComponents.removeLast()
@@ -30,10 +32,10 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             pathComponents.append("MacOS")
             pathComponents.append("AudioMate")
 
-            let newPath = pathComponents.joinWithSeparator("/")
+            let newPath = pathComponents.joined(separator: "/")
 
-            if NSFileManager.defaultManager().fileExistsAtPath(newPath) {
-                NSWorkspace.sharedWorkspace().launchApplication(newPath)
+            if FileManager.default.fileExists(atPath: newPath) {
+                NSWorkspace.shared().launchApplication(newPath)
             } else {
                 print("ERROR: Unable to launch app because path at \(newPath) does not exist.")
             }

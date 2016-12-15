@@ -17,28 +17,29 @@ class GeneralPreferencesViewController: NSViewController {
     private let startAtLoginController = StartAtLoginController(identifier: "io.9labs.AudioMateLauncher")
 
     override func viewDidLoad() {
+
         super.viewDidLoad()
         // Do view setup here.
 
         let item1 = NSMenuItem()
         item1.title = NSLocalizedString("Sample Rate", comment: "")
-        item1.tag = StatusBarViewLayoutType.SampleRate.rawValue
+        item1.tag = StatusBarViewLayoutType.sampleRate.rawValue
 
         let item2 = NSMenuItem()
         item2.title = NSLocalizedString("Sample Rate + Clock Source", comment: "")
-        item2.tag = StatusBarViewLayoutType.SampleRateAndClockSource.rawValue
+        item2.tag = StatusBarViewLayoutType.sampleRateAndClockSource.rawValue
 
         let item3 = NSMenuItem()
         item3.title = NSLocalizedString("Master Volume (Decibels)", comment: "")
-        item3.tag = StatusBarViewLayoutType.MasterVolumeDecibels.rawValue
+        item3.tag = StatusBarViewLayoutType.masterVolumeDecibels.rawValue
 
         let item4 = NSMenuItem()
         item4.title = NSLocalizedString("Master Volume (Percent)", comment: "")
-        item4.tag = StatusBarViewLayoutType.MasterVolumePercent.rawValue
+        item4.tag = StatusBarViewLayoutType.masterVolumePercent.rawValue
 
         let item5 = NSMenuItem()
         item5.title = NSLocalizedString("Master Volume (Graphic)", comment: "")
-        item5.tag = StatusBarViewLayoutType.MasterVolumeGraphic.rawValue
+        item5.tag = StatusBarViewLayoutType.masterVolumeGraphic.rawValue
 
         deviceInformationToShowPopUpButton.menu?.addItem(item1)
         deviceInformationToShowPopUpButton.menu?.addItem(item2)
@@ -49,24 +50,31 @@ class GeneralPreferencesViewController: NSViewController {
         deviceInformationToShowPopUpButton.target = self
         deviceInformationToShowPopUpButton.action = #selector(updateStatusBarLayoutType(_:))
 
-        deviceInformationToShowPopUpButton.selectItemWithTag(preferences.general.layoutType.value.rawValue)
+        deviceInformationToShowPopUpButton.selectItem(withTag: prefs.general.layoutType.value.rawValue)
 
-        startAtLoginButton.state = startAtLoginController.startAtLogin ? NSOnState : NSOffState
+        if let startAtLoginController = startAtLoginController {
+            startAtLoginButton.state = startAtLoginController.startAtLogin ? NSOnState : NSOffState
+        }
     }
 
     override func viewWillAppear() {
+
         super.viewWillAppear()
         preferredContentSize = view.bounds.size
     }
 
-    @IBAction func toggleStartAtLogin(sender: AnyObject) {
-        startAtLoginController.startAtLogin = startAtLoginButton.state == NSOnState
+    @IBAction func toggleStartAtLogin(_ sender: AnyObject) {
+
+        if let startAtLoginController = startAtLoginController {
+            startAtLoginController.startAtLogin = startAtLoginButton.state == NSOnState
+        }
     }
 
-    @IBAction func updateStatusBarLayoutType(sender: AnyObject) {
+    @IBAction func updateStatusBarLayoutType(_ sender: AnyObject) {
+
         if let popupButton = sender as? NSPopUpButton {
             if let tag = popupButton.selectedItem?.tag, let layoutType = StatusBarViewLayoutType(rawValue: tag) {
-                preferences.general.layoutType.value = layoutType
+                prefs.general.layoutType.value = layoutType
             }
         }
     }

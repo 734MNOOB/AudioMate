@@ -28,6 +28,6 @@ class UpdatePreferencesViewController: NSViewController {
     }
 
     @IBAction func checkForUpdates(sender: AnyObject) {
-        SUUpdater.sharedUpdater().checkForUpdates(sender)
+        SUUpdater.shared().checkForUpdates(sender)
     }
 }
