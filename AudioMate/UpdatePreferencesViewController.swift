@@ -27,7 +27,7 @@ class UpdatePreferencesViewController: NSViewController {
         preferredContentSize = view.bounds.size
     }
 
-    @IBAction func checkForUpdates(sender: AnyObject) {
+    @IBAction func checkForUpdates(_ sender: AnyObject) {
         SUUpdater.shared().checkForUpdates(sender)
     }
 }
