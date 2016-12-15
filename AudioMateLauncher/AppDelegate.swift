@@ -15,12 +15,11 @@ private let TargetBundleIdentifier = "io.9labs.AudioMate"
 class AppDelegate: NSObject, NSApplicationDelegate {
 
 
-    func applicationDidFinishLaunching(aNotification: NSNotification) {
+    func applicationDidFinishLaunching(_ notification: Notification) {
+
         // Check if main app is already running; if yes, do nothing and terminate helper app
 
         let runningApps = NSWorkspace.shared().runningApplications
-
-
 
         if (runningApps.contains { $0.bundleIdentifier == TargetBundleIdentifier }) == false {
             let path = Bundle.main.bundlePath
@@ -44,7 +43,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         NSApp.terminate(self)
     }
 
-    func applicationWillTerminate(aNotification: NSNotification) {
+    func applicationWillTerminate(_ notification: Notification) {
+
         // Insert code here to tear down your application
     }
 
