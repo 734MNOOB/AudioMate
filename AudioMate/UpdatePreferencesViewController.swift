@@ -14,6 +14,7 @@ class UpdatePreferencesViewController: NSViewController {
     @IBOutlet var buildInformationLabel: NSTextField!
     
     override func viewDidLoad() {
+
         super.viewDidLoad()
         // Do view setup here.
 
@@ -22,12 +23,8 @@ class UpdatePreferencesViewController: NSViewController {
         }
     }
 
-    override func viewWillAppear() {
-        super.viewWillAppear()
-        preferredContentSize = view.bounds.size
-    }
-
     @IBAction func checkForUpdates(_ sender: AnyObject) {
+
         SUUpdater.shared().checkForUpdates(sender)
     }
 }

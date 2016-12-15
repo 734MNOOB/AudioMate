@@ -57,12 +57,6 @@ class GeneralPreferencesViewController: NSViewController {
         }
     }
 
-    override func viewWillAppear() {
-
-        super.viewWillAppear()
-        preferredContentSize = view.bounds.size
-    }
-
     @IBAction func toggleStartAtLogin(_ sender: AnyObject) {
 
         if let startAtLoginController = startAtLoginController {

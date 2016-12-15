@@ -28,6 +28,7 @@
 		455D69651CDF4A34003738F6 /* MasterVolumeGraphicStatusBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 455D69641CDF4A34003738F6 /* MasterVolumeGraphicStatusBarView.swift */; };
 		455D697C1CDF5DD6003738F6 /* MasterVolumeGraphicView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 455D697B1CDF5DD6003738F6 /* MasterVolumeGraphicView.swift */; };
 		455F0C071C4E666500E59A99 /* UserNotificationDispatcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 455F0C061C4E666500E59A99 /* UserNotificationDispatcher.swift */; };
+		4563C58A1E02BE2A0031C131 /* PreferencesTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4563C5891E02BE2A0031C131 /* PreferencesTabViewController.swift */; };
 		4572CF4C1E01F96F000C216D /* Globals.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4572CF4B1E01F96F000C216D /* Globals.swift */; };
 		45772C4E184690BE00D07EF6 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 45772C4D184690BE00D07EF6 /* Images.xcassets */; };
 		4579E0341CE0973B00899972 /* MasterVolumeDecibelStatusBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4579E0331CE0973B00899972 /* MasterVolumeDecibelStatusBarView.swift */; };
@@ -38,7 +39,6 @@
 		458E355D196EB56000C7C630 /* AMConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = 458E355C196EB56000C7C630 /* AMConfig.plist */; };
 		458E95B9185B50E500A0EFE6 /* AudioMateLauncher.app in Copy AudioMateLauncher into Contents/Library/LoginItems */ = {isa = PBXBuildFile; fileRef = 459D6DA91687EF95007F2226 /* AudioMateLauncher.app */; };
 		4595B26B1B17C7BD0075D1D1 /* dsa_pub.pem in Resources */ = {isa = PBXBuildFile; fileRef = 4595B26A1B17C7BD0075D1D1 /* dsa_pub.pem */; };
-		459E40E11CCD264F0061303C /* PreferencesWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 459E40E01CCD264F0061303C /* PreferencesWindowController.swift */; };
 		459E41011CCD2C0F0061303C /* GeneralPreferencesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 459E41001CCD2C0F0061303C /* GeneralPreferencesViewController.swift */; };
 		459E41031CCD2C2D0061303C /* NotificationPreferencesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 459E41021CCD2C2D0061303C /* NotificationPreferencesViewController.swift */; };
 		459E41051CCD416F0061303C /* StartAtLoginController.m in Sources */ = {isa = PBXBuildFile; fileRef = 45A43ACE1CBAAE8400C22D17 /* StartAtLoginController.m */; };
@@ -384,6 +384,7 @@
 		455D69641CDF4A34003738F6 /* MasterVolumeGraphicStatusBarView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MasterVolumeGraphicStatusBarView.swift; sourceTree = "<group>"; };
 		455D697B1CDF5DD6003738F6 /* MasterVolumeGraphicView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MasterVolumeGraphicView.swift; sourceTree = "<group>"; };
 		455F0C061C4E666500E59A99 /* UserNotificationDispatcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UserNotificationDispatcher.swift; path = Support/UserNotificationDispatcher.swift; sourceTree = "<group>"; };
+		4563C5891E02BE2A0031C131 /* PreferencesTabViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PreferencesTabViewController.swift; sourceTree = "<group>"; };
 		4572CF4B1E01F96F000C216D /* Globals.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Globals.swift; sourceTree = "<group>"; };
 		45772C4D184690BE00D07EF6 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = AudioMate/Images.xcassets; sourceTree = SOURCE_ROOT; };
 		4579E0331CE0973B00899972 /* MasterVolumeDecibelStatusBarView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MasterVolumeDecibelStatusBarView.swift; sourceTree = "<group>"; };
@@ -393,7 +394,6 @@
 		45915011196C333D00B104EF /* AudioMate.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = AudioMate.entitlements; sourceTree = "<group>"; };
 		4595B26A1B17C7BD0075D1D1 /* dsa_pub.pem */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = dsa_pub.pem; sourceTree = "<group>"; };
 		459D6DA91687EF95007F2226 /* AudioMateLauncher.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AudioMateLauncher.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		459E40E01CCD264F0061303C /* PreferencesWindowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PreferencesWindowController.swift; sourceTree = "<group>"; };
 		459E41001CCD2C0F0061303C /* GeneralPreferencesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeneralPreferencesViewController.swift; sourceTree = "<group>"; };
 		459E41021CCD2C2D0061303C /* NotificationPreferencesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationPreferencesViewController.swift; sourceTree = "<group>"; };
 		459E41071CCD4A040061303C /* Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Utils.swift; path = Support/Utils.swift; sourceTree = "<group>"; };
@@ -643,7 +643,7 @@
 				453394231D40C3BE00717DA1 /* AdvancedPreferencesViewController.swift */,
 				459E41001CCD2C0F0061303C /* GeneralPreferencesViewController.swift */,
 				459E41021CCD2C2D0061303C /* NotificationPreferencesViewController.swift */,
-				459E40E01CCD264F0061303C /* PreferencesWindowController.swift */,
+				4563C5891E02BE2A0031C131 /* PreferencesTabViewController.swift */,
 				4589AE001C52B405009BE875 /* StatusBarViewController.swift */,
 				453394411D40C43800717DA1 /* UpdatePreferencesViewController.swift */,
 			);
@@ -1120,6 +1120,7 @@
 				455D69651CDF4A34003738F6 /* MasterVolumeGraphicStatusBarView.swift in Sources */,
 				4510A4131CCE21D500AED5E4 /* NSUserDefaults+CustomObjects.swift in Sources */,
 				4510A3EF1CCE1D4800AED5E4 /* DeviceDescriptor.swift in Sources */,
+				4563C58A1E02BE2A0031C131 /* PreferencesTabViewController.swift in Sources */,
 				4589AE011C52B405009BE875 /* StatusBarViewController.swift in Sources */,
 				453394421D40C43800717DA1 /* UpdatePreferencesViewController.swift in Sources */,
 				4579E0361CE09AFB00899972 /* MasterVolumePercentStatusBarView.swift in Sources */,
@@ -1133,7 +1134,6 @@
 				45115FBF1CCFA50500FBF31F /* SampleRateStatusBarView.swift in Sources */,
 				45C771EB1E021DF000D50AD6 /* Double+Extensions.swift in Sources */,
 				455D697C1CDF5DD6003738F6 /* MasterVolumeGraphicView.swift in Sources */,
-				459E40E11CCD264F0061303C /* PreferencesWindowController.swift in Sources */,
 				459E41011CCD2C0F0061303C /* GeneralPreferencesViewController.swift in Sources */,
 				4579E0341CE0973B00899972 /* MasterVolumeDecibelStatusBarView.swift in Sources */,
 				4507E6F61CCEC38B00EC7EEE /* SwiftTryCatch.m in Sources */,

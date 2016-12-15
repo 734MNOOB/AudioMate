@@ -9,6 +9,7 @@
 import Cocoa
 
 class VolumeControlMenuItemView: NSView {
+
     @IBOutlet var volumeSlider: NSSlider!
     @IBOutlet var muteCheckbox: NSButton!
     @IBOutlet var volumeLabel: NSTextField!
@@ -16,6 +17,7 @@ class VolumeControlMenuItemView: NSView {
     private var didSetupConstraints: Bool = false
 
     override func updateConstraints() {
+
         if !didSetupConstraints {
             removeConstraints(constraints)
             autoSetDimension(.height, toSize: 42)

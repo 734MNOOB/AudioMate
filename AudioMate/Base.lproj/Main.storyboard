@@ -1,9 +1,10 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16C67" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="10117"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="11762"/>
         <capability name="box content view" minToolsVersion="7.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
         <!--Application-->
@@ -648,27 +649,10 @@
             </objects>
             <point key="canvasLocation" x="75" y="0.0"/>
         </scene>
-        <!--Window Controller-->
-        <scene sceneID="jbO-Xv-OIF">
-            <objects>
-                <windowController id="W6d-GT-x8t" customClass="PreferencesWindowController" customModule="AudioMate" customModuleProvider="target" sceneMemberID="viewController">
-                    <window key="window" title="Preferences" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" showsToolbarButton="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" id="NXA-Bs-DVy" customClass="NSPanel">
-                        <windowStyleMask key="styleMask" titled="YES" closable="YES" texturedBackground="YES"/>
-                        <rect key="contentRect" x="425" y="461" width="480" height="270"/>
-                        <rect key="screenRect" x="0.0" y="0.0" width="2560" height="1417"/>
-                    </window>
-                    <connections>
-                        <segue destination="B0M-Fv-h3q" kind="relationship" relationship="window.shadowedContentViewController" id="gKS-ib-3wu"/>
-                    </connections>
-                </windowController>
-                <customObject id="U5F-Fn-Pc8" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="283" y="795"/>
-        </scene>
-        <!--Tab View Controller-->
+        <!--Preferences Tab View Controller-->
         <scene sceneID="uAf-IL-8h8">
             <objects>
-                <tabViewController selectedTabViewItemIndex="0" tabStyle="toolbar" id="B0M-Fv-h3q" sceneMemberID="viewController">
+                <tabViewController showSeguePresentationStyle="single" selectedTabViewItemIndex="0" tabStyle="toolbar" id="B0M-Fv-h3q" customClass="PreferencesTabViewController" customModule="AudioMate" customModuleProvider="target" sceneMemberID="viewController">
                     <tabViewItems>
                         <tabViewItem label="General" identifier="" image="General" id="L23-Ml-7Qx"/>
                         <tabViewItem label="Notifications" identifier="" image="Notifications" id="GEt-Y2-V4d"/>
@@ -680,6 +664,9 @@
                         <autoresizingMask key="autoresizingMask"/>
                         <font key="font" metaFont="message"/>
                         <tabViewItems/>
+                        <connections>
+                            <outlet property="delegate" destination="B0M-Fv-h3q" id="SdM-eR-wyP"/>
+                        </connections>
                     </tabView>
                     <connections>
                         <segue destination="3Rq-8W-7jd" kind="relationship" relationship="tabItems" id="b6B-iR-pu6"/>
@@ -692,10 +679,10 @@
             </objects>
             <point key="canvasLocation" x="937" y="755"/>
         </scene>
-        <!--General Preferences View Controller-->
+        <!--General-->
         <scene sceneID="zOP-nq-DZe">
             <objects>
-                <viewController id="3Rq-8W-7jd" customClass="GeneralPreferencesViewController" customModule="AudioMate" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="General" showSeguePresentationStyle="single" id="3Rq-8W-7jd" customClass="GeneralPreferencesViewController" customModule="AudioMate" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="eiV-S3-ZYg">
                         <rect key="frame" x="0.0" y="0.0" width="450" height="120"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -750,10 +737,10 @@
             </objects>
             <point key="canvasLocation" x="2169" y="499"/>
         </scene>
-        <!--Notification Preferences View Controller-->
+        <!--Notifications-->
         <scene sceneID="AU1-OI-4ta">
             <objects>
-                <viewController id="Of9-2S-bOd" customClass="NotificationPreferencesViewController" customModule="AudioMate" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Notifications" showSeguePresentationStyle="single" id="Of9-2S-bOd" customClass="NotificationPreferencesViewController" customModule="AudioMate" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="QDR-ru-sgl">
                         <rect key="frame" x="0.0" y="0.0" width="450" height="179"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -867,29 +854,27 @@
                     </view>
                     <connections>
                         <outlet property="view" destination="gIP-Ps-IHQ" id="bH4-Eq-EAC"/>
-                        <segue destination="W6d-GT-x8t" kind="show" identifier="showPreferences" id="Vts-vV-5AO"/>
+                        <segue destination="B0M-Fv-h3q" kind="show" identifier="showPreferences" id="R2K-w7-uOw"/>
                     </connections>
                 </viewController>
                 <customObject id="05k-Cr-mSZ" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="525" y="292.5"/>
         </scene>
-        <!--Advanced Preferences View Controller-->
+        <!--Advanced-->
         <scene sceneID="ZKF-hP-ssW">
             <objects>
-                <viewController showSeguePresentationStyle="single" id="YKP-4b-gcS" customClass="AdvancedPreferencesViewController" customModule="AudioMate" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Advanced" showSeguePresentationStyle="single" id="YKP-4b-gcS" customClass="AdvancedPreferencesViewController" customModule="AudioMate" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="M8T-W3-rlD">
                         <rect key="frame" x="0.0" y="0.0" width="450" height="180"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
-                            <box title="Box" borderType="line" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="V9j-YR-re9">
+                            <box borderType="line" title="Box" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="V9j-YR-re9">
                                 <rect key="frame" x="17" y="16" width="416" height="144"/>
                                 <view key="contentView" id="kXo-hs-GHv">
-                                    <rect key="frame" x="1" y="1" width="414" height="144"/>
+                                    <rect key="frame" x="1" y="1" width="414" height="142"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 </view>
-                                <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
-                                <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </box>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="be9-rZ-fBs">
                                 <rect key="frame" x="160" y="82" width="131" height="17"/>
@@ -914,10 +899,10 @@
             </objects>
             <point key="canvasLocation" x="2169" y="1201"/>
         </scene>
-        <!--Update Preferences View Controller-->
+        <!--Update-->
         <scene sceneID="w8K-yX-FFD">
             <objects>
-                <viewController showSeguePresentationStyle="single" id="Qph-T4-SE7" customClass="UpdatePreferencesViewController" customModule="AudioMate" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Update" showSeguePresentationStyle="single" id="Qph-T4-SE7" customClass="UpdatePreferencesViewController" customModule="AudioMate" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="iyu-jU-h6K">
                         <rect key="frame" x="0.0" y="0.0" width="450" height="83"/>
                         <autoresizingMask key="autoresizingMask"/>

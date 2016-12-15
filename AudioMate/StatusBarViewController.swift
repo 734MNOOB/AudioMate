@@ -128,8 +128,9 @@ class StatusBarViewController: NSViewController {
             statusItem?.button?.isEnabled = false
             statusBarView.isEnabled = false
 
-            if let wc = segue.destinationController as? PreferencesWindowController {
-                wc.windowDidCloseHandler = { [unowned self] in
+            if let controller = segue.destinationController as? PreferencesTabViewController {
+
+                controller.closeHandler = { [unowned self] in
                     self.statusItem?.button?.isEnabled = true
                     self.statusBarView.isEnabled = true
                 }

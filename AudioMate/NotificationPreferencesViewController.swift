@@ -63,13 +63,6 @@ class NotificationPreferencesViewController: NSViewController {
         }.disposeIn(disposeBag)
     }
 
-    override func viewWillAppear() {
-
-        super.viewWillAppear()
-
-        preferredContentSize = view.bounds.size
-    }
-
     @IBAction func handleCheckButton(_ sender: AnyObject) {
 
         guard let button = sender as? NSButton else { return }
