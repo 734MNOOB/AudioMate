@@ -37,7 +37,7 @@ class MasterVolumeGraphicView: NSView {
         }
     }
 
-    var value: CGFloat = 0.0 {
+    var value: CGFloat = 0 {
 
         didSet {
             setNeedsDisplay(bounds)
@@ -83,9 +83,9 @@ class MasterVolumeGraphicView: NSView {
 
     override func draw(_ dirtyRect: NSRect) {
 
-        super.draw(dirtyRect)
-        
         updateUI()
+
+        super.draw(dirtyRect)
     }
     
 

@@ -109,7 +109,7 @@ class StatusBarViewController: NSViewController {
 
         super.viewWillLayout()
 
-        let padding: CGFloat = 10.0 // 10px padding
+        let padding: CGFloat = 10 // 10px padding
         let fittingWidthWithPadding = round(view.fittingSize.width + padding)
 
         view.frame.size = NSSize(width: fittingWidthWithPadding, height: statusBarView.frame.height)
@@ -253,7 +253,6 @@ class StatusBarViewController: NSViewController {
 
             case .none:
 
-                statusItem?.length = NSVariableStatusItemLength
                 statusBarView.isHidden = true
                 statusItem?.button?.image = NSImage(named: "Mini AudioMate")
             }
@@ -290,8 +289,8 @@ class StatusBarViewController: NSViewController {
 
         if let volumeControlView = (item.view as? VolumeControlMenuItemView) ?? (instantiateViewFromNibNamed(nibName: "VolumeControlMenuItemView") as? VolumeControlMenuItemView) {
             // Set volume slide ranges
-            volumeControlView.volumeSlider.minValue = 0.0
-            volumeControlView.volumeSlider.maxValue = 1.0
+            volumeControlView.volumeSlider.minValue = 0
+            volumeControlView.volumeSlider.maxValue = 1
 
             // Set input volume slider and mute checkbox values
             if let volume = device.virtualMasterVolume(direction: direction) {
@@ -313,7 +312,7 @@ class StatusBarViewController: NSViewController {
                 volumeControlView.muteCheckbox.action = volumeMuteAction
             } else {
                 volumeControlView.volumeSlider.isEnabled = false
-                volumeControlView.volumeSlider.floatValue = 1.0
+                volumeControlView.volumeSlider.floatValue = 1
                 volumeControlView.muteCheckbox.isEnabled = false
                 volumeControlView.muteCheckbox.state = NSOffState
             }
@@ -552,7 +551,7 @@ class StatusBarViewController: NSViewController {
         guard let view = volumeControlMenuItem.view as? VolumeControlMenuItemView else { return }
         guard let volume = device.virtualMasterVolume(direction: direction) else { return }
 
-        let volumeInDecibels = device.virtualMasterVolumeInDecibels(direction: direction) ?? 0.0
+        let volumeInDecibels = device.virtualMasterVolumeInDecibels(direction: direction) ?? 0
 
         view.volumeLabel.stringValue = volumeControlLabel(for: direction, volume: volumeInDecibels)
         view.volumeSlider.floatValue = volume
@@ -561,7 +560,7 @@ class StatusBarViewController: NSViewController {
 
     private func attributedString(for device: AudioDevice) -> NSAttributedString {
 
-        let font = NSFont.menuBarFont(ofSize: 14.0)
+        let font = NSFont.menuBarFont(ofSize: 14)
         let attrs = [NSFontAttributeName: font]
         let attrString = NSMutableAttributedString(string: device.name, attributes: attrs)
 

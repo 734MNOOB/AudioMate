@@ -25,7 +25,7 @@ class VolumeControlMenuItemView: NSView {
             NSLayoutConstraint.deactivate(constraints)
             autoSetDimension(.height, toSize: 42)
 
-            let sideMargin: CGFloat = 21.0
+            let sideMargin: CGFloat = 21
 
             volumeLabel.autoPinEdge(toSuperviewEdge: .left, withInset: sideMargin)
             volumeLabel.autoPinEdge(toSuperviewEdge: .right, withInset: sideMargin)
@@ -37,7 +37,7 @@ class VolumeControlMenuItemView: NSView {
             muteCheckbox.setContentCompressionResistancePriority(NSLayoutPriorityRequired, for: NSLayoutConstraintOrientation.horizontal)
 
             volumeSlider.autoPinEdge(toSuperviewEdge: .left, withInset: sideMargin)
-            volumeSlider.autoPinEdge(.right, to: .left, of: muteCheckbox, withOffset: -8.0)
+            volumeSlider.autoPinEdge(.right, to: .left, of: muteCheckbox, withOffset: -8)
             volumeSlider.autoAlignAxis(.horizontal, toSameAxisOf: muteCheckbox)
             volumeSlider.setContentHuggingPriority(NSLayoutPriorityDefaultLow, for: NSLayoutConstraintOrientation.horizontal)
             volumeSlider.setContentCompressionResistancePriority(NSLayoutPriorityDefaultLow, for: NSLayoutConstraintOrientation.horizontal)

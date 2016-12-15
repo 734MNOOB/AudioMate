@@ -46,7 +46,7 @@ class MasterVolumeDecibelStatusBarView: NSView, StatusBarSubView {
 
     override var intrinsicContentSize: NSSize {
 
-        return NSSize(width: 72.0, height: 18.0)
+        return NSSize(width: 72, height: 18)
     }
 
 
@@ -67,9 +67,9 @@ class MasterVolumeDecibelStatusBarView: NSView, StatusBarSubView {
 
     override func draw(_ dirtyRect: NSRect) {
 
-        super.draw(dirtyRect)
-
         updateUI()
+
+        super.draw(dirtyRect)
     }
 
     override func viewDidMoveToSuperview() {
@@ -84,10 +84,12 @@ class MasterVolumeDecibelStatusBarView: NSView, StatusBarSubView {
             didSetupConstraints = true
 
             autoPinEdgesToSuperviewEdges(with: EdgeInsets(top: 1, left: 0, bottom: 1, right: 0))
-            inVolumeLabel.autoSetDimension(.height, toSize: 11)
-            inVolumeLabel.autoPinEdgesToSuperviewEdges(with: EdgeInsets(), excludingEdge: ALEdge.bottom)
-            outVolumeLabel.autoSetDimension(.height, toSize: 11)
-            outVolumeLabel.autoPinEdgesToSuperviewEdges(with: EdgeInsets(), excludingEdge: ALEdge.top)
+
+            inVolumeLabel.autoPinEdge(toSuperviewEdge: .top)
+            inVolumeLabel.autoAlignAxis(toSuperviewAxis: .vertical)
+
+            outVolumeLabel.autoPinEdge(toSuperviewEdge: .bottom)
+            outVolumeLabel.autoAlignAxis(toSuperviewAxis: .vertical)
         }
         
         super.updateConstraints()
@@ -116,7 +118,7 @@ class MasterVolumeDecibelStatusBarView: NSView, StatusBarSubView {
     private func attributedString(string: String) -> NSAttributedString {
 
         let textColor: NSColor = shouldHighlight ? .white : .labelColor
-        let font = NSFont.boldSystemFont(ofSize: 8.0)
+        let font = NSFont.boldSystemFont(ofSize: 8)
         let attrs = [NSFontAttributeName: font, NSForegroundColorAttributeName: textColor]
         let attrString = NSMutableAttributedString(string: string, attributes: attrs)
 

@@ -27,7 +27,7 @@ public final class UserNotificationDispatcher {
     func samplerateChangeNotification(audioDevice: AudioDevice) {
 
         let notification = NSUserNotification()
-        let sampleRate = audioDevice.nominalSampleRate() ?? 0.0
+        let sampleRate = audioDevice.nominalSampleRate() ?? 0
 
         notification.title = NSLocalizedString("Sample Rate Changed", comment: "")
 

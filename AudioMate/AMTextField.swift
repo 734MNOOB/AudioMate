@@ -48,8 +48,8 @@ class AMTextField: NSTextField {
 
     override func draw(_ dirtyRect: NSRect) {
 
-        super.draw(dirtyRect)
+        alphaValue = isEnabled ? 1 : 0.33
 
-        alphaValue = isEnabled ? 1.0 : 0.33
+        super.draw(dirtyRect)
     }
 }

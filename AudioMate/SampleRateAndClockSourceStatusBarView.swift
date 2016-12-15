@@ -39,7 +39,7 @@ class SampleRateAndClockSourceStatusBarView: NSView, StatusBarSubView {
 
     override var intrinsicContentSize: NSSize {
 
-        return NSSize(width: 64.0, height: 18.0)
+        return NSSize(width: 82, height: 18)
     }
 
 
@@ -60,9 +60,9 @@ class SampleRateAndClockSourceStatusBarView: NSView, StatusBarSubView {
 
     override func draw(_ dirtyRect: NSRect) {
 
-        super.draw(dirtyRect)
-
         updateUI()
+
+        super.draw(dirtyRect)
     }
 
     override func viewDidMoveToSuperview() {
@@ -76,9 +76,13 @@ class SampleRateAndClockSourceStatusBarView: NSView, StatusBarSubView {
         if didSetupConstraints == false {
             didSetupConstraints = true
 
-            autoPinEdgesToSuperviewEdges(with: EdgeInsets())
-            sampleRateTextField.autoPinEdgesToSuperviewEdges(with: EdgeInsets(), excludingEdge: .bottom)
-            clockSourceTextField.autoPinEdgesToSuperviewEdges(with: EdgeInsets(), excludingEdge: .top)
+            autoPinEdgesToSuperviewEdges(with: EdgeInsets(top: 1, left: 0, bottom: 1, right: 0))
+
+            sampleRateTextField.autoPinEdge(toSuperviewEdge: .top)
+            sampleRateTextField.autoAlignAxis(toSuperviewAxis: .vertical)
+
+            clockSourceTextField.autoPinEdge(toSuperviewEdge: .bottom)
+            clockSourceTextField.autoAlignAxis(toSuperviewAxis: .vertical)
         }
         
         super.updateConstraints()
@@ -104,7 +108,7 @@ class SampleRateAndClockSourceStatusBarView: NSView, StatusBarSubView {
     private func attributedString(string: String) -> NSAttributedString {
 
         let textColor: NSColor = shouldHighlight ? .white : .labelColor
-        let font = NSFont.boldSystemFont(ofSize: 9.0)
+        let font = NSFont.boldSystemFont(ofSize: 9)
         let attrs = [NSFontAttributeName: font, NSForegroundColorAttributeName: textColor]
         let attrString = NSMutableAttributedString(string: string, attributes: attrs)
 

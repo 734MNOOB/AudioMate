@@ -73,9 +73,9 @@ class MasterVolumeGraphicStatusBarView: NSView, StatusBarSubView {
 
     override func draw(_ dirtyRect: NSRect) {
 
-        super.draw(dirtyRect)
-
         updateUI()
+
+        super.draw(dirtyRect)
     }
     
     override func viewDidMoveToSuperview() {
@@ -88,7 +88,7 @@ class MasterVolumeGraphicStatusBarView: NSView, StatusBarSubView {
 
     override var intrinsicContentSize: NSSize {
 
-        return NSSize(width: 42.0, height: 18.0)
+        return NSSize(width: 42, height: 18)
     }
 
     override func updateConstraints() {
@@ -98,20 +98,20 @@ class MasterVolumeGraphicStatusBarView: NSView, StatusBarSubView {
 
             autoPinEdgesToSuperviewEdges(with: EdgeInsets(top: 2, left: 5, bottom: 2, right: 5))
 
-            inVolumeView.autoSetDimensions(to: CGSize(width: 32.0, height: 8.0))
+            inVolumeView.autoSetDimensions(to: CGSize(width: 32, height: 8))
             inVolumeView.autoPinEdge(toSuperviewEdge: .top)
             inVolumeView.autoPinEdge(toSuperviewEdge: .left)
 
             inVolumeLabel.autoSetDimension(.height, toSize: 10)
-            inVolumeLabel.autoPinEdge(.left, to: .right, of: inVolumeView, withOffset: 0.0)
+            inVolumeLabel.autoPinEdge(.left, to: .right, of: inVolumeView, withOffset: 0)
             inVolumeLabel.autoAlignAxis(.horizontal, toSameAxisOf: inVolumeView)
 
-            outVolumeView.autoSetDimensions(to: CGSize(width: 32.0, height: 8.0))
+            outVolumeView.autoSetDimensions(to: CGSize(width: 32, height: 8))
             outVolumeView.autoPinEdge(toSuperviewEdge: .bottom)
             outVolumeView.autoPinEdge(toSuperviewEdge: .left)
 
             outVolumeLabel.autoSetDimension(.height, toSize: 10)
-            outVolumeLabel.autoPinEdge(.left, to: .right, of: outVolumeView, withOffset: 0.0)
+            outVolumeLabel.autoPinEdge(.left, to: .right, of: outVolumeView, withOffset: 0)
             outVolumeLabel.autoAlignAxis(.horizontal, toSameAxisOf: outVolumeView)
         }
         
@@ -136,8 +136,8 @@ class MasterVolumeGraphicStatusBarView: NSView, StatusBarSubView {
             inVolumeLabel.isEnabled = (inVolume == nil || inMuted == true || isEnabled == false) ? false : true
             outVolumeLabel.isEnabled = (outVolume == nil || outMuted == true || isEnabled == false) ? false : true
 
-            inVolumeView.value = CGFloat(inVolume ?? 0.0)
-            outVolumeView.value = CGFloat(outVolume ?? 0.0)
+            inVolumeView.value = CGFloat(inVolume ?? 0)
+            outVolumeView.value = CGFloat(outVolume ?? 0)
 
             inVolumeView.isEnabled = isEnabled ? (inMuted == false) : false
             outVolumeView.isEnabled = isEnabled ? (outMuted == false) : false
@@ -150,7 +150,7 @@ class MasterVolumeGraphicStatusBarView: NSView, StatusBarSubView {
     private func attributedString(string: String) -> NSAttributedString {
 
         let textColor: NSColor = shouldHighlight ? .white : .labelColor
-        let font = NSFont.boldSystemFont(ofSize: 7.0)
+        let font = NSFont.boldSystemFont(ofSize: 7)
         let attrs = [NSFontAttributeName: font, NSForegroundColorAttributeName: textColor]
         let attrString = NSMutableAttributedString(string: string, attributes: attrs)
 

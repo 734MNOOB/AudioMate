@@ -45,7 +45,7 @@ class MasterVolumePercentStatusBarView: NSView, StatusBarSubView {
 
     override var intrinsicContentSize: NSSize {
 
-        return NSSize(width: 64.0, height: 18.0)
+        return NSSize(width: 64, height: 18)
     }
 
 
@@ -66,9 +66,9 @@ class MasterVolumePercentStatusBarView: NSView, StatusBarSubView {
 
     override func draw(_ dirtyRect: NSRect) {
 
-        super.draw(dirtyRect)
-
         updateUI()
+
+        super.draw(dirtyRect)
     }
 
     override func viewDidMoveToSuperview() {
@@ -84,8 +84,11 @@ class MasterVolumePercentStatusBarView: NSView, StatusBarSubView {
 
             autoPinEdgesToSuperviewEdges(with: EdgeInsets(top: 1, left: 0, bottom: 1, right: 0))
 
-            inVolumeLabel.autoPinEdgesToSuperviewEdges(with: EdgeInsets(), excludingEdge: .bottom)
-            outVolumeLabel.autoPinEdgesToSuperviewEdges(with: EdgeInsets(), excludingEdge: .top)
+            inVolumeLabel.autoPinEdge(toSuperviewEdge: .top)
+            inVolumeLabel.autoAlignAxis(toSuperviewAxis: .vertical)
+
+            outVolumeLabel.autoPinEdge(toSuperviewEdge: .bottom)
+            outVolumeLabel.autoAlignAxis(toSuperviewAxis: .vertical)
         }
         
         super.updateConstraints()
@@ -117,12 +120,28 @@ class MasterVolumePercentStatusBarView: NSView, StatusBarSubView {
     private func attributedString(string: String) -> NSAttributedString {
 
         let textColor: NSColor = shouldHighlight ? .white : .labelColor
-        let font = NSFont.boldSystemFont(ofSize: 8.0)
+        let font = NSFont.boldSystemFont(ofSize: 8)
         let attrs = [NSFontAttributeName: font, NSForegroundColorAttributeName: textColor]
         let attrString = NSMutableAttributedString(string: string, attributes: attrs)
 
         attrString.setAlignment(NSTextAlignment.center, range: NSRange(location: 0, length: attrString.length))
         
         return attrString.copy() as! NSAttributedString
+    }
+
+    private func dimensionsForAttributedString(asp: NSAttributedString) -> CGRect {
+        var ascent = CGFloat(0)
+        var descent = CGFloat(0)
+
+        let line = CTLineCreateWithAttributedString(asp as CFAttributedString)
+        var width = CTLineGetTypographicBounds(line, &ascent, &descent, nil)
+
+        width = ceil(width) // Force width to integral.
+
+        if Int(width) % 2 != 0 {
+            width += 1 // Force width to even.
+        }
+
+        return CGRect(x: 0, y: -descent, width: CGFloat(width), height: ceil(ascent + descent))
     }
 }

@@ -76,7 +76,7 @@ class PreferencesTabViewController: NSTabViewController {
         if let size = originalSizes[tabViewItem] {
             window.title = tabViewItem.label
 
-            let contentFrame = window.frameRect(forContentRect: NSMakeRect(0.0, 0.0, size.width, size.height))
+            let contentFrame = window.frameRect(forContentRect: NSRect(origin: .zero, size: size))
             var frame = window.frame
 
             frame.origin.y += (frame.height - contentFrame.height)

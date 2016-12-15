@@ -37,7 +37,7 @@ class SampleRateStatusBarView: AMTextField, StatusBarSubView {
 
     override var intrinsicContentSize: NSSize {
 
-        return NSSize(width: 64.0, height: 18.0)
+        return NSSize(width: 64, height: 18)
     }
 
 
@@ -58,9 +58,9 @@ class SampleRateStatusBarView: AMTextField, StatusBarSubView {
 
     override func draw(_ dirtyRect: NSRect) {
 
-        super.draw(dirtyRect)
-
         updateUI()
+
+        super.draw(dirtyRect)
     }
 
     override func updateConstraints() {
@@ -68,9 +68,10 @@ class SampleRateStatusBarView: AMTextField, StatusBarSubView {
         if didSetupConstraints == false {
             didSetupConstraints = true
 
+            autoCenterInSuperview()
+
             autoPinEdge(toSuperviewEdge: .left)
             autoPinEdge(toSuperviewEdge: .right)
-            autoCenterInSuperview()
         }
 
         super.updateConstraints()
@@ -85,7 +86,7 @@ class SampleRateStatusBarView: AMTextField, StatusBarSubView {
             // Formatted sample rate
             let formattedSampleRate = device.nominalSampleRate()?.string(as: .sampleRate) ?? "N/A"
             let textColor: NSColor = shouldHighlight ? .white : .labelColor
-            let font = NSFont.boldSystemFont(ofSize: 13.0)
+            let font = NSFont.boldSystemFont(ofSize: 13)
             let attrs = [NSFontAttributeName: font, NSForegroundColorAttributeName: textColor]
             let attrString = NSMutableAttributedString(string: formattedSampleRate, attributes: attrs)
 
@@ -94,6 +95,6 @@ class SampleRateStatusBarView: AMTextField, StatusBarSubView {
             attributedStringValue = attrString
         }
 
-        alphaValue = isEnabled ? 1.0 : 0.33
+        alphaValue = isEnabled ? 1 : 0.33
     }
 }
