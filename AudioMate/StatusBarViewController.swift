@@ -349,7 +349,7 @@ class StatusBarViewController: NSViewController {
 
         if let sampleRates = device.nominalSampleRates(), sampleRates.count > 0 {
             for sampleRate in sampleRates {
-                let item = NSMenuItem(title: device.nominalSampleRate()?.string(as: .sampleRate) ?? "N/A",
+                let item = NSMenuItem(title: sampleRate.string(as: .sampleRate),
                                       action: #selector(updateSampleRate(_:)),
                                       keyEquivalent: "")
 
