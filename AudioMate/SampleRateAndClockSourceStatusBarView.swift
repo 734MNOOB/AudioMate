@@ -13,73 +13,37 @@ import AMCoreAudio
 class SampleRateAndClockSourceStatusBarView: NSView, StatusBarSubView {
 
     private var didSetupConstraints: Bool = false
+    private var sampleRateTextField = AMTextField(forAutoLayout: ())
+    private var clockSourceTextField = AMTextField(forAutoLayout: ())
 
     weak var representedObject: AnyObject? {
 
         didSet {
-            updateUI()
+            setNeedsDisplay(bounds)
         }
     }
 
     var shouldHighlight: Bool = false {
 
         didSet {
-            updateUI()
+            setNeedsDisplay(bounds)
         }
     }
 
     var isEnabled: Bool = true {
 
         didSet {
-            alphaValue = isEnabled ? 1.0 : 0.33
+            setNeedsDisplay(bounds)
         }
     }
 
-    var sampleRateTextField: AMTextField = {
+    override var intrinsicContentSize: NSSize {
 
-        $0.isEditable = false
-        $0.isBordered = false
-        $0.drawsBackground = false
-        $0.alignment = .center
-        $0.maximumNumberOfLines = 1
-
-        return $0
-    }(AMTextField(forAutoLayout: ()))
-
-    var clockSourceTextField: AMTextField = {
-
-        $0.isEditable = false
-        $0.isBordered = false
-        $0.drawsBackground = false
-        $0.alignment = .center
-        $0.maximumNumberOfLines = 1
-
-        return $0
-    }(AMTextField(forAutoLayout: ()))
-
-    func updateUI() {
-
-        if let device = representedObject as? AudioDevice {
-
-            let formattedSampleRate = device.nominalSampleRate()?.string(as: .sampleRate) ?? "N/A"
-            let formattedClockSource = device.clockSourceName(channel: 0, direction: .playback) ?? NSLocalizedString("Internal Clock", comment: "")
-
-            sampleRateTextField.attributedStringValue = attributedString(string: formattedSampleRate)
-            clockSourceTextField.attributedStringValue = attributedString(string: formattedClockSource)
-        }
+        return NSSize(width: 64.0, height: 18.0)
     }
 
-    private func attributedString(string: String) -> NSAttributedString {
 
-        let textColor: NSColor = shouldHighlight ? .white : .labelColor
-        let font = NSFont.boldSystemFont(ofSize: 9.0)
-        let attrs = [NSFontAttributeName: font, NSForegroundColorAttributeName: textColor]
-        let attrString = NSMutableAttributedString(string: string, attributes: attrs)
-
-        attrString.setAlignment(NSTextAlignment.center, range: NSRange(location: 0, length: attrString.length))
-
-        return attrString.copy() as! NSAttributedString
-    }
+    // MARK: Lifecycle functions
 
     override init(frame frameRect: NSRect) {
 
@@ -89,6 +53,16 @@ class SampleRateAndClockSourceStatusBarView: NSView, StatusBarSubView {
     required init?(coder: NSCoder) {
 
         fatalError("init(coder:) has not been implemented")
+    }
+    
+
+    // MARK: Overrides
+
+    override func draw(_ dirtyRect: NSRect) {
+
+        super.draw(dirtyRect)
+
+        updateUI()
     }
 
     override func viewDidMoveToSuperview() {
@@ -100,13 +74,42 @@ class SampleRateAndClockSourceStatusBarView: NSView, StatusBarSubView {
     override func updateConstraints() {
 
         if didSetupConstraints == false {
+            didSetupConstraints = true
+
             autoPinEdgesToSuperviewEdges(with: EdgeInsets())
             sampleRateTextField.autoPinEdgesToSuperviewEdges(with: EdgeInsets(), excludingEdge: .bottom)
             clockSourceTextField.autoPinEdgesToSuperviewEdges(with: EdgeInsets(), excludingEdge: .top)
-
-            didSetupConstraints = true
         }
         
         super.updateConstraints()
+    }
+
+
+    // MARK: Private functions
+
+    private func updateUI() {
+
+        if let device = representedObject as? AudioDevice {
+
+            let formattedSampleRate = device.nominalSampleRate()?.string(as: .sampleRate) ?? "N/A"
+            let formattedClockSource = device.clockSourceName(channel: 0, direction: .playback) ?? NSLocalizedString("Internal Clock", comment: "")
+
+            sampleRateTextField.attributedStringValue = attributedString(string: formattedSampleRate)
+            clockSourceTextField.attributedStringValue = attributedString(string: formattedClockSource)
+            sampleRateTextField.isEnabled = isEnabled
+            clockSourceTextField.isEnabled = isEnabled
+        }
+    }
+    
+    private func attributedString(string: String) -> NSAttributedString {
+
+        let textColor: NSColor = shouldHighlight ? .white : .labelColor
+        let font = NSFont.boldSystemFont(ofSize: 9.0)
+        let attrs = [NSFontAttributeName: font, NSForegroundColorAttributeName: textColor]
+        let attrString = NSMutableAttributedString(string: string, attributes: attrs)
+
+        attrString.setAlignment(NSTextAlignment.center, range: NSRange(location: 0, length: attrString.length))
+
+        return attrString.copy() as! NSAttributedString
     }
 }

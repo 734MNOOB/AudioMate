@@ -26,52 +26,27 @@ class MasterVolumeGraphicStatusBarView: NSView, StatusBarSubView {
         return $0
     }(MasterVolumeGraphicView(forAutoLayout: ()))
 
-    fileprivate var inVolumeLabel: AMTextField = {
-
-        $0.isEditable = false
-        $0.isBordered = false
-        $0.drawsBackground = false
-        $0.alignment = .center
-        $0.maximumNumberOfLines = 1
-
-        return $0
-    }(AMTextField(forAutoLayout: ()))
-
-    fileprivate var outVolumeLabel: AMTextField = {
-
-        $0.isEditable = false
-        $0.isBordered = false
-        $0.drawsBackground = false
-        $0.alignment = .center
-        $0.maximumNumberOfLines = 1
-
-        return $0
-    }(AMTextField(forAutoLayout: ()))
+    fileprivate var inVolumeLabel = AMTextField(forAutoLayout: ())
+    fileprivate var outVolumeLabel = AMTextField(forAutoLayout: ())
 
     weak var representedObject: AnyObject? {
 
         didSet {
-            updateUI()
+            setNeedsDisplay(bounds)
         }
     }
 
     var shouldHighlight: Bool = false {
 
         didSet {
-            updateUI()
-
-            inVolumeView.shouldHighlight = shouldHighlight
-            outVolumeView.shouldHighlight = shouldHighlight
+            setNeedsDisplay(bounds)
         }
     }
 
     var isEnabled: Bool = true {
 
         didSet {
-            alphaValue = isEnabled ? 1.0 : 0.33
-
-            inVolumeView.isEnabled = isEnabled
-            outVolumeView.isEnabled = isEnabled
+            setNeedsDisplay(bounds)
         }
     }
 
@@ -81,40 +56,7 @@ class MasterVolumeGraphicStatusBarView: NSView, StatusBarSubView {
     }
 
 
-    func updateUI() {
-
-        if let device = representedObject as? AudioDevice {
-            let inVolume = device.virtualMasterVolume(direction: .recording)
-            let outVolume = device.virtualMasterVolume(direction: .playback)
-
-            let inMuted = device.isMasterChannelMuted(direction: .recording)
-            let outMuted = device.isMasterChannelMuted(direction: .playback)
-
-            inVolumeLabel.attributedStringValue = attributedString(string: "IN")
-            outVolumeLabel.attributedStringValue = attributedString(string: "OUT")
-
-            inVolumeLabel.alphaValue = (inVolume == nil || inMuted == true) ? 0.33 : 1.0
-            outVolumeLabel.alphaValue = (outVolume == nil || outMuted == true) ? 0.33 : 1.0
-
-            inVolumeView.value = CGFloat(inVolume ?? 0.0)
-            outVolumeView.value = CGFloat(outVolume ?? 0.0)
-
-            inVolumeView.isEnabled = inMuted == false
-            outVolumeView.isEnabled = outMuted == false
-        }
-    }
-
-    private func attributedString(string: String) -> NSAttributedString {
-
-        let textColor: NSColor = shouldHighlight ? .white : .labelColor
-        let font = NSFont.boldSystemFont(ofSize: 7.0)
-        let attrs = [NSFontAttributeName: font, NSForegroundColorAttributeName: textColor]
-        let attrString = NSMutableAttributedString(string: string, attributes: attrs)
-
-        attrString.setAlignment(NSTextAlignment.center, range: NSRange(location: 0, length: attrString.length))
-
-        return attrString.copy() as! NSAttributedString
-    }
+    // MARK: - Lifecycle functions
 
     override init(frame frameRect: NSRect) {
 
@@ -126,6 +68,16 @@ class MasterVolumeGraphicStatusBarView: NSView, StatusBarSubView {
         fatalError("init(coder:) has not been implemented")
     }
 
+
+    // MARK: - Overrides
+
+    override func draw(_ dirtyRect: NSRect) {
+
+        super.draw(dirtyRect)
+
+        updateUI()
+    }
+    
     override func viewDidMoveToSuperview() {
 
         addSubview(inVolumeView)
@@ -142,12 +94,15 @@ class MasterVolumeGraphicStatusBarView: NSView, StatusBarSubView {
     override func updateConstraints() {
 
         if didSetupConstraints == false {
+            didSetupConstraints = true
+
             autoPinEdgesToSuperviewEdges(with: EdgeInsets(top: 2, left: 5, bottom: 2, right: 5))
 
             inVolumeView.autoSetDimensions(to: CGSize(width: 32.0, height: 8.0))
             inVolumeView.autoPinEdge(toSuperviewEdge: .top)
             inVolumeView.autoPinEdge(toSuperviewEdge: .left)
 
+            inVolumeLabel.autoSetDimension(.height, toSize: 10)
             inVolumeLabel.autoPinEdge(.left, to: .right, of: inVolumeView, withOffset: 0.0)
             inVolumeLabel.autoAlignAxis(.horizontal, toSameAxisOf: inVolumeView)
 
@@ -155,17 +110,55 @@ class MasterVolumeGraphicStatusBarView: NSView, StatusBarSubView {
             outVolumeView.autoPinEdge(toSuperviewEdge: .bottom)
             outVolumeView.autoPinEdge(toSuperviewEdge: .left)
 
+            outVolumeLabel.autoSetDimension(.height, toSize: 10)
             outVolumeLabel.autoPinEdge(.left, to: .right, of: outVolumeView, withOffset: 0.0)
             outVolumeLabel.autoAlignAxis(.horizontal, toSameAxisOf: outVolumeView)
-
-            didSetupConstraints = true
         }
         
         super.updateConstraints()
     }
 
-    // PRAGMA MARK: Private Functions
 
+    // MARK: - Private functions
+
+    private func updateUI() {
+
+        if let device = representedObject as? AudioDevice {
+            let inVolume = device.virtualMasterVolume(direction: .recording)
+            let outVolume = device.virtualMasterVolume(direction: .playback)
+
+            let inMuted = device.isMasterChannelMuted(direction: .recording)
+            let outMuted = device.isMasterChannelMuted(direction: .playback)
+
+            inVolumeLabel.attributedStringValue = attributedString(string: "IN")
+            outVolumeLabel.attributedStringValue = attributedString(string: "OUT")
+
+            inVolumeLabel.isEnabled = (inVolume == nil || inMuted == true || isEnabled == false) ? false : true
+            outVolumeLabel.isEnabled = (outVolume == nil || outMuted == true || isEnabled == false) ? false : true
+
+            inVolumeView.value = CGFloat(inVolume ?? 0.0)
+            outVolumeView.value = CGFloat(outVolume ?? 0.0)
+
+            inVolumeView.isEnabled = isEnabled ? (inMuted == false) : false
+            outVolumeView.isEnabled = isEnabled ? (outMuted == false) : false
+
+            inVolumeView.shouldHighlight = shouldHighlight
+            outVolumeView.shouldHighlight = shouldHighlight
+        }
+    }
+
+    private func attributedString(string: String) -> NSAttributedString {
+
+        let textColor: NSColor = shouldHighlight ? .white : .labelColor
+        let font = NSFont.boldSystemFont(ofSize: 7.0)
+        let attrs = [NSFontAttributeName: font, NSForegroundColorAttributeName: textColor]
+        let attrString = NSMutableAttributedString(string: string, attributes: attrs)
+
+        attrString.setAlignment(NSTextAlignment.center, range: NSRange(location: 0, length: attrString.length))
+
+        return attrString.copy() as! NSAttributedString
+    }
+    
     fileprivate func changeVolume(delta: Float, direction: Direction) {
 
         if let device = representedObject as? AudioDevice,
@@ -174,6 +167,7 @@ class MasterVolumeGraphicStatusBarView: NSView, StatusBarSubView {
         }
     }
 }
+
 
 extension MasterVolumeGraphicStatusBarView: MasterVolumeGraphicViewDelegate {
 

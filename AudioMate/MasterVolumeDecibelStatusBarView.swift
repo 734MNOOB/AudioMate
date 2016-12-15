@@ -14,46 +14,28 @@ class MasterVolumeDecibelStatusBarView: NSView, StatusBarSubView {
 
     private var didSetupConstraints: Bool = false
 
-    private var inVolumeLabel: AMTextField = {
-
-        $0.isEditable = false
-        $0.isBordered = false
-        $0.drawsBackground = false
-        $0.alignment = .center
-        $0.maximumNumberOfLines = 1
-
-        return $0
-    }(AMTextField(forAutoLayout: ()))
-
-    private var outVolumeLabel: AMTextField = {
-
-        $0.isEditable = false
-        $0.isBordered = false
-        $0.drawsBackground = false
-        $0.alignment = .center
-        $0.maximumNumberOfLines = 1
-
-        return $0
-    }(AMTextField(forAutoLayout: ()))
+    private var inVolumeLabel = AMTextField(forAutoLayout: ())
+    private var outVolumeLabel = AMTextField(forAutoLayout: ())
 
     weak var representedObject: AnyObject? {
 
         didSet {
-            updateUI()
+            setNeedsDisplay(bounds)
         }
     }
 
     var shouldHighlight: Bool = false {
 
         didSet {
-            updateUI()
+            setNeedsDisplay(bounds)
         }
     }
 
     var isEnabled: Bool = true {
 
         didSet {
-            alphaValue = isEnabled ? 1.0 : 0.33
+            inVolumeLabel.isEnabled = isEnabled
+            outVolumeLabel.isEnabled = isEnabled
         }
     }
 
@@ -67,6 +49,9 @@ class MasterVolumeDecibelStatusBarView: NSView, StatusBarSubView {
         return NSSize(width: 72.0, height: 18.0)
     }
 
+
+    // MARK: - Lifecycle functions
+
     override init(frame frameRect: NSRect) {
 
         super.init(frame: frameRect)
@@ -75,6 +60,16 @@ class MasterVolumeDecibelStatusBarView: NSView, StatusBarSubView {
     required init?(coder: NSCoder) {
 
         fatalError("init(coder:) has not been implemented")
+    }
+
+
+    // MARK: - Overrides
+
+    override func draw(_ dirtyRect: NSRect) {
+
+        super.draw(dirtyRect)
+
+        updateUI()
     }
 
     override func viewDidMoveToSuperview() {
@@ -86,20 +81,22 @@ class MasterVolumeDecibelStatusBarView: NSView, StatusBarSubView {
     override func updateConstraints() {
 
         if didSetupConstraints == false {
-            autoPinEdgesToSuperviewEdges(with: EdgeInsets(top: 1, left: 0, bottom: 1, right: 0))
-
-            inVolumeLabel.autoPinEdgesToSuperviewEdges(with: EdgeInsets(), excludingEdge: ALEdge.bottom)
-            outVolumeLabel.autoPinEdgesToSuperviewEdges(with: EdgeInsets(), excludingEdge: ALEdge.top)
-
             didSetupConstraints = true
-        }
 
+            autoPinEdgesToSuperviewEdges(with: EdgeInsets(top: 1, left: 0, bottom: 1, right: 0))
+            inVolumeLabel.autoSetDimension(.height, toSize: 11)
+            inVolumeLabel.autoPinEdgesToSuperviewEdges(with: EdgeInsets(), excludingEdge: ALEdge.bottom)
+            outVolumeLabel.autoSetDimension(.height, toSize: 11)
+            outVolumeLabel.autoPinEdgesToSuperviewEdges(with: EdgeInsets(), excludingEdge: ALEdge.top)
+        }
+        
         super.updateConstraints()
     }
 
-    // MARK: Public Functions
 
-    func updateUI() {
+    // MARK: - Private functions
+
+    private func updateUI() {
 
         if let device = representedObject as? AudioDevice {
             let inVolume = device.virtualMasterVolumeInDecibels(direction: .recording)
@@ -113,13 +110,8 @@ class MasterVolumeDecibelStatusBarView: NSView, StatusBarSubView {
 
             inVolumeLabel.attributedStringValue = attributedString(string: inString)
             outVolumeLabel.attributedStringValue = attributedString(string: outString)
-
-            inVolumeLabel.alphaValue = (inVolume == nil || inMuted == true) ? 0.33 : 1.0
-            outVolumeLabel.alphaValue = (outVolume == nil || outMuted == true) ? 0.33 : 1.0
         }
     }
-
-    // MARK: Private Functions
 
     private func attributedString(string: String) -> NSAttributedString {
 

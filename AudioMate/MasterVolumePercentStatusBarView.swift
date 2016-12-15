@@ -14,50 +14,32 @@ class MasterVolumePercentStatusBarView: NSView, StatusBarSubView {
 
     private var didSetupConstraints: Bool = false
 
-    private var inVolumeLabel: AMTextField = {
-
-        $0.isEditable = false
-        $0.isBordered = false
-        $0.drawsBackground = false
-        $0.alignment = .center
-        $0.maximumNumberOfLines = 1
-
-        return $0
-    }(AMTextField(forAutoLayout: ()))
-
-    private var outVolumeLabel: AMTextField = {
-
-        $0.isEditable = false
-        $0.isBordered = false
-        $0.drawsBackground = false
-        $0.alignment = .center
-        $0.maximumNumberOfLines = 1
-
-        return $0
-    }(AMTextField(forAutoLayout: ()))
+    private var inVolumeLabel = AMTextField(forAutoLayout: ())
+    private var outVolumeLabel = AMTextField(forAutoLayout: ())
 
     weak var representedObject: AnyObject? {
 
         didSet {
-            updateUI()
+            setNeedsDisplay(bounds)
         }
     }
 
     var shouldHighlight: Bool = false {
 
         didSet {
-            updateUI()
+            setNeedsDisplay(bounds)
         }
     }
 
     var isEnabled: Bool = true {
 
         didSet {
-            alphaValue = isEnabled ? 1.0 : 0.33
+            setNeedsDisplay(bounds)
         }
     }
 
     override var allowsVibrancy: Bool {
+
         return true
     }
 
@@ -65,6 +47,9 @@ class MasterVolumePercentStatusBarView: NSView, StatusBarSubView {
 
         return NSSize(width: 64.0, height: 18.0)
     }
+
+
+    // MARK: Lifecycle functions
 
     override init(frame frameRect: NSRect) {
 
@@ -76,6 +61,16 @@ class MasterVolumePercentStatusBarView: NSView, StatusBarSubView {
         fatalError("init(coder:) has not been implemented")
     }
 
+
+    // MARK: Overrides
+
+    override func draw(_ dirtyRect: NSRect) {
+
+        super.draw(dirtyRect)
+
+        updateUI()
+    }
+
     override func viewDidMoveToSuperview() {
 
         addSubview(inVolumeLabel)
@@ -85,20 +80,21 @@ class MasterVolumePercentStatusBarView: NSView, StatusBarSubView {
     override func updateConstraints() {
 
         if didSetupConstraints == false {
+            didSetupConstraints = true
+
             autoPinEdgesToSuperviewEdges(with: EdgeInsets(top: 1, left: 0, bottom: 1, right: 0))
 
             inVolumeLabel.autoPinEdgesToSuperviewEdges(with: EdgeInsets(), excludingEdge: .bottom)
             outVolumeLabel.autoPinEdgesToSuperviewEdges(with: EdgeInsets(), excludingEdge: .top)
-
-            didSetupConstraints = true
         }
-
+        
         super.updateConstraints()
     }
 
-    // MARK: Public Functions
 
-    func updateUI() {
+    // MARK: Private Functions
+
+    private func updateUI() {
 
         if let device = representedObject as? AudioDevice {
             let inVolume = device.virtualMasterVolume(direction: .recording)
@@ -113,12 +109,10 @@ class MasterVolumePercentStatusBarView: NSView, StatusBarSubView {
             inVolumeLabel.attributedStringValue = attributedString(string: inString)
             outVolumeLabel.attributedStringValue = attributedString(string: outString)
 
-            inVolumeLabel.alphaValue = (inVolume == nil || inMuted == true) ? 0.33 : 1.0
-            outVolumeLabel.alphaValue = (outVolume == nil || outMuted == true) ? 0.33 : 1.0
+            inVolumeLabel.isEnabled = (inVolume == nil || inMuted == true || isEnabled == false) ? false : true
+            outVolumeLabel.isEnabled = (outVolume == nil || outMuted == true || isEnabled == false) ? false : true
         }
     }
-
-    // MARK: Private Functions
 
     private func attributedString(string: String) -> NSAttributedString {
 

@@ -16,7 +16,9 @@ protocol StatusBarSubView {
 
     var isEnabled: Bool { get set }
 
-    func updateUI()
+    var bounds: NSRect { get }
+
+    func draw(_ dirtyRect: NSRect)
 }
 
 class StatusBarView: NSView {

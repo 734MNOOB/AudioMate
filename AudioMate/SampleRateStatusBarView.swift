@@ -17,25 +17,69 @@ class SampleRateStatusBarView: AMTextField, StatusBarSubView {
     weak var representedObject: AnyObject? {
 
         didSet {
-            updateUI()
+            setNeedsDisplay(bounds)
         }
     }
 
     var shouldHighlight: Bool = false {
 
         didSet {
-            updateUI()
+            setNeedsDisplay(bounds)
         }
     }
 
     override var isEnabled: Bool {
 
         didSet {
-            alphaValue = isEnabled ? 1.0 : 0.33
+            setNeedsDisplay(bounds)
         }
     }
 
-    func updateUI() {
+    override var intrinsicContentSize: NSSize {
+
+        return NSSize(width: 64.0, height: 18.0)
+    }
+
+
+    // MARK: - Lifecycle
+
+    override init(frame frameRect: NSRect) {
+
+        super.init(frame: frameRect)
+    }
+
+    required init?(coder: NSCoder) {
+
+        fatalError("init(coder:) has not been implemented")
+    }
+
+
+    // MARK: - Overrides
+
+    override func draw(_ dirtyRect: NSRect) {
+
+        super.draw(dirtyRect)
+
+        updateUI()
+    }
+
+    override func updateConstraints() {
+
+        if didSetupConstraints == false {
+            didSetupConstraints = true
+
+            autoPinEdge(toSuperviewEdge: .left)
+            autoPinEdge(toSuperviewEdge: .right)
+            autoCenterInSuperview()
+        }
+
+        super.updateConstraints()
+    }
+
+    
+    // MARK: - Private functions
+
+    private func updateUI() {
 
         if let device = representedObject as? AudioDevice {
             // Formatted sample rate
@@ -47,35 +91,9 @@ class SampleRateStatusBarView: AMTextField, StatusBarSubView {
 
             attrString.setAlignment(NSTextAlignment.center, range: NSRange(location: 0, length: attrString.length))
 
-            self.attributedStringValue = attrString
-        }
-    }
-
-    override init(frame frameRect: NSRect) {
-
-        super.init(frame: frameRect)
-
-        isEditable = false
-        isBordered = false
-        drawsBackground = false
-        alignment = .center
-        maximumNumberOfLines = 1
-    }
-
-    required init?(coder: NSCoder) {
-
-        fatalError("init(coder:) has not been implemented")
-    }
-
-    override func updateConstraints() {
-
-        if didSetupConstraints == false {
-            autoPinEdge(toSuperviewEdge: .left)
-            autoPinEdge(toSuperviewEdge: .right)
-            autoCenterInSuperview()
-            didSetupConstraints = true
+            attributedStringValue = attrString
         }
 
-        super.updateConstraints()
+        alphaValue = isEnabled ? 1.0 : 0.33
     }
 }

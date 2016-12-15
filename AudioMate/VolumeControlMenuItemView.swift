@@ -16,10 +16,13 @@ class VolumeControlMenuItemView: NSView {
 
     private var didSetupConstraints: Bool = false
 
+
     override func updateConstraints() {
 
         if !didSetupConstraints {
-            removeConstraints(constraints)
+            didSetupConstraints = true
+
+            NSLayoutConstraint.deactivate(constraints)
             autoSetDimension(.height, toSize: 42)
 
             let sideMargin: CGFloat = 21.0
@@ -38,8 +41,6 @@ class VolumeControlMenuItemView: NSView {
             volumeSlider.autoAlignAxis(.horizontal, toSameAxisOf: muteCheckbox)
             volumeSlider.setContentHuggingPriority(NSLayoutPriorityDefaultLow, for: NSLayoutConstraintOrientation.horizontal)
             volumeSlider.setContentCompressionResistancePriority(NSLayoutPriorityDefaultLow, for: NSLayoutConstraintOrientation.horizontal)
-
-            didSetupConstraints = true
         }
 
         super.updateConstraints()

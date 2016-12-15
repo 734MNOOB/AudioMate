@@ -215,8 +215,8 @@ class StatusBarViewController: NSViewController {
             statusItem?.button?.image = nil
         }
 
-        if effectiveLayoutType == layoutType {
-            subView?.updateUI()
+        if effectiveLayoutType == layoutType, let subView = subView {
+            subView.draw(subView.bounds)
         } else {
             statusItem?.length = NSVariableStatusItemLength
 
