@@ -102,11 +102,11 @@ class MasterVolumeDecibelStatusBarView: NSView, StatusBarSubView {
     func updateUI() {
 
         if let device = representedObject as? AudioDevice {
-            let inVolume = device.virtualMasterVolumeInDecibels(direction: .Recording)
-            let outVolume = device.virtualMasterVolumeInDecibels(direction: .Playback)
+            let inVolume = device.virtualMasterVolumeInDecibels(direction: .recording)
+            let outVolume = device.virtualMasterVolumeInDecibels(direction: .playback)
 
-            let inMuted = device.isMasterChannelMuted(direction: .Recording)
-            let outMuted = device.isMasterChannelMuted(direction: .Playback)
+            let inMuted = device.isMasterChannelMuted(direction: .recording)
+            let outMuted = device.isMasterChannelMuted(direction: .playback)
 
             let inString = inVolume == nil ? "N/A IN" : (inMuted == true ? "MUTED IN" : String(format: "%.1fdBFS IN", inVolume!))
             let outString = outVolume == nil ? "N/A OUT" : (outMuted == true ? "MUTED OUT" : String(format: "%.1fdBFS OUT", outVolume!))

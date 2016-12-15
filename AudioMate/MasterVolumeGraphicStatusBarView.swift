@@ -84,11 +84,11 @@ class MasterVolumeGraphicStatusBarView: NSView, StatusBarSubView {
     func updateUI() {
 
         if let device = representedObject as? AudioDevice {
-            let inVolume = device.virtualMasterVolume(direction: .Recording)
-            let outVolume = device.virtualMasterVolume(direction: .Playback)
+            let inVolume = device.virtualMasterVolume(direction: .recording)
+            let outVolume = device.virtualMasterVolume(direction: .playback)
 
-            let inMuted = device.isMasterChannelMuted(direction: .Recording)
-            let outMuted = device.isMasterChannelMuted(direction: .Playback)
+            let inMuted = device.isMasterChannelMuted(direction: .recording)
+            let outMuted = device.isMasterChannelMuted(direction: .playback)
 
             inVolumeLabel.attributedStringValue = attributedString(string: "IN")
             outVolumeLabel.attributedStringValue = attributedString(string: "OUT")
@@ -186,11 +186,11 @@ extension MasterVolumeGraphicStatusBarView: MasterVolumeGraphicViewDelegate {
         switch volumeView {
         case inVolumeView:
 
-            changeVolume(delta: volumeDelta, direction: .Recording)
+            changeVolume(delta: volumeDelta, direction: .recording)
 
         case outVolumeView:
 
-            changeVolume(delta: volumeDelta, direction: .Playback)
+            changeVolume(delta: volumeDelta, direction: .playback)
 
         default:
 

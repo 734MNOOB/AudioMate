@@ -101,11 +101,11 @@ class MasterVolumePercentStatusBarView: NSView, StatusBarSubView {
     func updateUI() {
 
         if let device = representedObject as? AudioDevice {
-            let inVolume = device.virtualMasterVolume(direction: .Recording)
-            let outVolume = device.virtualMasterVolume(direction: .Playback)
+            let inVolume = device.virtualMasterVolume(direction: .recording)
+            let outVolume = device.virtualMasterVolume(direction: .playback)
 
-            let inMuted = device.isMasterChannelMuted(direction: .Recording)
-            let outMuted = device.isMasterChannelMuted(direction: .Playback)
+            let inMuted = device.isMasterChannelMuted(direction: .recording)
+            let outMuted = device.isMasterChannelMuted(direction: .playback)
 
             let inString = inVolume == nil ? "N/A IN" : (inMuted == true ? "MUTED IN" : String(format: "%.1f%% IN", inVolume! * 100))
             let outString = outVolume == nil ? "N/A OUT" : (outMuted == true ? "MUTED OUT" : String(format: "%.1f%% OUT", outVolume! * 100))

@@ -304,7 +304,7 @@ class StatusBarViewController: NSViewController {
 
             // Set input volume slider and mute checkbox values
             if let volume = device.virtualMasterVolume(direction: direction) {
-                let volumeSliderAction = direction == .Playback ? #selector(updateOutputVolume(_:)) : #selector(updateInputVolume(_:))
+                let volumeSliderAction = direction == .playback ? #selector(updateOutputVolume(_:)) : #selector(updateInputVolume(_:))
 
                 volumeControlView.volumeSlider.isEnabled = true
                 volumeControlView.volumeSlider.isContinuous = true
@@ -313,7 +313,7 @@ class StatusBarViewController: NSViewController {
                 volumeControlView.volumeSlider.target = self
                 volumeControlView.volumeSlider.action = volumeSliderAction
 
-                let volumeMuteAction = direction == .Playback ? #selector(updateOutputMute(_:)) : #selector(updateInputMute(_:))
+                let volumeMuteAction = direction == .playback ? #selector(updateOutputMute(_:)) : #selector(updateInputMute(_:))
 
                 volumeControlView.muteCheckbox.isEnabled = true
                 volumeControlView.muteCheckbox.state = device.isMasterChannelMuted(direction: direction) ?? false ? NSOnState : NSOffState
@@ -380,8 +380,8 @@ class StatusBarViewController: NSViewController {
         clockSourceItem.submenu = NSMenu()
         clockSourceItem.submenu?.autoenablesItems = false
 
-        if let clockSourceIDs = device.clockSourceIDs(channel: 0, direction: .Playback) {
-            let activeClockSourceID = device.clockSourceID(channel: 0, direction: .Playback)
+        if let clockSourceIDs = device.clockSourceIDs(channel: 0, direction: .playback) {
+            let activeClockSourceID = device.clockSourceID(channel: 0, direction: .playback)
 
             for clockSourceID in clockSourceIDs {
                 if let clockSourceName = device.clockSourceName(clockSourceID: clockSourceID) {
@@ -409,27 +409,27 @@ class StatusBarViewController: NSViewController {
         // Add separator item
         menuItem.submenu?.addItem(NSMenuItem.separator())
 
-        if device.canSetVirtualMasterVolume(direction: .Recording) {
+        if device.canSetVirtualMasterVolume(direction: .recording) {
             // Create master input volume control menu item
             let inputVolumeControlMenuItem = NSMenuItem()
             inputVolumeControlMenuItem.representedObject = device
             inputVolumeControlMenuItem.tag = kDeviceMasterInputVolumeControlMenuItem
 
-            buildVolumeControlMenuItem(item: inputVolumeControlMenuItem, direction: .Recording)
+            buildVolumeControlMenuItem(item: inputVolumeControlMenuItem, direction: .recording)
             menuItem.submenu?.addItem(inputVolumeControlMenuItem)
         }
 
-        if device.canSetVirtualMasterVolume(direction: .Playback) {
+        if device.canSetVirtualMasterVolume(direction: .playback) {
             // Create master input volume control menu item
             let outputVolumeControlMenuItem = NSMenuItem()
             outputVolumeControlMenuItem.representedObject = device
             outputVolumeControlMenuItem.tag = kDeviceMasterOutputVolumeControlMenuItem
 
-            buildVolumeControlMenuItem(item: outputVolumeControlMenuItem, direction: .Playback)
+            buildVolumeControlMenuItem(item: outputVolumeControlMenuItem, direction: .playback)
             menuItem.submenu?.addItem(outputVolumeControlMenuItem)
         }
 
-        if device.canSetVirtualMasterVolume(direction: .Playback) || device.canSetVirtualMasterVolume(direction: .Recording) {
+        if device.canSetVirtualMasterVolume(direction: .playback) || device.canSetVirtualMasterVolume(direction: .recording) {
             // Add separator item
             menuItem.submenu?.addItem(NSMenuItem.separator())
         }
@@ -439,7 +439,7 @@ class StatusBarViewController: NSViewController {
 
         // Add menu items that allow changing the default output, system output, and input device.
         // Only the options that make sense for each device are added here.
-        if device.channels(direction: .Playback) > 0 {
+        if device.channels(direction: .playback) > 0 {
             let useForSoundOutputItem = NSMenuItem(title: NSLocalizedString("Use this device for sound output", comment: ""),
                                                    action: #selector(updateDefaultOutputDevice(_:)),
                                                    keyEquivalent: "")
@@ -471,7 +471,7 @@ class StatusBarViewController: NSViewController {
             }
 
             menuItem.submenu?.addItem(useForSystemOutputItem)
-        } else if device.channels(direction: .Recording) > 0 {
+        } else if device.channels(direction: .recording) > 0 {
             let useForSoundInputItem = NSMenuItem(title: NSLocalizedString("Use this device for sound input", comment: ""),
                                                   action: #selector(updateDefaultInputDevice(_:)),
                                                   keyEquivalent: "")
@@ -521,8 +521,8 @@ class StatusBarViewController: NSViewController {
         menuItem.submenu?.addItem(configureActionsMenuItem)
 
         // Update master volume menu items
-        updateMasterVolume(menuItem: menuItem, direction: .Recording)
-        updateMasterVolume(menuItem: menuItem, direction: .Playback)
+        updateMasterVolume(menuItem: menuItem, direction: .recording)
+        updateMasterVolume(menuItem: menuItem, direction: .playback)
     }
 
     fileprivate func updateMasterVolume(menuItem: NSMenuItem, direction: Direction) {
@@ -530,9 +530,9 @@ class StatusBarViewController: NSViewController {
             let menuItemControlTag: Int
 
             switch direction {
-            case .Recording:
+            case .recording:
                 menuItemControlTag = kDeviceMasterInputVolumeControlMenuItem
-            case .Playback:
+            case .playback:
                 menuItemControlTag = kDeviceMasterOutputVolumeControlMenuItem
             default:
                 menuItemControlTag = 0
@@ -545,11 +545,11 @@ class StatusBarViewController: NSViewController {
                 let dBValue = device.virtualMasterVolumeInDecibels(direction: direction) ?? 0.0
 
                 switch direction {
-                case .Recording:
+                case .recording:
 
                     formatString = NSLocalizedString("Master Input Volume is %.1fdBFS", comment: "")
 
-                case .Playback:
+                case .playback:
 
                     formatString = NSLocalizedString("Master Output Volume is %.1fdBFS", comment: "")
 
@@ -574,11 +574,11 @@ class StatusBarViewController: NSViewController {
 
         // Formatted sample rate and clock source
         let formattedSampleRate = device.nominalSampleRate()?.string(as: .sampleRate) ?? "N/A"
-        let formattedClockSource = device.clockSourceName(channel: 0, direction: .Playback) ?? NSLocalizedString("Internal Clock", comment: "")
+        let formattedClockSource = device.clockSourceName(channel: 0, direction: .playback) ?? NSLocalizedString("Internal Clock", comment: "")
 
         // Formatted input and output channels
-        let inChannels = device.channels(direction: .Recording) 
-        let outChannels = device.channels(direction: .Playback)
+        let inChannels = device.channels(direction: .recording) 
+        let outChannels = device.channels(direction: .playback)
 
         let formatedInputChannels = String(format:inChannels == 1 ? NSLocalizedString("%d in", comment: "") : NSLocalizedString("%d ins", comment: ""), inChannels)
         let formatedOutputChannels = String(format:outChannels == 1 ? NSLocalizedString("%d out", comment: "") : NSLocalizedString("%d outs", comment: ""), outChannels)
@@ -626,11 +626,11 @@ class StatusBarViewController: NSViewController {
     private func transportTypeImage(device: AudioDevice) -> NSImage {
 
         if let transportType = device.transportType {
-            let outChannels = device.channels(direction: .Playback)
-            let inChannels = device.channels(direction: .Recording)
+            let outChannels = device.channels(direction: .playback)
+            let inChannels = device.channels(direction: .recording)
 
             switch transportType {
-            case .BuiltIn:
+            case .builtIn:
 
                 if outChannels > 0 && inChannels == 0 {
                     return NSImage(named: "SpeakerIcon")!
@@ -640,51 +640,51 @@ class StatusBarViewController: NSViewController {
                     return NSImage(named: "Built-in")!
                 }
 
-            case .Aggregate:
+            case .aggregate:
 
                 return NSImage(named: "Aggregate")!
 
-            case .Virtual:
+            case .virtual:
 
                 return NSImage(named: "Virtual")!
 
-            case .PCI:
+            case .pci:
 
                 return NSImage(named: "PCI")!
 
-            case .USB:
+            case .usb:
 
                 return NSImage(named: "USB")!
 
-            case .FireWire:
+            case .fireWire:
 
                 return NSImage(named: "FireWire")!
 
-            case .Bluetooth:
+            case .bluetooth:
 
                 fallthrough
 
-            case .BluetoothLE:
+            case .bluetoothLE:
 
                 return NSImage(named: "Bluetooth")!
 
-            case .HDMI:
+            case .hdmi:
 
                 return NSImage(named: "HDMI")!
 
-            case .DisplayPort:
+            case .displayPort:
 
                 return NSImage(named: "DisplayPort")!
 
-            case .AirPlay:
+            case .airPlay:
 
                 return NSImage(named: "Airplay")!
 
-            case .AVB:
+            case .avb:
 
                 return NSImage(named: "AVBHeader")!
 
-            case .Thunderbolt:
+            case .thunderbolt:
 
                 return NSImage(named: "Thunderbolt")!
 
@@ -721,7 +721,7 @@ class StatusBarViewController: NSViewController {
 
         if let slider = sender as? NSSlider {
             let device = AudioDevice.lookupByID(AudioObjectID(slider.tag))
-            device?.setVirtualMasterVolume(Float32(slider.floatValue), direction: .Recording)
+            device?.setVirtualMasterVolume(Float32(slider.floatValue), direction: .recording)
         }
     }
 
@@ -729,7 +729,7 @@ class StatusBarViewController: NSViewController {
 
         if let slider = sender as? NSSlider {
             let device = AudioDevice.lookupByID(AudioObjectID(slider.tag))
-            device?.setVirtualMasterVolume(Float32(slider.floatValue), direction: .Playback)
+            device?.setVirtualMasterVolume(Float32(slider.floatValue), direction: .playback)
         }
     }
 
@@ -738,7 +738,7 @@ class StatusBarViewController: NSViewController {
         if let button = sender as? NSButton {
             let device = AudioDevice.lookupByID(AudioObjectID(button.tag))
 
-            device?.setMute(button.state == NSOnState, channel: kAudioObjectPropertyElementMaster, direction: .Recording)
+            device?.setMute(button.state == NSOnState, channel: kAudioObjectPropertyElementMaster, direction: .recording)
         }
     }
 
@@ -747,7 +747,7 @@ class StatusBarViewController: NSViewController {
         if let button = sender as? NSButton {
             let device = AudioDevice.lookupByID(AudioObjectID(button.tag))
 
-            device?.setMute(button.state == NSOnState, channel: kAudioObjectPropertyElementMaster, direction: .Playback)
+            device?.setMute(button.state == NSOnState, channel: kAudioObjectPropertyElementMaster, direction: .playback)
         }
     }
 
@@ -770,7 +770,7 @@ class StatusBarViewController: NSViewController {
             if let clockSourceID = menuItem.representedObject as? UInt {
                 device?.setClockSourceID(UInt32(clockSourceID),
                                          channel: UInt32(kAudioObjectPropertyElementMaster),
-                                         direction: .Playback)
+                                         direction: .playback)
             }
         }
     }

@@ -546,7 +546,7 @@
 			path = Carthage/Checkouts/StartAtLoginController;
 			sourceTree = "<group>";
 		};
-		45A43ADD1CBAAE8C00C22D17 /* Cartfile Dependencies */ = {
+		45A43ADD1CBAAE8C00C22D17 /* Dependencies */ = {
 			isa = PBXGroup;
 			children = (
 				45A43A841CBAAC5100C22D17 /* Cartfile */,
@@ -558,7 +558,7 @@
 				45A43ACA1CBAAE8400C22D17 /* StartAtLoginController */,
 				4507E6EE1CCEC38B00EC7EEE /* SwiftTryCatch */,
 			);
-			name = "Cartfile Dependencies";
+			name = Dependencies;
 			sourceTree = "<group>";
 		};
 		45A43B0E1CBAB11900C22D17 /* Products */ = {
@@ -700,7 +700,7 @@
 				45FA5630166BC8C500C1D92D /* AudioMate */,
 				459D6DAC1687EF95007F2226 /* AudioMateLauncher */,
 				45CF93311CD391D500A0E3E5 /* bin */,
-				45A43ADD1CBAAE8C00C22D17 /* Cartfile Dependencies */,
+				45A43ADD1CBAAE8C00C22D17 /* Dependencies */,
 				45AB3A3B166E2BBA00B07220 /* Docs */,
 				45FA5629166BC8C500C1D92D /* Frameworks */,
 				45FA5627166BC8C500C1D92D /* Products */,
