@@ -119,30 +119,20 @@ class StatusBarViewController: NSViewController {
         }
     }
 
-    override func prepare(for segue: NSStoryboardSegue, sender: Any?) {
+    override func dismissViewController(_ viewController: NSViewController) {
 
-        guard let identifier = segue.identifier else { return }
+        switch viewController {
+        case is PreferencesTabViewController:
 
-        switch identifier {
-        case "showPreferences":
-
-            statusItem?.button?.isEnabled = false
-            statusBarView.isEnabled = false
-
-            if let controller = segue.destinationController as? PreferencesTabViewController {
-                controller.closeHandler = { [unowned self] in
-                    self.statusItem?.button?.isEnabled = true
-                    self.statusBarView.isEnabled = true
-                }
-            }
+            self.statusItem?.button?.isEnabled = true
+            self.statusBarView.isEnabled = true
 
         default:
 
             break
-
         }
 
-        super.prepare(for: segue, sender: sender)
+        super.dismissViewController(viewController)
     }
 
     deinit {
@@ -712,7 +702,13 @@ class StatusBarViewController: NSViewController {
 
     @IBAction func showPreferences(_ sender: AnyObject) {
 
-        performSegue(withIdentifier: "showPreferences", sender: self)
+        if let preferencesTabViewController = mainStoryboard.instantiateController(withIdentifier: "preferencesTabViewController") as? PreferencesTabViewController {
+
+            statusItem?.button?.isEnabled = false
+            statusBarView.isEnabled = false
+
+            presentViewControllerAsModalWindow(preferencesTabViewController)
+        }
     }
 
     @IBAction func showDeviceActions(_ sender: AnyObject) {

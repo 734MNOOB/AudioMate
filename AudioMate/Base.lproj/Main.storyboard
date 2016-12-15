@@ -652,7 +652,7 @@
         <!--Preferences Tab View Controller-->
         <scene sceneID="uAf-IL-8h8">
             <objects>
-                <tabViewController showSeguePresentationStyle="single" selectedTabViewItemIndex="0" tabStyle="toolbar" id="B0M-Fv-h3q" customClass="PreferencesTabViewController" customModule="AudioMate" customModuleProvider="target" sceneMemberID="viewController">
+                <tabViewController storyboardIdentifier="preferencesTabViewController" showSeguePresentationStyle="single" selectedTabViewItemIndex="0" tabStyle="toolbar" id="B0M-Fv-h3q" customClass="PreferencesTabViewController" customModule="AudioMate" customModuleProvider="target" sceneMemberID="viewController">
                     <tabViewItems>
                         <tabViewItem label="General" identifier="" image="General" id="L23-Ml-7Qx"/>
                         <tabViewItem label="Notifications" identifier="" image="Notifications" id="GEt-Y2-V4d"/>
@@ -854,7 +854,6 @@
                     </view>
                     <connections>
                         <outlet property="view" destination="gIP-Ps-IHQ" id="bH4-Eq-EAC"/>
-                        <segue destination="B0M-Fv-h3q" kind="show" identifier="showPreferences" id="R2K-w7-uOw"/>
                     </connections>
                 </viewController>
                 <customObject id="05k-Cr-mSZ" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>

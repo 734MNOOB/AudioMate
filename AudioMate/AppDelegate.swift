@@ -10,13 +10,13 @@ import Cocoa
 import AMCoreAudio
 import XCGLogger
 
+let mainStoryboard = NSStoryboard(name: "Main", bundle: nil)
 
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
 
     private let statusBarViewController: StatusBarViewController? = {
 
-        let mainStoryboard = NSStoryboard(name: "Main", bundle: nil)
         return mainStoryboard.instantiateController(withIdentifier: "statusBarViewController") as? StatusBarViewController
     }()
 

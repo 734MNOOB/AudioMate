@@ -12,8 +12,6 @@ class PreferencesTabViewController: NSTabViewController {
 
     lazy var originalSizes = [NSTabViewItem : NSSize]()
 
-    var closeHandler:(() -> Void)?
-
     override func viewDidLoad() {
 
         super.viewDidLoad()
@@ -30,12 +28,6 @@ class PreferencesTabViewController: NSTabViewController {
     deinit {
 
         Utils.transformAppIntoUIElementMode()
-
-        if let closeHandler = closeHandler {
-            DispatchQueue.main.async {
-                closeHandler()
-            }
-        }
     }
 
     // MARK: - NSViewController overrides
