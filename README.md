@@ -26,12 +26,12 @@ $ carthage update --use-submodules --no-build
 
 ### Build & Run
 
-1. Open `AMCoreAudio.xcodeproj` in Xcode 7.3 (or later)
+1. Open `AMCoreAudio.xcodeproj` in Xcode 8.2 (or later)
 2. Hit Run (Cmd + R)
 
 ### Requirements
 
-* Xcode 7.3 and Swift 2.2 (for development)
+* Xcode 8.2 and Swift 3 (for development)
 * OS X 10.11 or later
 
 ## Version 3 Roadmap
