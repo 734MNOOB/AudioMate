@@ -14,7 +14,7 @@ class DeviceDescriptor: NSObject, NSCoding {
     var device: AudioDevice? {
 
         if let deviceUID = deviceUID {
-            return AudioDevice.lookupByUID(deviceUID)
+            return AudioDevice.lookup(by: deviceUID)
         }
 
         return nil

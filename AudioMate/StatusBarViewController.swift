@@ -718,7 +718,7 @@ class StatusBarViewController: NSViewController {
     @IBAction func updateInputVolume(_ sender: AnyObject) {
 
         if let slider = sender as? NSSlider {
-            let device = AudioDevice.lookupByID(AudioObjectID(slider.tag))
+            let device = AudioDevice.lookup(by: AudioObjectID(slider.tag))
             device?.setVirtualMasterVolume(Float32(slider.floatValue), direction: .recording)
         }
     }
@@ -726,7 +726,7 @@ class StatusBarViewController: NSViewController {
     @IBAction func updateOutputVolume(_ sender: AnyObject) {
 
         if let slider = sender as? NSSlider {
-            let device = AudioDevice.lookupByID(AudioObjectID(slider.tag))
+            let device = AudioDevice.lookup(by: AudioObjectID(slider.tag))
             device?.setVirtualMasterVolume(Float32(slider.floatValue), direction: .playback)
         }
     }
@@ -734,7 +734,7 @@ class StatusBarViewController: NSViewController {
     @IBAction func updateInputMute(_ sender: AnyObject) {
 
         if let button = sender as? NSButton {
-            let device = AudioDevice.lookupByID(AudioObjectID(button.tag))
+            let device = AudioDevice.lookup(by: AudioObjectID(button.tag))
 
             device?.setMute(button.state == NSOnState, channel: kAudioObjectPropertyElementMaster, direction: .recording)
         }
@@ -743,7 +743,7 @@ class StatusBarViewController: NSViewController {
     @IBAction func updateOutputMute(_ sender: AnyObject) {
 
         if let button = sender as? NSButton {
-            let device = AudioDevice.lookupByID(AudioObjectID(button.tag))
+            let device = AudioDevice.lookup(by: AudioObjectID(button.tag))
 
             device?.setMute(button.state == NSOnState, channel: kAudioObjectPropertyElementMaster, direction: .playback)
         }
@@ -752,7 +752,7 @@ class StatusBarViewController: NSViewController {
     @IBAction func updateSampleRate(_ sender: AnyObject) {
 
         if let menuItem = sender as? NSMenuItem {
-            let device = AudioDevice.lookupByID(AudioObjectID(menuItem.tag))
+            let device = AudioDevice.lookup(by: AudioObjectID(menuItem.tag))
 
             if let sampleRate = menuItem.representedObject as? Float64 {
                 device?.setNominalSampleRate(sampleRate)
@@ -763,7 +763,7 @@ class StatusBarViewController: NSViewController {
     @IBAction func updateClockSource(_ sender: AnyObject) {
 
         if let menuItem = sender as? NSMenuItem {
-            let device = AudioDevice.lookupByID(AudioObjectID(menuItem.tag))
+            let device = AudioDevice.lookup(by: AudioObjectID(menuItem.tag))
 
             if let clockSourceID = menuItem.representedObject as? UInt {
                 device?.setClockSourceID(UInt32(clockSourceID),
@@ -776,7 +776,7 @@ class StatusBarViewController: NSViewController {
     @IBAction func updateDefaultInputDevice(_ sender: AnyObject) {
 
         if let menuItem = sender as? NSMenuItem {
-            let device = AudioDevice.lookupByID(AudioObjectID(menuItem.tag))
+            let device = AudioDevice.lookup(by: AudioObjectID(menuItem.tag))
             device?.setAsDefaultInputDevice()
         }
     }
@@ -784,7 +784,7 @@ class StatusBarViewController: NSViewController {
     @IBAction func updateDefaultOutputDevice(_ sender: AnyObject) {
 
         if let menuItem = sender as? NSMenuItem {
-            let device = AudioDevice.lookupByID(AudioObjectID(menuItem.tag))
+            let device = AudioDevice.lookup(by: AudioObjectID(menuItem.tag))
             device?.setAsDefaultOutputDevice()
         }
     }
@@ -792,7 +792,7 @@ class StatusBarViewController: NSViewController {
     @IBAction func updateDefaultSystemOutputDevice(_ sender: AnyObject) {
 
         if let menuItem = sender as? NSMenuItem {
-            let device = AudioDevice.lookupByID(AudioObjectID(menuItem.tag))
+            let device = AudioDevice.lookup(by: AudioObjectID(menuItem.tag))
             device?.setAsDefaultSystemDevice()
         }
     }
@@ -800,7 +800,7 @@ class StatusBarViewController: NSViewController {
     @IBAction func updateFeaturedDevice(_ sender: AnyObject) {
 
         if let menuItem = sender as? NSMenuItem {
-            let device = AudioDevice.lookupByID(AudioObjectID(menuItem.tag))
+            let device = AudioDevice.lookup(by: AudioObjectID(menuItem.tag))
             prefs.general.featuredDevice.value = DeviceDescriptor(device: device)
 
             DispatchQueue.main.async {
