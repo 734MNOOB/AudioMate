@@ -15,13 +15,8 @@ Control all your audio devices from the status bar, receive system notifications
 
 ```bash
 $ git clone git@github.com:The9Labs/AudioMate.git
-$ carthage checkout --use-submodules --no-build
-```
-
-### Keeping Dependencies Up To Date
-
-```bash
-$ carthage update --use-submodules --no-build
+$ cd Audiomate
+$ carthage checkout --use-submodules
 ```
 
 ### Build & Run
