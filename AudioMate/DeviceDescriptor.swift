@@ -45,7 +45,7 @@ extension DeviceDescriptor {
 
     override var description: String {
 
-        return "(device: \(device), \(super.description))"
+        return "(device: \(String(describing: device)), \(super.description))"
     }
 
 }

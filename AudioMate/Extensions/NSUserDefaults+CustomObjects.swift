@@ -14,25 +14,11 @@ extension UserDefaults {
 
         guard let objectForKey = object(forKey: defaultName) as? NSData else { return nil }
 
-        var returnedObject: NSCoding? = nil
-
-        /**
-            At the time of writing, `NSKeyedUnarchiver.unarchiveObjectWithData` may throw an
-            Objective-C exception, which might cause our app to crash if the unarchival process fails.
-            
-            We are using SwiftTryCatch to recover against such cases until the `NSKeyedUnarchiver` 
-            API is updated to throw actual Swift errors. Then we will be able to safely remove this.
-        */
-
-        SwiftTryCatch.try({
-            if let decodedObject = NSKeyedUnarchiver.unarchiveObject(with: objectForKey as Data) as? NSCoding {
-                returnedObject = decodedObject
-            }
-        }, catch: { (exception) in
-            log.debug("Exception: \(exception)")
-        }, finallyBlock: nil)
-
-        return returnedObject
+        if let decodedObject = try? NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(objectForKey) as? NSCoding {
+            return decodedObject
+        } else {
+            return nil
+        }
     }
 
     public func setCustomObject(value: NSCoding?, forKey defaultName: String) {
