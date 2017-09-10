@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		4507E6F61CCEC38B00EC7EEE /* SwiftTryCatch.m in Sources */ = {isa = PBXBuildFile; fileRef = 4507E6F21CCEC38B00EC7EEE /* SwiftTryCatch.m */; };
 		4510A3EF1CCE1D4800AED5E4 /* DeviceDescriptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4510A3EE1CCE1D4800AED5E4 /* DeviceDescriptor.swift */; };
 		4510A4131CCE21D500AED5E4 /* NSUserDefaults+CustomObjects.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4510A4121CCE21D500AED5E4 /* NSUserDefaults+CustomObjects.swift */; };
 		45115FBF1CCFA50500FBF31F /* SampleRateStatusBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45115FBE1CCFA50500FBF31F /* SampleRateStatusBarView.swift */; };
@@ -361,8 +360,6 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		4507E6F11CCEC38B00EC7EEE /* SwiftTryCatch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SwiftTryCatch.h; sourceTree = "<group>"; };
-		4507E6F21CCEC38B00EC7EEE /* SwiftTryCatch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SwiftTryCatch.m; sourceTree = "<group>"; };
 		4510A3EE1CCE1D4800AED5E4 /* DeviceDescriptor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeviceDescriptor.swift; sourceTree = "<group>"; };
 		4510A4121CCE21D500AED5E4 /* NSUserDefaults+CustomObjects.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "NSUserDefaults+CustomObjects.swift"; path = "Extensions/NSUserDefaults+CustomObjects.swift"; sourceTree = "<group>"; };
 		45115FBE1CCFA50500FBF31F /* SampleRateStatusBarView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SampleRateStatusBarView.swift; sourceTree = "<group>"; };
@@ -440,16 +437,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		4507E6EE1CCEC38B00EC7EEE /* SwiftTryCatch */ = {
-			isa = PBXGroup;
-			children = (
-				4507E6F11CCEC38B00EC7EEE /* SwiftTryCatch.h */,
-				4507E6F21CCEC38B00EC7EEE /* SwiftTryCatch.m */,
-			);
-			name = SwiftTryCatch;
-			path = Carthage/Checkouts/SwiftTryCatch;
-			sourceTree = "<group>";
-		};
 		4510A4111CCE21C000AED5E4 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
@@ -541,7 +528,6 @@
 				45A43B0D1CBAB11900C22D17 /* Sparkle.xcodeproj */,
 				45C771891E01F9F200D50AD6 /* XCGLogger.xcodeproj */,
 				45A43ACA1CBAAE8400C22D17 /* StartAtLoginController */,
-				4507E6EE1CCEC38B00EC7EEE /* SwiftTryCatch */,
 			);
 			name = Dependencies;
 			sourceTree = "<group>";
@@ -1136,7 +1122,6 @@
 				455D697C1CDF5DD6003738F6 /* MasterVolumeGraphicView.swift in Sources */,
 				459E41011CCD2C0F0061303C /* GeneralPreferencesViewController.swift in Sources */,
 				4579E0341CE0973B00899972 /* MasterVolumeDecibelStatusBarView.swift in Sources */,
-				4507E6F61CCEC38B00EC7EEE /* SwiftTryCatch.m in Sources */,
 				4533CAAD1CD00580000A2C1C /* Array+Safe.swift in Sources */,
 				453394241D40C3BE00717DA1 /* AdvancedPreferencesViewController.swift in Sources */,
 				459E41031CCD2C2D0061303C /* NotificationPreferencesViewController.swift in Sources */,
