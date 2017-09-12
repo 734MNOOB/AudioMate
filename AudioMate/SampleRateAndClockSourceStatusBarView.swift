@@ -96,7 +96,7 @@ class SampleRateAndClockSourceStatusBarView: NSView, StatusBarSubView {
         if let device = representedObject as? AudioDevice {
 
             let formattedSampleRate = device.nominalSampleRate()?.string(as: .sampleRate) ?? "N/A"
-            let formattedClockSource = device.clockSourceName(channel: 0, direction: .playback) ?? NSLocalizedString("Internal Clock", comment: "")
+            let formattedClockSource = device.clockSourceName() ?? NSLocalizedString("Internal Clock", comment: "")
 
             sampleRateTextField.attributedStringValue = attributedString(string: formattedSampleRate)
             clockSourceTextField.attributedStringValue = attributedString(string: formattedClockSource)

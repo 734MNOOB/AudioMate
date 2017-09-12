@@ -87,12 +87,10 @@ extension AppDelegate : EventSubscriber {
                     dispatcher.samplerateChangeNotification(audioDevice: audioDevice)
                 }
 
-            case .clockSourceDidChange(let audioDevice, let channel, let direction):
+            case .clockSourceDidChange(let audioDevice):
 
                 if prefs.notifications.shouldDisplayClockSourceChanges.value {
-                    dispatcher.clockSourceChangeNotification(audioDevice: audioDevice,
-                                                             channelNumber: channel,
-                                                             direction: direction)
+                    dispatcher.clockSourceChangeNotification(audioDevice: audioDevice)
                 }
 
             case .volumeDidChange(let audioDevice, _, let direction):

@@ -81,9 +81,9 @@ public final class UserNotificationDispatcher {
         debouncedDeliver(notification: notification)
     }
 
-    func clockSourceChangeNotification(audioDevice: AudioDevice, channelNumber: UInt32, direction: AMCoreAudio.Direction) {
+    func clockSourceChangeNotification(audioDevice: AudioDevice) {
 
-        if let clockSourceName = audioDevice.clockSourceName(channel: channelNumber, direction: direction) {
+        if let clockSourceName = audioDevice.clockSourceName() {
             let notification = NSUserNotification()
 
             notification.title = NSLocalizedString("Clock Source Changed", comment: "")

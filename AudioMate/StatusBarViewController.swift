@@ -375,8 +375,8 @@ class StatusBarViewController: NSViewController {
         clockSourceItem.submenu = NSMenu()
         clockSourceItem.submenu?.autoenablesItems = false
 
-        if let clockSourceIDs = device.clockSourceIDs(channel: 0, direction: .playback) {
-            let activeClockSourceID = device.clockSourceID(channel: 0, direction: .playback)
+        if let clockSourceIDs = device.clockSourceIDs() {
+            let activeClockSourceID = device.clockSourceID()
 
             for clockSourceID in clockSourceIDs {
                 if let clockSourceName = device.clockSourceName(clockSourceID: clockSourceID) {
@@ -571,7 +571,7 @@ class StatusBarViewController: NSViewController {
 
         // Formatted sample rate and clock source
         let formattedSampleRate = device.nominalSampleRate()?.string(as: .sampleRate) ?? "N/A"
-        let formattedClockSource = device.clockSourceName(channel: 0, direction: .playback) ?? NSLocalizedString("Internal Clock", comment: "")
+        let formattedClockSource = device.clockSourceName() ?? NSLocalizedString("Internal Clock", comment: "")
 
         // Formatted input and output channels
         let inChannels = device.channels(direction: .recording) 
@@ -855,7 +855,7 @@ extension StatusBarViewController : EventSubscriber {
 
                 updateDeviceMenuItem(device: audioDevice)
 
-            case .clockSourceDidChange(let audioDevice, _, _):
+            case .clockSourceDidChange(let audioDevice):
 
                 updateDeviceMenuItem(device: audioDevice)
 
