@@ -115,7 +115,9 @@ class StatusBarViewController: NSViewController {
         view.frame.size = NSSize(width: fittingWidthWithPadding, height: statusBarView.frame.height)
 
         if !view.isHidden {
-            statusItem?.length = NSWidth(statusBarView.frame)
+            DispatchQueue.main.async {
+                self.statusItem?.length = fittingWidthWithPadding
+            }
         }
     }
 
@@ -212,7 +214,10 @@ class StatusBarViewController: NSViewController {
         // Common for all layouts except .None
         if layoutType != .none {
             statusBarView.isHidden = false
-            statusItem?.button?.image = nil
+
+            if statusItem?.button?.image != nil {
+                statusItem?.button?.image = nil
+            }
         }
 
         if effectiveLayoutType == layoutType, let subView = subView {

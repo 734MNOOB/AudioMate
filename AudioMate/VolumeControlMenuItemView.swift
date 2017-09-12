@@ -23,7 +23,8 @@ class VolumeControlMenuItemView: NSView {
             didSetupConstraints = true
 
             NSLayoutConstraint.deactivate(constraints)
-            autoSetDimension(.height, toSize: 42)
+            translatesAutoresizingMaskIntoConstraints = true
+            autoresizingMask = .viewWidthSizable
 
             let sideMargin: CGFloat = 21
 
