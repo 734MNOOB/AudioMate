@@ -771,9 +771,7 @@ class StatusBarViewController: NSViewController {
             let device = AudioDevice.lookup(by: AudioObjectID(menuItem.tag))
 
             if let clockSourceID = menuItem.representedObject as? UInt {
-                device?.setClockSourceID(UInt32(clockSourceID),
-                                         channel: UInt32(kAudioObjectPropertyElementMaster),
-                                         direction: .playback)
+                device?.setClockSourceID(UInt32(clockSourceID))
             }
         }
     }
