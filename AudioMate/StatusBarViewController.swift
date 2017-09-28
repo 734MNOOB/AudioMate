@@ -111,10 +111,12 @@ class StatusBarViewController: NSViewController {
 
         let padding: CGFloat = 10 // 10px padding
         let fittingWidthWithPadding = round(view.fittingSize.width + padding)
+        let layoutType = self.layoutType()
 
         view.frame.size = NSSize(width: fittingWidthWithPadding, height: statusBarView.frame.height)
+        view.isHidden = layoutType == .none
 
-        if !view.isHidden {
+        if layoutType != .none {
             DispatchQueue.main.async {
                 self.statusItem?.length = fittingWidthWithPadding
             }
@@ -205,25 +207,34 @@ class StatusBarViewController: NSViewController {
 
     // MARK: - Private Functions
 
-    fileprivate func updateStatusBarView() {
+    fileprivate func layoutType() -> StatusBarViewLayoutType {
 
         let featuredDevice = prefs.general.featuredDevice.value.device
-        let layoutType = featuredDevice?.isAlive() == true ? prefs.general.layoutType.value : .none
-        let subView = statusBarView.subView()
 
-        // Common for all layouts except .None
-        if layoutType != .none {
-            statusBarView.isHidden = false
+        return featuredDevice?.isAlive() == true ? prefs.general.layoutType.value : .none
+    }
 
+    fileprivate func updateButtonImage() {
+
+        if layoutType() == .none {
+            statusItem?.button?.image = NSImage(named: "Mini AudioMate")
+        } else {
             if statusItem?.button?.image != nil {
                 statusItem?.button?.image = nil
             }
         }
+    }
 
-        if effectiveLayoutType == layoutType, let subView = subView {
+    fileprivate func updateStatusBarView() {
+
+        let layoutType = self.layoutType()
+        let subView = statusBarView.subView()
+
+        if layoutType != .none && effectiveLayoutType == layoutType, let subView = subView {
             subView.draw(subView.bounds)
         } else {
             statusItem?.length = NSVariableStatusItemLength
+            updateButtonImage()
 
             switch layoutType {
             case .sampleRate:
@@ -258,8 +269,7 @@ class StatusBarViewController: NSViewController {
 
             case .none:
 
-                statusBarView.isHidden = true
-                statusItem?.button?.image = NSImage(named: "Mini AudioMate")
+                break
             }
 
             effectiveLayoutType = layoutType
@@ -269,6 +279,7 @@ class StatusBarViewController: NSViewController {
             if layoutType == .none {
                 subView.representedObject = nil
             } else {
+                let featuredDevice = prefs.general.featuredDevice.value.device
                 // Update subview represented object
                 subView.representedObject = featuredDevice
                 // Update statusbar view tooltip
