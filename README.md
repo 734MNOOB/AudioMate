@@ -5,9 +5,9 @@
 
 Control all your audio devices from the status bar, receive system notifications when relevant events happen on your audio devices and more. For more information, please visit [AudioMate's website](http://audiomateapp.com).
 
-<img src="https://github.com/The9Labs/AudioMate/raw/develop/Artwork/AudioMate_v3_Screenshot.png" class="center">
+<img src="https://github.com/tbrek/AudioMate/blob/develop/Artwork/AudioMate_v3_Screenshot.png" class="center">
 
-<img src="https://github.com/The9Labs/AudioMate/raw/develop/Artwork/AudioMate_v3_Screenshot2.png" class="center">
+<img src="https://github.com/tbrek/AudioMate/blob/develop/Artwork/AudioMate_v3_Screenshot2.png" class="center">
 
 ### Getting Started
 
@@ -22,7 +22,7 @@ $ carthage checkout --use-submodules
 ### Build & Run
 
 1. Open `AMCoreAudio.xcodeproj` in Xcode 8.2 (or later)
-2. Hit Run (Cmd + R)
+2. Hit `Run` (Cmd + R)
 
 ### Requirements
 
